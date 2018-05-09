@@ -49,7 +49,7 @@ search:
 
 # Comment
 comment:
-    disqus: oushiun # enter disqus shortname here
+    disqus: # enter disqus shortname here
     duoshuo: # enter duoshuo shortname here
     youyan: # enter youyan uid here
     facebook: # enter true to enable
@@ -65,12 +65,14 @@ comment:
         client_secret: #your client secret
     livere: # enter livere uid here
     valine: # Valine Comment System https://github.com/xCss/Valine
-        on:  # enter true to enable
-        appId:  # enter the leancloud application appId here
-        appKey: # enter the leancloud application appKey here
-        notify: # enter true to enable <Mail notifier> https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
-        verify: # enter true to enable <Validation code>
-        placeholder: Just Do It # enter the comment box placeholder
+        on: true # enter true to enable
+        lang: en # set language
+        avatar: identicon # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
+        appId: 9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz # enter the leancloud application appId here
+        appKey: w9XrTYkAAeSp1xQk9QvtpSSz # enter the leancloud application appKey here
+        notify: false # enter true to enable <Mail notifier> https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
+        verify: false # enter true to enable <Validation code>
+        placeholder:  # enter the comment box placeholder
     
 
 # Share
@@ -80,7 +82,7 @@ share: addtoany # options: jiathis, bdshare, addtoany, default
 plugins:
     lightgallery: true # options: true, false
     justifiedgallery: true # options: true, false
-    google_analytics: # enter the tracking ID for your Google Analytics
+    google_analytics: UA-65562224-1 # enter the tracking ID for your Google Analytics
     google_site_verification: # enter Google site verification code
     baidu_analytics: # enter Baidu Analytics hash key
     mathjax: false # options: true, false

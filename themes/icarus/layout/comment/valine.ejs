@@ -1,9 +1,11 @@
 <% if (typeof(script) !== 'undefined' && script) { %>
     <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.6/dist/Valine.min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
     <script>
         new Valine({
             el: '#valine-thread' ,
+            lang:'<%= theme.comment.valine.lang %>',
+            avatar:'<%= theme.comment.valine.avatar %>',
             notify:<%= theme.comment.valine.notify %>,
             verify:<%= theme.comment.valine.verify %>,
             app_id: '<%= theme.comment.valine.appId %>',
