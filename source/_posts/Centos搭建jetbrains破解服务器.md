@@ -7,6 +7,7 @@ categories:
 tags:
  - Centos
  - jetbrains
+toc: true
 ---
 
 ##  Centos 搭建 jetbrains 破解服务器
@@ -17,36 +18,36 @@ tags:
 1. 检查是否安装了vsftpd
 
 ``` bash
-> rpm -qa |grep vsftpd
+rpm -qa |grep vsftpd
 ```
 
 3. Linux系统：CentOS 7 x86_64
 
 ``` bash
-> cat /etc/os-release
+cat /etc/os-release
 ```
 
 2. 通过yum来安装vsftpd
 
 ``` bash
-> yum -y install vsftpd
+yum -y install vsftpd
 ```
 
 3. 设置为开机启动
 
 ``` bash
-> systemctl enable vsftpd
+systemctl enable vsftpd
 
-> systemctl start vsftpd #启动vsftpd命令
-> systemctl stop vsftpd #停止vsftpd命令
-> systemctl status vsftpd #查看vsftpd状态
-> systemctl restart vsftpd #重启vsftpd命令
+systemctl start vsftpd #启动vsftpd命令
+systemctl stop vsftpd #停止vsftpd命令
+systemctl status vsftpd #查看vsftpd状态
+systemctl restart vsftpd #重启vsftpd命令
 ```
 
 4. 修改配置文件
 
 ``` bash
-> vi /etc/vsftpd/vsftpd.conf
+vi /etc/vsftpd/vsftpd.conf
 ```
 
 ### 添加用户及额外配置
@@ -57,20 +58,18 @@ tags:
 2. 开放 21 端口
 
 ``` bash
-> vi /etc/sysconfig/iptables
-# 添加
-> -A INPUT -m state --state NEW -m tcp -p tcp --dport 21 -j ACCEPT
+firewall-cmd --zone=public --add-port=21/tcp --permanent
 ```
 
 ``` bash
-> yum install firewalld #安装firewalld 防火墙
-> systemctl start firewalld.service #开启防火墙
-> systemctl stop firewalld.service #关闭防火墙
-> systemctl enable firewalld.service #开机自动启动
-> systemctl disable firewalld.service #禁止开机制动启动
-> firewall-cmd --state #running 表示运行
-> firewall-cmd --reload #重新载入以生效
-> firewall-cmd --complete-reload #更新规则，重启服务
+yum install firewalld #安装firewalld 防火墙
+systemctl start firewalld.service #开启防火墙
+systemctl stop firewalld.service #关闭防火墙
+systemctl enable firewalld.service #开机自动启动
+systemctl disable firewalld.service #禁止开机制动启动
+firewall-cmd --state #running 表示运行
+firewall-cmd --reload #重新载入以生效
+firewall-cmd --complete-reload #更新规则，重启服务
 ```
 
 ### 上传文件
@@ -78,30 +77,30 @@ tags:
 
 解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是x86_64 GNU/Linux，so 给IntelliJIDEALicenseServer_linux_amd64 赋可执行权限
 ``` bash
-> chmod +x IntelliJIDEALicenseServer_linux_amd64
+chmod +x IntelliJIDEALicenseServer_linux_amd64
 ```
 
 ### 安装配置Nginx
 1. 通过yum安装Nginx
 
 ``` bash
-> yum install epel-release
-> yum install nginx
+yum install epel-release
+yum install nginx
 ```
 
 常用命令
 ``` bash
-> systemctl start nginx
-> systemctl enable nginx
-> systemctl status nginx
+systemctl start nginx
+systemctl enable nginx
+systemctl status nginx
 ```
 
 2. 配置防火墙
 
 ``` bash
-> firewall-cmd --zone=public --permanent --add-service=http
-> firewall-cmd --zone=public --permanent --add-service=https
-> firewall-cmd --reload
+firewall-cmd --zone=public --permanent --add-service=http
+firewall-cmd --zone=public --permanent --add-service=https
+firewall-cmd --reload
 ```
 
 3. 测试Nginx是否正常访问
@@ -129,7 +128,7 @@ server {
 }
 ```
 
-> 注意事项：需要展示破解地址文档，通过nginx反向代理需要将IntelliJIDEALicenseServer.html 放在/目录，如果是通过直接运行脚本需要和脚本在同一目录。  
+注意事项：需要展示破解地址文档，通过nginx反向代理需要将IntelliJIDEALicenseServer.html 放在/目录，如果是通过直接运行脚本需要和脚本在同一目录。  
 
 5. systemd 设置
 
