@@ -22,7 +22,7 @@ customize:
         author_title: Web Developer & PM
         location: Hefei, China
         follow: https://github.com/oushiun
-    highlight: monokai
+    highlight: soraaoi
     sidebar: right # sidebar position, options: left, right or leave it empty
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: favicon.png # path to favicon
