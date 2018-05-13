@@ -1,22 +1,18 @@
 ---
-title: Centos搭建shadowsocks
-banner: http://static.oushiun.com/blog/banner/kcptun.png
+title: CentOS搭建shadowsocks
+banner: http://static.oushiun.com/blog/banner/shadowsocks.png
 date: 2018-05-09 22:20:38
 categories:
 - 工具
 tags:
- - Centos
+ - CentOS
  - shadowsocks
- - kcptun
 toc: true
 ---
 
-## Centos 7 搭建shadowsocks并使用kcptun加速
+Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。
 
 <!-- more -->
-
-### Shadowsocks
-Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。
 
 ### 安装shadowsocks
 
@@ -60,8 +56,12 @@ pip install shadowsocks
 Description=Shadowsocks
 
 [Service]
-TimeoutStartSec=0
-ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json
+Type=forking
+PIDFile=/run/shadowsocks/server.pid
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /run/shadowsocks
+ExecStart=/usr/bin/ssserver --pid-file /var/run/shadowsocks/server.pid --log-file /var/log/shadowsocks.log -c /etc/shadowsocks.json -d start
+Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target

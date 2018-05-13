@@ -1,16 +1,16 @@
 ---
-title: Centos搭建jetbrains破解服务器
+title: CentOS搭建jetbrains破解服务器
 banner: http://static.oushiun.com/blog/banner/jetbrains.png
 date: 2018-05-08 17:18:37
 categories:
 - 软件
 tags:
- - Centos
+ - CentOS
  - jetbrains
 toc: true
 ---
 
-##  Centos 搭建 jetbrains 破解服务器
+##  CentOS 搭建 jetbrains 破解服务器
 
 <!-- more -->
 
