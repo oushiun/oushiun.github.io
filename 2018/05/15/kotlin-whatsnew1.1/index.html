@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Kotlin 1.1 的新特性 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="协程（实验性的）Kotlin 1.1 的关键新特性是协程，它带来了 future/await、 yield 以及类似的编程模式的支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。 协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过挂起函数支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使">
+<meta name="keywords" content="Kotlin,Kotlin 1.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 1.1 的新特性">
+<meta property="og:url" content="http://oushiun.com/2018/05/15/kotlin-whatsnew1.1/index.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="协程（实验性的）Kotlin 1.1 的关键新特性是协程，它带来了 future/await、 yield 以及类似的编程模式的支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。 协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过挂起函数支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-15T03:37:45.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 1.1 的新特性">
+<meta name="twitter:description" content="协程（实验性的）Kotlin 1.1 的关键新特性是协程，它带来了 future/await、 yield 以及类似的编程模式的支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。 协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过挂起函数支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                13
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin-whatsnew1.1" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Kotlin 1.1 的新特性
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/05/15/kotlin-whatsnew1.1/">
+            <time datetime="2018-05-15T03:23:01.000Z" itemprop="datePublished">2018-05-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/概述/">概述</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>, <a class="tag-link" href="/tags/Kotlin-1-1/">Kotlin 1.1</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#协程（实验性的）"><span class="toc-number">1.</span> <span class="toc-text">协程（实验性的）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他语言功能"><span class="toc-number">2.</span> <span class="toc-text">其他语言功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型别名"><span class="toc-number">2.1.</span> <span class="toc-text">类型别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#已绑定的可调用引用"><span class="toc-number">2.2.</span> <span class="toc-text">已绑定的可调用引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密封类和数据类"><span class="toc-number">2.3.</span> <span class="toc-text">密封类和数据类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda-表达式中的解构"><span class="toc-number">2.4.</span> <span class="toc-text">lambda 表达式中的解构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下划线用于未使用的参数"><span class="toc-number">2.5.</span> <span class="toc-text">下划线用于未使用的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字字面值中的下划线"><span class="toc-number">2.6.</span> <span class="toc-text">数字字面值中的下划线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于属性的更短语法"><span class="toc-number">2.7.</span> <span class="toc-text">对于属性的更短语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内联属性访问器"><span class="toc-number">2.8.</span> <span class="toc-text">内联属性访问器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#局部委托属性"><span class="toc-number">2.9.</span> <span class="toc-text">局部委托属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#委托属性绑定的拦截"><span class="toc-number">2.10.</span> <span class="toc-text">委托属性绑定的拦截</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型枚举值访问"><span class="toc-number">2.11.</span> <span class="toc-text">泛型枚举值访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于-DSL-中隐式接收者的作用域控制"><span class="toc-number">2.12.</span> <span class="toc-text">对于 DSL 中隐式接收者的作用域控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem-操作符"><span class="toc-number">2.13.</span> <span class="toc-text">rem 操作符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标准库"><span class="toc-number">3.</span> <span class="toc-text">标准库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串到数字的转换"><span class="toc-number">3.1.</span> <span class="toc-text">字符串到数字的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onEach"><span class="toc-number">3.2.</span> <span class="toc-text">onEach()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#also-、takeIf-和-takeUnless"><span class="toc-number">3.3.</span> <span class="toc-text">also()、takeIf() 和 takeUnless()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#groupingBy"><span class="toc-number">3.4.</span> <span class="toc-text">groupingBy()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-toMap-和-Map-toMutableMap"><span class="toc-number">3.5.</span> <span class="toc-text">Map.toMap() 和 Map.toMutableMap()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-minus-key"><span class="toc-number">3.6.</span> <span class="toc-text">Map.minus(key)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#minOf-和-maxOf"><span class="toc-number">3.7.</span> <span class="toc-text">minOf() 和 maxOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类似数组的列表实例化函数"><span class="toc-number">3.8.</span> <span class="toc-text">类似数组的列表实例化函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-getValue"><span class="toc-number">3.9.</span> <span class="toc-text">Map.getValue()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象集合"><span class="toc-number">3.10.</span> <span class="toc-text">抽象集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组处理函数"><span class="toc-number">3.11.</span> <span class="toc-text">数组处理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-后端"><span class="toc-number">4.</span> <span class="toc-text">JVM 后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-8-字节码支持"><span class="toc-number">4.1.</span> <span class="toc-text">Java 8 字节码支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-8-标准库支持"><span class="toc-number">4.2.</span> <span class="toc-text">Java 8 标准库支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节码中的参数名"><span class="toc-number">4.3.</span> <span class="toc-text">字节码中的参数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常量内联"><span class="toc-number">4.4.</span> <span class="toc-text">常量内联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可变闭包变量"><span class="toc-number">4.5.</span> <span class="toc-text">可变闭包变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-scripting-支持"><span class="toc-number">4.6.</span> <span class="toc-text">javax.scripting 支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kotlin-reflect-full"><span class="toc-number">4.7.</span> <span class="toc-text">kotlin.reflect.full</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-后端"><span class="toc-number">5.</span> <span class="toc-text">JavaScript 后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#统一的标准库"><span class="toc-number">5.1.</span> <span class="toc-text">统一的标准库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更好的代码生成"><span class="toc-number">5.2.</span> <span class="toc-text">更好的代码生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#external-修饰符"><span class="toc-number">5.3.</span> <span class="toc-text">external 修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改进的导入处理"><span class="toc-number">5.4.</span> <span class="toc-text">改进的导入处理</span></a></li></ol></li></ol>
+                </div>
+            
+            <h2 id="协程（实验性的）"><a href="#协程（实验性的）" class="headerlink" title="协程（实验性的）"></a>协程（实验性的）</h2><p>Kotlin 1.1 的关键新特性是<em>协程</em>，它带来了 <code>future</code>/<code>await</code>、 <code>yield</code> 以及类似的编程模式的支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。</p>
+<p>协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过<a href="coroutines.html#挂起函数"><em>挂起函数</em></a>支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使用匿名挂起函数（即挂起 lambda 表达式）。</p>
+<a id="more"></a>
+<p>我们来看看在外部库 <a href="https://github.com/kotlin/kotlinx.coroutines" target="_blank" rel="noopener">kotlinx.coroutines</a> 中实现的 <code>async</code>/<code>await</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在后台线程池中运行该代码</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">asyncOverlay</span><span class="params">()</span></span> = async(CommonPool) &#123;</span><br><span class="line">    <span class="comment">// 启动两个异步操作</span></span><br><span class="line">    <span class="keyword">val</span> original = asyncLoadImage(<span class="string">"original"</span>)</span><br><span class="line">    <span class="keyword">val</span> overlay = asyncLoadImage(<span class="string">"overlay"</span>)</span><br><span class="line">    <span class="comment">// 然后应用叠加到两个结果</span></span><br><span class="line">    applyOverlay(original.await(), overlay.await())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 UI 上下文中启动新的协程</span></span><br><span class="line">launch(UI) &#123;</span><br><span class="line">    <span class="comment">// 等待异步叠加完成</span></span><br><span class="line">    <span class="keyword">val</span> image = asyncOverlay().await()</span><br><span class="line">    <span class="comment">// 然后在 UI 中显示</span></span><br><span class="line">    showImage(image)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，<code>async { …… }</code> 启动一个协程，当我们使用 <code>await()</code> 时，挂起协程的执行，而执行正在等待的操作，并且在等待的操作完成时恢复（可能在不同的线程上） 。</p>
+<p>标准库通过 <code>yield</code> 和 <code>yieldAll</code> 函数使用协程来支持<em>惰性生成序列</em>。<br>在这样的序列中，在取回每个元素之后挂起返回序列元素的代码块，<br>并在请求下一个元素时恢复。这里有一个例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.coroutines.experimental.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">  <span class="keyword">val</span> seq = buildSequence &#123;</span><br><span class="line">      <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span>) &#123;</span><br><span class="line">          <span class="comment">// 产生一个 i 的平方</span></span><br><span class="line">          yield(i * i)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 产生一个区间</span></span><br><span class="line">      yieldAll(<span class="number">26.</span><span class="number">.28</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 输出该序列</span></span><br><span class="line">  println(seq.toList())</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更多信息请参见<a href="coroutines.html">协程文档</a>及<a href="/docs/tutorials/coroutines-basic-jvm.html">教程</a>。</p>
+<p>请注意，协程目前还是一个<strong>实验性的功能</strong>，这意味着 Kotlin 团队不承诺在最终的 1.1 版本时保持该功能的向后兼容性。</p>
+<h2 id="其他语言功能"><a href="#其他语言功能" class="headerlink" title="其他语言功能"></a>其他语言功能</h2><h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>类型别名允许你为现有类型定义备用名称。<br>这对于泛型类型（如集合）以及函数类型最有用。<br>这里有几个例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">typealias OscarWinners = Map&lt;String, String&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">countLaLaLand</span><span class="params">(oscarWinners: <span class="type">OscarWinners</span>)</span></span> =</span><br><span class="line">        oscarWinners.count &#123; it.value.contains(<span class="string">"La La Land"</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请注意，类型名称（初始名和类型别名）是可互换的：</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">checkLaLaLandIsTheBestMovie</span><span class="params">(oscarWinners: <span class="type">Map</span>&lt;<span class="type">String</span>, String&gt;)</span></span> =</span><br><span class="line">        oscarWinners[<span class="string">"Best picture"</span>] == <span class="string">"La La Land"</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">oscarWinners</span><span class="params">()</span></span>: OscarWinners &#123;</span><br><span class="line">    <span class="keyword">return</span> mapOf(</span><br><span class="line">            <span class="string">"Best song"</span> to <span class="string">"City of Stars (La La Land)"</span>,</span><br><span class="line">            <span class="string">"Best actress"</span> to <span class="string">"Emma Stone (La La Land)"</span>,</span><br><span class="line">            <span class="string">"Best picture"</span> to <span class="string">"Moonlight"</span> <span class="comment">/* …… */</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> oscarWinners = oscarWinners()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> laLaLandAwards = countLaLaLand(oscarWinners)</span><br><span class="line">    println(<span class="string">"LaLaLandAwards = <span class="variable">$laLaLandAwards</span> (in our small example), but actually it's 6."</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> laLaLandIsTheBestMovie = checkLaLaLandIsTheBestMovie(oscarWinners)</span><br><span class="line">    println(<span class="string">"LaLaLandIsTheBestMovie = <span class="variable">$laLaLandIsTheBestMovie</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="已绑定的可调用引用"><a href="#已绑定的可调用引用" class="headerlink" title="已绑定的可调用引用"></a>已绑定的可调用引用</h3><p>现在可以使用 <code>::</code> 操作符来获取指向特定对象实例的方法或属性的<a href="reflection.html#函数引用">成员引用</a>。<br>以前这只能用 lambda 表达式表示。<br>这里有一个例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">val</span> numberRegex = <span class="string">"\\d+"</span>.toRegex()</span><br><span class="line"><span class="keyword">val</span> numbers = listOf(<span class="string">"abc"</span>, <span class="string">"123"</span>, <span class="string">"456"</span>).filter(numberRegex::matches)</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"Result is <span class="variable">$numbers</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="密封类和数据类"><a href="#密封类和数据类" class="headerlink" title="密封类和数据类"></a>密封类和数据类</h3><p>Kotlin 1.1 删除了一些对 Kotlin 1.0 中已存在的密封类和数据类的限制。<br>现在你可以在同一个文件中的任何地方定义一个密封类的子类，而不只是以作为密封类嵌套类的方式。<br>数据类现在可以扩展其他类。<br>这可以用来友好且清晰地定义一个表达式类的层次结构：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Expr</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Const</span></span>(<span class="keyword">val</span> number: <span class="built_in">Double</span>) : Expr()</span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Sum</span></span>(<span class="keyword">val</span> e1: Expr, <span class="keyword">val</span> e2: Expr) : Expr()</span><br><span class="line"><span class="keyword">object</span> NotANumber : Expr()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">eval</span><span class="params">(expr: <span class="type">Expr</span>)</span></span>: <span class="built_in">Double</span> = <span class="keyword">when</span> (expr) &#123;</span><br><span class="line">    <span class="keyword">is</span> Const -&gt; expr.number</span><br><span class="line">    <span class="keyword">is</span> Sum -&gt; eval(expr.e1) + eval(expr.e2)</span><br><span class="line">    NotANumber -&gt; <span class="built_in">Double</span>.NaN</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> e = eval(Sum(Const(<span class="number">1.0</span>), Const(<span class="number">2.0</span>)))</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"e is <span class="variable">$e</span>"</span>) <span class="comment">// 3.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其<a href="sealed-classes.html">文档</a>或者<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md" target="_blank" rel="noopener">密封类</a>及<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md" target="_blank" rel="noopener">数据类</a>的 KEEP。</p>
+<h3 id="lambda-表达式中的解构"><a href="#lambda-表达式中的解构" class="headerlink" title="lambda 表达式中的解构"></a>lambda 表达式中的解构</h3><p>现在可以使用<a href="multi-declarations.html">解构声明</a>语法来解开传递给 lambda 表达式的参数。<br>这里有一个例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> map = mapOf(<span class="number">1</span> to <span class="string">"one"</span>, <span class="number">2</span> to <span class="string">"two"</span>)</span><br><span class="line">    <span class="comment">// 之前</span></span><br><span class="line">    println(map.mapValues &#123; entry -&gt;</span><br><span class="line">        <span class="keyword">val</span> (key, value) = entry</span><br><span class="line">        <span class="string">"<span class="variable">$key</span> -&gt; <span class="variable">$value</span>!"</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 现在</span></span><br><span class="line">    println(map.mapValues &#123; (key, value) -&gt; <span class="string">"<span class="variable">$key</span> -&gt; <span class="variable">$value</span>!"</span> &#125;)</span><br><span class="line"><span class="comment">//sampleEnd    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其<a href="multi-declarations.html#在-lambda-表达式中解构自-11-起">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="下划线用于未使用的参数"><a href="#下划线用于未使用的参数" class="headerlink" title="下划线用于未使用的参数"></a>下划线用于未使用的参数</h3><p>对于具有多个参数的 lambda 表达式，可以使用 <code>_</code> 字符替换不使用的参数的名称：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> map = mapOf(<span class="number">1</span> to <span class="string">"one"</span>, <span class="number">2</span> to <span class="string">"two"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    map.forEach &#123; _, value -&gt; println(<span class="string">"<span class="variable">$value</span>!"</span>) &#125;</span><br><span class="line"><span class="comment">//sampleEnd    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这也适用于<a href="multi-declarations.html">解构声明</a>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span></span>(<span class="keyword">val</span> value: Any, <span class="keyword">val</span> status: String)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getResult</span><span class="params">()</span></span> = Result(<span class="number">42</span>, <span class="string">"ok"</span>).also &#123; println(<span class="string">"getResult() returns <span class="variable">$it</span>"</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> (_, status) = getResult()</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"status is '<span class="variable">$status</span>'"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/underscore-for-unused-parameters.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="数字字面值中的下划线"><a href="#数字字面值中的下划线" class="headerlink" title="数字字面值中的下划线"></a>数字字面值中的下划线</h3><p>正如在 Java 8 中一样，Kotlin 现在允许在数字字面值中使用下划线来分隔数字分组：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">val</span> oneMillion = <span class="number">1</span>_000_000</span><br><span class="line"><span class="keyword">val</span> hexBytes = <span class="number">0xFF</span>_EC_DE_5E</span><br><span class="line"><span class="keyword">val</span> bytes = <span class="number">0</span>b11010010_01101001_10010100_10010010</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(oneMillion)</span><br><span class="line">    println(hexBytes.toString(<span class="number">16</span>))</span><br><span class="line">    println(bytes.toString(<span class="number">2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/underscores-in-numeric-literals.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="对于属性的更短语法"><a href="#对于属性的更短语法" class="headerlink" title="对于属性的更短语法"></a>对于属性的更短语法</h3><p>对于没有自定义访问器、或者将 getter 定义为表达式主体的属性，现在可以省略属性的类型：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">val</span> isAdult <span class="keyword">get</span>() = age &gt;= <span class="number">20</span> <span class="comment">// 属性类型推断为 “Boolean”</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> akari = Person(<span class="string">"Akari"</span>, <span class="number">26</span>)</span><br><span class="line">    println(<span class="string">"<span class="variable">$akari</span>.isAdult = <span class="subst">$&#123;akari.isAdult&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内联属性访问器"><a href="#内联属性访问器" class="headerlink" title="内联属性访问器"></a>内联属性访问器</h3><p>如果属性没有幕后字段，现在可以使用 <code>inline</code> 修饰符来标记该属性访问器。<br>这些访问器的编译方式与<a href="inline-functions.html">内联函数</a>相同。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">val</span> &lt;T&gt; List&lt;T&gt;.lastIndex: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">get</span>() = <span class="keyword">this</span>.size - <span class="number">1</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> list = listOf(<span class="string">'a'</span>, <span class="string">'b'</span>)</span><br><span class="line">    <span class="comment">// 其 getter 会内联</span></span><br><span class="line">    println(<span class="string">"Last index of <span class="variable">$list</span> is <span class="subst">$&#123;list.lastIndex&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你也可以将整个属性标记为 <code>inline</code>——这样修饰符应用于两个访问器。</p>
+<p>更详细信息请参阅其<a href="inline-functions.html#inline-properties">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="局部委托属性"><a href="#局部委托属性" class="headerlink" title="局部委托属性"></a>局部委托属性</h3><p>现在可以对局部变量使用<a href="delegated-properties.html">委托属性</a>语法。<br>一个可能的用途是定义一个延迟求值的局部变量：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">needAnswer</span><span class="params">()</span></span> = Random().nextBoolean()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> answer <span class="keyword">by</span> lazy &#123;</span><br><span class="line">        println(<span class="string">"Calculating the answer..."</span>)</span><br><span class="line">        <span class="number">42</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (needAnswer()) &#123;                     <span class="comment">// 返回随机值</span></span><br><span class="line">        println(<span class="string">"The answer is <span class="variable">$answer</span>."</span>)   <span class="comment">// 此时计算出答案</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        println(<span class="string">"Sometimes no answer is the answer..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="委托属性绑定的拦截"><a href="#委托属性绑定的拦截" class="headerlink" title="委托属性绑定的拦截"></a>委托属性绑定的拦截</h3><p>对于<a href="delegated-properties.html">委托属性</a>，现在可以使用 <code>provideDelegate</code> 操作符拦截委托到属性之间的绑定<br>。<br>例如，如果我们想要在绑定之前检查属性名称，我们可以这样写：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResourceLoader</span>&lt;<span class="type">T</span>&gt;</span>(id: ResourceID&lt;T&gt;) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">provideDelegate</span><span class="params">(thisRef: <span class="type">MyUI</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: ReadOnlyProperty&lt;MyUI, T&gt; &#123;</span><br><span class="line">        checkProperty(thisRef, property.name)</span><br><span class="line">        …… <span class="comment">// 属性创建</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">checkProperty</span><span class="params">(thisRef: <span class="type">MyUI</span>, name: <span class="type">String</span>)</span></span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">bindResource</span><span class="params">(id: <span class="type">ResourceID</span>&lt;<span class="type">T</span>&gt;)</span></span>: ResourceLoader&lt;T&gt; &#123; …… &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> image <span class="keyword">by</span> bindResource(ResourceID.image_id)</span><br><span class="line">    <span class="keyword">val</span> text <span class="keyword">by</span> bindResource(ResourceID.text_id)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>provideDelegate</code> 方法在创建 <code>MyUI</code> 实例期间将会为每个属性调用，并且可以立即执行必要的验证。</p>
+<p>更详细信息请参阅其<a href="delegated-properties.html#提供委托自-11-起">文档</a>。</p>
+<h3 id="泛型枚举值访问"><a href="#泛型枚举值访问" class="headerlink" title="泛型枚举值访问"></a>泛型枚举值访问</h3><p>现在可以用泛型的方式来对枚举类的值进行枚举：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">RGB</span> </span>&#123; RED, GREEN, BLUE &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T : Enum&lt;T&gt;</span>&gt; <span class="title">printAllValues</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(enumValues&lt;T&gt;().joinToString &#123; it.name &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printAllValues&lt;RGB&gt;() <span class="comment">// 输出 RED, GREEN, BLUE</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对于-DSL-中隐式接收者的作用域控制"><a href="#对于-DSL-中隐式接收者的作用域控制" class="headerlink" title="对于 DSL 中隐式接收者的作用域控制"></a>对于 DSL 中隐式接收者的作用域控制</h3><p><code>@DslMarker</code> 注解允许限制来自 DSL 上下文中的外部作用域的接收者的使用。<br>考虑那个典型的 <a href="type-safe-builders.html">HTML 构建器示例</a>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">table &#123;</span><br><span class="line">    tr &#123;</span><br><span class="line">        td &#123; +<span class="string">"Text"</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Kotlin 1.0 中，传递给 <code>td</code> 的 lambda 表达式中的代码可以访问三个隐式接收者：传递给 <code>table</code>、<code>tr</code> 和 <code>td</code> 的。 这允许你调用在上下文中没有意义的方法——例如在 <code>td</code> 里面调用 <code>tr</code>，从而在 <code>&lt;td&gt;</code> 中放置一个 <code>&lt;tr&gt;</code> 标签。</p>
+<p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解并将其应用于标记类的基类。</p>
+<p>更详细信息请参阅其<a href="type-safe-builders.html#作用域控制dslmarker自-11-起">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md" target="_blank" rel="noopener">KEEP</a>。</p>
+<h3 id="rem-操作符"><a href="#rem-操作符" class="headerlink" title="rem 操作符"></a><code>rem</code> 操作符</h3><p><code>mod</code> 操作符现已弃用，而使用 <code>rem</code> 取代。动机参见<a href="https://youtrack.jetbrains.com/issue/KT-14650" target="_blank" rel="noopener">这个问题</a>。</p>
+<h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="字符串到数字的转换"><a href="#字符串到数字的转换" class="headerlink" title="字符串到数字的转换"></a>字符串到数字的转换</h3><p>在 String 类中有一些新的扩展，用来将它转换为数字，而不会在无效数字上抛出异常：<code>String.toIntOrNull(): Int?</code>、 <code>String.toDoubleOrNull(): Double?</code> 等。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> port = System.getenv(<span class="string">"PORT"</span>)?.toIntOrNull() ?: <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<p>还有整数转换函数，如 <code>Int.toString()</code>、 <code>String.toInt()</code>、 <code>String.toIntOrNull()</code>，<br>每个都有一个带有 <code>radix</code> 参数的重载，它允许指定转换的基数（2 到 36）。</p>
+<h3 id="onEach"><a href="#onEach" class="headerlink" title="onEach()"></a>onEach()</h3><p><code>onEach</code> 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中的集合/序列的每个元素执行一些操作，可能带有副作用。<br>对于迭代其行为像 <code>forEach</code> 但是也进一步返回可迭代实例。 对于序列它返回一个包装序列，它在元素迭代时延迟应用给定的动作。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inputDir.walk()</span><br><span class="line">        .filter &#123; it.isFile &amp;&amp; it.name.endsWith(<span class="string">".txt"</span>) &#125;</span><br><span class="line">        .onEach &#123; println(<span class="string">"Moving <span class="variable">$it</span> to <span class="variable">$outputDir</span>"</span>) &#125;</span><br><span class="line">        .forEach &#123; moveFile(it, File(outputDir, it.toRelativeString(inputDir))) &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="also-、takeIf-和-takeUnless"><a href="#also-、takeIf-和-takeUnless" class="headerlink" title="also()、takeIf() 和 takeUnless()"></a>also()、takeIf() 和 takeUnless()</h3><p>这些是适用于任何接收者的三个通用扩展函数。</p>
+<p><code>also</code> 就像 <code>apply</code>：它接受接收者、做一些动作、并返回该接收者。<br>二者区别是在 <code>apply</code> 内部的代码块中接收者是 <code>this</code>，而在 <code>also</code> 内部的代码块中是 <code>it</code>（并且如果你想的话，你可以给它另一个名字）。当你不想掩盖来自外部作用域的 <code>this</code> 时这很方便：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Block</span> </span>&#123;</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> content: String</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> Block.<span class="title">copy</span><span class="params">()</span></span> = Block().also &#123;</span><br><span class="line">    it.content = <span class="keyword">this</span>.content</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用“apply”代替</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> Block.<span class="title">copy1</span><span class="params">()</span></span> = Block().apply &#123;</span><br><span class="line">    <span class="keyword">this</span>.content = <span class="keyword">this</span><span class="symbol">@copy1</span>.content</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> block = Block().apply &#123; content = <span class="string">"content"</span> &#125;</span><br><span class="line">    <span class="keyword">val</span> copy = block.copy()</span><br><span class="line">    println(<span class="string">"Testing the content was copied:"</span>)</span><br><span class="line">    println(block.content == copy.content)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检查接收者是否满足该谓词，并在满足时返回该接收者否则不满足时返回 <code>null</code>。结合 elvis-操作符和及早返回，它允许编写如下结构：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> outDirFile = File(outputDir.path).takeIf &#123; it.exists() &#125; ?: <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"><span class="comment">// 对现有的 outDirFile 做些事情</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> input = <span class="string">"Kotlin"</span></span><br><span class="line">    <span class="keyword">val</span> keyword = <span class="string">"in"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> index = input.indexOf(keyword).takeIf &#123; it &gt;= <span class="number">0</span> &#125; ?: error(<span class="string">"keyword not found"</span>)</span><br><span class="line">    <span class="comment">// 对输入字符串中的关键字索引做些事情，鉴于它已找到</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    </span><br><span class="line">    println(<span class="string">"'<span class="variable">$keyword</span>' was found in '<span class="variable">$input</span>'"</span>)</span><br><span class="line">    println(input)</span><br><span class="line">    println(<span class="string">" "</span>.repeat(index) + <span class="string">"^"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>takeUnless</code> 与 <code>takeIf</code> 相同，只是它采用了反向谓词。当它 _不_ 满足谓词时返回接收者，否则返回 <code>null</code>。因此，上面的示例之一可以用 <code>takeUnless</code> 重写如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> index = input.indexOf(keyword).takeUnless &#123; it &lt; <span class="number">0</span> &#125; ?: error(<span class="string">"keyword not found"</span>)</span><br></pre></td></tr></table></figure>
+<p>当你有一个可调用的引用而不是 lambda 时，使用也很方便：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">testTakeUnless</span><span class="params">(string: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> result = string.takeUnless(String::isEmpty)</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line">    println(<span class="string">"string = \"<span class="variable">$string</span>\"; result = \"<span class="variable">$result</span>\""</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    testTakeUnless(<span class="string">""</span>)</span><br><span class="line">    testTakeUnless(<span class="string">"abc"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="groupingBy"><a href="#groupingBy" class="headerlink" title="groupingBy()"></a>groupingBy()</h3><p>此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于计算文本中字符的频率：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> words = <span class="string">"one two three four five six seven eight nine ten"</span>.split(<span class="string">' '</span>)</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> frequencies = words.groupingBy &#123; it.first() &#125;.eachCount()</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"Counting first letters: <span class="variable">$frequencies</span>."</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 另一种方式是使用“groupBy”和“mapValues”创建一个中间的映射，</span></span><br><span class="line">    <span class="comment">// 而“groupingBy”的方式会即时计数。</span></span><br><span class="line">    <span class="keyword">val</span> groupBy = words.groupBy &#123; it.first() &#125;.mapValues &#123; (_, list) -&gt; list.size &#125;</span><br><span class="line">    println(<span class="string">"Comparing the result with using 'groupBy': <span class="subst">$&#123;groupBy == frequencies&#125;</span>."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Map-toMap-和-Map-toMutableMap"><a href="#Map-toMap-和-Map-toMutableMap" class="headerlink" title="Map.toMap() 和 Map.toMutableMap()"></a>Map.toMap() 和 Map.toMutableMap()</h3><p>这俩函数可以用来简易复制映射：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutablePropertyBag</span></span>(map: Map&lt;String, Any&gt;) &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> mapCopy = map.toMap()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Map-minus-key"><a href="#Map-minus-key" class="headerlink" title="Map.minus(key)"></a>Map.minus(key)</h3><p>运算符 <code>plus</code> 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 <code>Map.filter()</code> 或 <code>Map.filterKeys()</code>。<br>现在运算符 <code>minus</code> 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列和键的数组。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> map = mapOf(<span class="string">"key"</span> to <span class="number">42</span>)</span><br><span class="line">    <span class="keyword">val</span> emptyMap = map - <span class="string">"key"</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    </span><br><span class="line">    println(<span class="string">"map: <span class="variable">$map</span>"</span>)</span><br><span class="line">    println(<span class="string">"emptyMap: <span class="variable">$emptyMap</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="minOf-和-maxOf"><a href="#minOf-和-maxOf" class="headerlink" title="minOf() 和 maxOf()"></a>minOf() 和 maxOf()</h3><p>这些函数可用于查找两个或三个给定值中的最小和最大值，其中值是原生数字或 <code>Comparable</code> 对象。每个函数还有一个重载，它接受一个额外的 <code>Comparator</code> 实例，如果你想比较自身不可比的对象的话。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> list1 = listOf(<span class="string">"a"</span>, <span class="string">"b"</span>)</span><br><span class="line">    <span class="keyword">val</span> list2 = listOf(<span class="string">"x"</span>, <span class="string">"y"</span>, <span class="string">"z"</span>)</span><br><span class="line">    <span class="keyword">val</span> minSize = minOf(list1.size, list2.size)</span><br><span class="line">    <span class="keyword">val</span> longestList = maxOf(list1, list2, compareBy &#123; it.size &#125;)</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    </span><br><span class="line">    println(<span class="string">"minSize = <span class="variable">$minSize</span>"</span>)</span><br><span class="line">    println(<span class="string">"longestList = <span class="variable">$longestList</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="类似数组的列表实例化函数"><a href="#类似数组的列表实例化函数" class="headerlink" title="类似数组的列表实例化函数"></a>类似数组的列表实例化函数</h3><p>类似于 <code>Array</code> 构造函数，现在有创建 <code>List</code> 和 <code>MutableList</code> 实例的函数，并通过调用 lambda 表达式来初始化每个元素：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> squares = List(<span class="number">10</span>) &#123; index -&gt; index * index &#125;</span><br><span class="line">    <span class="keyword">val</span> mutable = MutableList(<span class="number">10</span>) &#123; <span class="number">0</span> &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line">    println(<span class="string">"squares: <span class="variable">$squares</span>"</span>)</span><br><span class="line">    println(<span class="string">"mutable: <span class="variable">$mutable</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Map-getValue"><a href="#Map-getValue" class="headerlink" title="Map.getValue()"></a>Map.getValue()</h3><p><code>Map</code> 上的这个扩展函数返回一个与给定键相对应的现有值，或者抛出一个异常，提示找不到该键。<br>如果该映射是用 <code>withDefault</code> 生成的，这个函数将返回默认值，而不是抛异常。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart    </span></span><br><span class="line">    <span class="keyword">val</span> map = mapOf(<span class="string">"key"</span> to <span class="number">42</span>)</span><br><span class="line">    <span class="comment">// 返回不可空 Int 值 42</span></span><br><span class="line">    <span class="keyword">val</span> value: <span class="built_in">Int</span> = map.getValue(<span class="string">"key"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> mapWithDefault = map.withDefault &#123; k -&gt; k.length &#125;</span><br><span class="line">    <span class="comment">// 返回 4</span></span><br><span class="line">    <span class="keyword">val</span> value2 = mapWithDefault.getValue(<span class="string">"key2"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// map.getValue("anotherKey") // &lt;- 这将抛出 NoSuchElementException</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    </span><br><span class="line">    println(<span class="string">"value is <span class="variable">$value</span>"</span>)</span><br><span class="line">    println(<span class="string">"value2 is <span class="variable">$value2</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象集合"><a href="#抽象集合" class="headerlink" title="抽象集合"></a>抽象集合</h3><p>这些抽象类可以在实现 Kotlin 集合类时用作基类。<br>对于实现只读集合，有 <code>AbstractCollection</code>、 <code>AbstractList</code>、 <code>AbstractSet</code> 和 <code>AbstractMap</code>，<br>而对于可变集合，有 <code>AbstractMutableCollection</code>、 <code>AbstractMutableList</code>、 <code>AbstractMutableSet</code> 和 <code>AbstractMutableMap</code>。<br>在 JVM 上，这些抽象可变集合从 JDK 的抽象集合继承了大部分的功能。</p>
+<h3 id="数组处理函数"><a href="#数组处理函数" class="headerlink" title="数组处理函数"></a>数组处理函数</h3><p>标准库现在提供了一组用于逐个元素操作数组的函数：<br>比较（<code>contentEquals</code> 和 <code>contentDeepEquals</code>），<br>哈希码计算（<code>contentHashCode</code> 和 <code>contentDeepHashCode</code>），<br>以及转换成一个字符串（<code>contentToString</code> 和 <code>contentDeepToString</code>）。<br>它们都支持 JVM（它们作为 <code>java.util.Arrays</code> 中的相应函数的别名）和 JS（在Kotlin 标准库中提供实现）。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> array = arrayOf(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>)</span><br><span class="line">    println(array.toString())  <span class="comment">// JVM 实现：类型及哈希乱码</span></span><br><span class="line">    println(array.contentToString())  <span class="comment">// 良好格式化为列表</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JVM-后端"><a href="#JVM-后端" class="headerlink" title="JVM 后端"></a>JVM 后端</h2><h3 id="Java-8-字节码支持"><a href="#Java-8-字节码支持" class="headerlink" title="Java 8 字节码支持"></a>Java 8 字节码支持</h3><p>Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 <code>-jvm-target 1.8</code> 或者 Ant/Maven/Gradle 中的相应选项）。目前这并不改变字节码的语义（特别是，接口和 lambda 表达式中的默认方法的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。</p>
+<h3 id="Java-8-标准库支持"><a href="#Java-8-标准库支持" class="headerlink" title="Java 8 标准库支持"></a>Java 8 标准库支持</h3><p>现在有支持在 Java 7 和 8 中新添加的 JDK API 的标准库的独立版本。<br>如果你需要访问新的 API，请使用 <code>kotlin-stdlib-jre7</code> 和 <code>kotlin-stdlib-jre8</code> maven 构件，而不是标准的 <code>kotlin-stdlib</code>。<br>这些构件是在 <code>kotlin-stdlib</code> 之上的微小扩展，它们将它作为传递依赖项带到项目中。</p>
+<h3 id="字节码中的参数名"><a href="#字节码中的参数名" class="headerlink" title="字节码中的参数名"></a>字节码中的参数名</h3><p>Kotlin 现在支持在字节码中存储参数名。这可以使用命令行选项 <code>-java-parameters</code> 启用。</p>
+<h3 id="常量内联"><a href="#常量内联" class="headerlink" title="常量内联"></a>常量内联</h3><p>编译器现在将 <code>const val</code> 属性的值内联到使用它们的位置。</p>
+<h3 id="可变闭包变量"><a href="#可变闭包变量" class="headerlink" title="可变闭包变量"></a>可变闭包变量</h3><p>用于在 lambda 表达式中捕获可变闭包变量的装箱类不再具有 volatile 字段。<br>此更改提高了性能，但在一些罕见的使用情况下可能导致新的竞争条件。如果受此影响，你需要提供自己的同步机制来访问变量。</p>
+<h3 id="javax-scripting-支持"><a href="#javax-scripting-支持" class="headerlink" title="javax.scripting 支持"></a>javax.scripting 支持</h3><p>Kotlin 现在与<a href="https://docs.oracle.com/javase/8/docs/api/javax/script/package-summary.html" target="_blank" rel="noopener">javax.script API</a>（JSR-223）集成。<br>其 API 允许在运行时求值代码段：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> engine = ScriptEngineManager().getEngineByExtension(<span class="string">"kts"</span>)!!</span><br><span class="line">engine.eval(<span class="string">"val x = 3"</span>)</span><br><span class="line">println(engine.eval(<span class="string">"x + 2"</span>))  <span class="comment">// 输出 5</span></span><br></pre></td></tr></table></figure>
+<p>关于使用 API 的示例项目参见<a href="https://github.com/JetBrains/kotlin/tree/master/libraries/examples/kotlin-jsr223-local-example" target="_blank" rel="noopener">这里</a><br>。</p>
+<h3 id="kotlin-reflect-full"><a href="#kotlin-reflect-full" class="headerlink" title="kotlin.reflect.full"></a>kotlin.reflect.full</h3><p><a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/" target="_blank" rel="noopener">为 Java 9 支持准备</a>，在 <code>kotlin-reflect.jar</code> 库中的扩展函数和属性已移动到 <code>kotlin.reflect.full</code> 包中。旧包（<code>kotlin.reflect</code>）中的名称已弃用，将在Kotlin 1.2 中删除。请注意，核心反射接口（如 <code>KClass</code>）是 Kotlin 标准库（而不是 <code>kotlin-reflect</code>）的一部分，不受移动影响。</p>
+<h2 id="JavaScript-后端"><a href="#JavaScript-后端" class="headerlink" title="JavaScript 后端"></a>JavaScript 后端</h2><h3 id="统一的标准库"><a href="#统一的标准库" class="headerlink" title="统一的标准库"></a>统一的标准库</h3><p>Kotlin 标准库的大部分目前可以从代码编译成 JavaScript 来使用。<br>特别是，关键类如集合（<code>ArrayList</code>、 <code>HashMap</code> 等）、异常（<code>IllegalArgumentException</code> 等）以及其他几个关键类（<code>StringBuilder</code>、 <code>Comparator</code>）现在都定义在 <code>kotlin</code> 包下。在 JVM 平台上，一些名称是相应 JDK 类的类型别名，而在 JS 平台上，这些类在 Kotlin 标准库中实现。</p>
+<h3 id="更好的代码生成"><a href="#更好的代码生成" class="headerlink" title="更好的代码生成"></a>更好的代码生成</h3><p>JavaScript 后端现在生成更加可静态检查的代码，这对 JS 代码处理工具（如 minifiers、 optimisers、 linters 等）更加友好。</p>
+<h3 id="external-修饰符"><a href="#external-修饰符" class="headerlink" title="external 修饰符"></a><code>external</code> 修饰符</h3><p>如果你需要以类型安全的方式在 Kotlin 中访问 JavaScript 实现的类，你可以使用 <code>external</code> 修饰符写一个 Kotlin 声明。（在 Kotlin 1.0 中，使用了 <code>@native</code> 注解。）<br>与 JVM 目标平台不同，JS 平台允许对类和属性使用 external 修饰符。<br>例如，可以按以下方式声明 DOM <code>Node</code> 类：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">external <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> firstChild: Node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">appendChild</span><span class="params">(child: <span class="type">Node</span>)</span></span>: Node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">removeChild</span><span class="params">(child: <span class="type">Node</span>)</span></span>: Node</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="改进的导入处理"><a href="#改进的导入处理" class="headerlink" title="改进的导入处理"></a>改进的导入处理</h3><p>现在可以更精确地描述应该从 JavaScript 模块导入的声明。<br>如果在外部声明上添加 <code>@JsModule(&quot;＜模块名＞&quot;)</code> 注解，它会在编译期间正确导入到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会通过 <code>require(……)</code> 函数导入。<br>此外，如果要将声明作为模块或全局 JavaScript 对象导入，可以使用 <code>@JsNonModule</code> 注解。</p>
+<p>例如，以下是将 JQuery 导入 Kotlin 模块的方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">external <span class="class"><span class="keyword">interface</span> <span class="title">JQuery</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">toggle</span><span class="params">(duration: <span class="type">Int</span> = definedExternally)</span></span>: JQuery</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">click</span><span class="params">(handler: (<span class="type">Event</span>)</span></span> -&gt; <span class="built_in">Unit</span>): JQuery</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@JsModule(<span class="meta-string">"jquery"</span>)</span></span><br><span class="line"><span class="meta">@JsNonModule</span></span><br><span class="line"><span class="meta">@JsName(<span class="meta-string">"$"</span>)</span></span><br><span class="line">external <span class="function"><span class="keyword">fun</span> <span class="title">jquery</span><span class="params">(selector: <span class="type">String</span>)</span></span>: JQuery</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，JQuery 将作为名为 <code>jquery</code> 的模块导入。或者，它可以用作 $-对象，<br>这取决于Kotlin编译器配置使用哪个模块系统。</p>
+<p>你可以在应用程序中使用如下所示的这些声明：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    jquery(<span class="string">".toggle-button"</span>).click &#123;</span><br><span class="line">        jquery(<span class="string">".toggle-panel"</span>).toggle(<span class="number">300</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/05/15/kotlin-native-overview/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Kotlin/Native</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/05/15/kotlin-whatsnew1.1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="Kotlin 1.1 的新特性" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/2018/05/15/kotlin-whatsnew1.1/" class="title">Kotlin 1.1 的新特性</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T03:23:01.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/05/15/kotlin-native-overview/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="Kotlin/Native" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/2018/05/15/kotlin-native-overview/" class="title">Kotlin/Native</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T03:18:04.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/05/15/kotlin-js-overview/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="使用 Kotlin 进行 JavaScript 开发" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/2018/05/15/kotlin-js-overview/" class="title">使用 Kotlin 进行 JavaScript 开发</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T02:47:22.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/05/15/kotlin-android-overview/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="使用 Kotlin 进行 Android 开发" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/2018/05/15/kotlin-android-overview/" class="title">使用 Kotlin 进行 Android 开发</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T02:31:26.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/05/15/kotlin-server-overview/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="使用 Kotlin 进行服务器端开发" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/2018/05/15/kotlin-server-overview/" class="title">使用 Kotlin 进行服务器端开发</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T01:22:38.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css/">Css</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">5</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin-1-1/">Kotlin 1.1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native/">Native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器端/">服务器端</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Kotlin-1-1/" style="font-size: 10px;">Kotlin 1.1</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Native/" style="font-size: 10px;">Native</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/服务器端/" style="font-size: 10px;">服务器端</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
