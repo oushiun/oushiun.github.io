@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>使用 Kotlin 进行服务器端开发 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现力强的代码，同时保持与现有基于 Java 的技术栈的完全兼容性以及平滑的学习曲线：  表现力：Kotlin 的革新式语言功能，例如支持类型安全的构建器和委托属性，有助于构建强大而易于使用的抽象。 可伸缩性：Kotlin 对协程的支持有助于构建服务器端应用程序，伸缩到适度的硬件要求以应对大量的客户端。 互操作性：Kotlin 与所有基于">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Kotlin 进行服务器端开发">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/server-overview.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现力强的代码，同时保持与现有基于 Java 的技术栈的完全兼容性以及平滑的学习曲线：  表现力：Kotlin 的革新式语言功能，例如支持类型安全的构建器和委托属性，有助于构建强大而易于使用的抽象。 可伸缩性：Kotlin 对协程的支持有助于构建服务器端应用程序，伸缩到适度的硬件要求以应对大量的客户端。 互操作性：Kotlin 与所有基于">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-15T09:33:36.434Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Kotlin 进行服务器端开发">
+<meta name="twitter:description" content="Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现力强的代码，同时保持与现有基于 Java 的技术栈的完全兼容性以及平滑的学习曲线：  表现力：Kotlin 的革新式语言功能，例如支持类型安全的构建器和委托属性，有助于构建强大而易于使用的抽象。 可伸缩性：Kotlin 对协程的支持有助于构建服务器端应用程序，伸缩到适度的硬件要求以应对大量的客户端。 互操作性：Kotlin 与所有基于">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                19
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/server-overview" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            使用 Kotlin 进行服务器端开发
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/server-overview.html">
+            <time datetime="2018-05-15T01:22:38.000Z" itemprop="datePublished">2018-05-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/概述/">概述</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现力强的代码，同时保持与现有基于 Java 的技术栈的完全兼容性以及平滑的学习曲线：</p>
+<ul>
+<li><strong>表现力</strong>：Kotlin 的革新式语言功能，例如支持<a href="type-safe-builders.html">类型安全的构建器</a>和<a href="delegated-properties.html">委托属性</a>，有助于构建强大而易于使用的抽象。</li>
+<li><strong>可伸缩性</strong>：Kotlin 对<a href="coroutines.html">协程</a>的支持有助于构建服务器端应用程序，伸缩到适度的硬件要求以应对大量的客户端。</li>
+<li><strong>互操作性</strong>：Kotlin 与所有基于 Java 的框架完全兼容，可以让你保持熟悉的技术栈，同时获得更现代化语言的优势。</li>
+<li><strong>迁移</strong>：Kotlin 支持大型代码库从 Java 到 Kotlin 逐步迁移。你可以开始用 Kotlin 编写新代码，同时系统中较旧部分继续用 Java。</li>
+<li><strong>工具</strong>：除了很棒的 IDE 支持之外，Kotlin 还为 IntelliJ IDEA Ultimate 的插件提供了框架特定的工具（例如<br>Spring）。</li>
+<li><strong>学习曲线</strong>：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器有助于迈出第一步。</li>
+</ul>
+<a id="more"></a>
+<h3 id="使用-Kotlin-进行服务器端开发的框架"><a href="#使用-Kotlin-进行服务器端开发的框架" class="headerlink" title="使用 Kotlin 进行服务器端开发的框架"></a>使用 Kotlin 进行服务器端开发的框架</h3><ul>
+<li><p><a href="https://spring.io" target="_blank" rel="noopener">Spring</a> 利用 Kotlin 的语言功能提供<a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0" target="_blank" rel="noopener">更简洁的 API</a>，从版本 5.0 开始。<a href="https://start.spring.io/#!language=kotlin" target="_blank" rel="noopener">在线项目生成器</a>允许用 Kotlin 快速生成一个新项目。</p>
+</li>
+<li><p><a href="http://vertx.io" target="_blank" rel="noopener">Vert.x</a> 是在 JVM 上构建响应式 Web 应用程序的框架，为 Kotlin 提供了<a href="https://github.com/vert-x3/vertx-lang-kotlin" target="_blank" rel="noopener">专门支持</a>，包括<a href="http://vertx.io/docs/vertx-core/kotlin/" target="_blank" rel="noopener">完整的文档</a>。</p>
+</li>
+<li><p><a href="https://github.com/kotlin/ktor" target="_blank" rel="noopener">Ktor</a> 是由 JetBrains 构建的 Kotlin 原生 Web 框架，利用协程实现高可伸缩性，并提供易于使用且合乎惯用法的 API。</p>
+</li>
+<li><p><a href="https://github.com/kotlin/kotlinx.html" target="_blank" rel="noopener">kotlinx.html</a> 是可在 Web 应用程序中用于构建 HTML 的 DSL。它可以作为传统模板系统（如 JSP 和 FreeMarker）的替代品。</p>
+</li>
+<li><p>通过相应 Java 驱动程序进行持久化的可用选项包括直接 JDBC 访问、JPA 以及使用 NoSQL 数据库。对于 JPA，<a href="compiler-plugins.html#jpa-支持">kotlin-jpa 编译器插件</a>使 Kotlin 编译的类适应框架的要求。</p>
+</li>
+</ul>
+<h3 id="部署-Kotlin-服务器端应用程序"><a href="#部署-Kotlin-服务器端应用程序" class="headerlink" title="部署 Kotlin 服务器端应用程序"></a>部署 Kotlin 服务器端应用程序</h3><p>Kotlin 应用程序可以部署到支持 Java Web 应用程序的任何主机，包括 Amazon Web Services、<br>Google Cloud Platform 等。</p>
+<p>要在 <a href="https://www.heroku.com" target="_blank" rel="noopener">Heroku</a> 上部署 Kotlin 应用程序，可以按照 <a href="https://devcenter.heroku.com/articles/getting-started-with-kotlin" target="_blank" rel="noopener">Heroku 官方教程</a>来做。</p>
+<p>AWS Labs 提供了一个<a href="https://github.com/awslabs/serverless-photo-recognition" target="_blank" rel="noopener">示例项目</a>，展示了 Kotlin 编写 <a href="https://aws.amazon.com/lambda/" target="_blank" rel="noopener">AWS Lambda</a> 函数的使用。</p>
+<h3 id="Kotlin-用于服务器端的用户"><a href="#Kotlin-用于服务器端的用户" class="headerlink" title="Kotlin 用于服务器端的用户"></a>Kotlin 用于服务器端的用户</h3><p><a href="https://www.corda.net/2017/01/10/kotlin/" target="_blank" rel="noopener">Corda</a> 是一个开源的分布式分类帐平台，由各大银行提供支持，完全由 Kotlin 构建。</p>
+<p><a href="https://account.jetbrains.com/" target="_blank" rel="noopener">JetBrains 账户</a>，负责 JetBrains 整个许可证销售和验证过程的系统 100％ 由 Kotlin 编写，自 2015 年生产运行以来，一直没有重大问题。</p>
+<h3 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h3><ul>
+<li><a href="/docs/tutorials/httpservlets.html">使用 Http Servlet 创建 Web 应用程序</a> 及 <a href="/docs/tutorials/spring-boot-restful.html">使用 Spring Boot 创建 RESTful Web 服务</a>教程将向你展示如何在 Kotlin 中构建和运行非常小的 Web 应用程序。</li>
+<li>关于更深入的介绍，请查看本站的<a href="index.html">参考文档</a> 及 <a href="/docs/tutorials/koans.html">Kotlin 心印</a>。</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/android-overview.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    使用 Kotlin 进行 Android 开发
+                
+            </div>
+        </a>
+    
+    
+        <a href="/centos-install-bbr.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">ContOS 7 安装 BBR</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/returns.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="返回和跳转" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/returns.html" class="title">返回和跳转</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T10:00:56.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/control-flow.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="控制流：if、when、for、while" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/control-flow.html" class="title">控制流：if、when、for、while</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:47:44.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/packages.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="包和导入" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/packages.html" class="title">包和导入</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:14:17.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/basic-types.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="基本类型" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/basic-types.html" class="title">基本类型</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:01:18.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/coding-conventions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="编码规范" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/coding-conventions.html" class="title">编码规范</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T08:50:55.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native/">Native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据类型/">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码规范/">编码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Native/" style="font-size: 10px;">Native</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/编码规范/" style="font-size: 10px;">编码规范</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

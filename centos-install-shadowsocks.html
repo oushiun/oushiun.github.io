@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>CentOS 搭建 shadowsocks | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。">
+<meta name="keywords" content="CentOS,shadowsocks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 搭建 shadowsocks">
+<meta property="og:url" content="http://oushiun.com/centos-install-shadowsocks.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/shadowsocks.png">
+<meta property="og:updated_time" content="2018-05-15T09:33:57.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 搭建 shadowsocks">
+<meta name="twitter:description" content="Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/shadowsocks.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                19
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-centos-install-shadowsocks" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/shadowsocks.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            CentOS 搭建 shadowsocks
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/centos-install-shadowsocks.html">
+            <time datetime="2018-05-09T14:20:38.000Z" itemprop="datePublished">2018-05-09</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/工具/">工具</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CentOS/">CentOS</a>, <a class="tag-link" href="/tags/shadowsocks/">shadowsocks</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-shadowsocks"><span class="toc-number">1.</span> <span class="toc-text">安装 shadowsocks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-pip"><span class="toc-number">1.1.</span> <span class="toc-text">安装 pip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过-pip-安装-shadowsocks"><span class="toc-number">1.2.</span> <span class="toc-text">通过 pip 安装 shadowsocks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置-shadowsocks"><span class="toc-number">1.3.</span> <span class="toc-text">配置 shadowsocks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#systemctl-设置"><span class="toc-number">1.4.</span> <span class="toc-text">systemctl 设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置-firwall-规则"><span class="toc-number">1.5.</span> <span class="toc-text">配置 firwall 规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shadowsocks-其他配置"><span class="toc-number">1.6.</span> <span class="toc-text">shadowsocks 其他配置</span></a></li></ol></li></ol>
+                </div>
+            
+            <p>Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。</p>
+<a id="more"></a>
+<h3 id="安装-shadowsocks"><a href="#安装-shadowsocks" class="headerlink" title="安装 shadowsocks"></a>安装 shadowsocks</h3><h4 id="安装-pip"><a href="#安装-pip" class="headerlink" title="安装 pip"></a>安装 pip</h4><p>Pip 是 Python 的包管理工具，这里我们用 pip 安装 shadowsocks。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br><span class="line">pip -V <span class="comment">#pip 10.0.1 from /usr/lib/python2.7/site-packages/pip (python 2.7)</span></span><br></pre></td></tr></table></figure>
+<h4 id="通过-pip-安装-shadowsocks"><a href="#通过-pip-安装-shadowsocks" class="headerlink" title="通过 pip 安装 shadowsocks"></a>通过 pip 安装 shadowsocks</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<h4 id="配置-shadowsocks"><a href="#配置-shadowsocks" class="headerlink" title="配置 shadowsocks"></a>配置 shadowsocks</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/shadowsocks.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"server"</span>:<span class="string">"x.x.x.x"</span>,             <span class="comment">#你的 ss 服务器 ip</span></span><br><span class="line">  <span class="string">"server_port"</span>:0,                <span class="comment">#你的 ss 服务器端口</span></span><br><span class="line">  <span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,   <span class="comment">#本地ip</span></span><br><span class="line">  <span class="string">"local_port"</span>:0,                 <span class="comment">#本地端口</span></span><br><span class="line">  <span class="string">"password"</span>:<span class="string">"password"</span>,          <span class="comment">#连接 ss 密码</span></span><br><span class="line">  <span class="string">"timeout"</span>:300,                  <span class="comment">#等待超时</span></span><br><span class="line">  <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span>,         <span class="comment">#加密方式</span></span><br><span class="line">  <span class="string">"workers"</span>: 1                    <span class="comment">#工作线程数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="systemctl-设置"><a href="#systemctl-设置" class="headerlink" title="systemctl 设置"></a>systemctl 设置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/systemd/system/shadowsocks.service</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Shadowsocks</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/run/shadowsocks/server.pid</span><br><span class="line">PermissionsStartOnly=<span class="literal">true</span></span><br><span class="line">ExecStartPre=/bin/mkdir -p /run/shadowsocks</span><br><span class="line">ExecStart=/usr/bin/ssserver --pid-file /var/run/shadowsocks/server.pid --<span class="built_in">log</span>-file /var/<span class="built_in">log</span>/shadowsocks.log -c /etc/shadowsocks.json -d start</span><br><span class="line">Restart=on-abort</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<h4 id="配置-firwall-规则"><a href="#配置-firwall-规则" class="headerlink" title="配置 firwall 规则"></a>配置 firwall 规则</h4><p>输入以下命令开启一个端口，如果不是 9002 端口，修改成自己需要添加的端口（–permanent 永久生效，没有此参数重启后失效）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=9002/tcp --permanent</span><br></pre></td></tr></table></figure>
+<p>添加端口后系统返回 success 说明添加成功。这个时候需要重新载入 firewall，输入以下命令，返回 success 后此端口就可使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h4 id="shadowsocks-其他配置"><a href="#shadowsocks-其他配置" class="headerlink" title="shadowsocks 其他配置"></a>shadowsocks 其他配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ssserver -h</span><br><span class="line">usage: ssserver [OPTION]...</span><br><span class="line">A fast tunnel proxy that helps you bypass firewalls.</span><br><span class="line"></span><br><span class="line">You can supply configurations via either config file or <span class="built_in">command</span> line arguments.</span><br><span class="line"></span><br><span class="line">Proxy options:</span><br><span class="line">  -c CONFIG              path to config file</span><br><span class="line">  -s SERVER_ADDR         server address, default: 0.0.0.0</span><br><span class="line">  -p SERVER_PORT         server port, default: 8388</span><br><span class="line">  -k PASSWORD            password</span><br><span class="line">  -m METHOD              encryption method, default: aes-256-cfb</span><br><span class="line">  -t TIMEOUT             timeout <span class="keyword">in</span> seconds, default: 300</span><br><span class="line">  --fast-open            use TCP_FASTOPEN, requires Linux 3.7+</span><br><span class="line">  --workers WORKERS      number of workers, available on Unix/Linux</span><br><span class="line">  --forbidden-ip IPLIST  comma seperated IP list forbidden to connect</span><br><span class="line">  --manager-address ADDR optional server manager UDP address, see wiki</span><br><span class="line"></span><br><span class="line">General options:</span><br><span class="line">  -h, --<span class="built_in">help</span>             show this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -d start/stop/restart  daemon mode</span><br><span class="line">  --pid-file PID_FILE    pid file <span class="keyword">for</span> daemon mode</span><br><span class="line">  --<span class="built_in">log</span>-file LOG_FILE    <span class="built_in">log</span> file <span class="keyword">for</span> daemon mode</span><br><span class="line">  --user USER            username to run as</span><br><span class="line">  -v, -vv                verbose mode</span><br><span class="line">  -q, -qq                quiet mode, only show warnings/errors</span><br><span class="line">  --version              show version information</span><br><span class="line"></span><br><span class="line">Online <span class="built_in">help</span>: &lt;https://github.com/shadowsocks/shadowsocks&gt;</span><br></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/css3/css-box-model.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Css 盒子模型
+                
+            </div>
+        </a>
+    
+    
+        <a href="/markdown.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Markdown</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/returns.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="返回和跳转" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/returns.html" class="title">返回和跳转</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T10:00:56.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/control-flow.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="控制流：if、when、for、while" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/control-flow.html" class="title">控制流：if、when、for、while</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:47:44.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/packages.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="包和导入" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/packages.html" class="title">包和导入</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:14:17.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/basic-types.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="基本类型" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/basic-types.html" class="title">基本类型</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:01:18.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/coding-conventions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="编码规范" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/coding-conventions.html" class="title">编码规范</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T08:50:55.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native/">Native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据类型/">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码规范/">编码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Native/" style="font-size: 10px;">Native</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/编码规范/" style="font-size: 10px;">编码规范</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>返回和跳转 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Kotlin 有三种结构化跳转表达式：  return。默认从最直接包围它的函数或者匿名函数返回。 break。终止最直接包围它的循环。 continue。继续下一次最直接包围它的循环。">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="返回和跳转">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/returns.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="Kotlin 有三种结构化跳转表达式：  return。默认从最直接包围它的函数或者匿名函数返回。 break。终止最直接包围它的循环。 continue。继续下一次最直接包围它的循环。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-15T10:00:57.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="返回和跳转">
+<meta name="twitter:description" content="Kotlin 有三种结构化跳转表达式：  return。默认从最直接包围它的函数或者匿名函数返回。 break。终止最直接包围它的循环。 continue。继续下一次最直接包围它的循环。">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                19
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/returns" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            返回和跳转
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/returns.html">
+            <time datetime="2018-05-15T10:00:56.000Z" itemprop="datePublished">2018-05-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/基础/">基础</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Kotlin 有三种结构化跳转表达式：</p>
+<ul>
+<li><code>return</code>。默认从最直接包围它的函数或者<a href="lambdas.html#匿名函数">匿名函数</a>返回。</li>
+<li><code>break</code>。终止最直接包围它的循环。</li>
+<li><code>continue</code>。继续下一次最直接包围它的循环。</li>
+</ul>
+<a id="more"></a>
+<p>所有这些表达式都可以用作更大表达式的一部分：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> s = person.name ?: <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p>这些表达式的类型是 <a href="exceptions.html#nothing-类型">Nothing 类型</a>。</p>
+<h3 id="Break-与-Continue-标签"><a href="#Break-与-Continue-标签" class="headerlink" title="Break 与 Continue 标签"></a>Break 与 Continue 标签</h3><p>在 Kotlin 中任何表达式都可以用标签（<code>label</code>）来标记。标签的格式为标识符后跟 <code>@</code> 符号，例如：<code>abc@</code>、<code>fooBar@</code>都是有效的标签（参见<a href="grammar.html#labelReference">语法</a>）。要为一个表达式加标签，我们只要在其前加标签即可。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，我们可以用标签限制 <code>break</code> 或者<em>continue</em><code></code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (……) <span class="keyword">break</span><span class="symbol">@loop</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。<br><code>continue</code> 继续标签指定的循环的下一次迭代。</p>
+<h3 id="标签处返回"><a href="#标签处返回" class="headerlink" title="标签处返回"></a>标签处返回</h3><p>Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。标签限制的 <code>return</code> 允许我们从外层函数返回。最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span> <span class="comment">// 非局部直接返回到 foo() 的调用者</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"this point is unreachable"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个 <code>return</code> 表达式从最直接包围它的函数即 <code>foo</code> 中返回。（注意，这种非局部的返回只支持传给<a href="inline-functions.html">内联函数</a>的 lambda 表达式。）如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 <code>return</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach <span class="symbol">lit@</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@lit</span> <span class="comment">// 局部返回到该 lambda 表达式的调用者，即 forEach 循环</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with explicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，它只会从 lambda 表达式中返回。通常情况下使用隐式标签更方便。该标签与接受该 lambda 的函数同名。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@forEach</span> <span class="comment">// 局部返回到该 lambda 表达式的调用者，即 forEach 循环</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with implicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者，我们用一个<a href="lambdas.html#匿名函数">匿名函数</a>替代 lambda 表达式。匿名函数内部的 <code>return</code> 语句将从该匿名函数自身返回</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach(<span class="function"><span class="title">fun</span><span class="params">(value: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="number">3</span>) <span class="keyword">return</span>  <span class="comment">// 局部返回到匿名函数的调用者，即 forEach 循环</span></span><br><span class="line">        print(value)</span><br><span class="line">    &#125;)</span><br><span class="line">    print(<span class="string">" done with anonymous function"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，前文三个示例中使用的局部返回类似于在常规循环中使用 <code>continue</code>。并没有 <code>break</code> 的直接等价形式，不过可以通过增加另一层嵌套 lambda 表达式并从其中非局部返回来模拟：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    run <span class="symbol">loop@</span>&#123;</span><br><span class="line">        listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">            <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@loop</span> <span class="comment">// 从传入 run 的 lambda 表达式非局部返回</span></span><br><span class="line">            print(it)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with nested loop"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当要返一个回值的时候，解析器优先选用标签限制的 return，即</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span><span class="symbol">@a</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>意为“从标签 <code>@a</code> 返回 1”，而不是“返回一个标签标注的表达式 <code>(@a 1)</code>”。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/kotlin/reference/control-flow.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">控制流：if、when、for、while</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/returns.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="返回和跳转" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/returns.html" class="title">返回和跳转</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T10:00:56.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/control-flow.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="控制流：if、when、for、while" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/control-flow.html" class="title">控制流：if、when、for、while</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:47:44.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/packages.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="包和导入" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/packages.html" class="title">包和导入</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:14:17.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/basic-types.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="基本类型" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/basic-types.html" class="title">基本类型</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:01:18.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/coding-conventions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="编码规范" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/coding-conventions.html" class="title">编码规范</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T08:50:55.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native/">Native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据类型/">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码规范/">编码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Native/" style="font-size: 10px;">Native</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/编码规范/" style="font-size: 10px;">编码规范</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

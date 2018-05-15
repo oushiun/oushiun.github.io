@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Kotlin 1.2 的新特性 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="多平台项目（实验性的）多平台项目是 Kotlin 1.2 中的一个新的实验性的功能，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：  一个公共模块包含平台无关代码，以及无实现的依赖平台的 API 声明。 平台模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。 常规模块针对指定的平">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 1.2 的新特性">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/whatsnew1.2.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="多平台项目（实验性的）多平台项目是 Kotlin 1.2 中的一个新的实验性的功能，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：  一个公共模块包含平台无关代码，以及无实现的依赖平台的 API 声明。 平台模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。 常规模块针对指定的平">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-15T09:33:45.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 1.2 的新特性">
+<meta name="twitter:description" content="多平台项目（实验性的）多平台项目是 Kotlin 1.2 中的一个新的实验性的功能，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：  一个公共模块包含平台无关代码，以及无实现的依赖平台的 API 声明。 平台模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。 常规模块针对指定的平">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                19
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/whatsnew1.2" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Kotlin 1.2 的新特性
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/whatsnew1.2.html">
+            <time datetime="2018-05-15T04:15:24.000Z" itemprop="datePublished">2018-05-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/概述/">概述</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多平台项目（实验性的）"><span class="toc-number">1.</span> <span class="toc-text">多平台项目（实验性的）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他语言特性"><span class="toc-number">2.</span> <span class="toc-text">其他语言特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注解中的数组字面值"><span class="toc-number">2.1.</span> <span class="toc-text">注解中的数组字面值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lateinit-顶层属性与局部变量"><span class="toc-number">2.2.</span> <span class="toc-text">lateinit 顶层属性与局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查-lateinit-变量是否已初始化"><span class="toc-number">2.3.</span> <span class="toc-text">检查 lateinit 变量是否已初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内联函数带有默认函数式参数"><span class="toc-number">2.4.</span> <span class="toc-text">内联函数带有默认函数式参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源自显式类型转换的信息会用于类型推断"><span class="toc-number">2.5.</span> <span class="toc-text">源自显式类型转换的信息会用于类型推断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#智能类型转换改进"><span class="toc-number">2.6.</span> <span class="toc-text">智能类型转换改进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持-foo-作为-this-foo-的简写"><span class="toc-number">2.7.</span> <span class="toc-text">支持 ::foo 作为 this::foo 的简写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻断性变更：try-块后可靠智能转换"><span class="toc-number">2.8.</span> <span class="toc-text">阻断性变更：try 块后可靠智能转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弃用：数据类弃用-copy"><span class="toc-number">2.9.</span> <span class="toc-text">弃用：数据类弃用 copy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弃用：枚举条目中的嵌套类型"><span class="toc-number">2.10.</span> <span class="toc-text">弃用：枚举条目中的嵌套类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弃用：vararg-单个命名参数"><span class="toc-number">2.11.</span> <span class="toc-text">弃用：vararg 单个命名参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弃用：扩展-Throwable-的泛型类的内部类"><span class="toc-number">2.12.</span> <span class="toc-text">弃用：扩展 Throwable 的泛型类的内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弃用：修改只读属性的幕后字段"><span class="toc-number">2.13.</span> <span class="toc-text">弃用：修改只读属性的幕后字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标准库"><span class="toc-number">3.</span> <span class="toc-text">标准库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kotlin-标准库构件与拆分包"><span class="toc-number">3.1.</span> <span class="toc-text">Kotlin 标准库构件与拆分包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windowed、chunked、zipWithNext"><span class="toc-number">3.2.</span> <span class="toc-text">windowed、chunked、zipWithNext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fill、replaceAll、shuffle-shuffled"><span class="toc-number">3.3.</span> <span class="toc-text">fill、replaceAll、shuffle/shuffled</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kotlin-stdlib-中的数学运算"><span class="toc-number">3.4.</span> <span class="toc-text">kotlin-stdlib 中的数学运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用于-BigInteger-与-BigDecimal-的操作符与转换"><span class="toc-number">3.5.</span> <span class="toc-text">用于 BigInteger 与 BigDecimal 的操作符与转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数到比特的转换"><span class="toc-number">3.6.</span> <span class="toc-text">浮点数到比特的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式现在可序列化"><span class="toc-number">3.7.</span> <span class="toc-text">正则表达式现在可序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果可用，Closeable-use-会调用-Throwable-addSuppressed"><span class="toc-number">3.8.</span> <span class="toc-text">如果可用，Closeable.use 会调用 Throwable.addSuppressed</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-后端"><span class="toc-number">4.</span> <span class="toc-text">JVM 后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数调用规范化"><span class="toc-number">4.1.</span> <span class="toc-text">构造函数调用规范化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-默认方法调用"><span class="toc-number">4.2.</span> <span class="toc-text">Java 默认方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻断性变更：平台类型-x-equals-null-的一致行为"><span class="toc-number">4.3.</span> <span class="toc-text">阻断性变更：平台类型 x.equals(null) 的一致行为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻断性变更：修正平台-null-透过内联扩展接收者逃逸"><span class="toc-number">4.4.</span> <span class="toc-text">阻断性变更：修正平台 null 透过内联扩展接收者逃逸</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-后端"><span class="toc-number">5.</span> <span class="toc-text">JavaScript 后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#默认启用-TypedArrays-支持"><span class="toc-number">5.1.</span> <span class="toc-text">默认启用 TypedArrays 支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具"><span class="toc-number">6.</span> <span class="toc-text">工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#警告作为错误"><span class="toc-number">6.1.</span> <span class="toc-text">警告作为错误</span></a></li></ol></li></ol>
+                </div>
+            
+            <h2 id="多平台项目（实验性的）"><a href="#多平台项目（实验性的）" class="headerlink" title="多平台项目（实验性的）"></a>多平台项目（实验性的）</h2><p>多平台项目是 Kotlin 1.2 中的一个新的<strong>实验性的</strong>功能，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：</p>
+<ul>
+<li>一个<em>公共</em>模块包含平台无关代码，以及无实现的依赖平台的 API 声明。</li>
+<li><em>平台</em>模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。</li>
+<li>常规模块针对指定的平台，既可以是平台模块的依赖，也可以依赖平台模块。</li>
+</ul>
+<a id="more"></a>
+<p>当你为指定平台编译多平台项目时，既会生成公共代码也会生成平台相关代码。</p>
+<p>多平台项目支持的一个主要特点是可以通过<strong>预期声明与实际声明</strong>来表达公共代码对平台相关部分的依赖关系。一个预期声明指定一个 API（类、接口、注解、顶层声明等）。一个实际声明要么是该 API 的平台相关实现，要么是一个引用到在一个外部库中该 API 的一个既有实现的别名。这是一个示例：</p>
+<p>在公共代码中：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 预期平台相关 API:</span></span><br><span class="line">expect <span class="function"><span class="keyword">fun</span> <span class="title">hello</span><span class="params">(world: <span class="type">String</span>)</span></span>: String</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">greet</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 该预期 API 的用法：</span></span><br><span class="line">    <span class="keyword">val</span> greeting = hello(<span class="string">"multi-platform world"</span>)</span><br><span class="line">    println(greeting)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">expect <span class="class"><span class="keyword">class</span> <span class="title">URL</span></span>(spec: String) &#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">getHost</span><span class="params">()</span></span>: String</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">getPath</span><span class="params">()</span></span>: String</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 JVM 平台代码中：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">actual <span class="function"><span class="keyword">fun</span> <span class="title">hello</span><span class="params">(world: <span class="type">String</span>)</span></span>: String =</span><br><span class="line">    <span class="string">"Hello, <span class="variable">$world</span>, on the JVM platform!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用既有平台相关实现：</span></span><br><span class="line">actual typealias URL = java.net.URL</span><br></pre></td></tr></table></figure>
+<p>关于构建多平台项目的详细信息与步骤，请参见其<a href="http://kotlinlang.org/docs/reference/multiplatform.html" target="_blank" rel="noopener">documentation</a>。</p>
+<h2 id="其他语言特性"><a href="#其他语言特性" class="headerlink" title="其他语言特性"></a>其他语言特性</h2><h3 id="注解中的数组字面值"><a href="#注解中的数组字面值" class="headerlink" title="注解中的数组字面值"></a>注解中的数组字面值</h3><p>自 Kotlin 1.2 起，注解的数组参数可以通过新的数组字面值语法传入，而无需使用 <code>arrayOf</code> 函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig(cacheNames = [<span class="meta-string">"books"</span>, <span class="meta-string">"default"</span>])</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookRepositoryImpl</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该数组字面值语法仅限于注解参数。</p>
+<h3 id="lateinit-顶层属性与局部变量"><a href="#lateinit-顶层属性与局部变量" class="headerlink" title="lateinit 顶层属性与局部变量"></a>lateinit 顶层属性与局部变量</h3><p><code>lateinit</code> 修饰符现在可以用于顶层属性与局部变量了。例如，后者可用于当一个 lambda 表达式作为构造函数参数传给一个对象时，引用另一个必须稍后定义的对象：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="type">T</span>&gt;</span>(<span class="keyword">val</span> value: T, <span class="keyword">val</span> next: () -&gt; Node&lt;T&gt;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="comment">// 三个节点的环：</span></span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> third: Node&lt;<span class="built_in">Int</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> second = Node(<span class="number">2</span>, next = &#123; third &#125;)</span><br><span class="line">    <span class="keyword">val</span> first = Node(<span class="number">1</span>, next = &#123; second &#125;)</span><br><span class="line"></span><br><span class="line">    third = Node(<span class="number">3</span>, next = &#123; first &#125;)</span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> nodes = generateSequence(first) &#123; it.next() &#125;</span><br><span class="line">    println(<span class="string">"Values in the cycle: <span class="subst">$&#123;nodes.take(<span class="number">7</span>).joinToString &#123; it.value.toString() &#125;</span>&#125;, ..."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="检查-lateinit-变量是否已初始化"><a href="#检查-lateinit-变量是否已初始化" class="headerlink" title="检查 lateinit 变量是否已初始化"></a>检查 lateinit 变量是否已初始化</h3><p>现在可以通过属性引用的 <code>isInitialized</code> 来检测该 lateinit var 是否已初始化：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> lateinitVar: String</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">initializationLogic</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//sampleStart</span></span><br><span class="line">        println(<span class="string">"isInitialized before assignment: "</span> + <span class="keyword">this</span>::lateinitVar.isInitialized)</span><br><span class="line">        lateinitVar = <span class="string">"value"</span></span><br><span class="line">        println(<span class="string">"isInitialized after assignment: "</span> + <span class="keyword">this</span>::lateinitVar.isInitialized)</span><br><span class="line">        <span class="comment">//sampleEnd</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">	Foo().initializationLogic()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内联函数带有默认函数式参数"><a href="#内联函数带有默认函数式参数" class="headerlink" title="内联函数带有默认函数式参数"></a>内联函数带有默认函数式参数</h3><p>内联函数现在允许其内联函式数参数具有默认值：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;E&gt;</span> Iterable<span class="type">&lt;E&gt;</span>.<span class="title">strings</span><span class="params">(transform: (<span class="type">E</span>)</span></span> -&gt; String = &#123; it.toString() &#125;) =</span><br><span class="line">    map &#123; transform(it) &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> defaultStrings = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).strings()</span><br><span class="line"><span class="keyword">val</span> customStrings = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).strings &#123; <span class="string">"(<span class="variable">$it</span>)"</span> &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"defaultStrings = <span class="variable">$defaultStrings</span>"</span>)</span><br><span class="line">    println(<span class="string">"customStrings = <span class="variable">$customStrings</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="源自显式类型转换的信息会用于类型推断"><a href="#源自显式类型转换的信息会用于类型推断" class="headerlink" title="源自显式类型转换的信息会用于类型推断"></a>源自显式类型转换的信息会用于类型推断</h3><p>Kotlin 编译器现在可将类型转换信息用于类型推断。如果你调用一个返回类型参数 <code>T</code> 的泛型方法并将返回值转换为指定类型 <code>Foo</code>，那么编译器现在知道对于本次调用需要绑定类型为 <code>Foo</code>。</p>
+<p>这对于 Android 开发者来说尤为重要，因为编译器现在可以正确分析 Android API 级别 26 中的泛型 <code>findViewById</code> 调用：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button = findViewById(R.id.button) <span class="keyword">as</span> Button</span><br></pre></td></tr></table></figure>
+<h3 id="智能类型转换改进"><a href="#智能类型转换改进" class="headerlink" title="智能类型转换改进"></a>智能类型转换改进</h3><p>当一个变量有安全调用表达式与空检测赋值时，其智能转换现在也可以应用于安全调用接收者：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">countFirst</span><span class="params">(s: <span class="type">Any</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> firstChar = (s <span class="keyword">as</span>? CharSequence)?.firstOrNull()</span><br><span class="line">    <span class="keyword">if</span> (firstChar != <span class="literal">null</span>)</span><br><span class="line">       <span class="keyword">return</span> s.count &#123; it == firstChar &#125; <span class="comment">// s: Any 会智能转换为 CharSequence</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> firstItem = (s <span class="keyword">as</span>? Iterable&lt;*&gt;)?.firstOrNull()</span><br><span class="line">    <span class="keyword">if</span> (firstItem != <span class="literal">null</span>)</span><br><span class="line">       <span class="keyword">return</span> s.count &#123; it == firstItem &#125; <span class="comment">// s: Any 会智能转换为 Iterable&lt;*&gt;</span></span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> string = <span class="string">"abacaba"</span></span><br><span class="line">    <span class="keyword">val</span> countInString = countFirst(string)</span><br><span class="line">    println(<span class="string">"called on \"<span class="variable">$string</span>\": <span class="variable">$countInString</span>"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> list = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">val</span> countInList = countFirst(list)</span><br><span class="line">    println(<span class="string">"called on <span class="variable">$list</span>: <span class="variable">$countInList</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>智能转换现在也允许用于在 lambda 表达式中局部变量，只要这些局部变量仅在 lambda 表达式之前修改即可：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> flag = args.size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">var</span> x: String? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span> (flag) x = <span class="string">"Yahoo!"</span></span><br><span class="line"></span><br><span class="line">    run &#123;</span><br><span class="line">        <span class="keyword">if</span> (x != <span class="literal">null</span>) &#123;</span><br><span class="line">            println(x.length) <span class="comment">// x 会智能转换为 String</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="支持-foo-作为-this-foo-的简写"><a href="#支持-foo-作为-this-foo-的简写" class="headerlink" title="支持 ::foo 作为 this::foo 的简写"></a>支持 ::foo 作为 this::foo 的简写</h3><p>现在写绑定到 <code>this</code> 成员的可调用引用可以无需显式接收者，即 <code>::foo</code> 取代 <code>this:: foo</code>。这也使在引用外部接收者的成员的 lambda 表达式中使用可调用引用更加方便。</p>
+<h3 id="阻断性变更：try-块后可靠智能转换"><a href="#阻断性变更：try-块后可靠智能转换" class="headerlink" title="阻断性变更：try 块后可靠智能转换"></a>阻断性变更：try 块后可靠智能转换</h3><p>Kotlin 以前将 <code>try</code> 块中的赋值语句用于块后的智能转换，这可能会破坏类型安全与空安全并引发运行时故障。这个版本修复了该问题，使智能转换更加严格，但可能会破坏一些依靠这种智能转换的代码。</p>
+<p>如果要切换到旧版智能转换行为，请传入回退标志 <code>-Xlegacy-smart-cast-after-try</code> 作为编译器参数。该参数会在 Kotlin 1.3 中弃用。</p>
+<h3 id="弃用：数据类弃用-copy"><a href="#弃用：数据类弃用-copy" class="headerlink" title="弃用：数据类弃用 copy"></a>弃用：数据类弃用 copy</h3><p>当从已具有签名相同的 <code>copy</code> 函数的类型派生数据类时，为数据类生成的 <code>copy</code> 实现使用超类型的默认值，这导致反直觉行为，或者导致运行时失败，如果超类型中没有默认参数的话。</p>
+<p>导致 <code>copy</code> 冲突的继承在 Kotlin 1.2 中已弃用并带有警告，而在 Kotlin 1.3 中将会是错误。</p>
+<h3 id="弃用：枚举条目中的嵌套类型"><a href="#弃用：枚举条目中的嵌套类型" class="headerlink" title="弃用：枚举条目中的嵌套类型"></a>弃用：枚举条目中的嵌套类型</h3><p>由于初始化逻辑的问题，已弃用在枚举条目内部定义一个非 <code>inner class</code> 的嵌套类。这在 Kotlin 1.2 中会引起警告，而在 Kotlin 1.3 中会成为错误。</p>
+<h3 id="弃用：vararg-单个命名参数"><a href="#弃用：vararg-单个命名参数" class="headerlink" title="弃用：vararg 单个命名参数"></a>弃用：vararg 单个命名参数</h3><p>为了与注解中的数组字面值保持一致，向一个命名参数形式的 vararg 参数传入单个项目的用法（<code>foo(items = i)</code>）已被弃用。请使用伸展操作符连同相应的数组工厂函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo(items = *intArrayOf(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>在这种情况下有一项防止性能下降的优化可以消除冗余的数组创建。单参数形式在 Kotlin 1.2 中会产生警告，而在 Kotlin 1.3 中会放弃。</p>
+<h3 id="弃用：扩展-Throwable-的泛型类的内部类"><a href="#弃用：扩展-Throwable-的泛型类的内部类" class="headerlink" title="弃用：扩展 Throwable 的泛型类的内部类"></a>弃用：扩展 Throwable 的泛型类的内部类</h3><p>继承自 <code>Throwable</code> 的泛型类的内部类可能会在 throw-catch 场景中违反类型安全性，因此已弃用，在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
+<h3 id="弃用：修改只读属性的幕后字段"><a href="#弃用：修改只读属性的幕后字段" class="headerlink" title="弃用：修改只读属性的幕后字段"></a>弃用：修改只读属性的幕后字段</h3><p>通过在自定义 getter 中赋值 <code>field = ……</code> 来修改只读属性的幕后字段的用法已被弃用，在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
+<h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="Kotlin-标准库构件与拆分包"><a href="#Kotlin-标准库构件与拆分包" class="headerlink" title="Kotlin 标准库构件与拆分包"></a>Kotlin 标准库构件与拆分包</h3><p>Kotlin 标准库现在完全兼容 Java 9 的模块系统，它禁止拆分包（多个 jar 文件声明的类在同一包中）。为了支持这点，我们引入了新的 <code>kotlin-stdlib-jdk7</code> 与 <code>kotlin-stdlib-jdk8</code>，它们取代了旧版的 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
+<p>在 Kotlin 看来新的构件中的声明在相同的包名内，而在 Java 看来有不同的包名。因此，切换到新的构件无需修改任何源代码。</p>
+<p>确保与新的模块系统兼容的另一处变更是在 <code>kotlin-reflect</code> 库中删除了 <code>kotlin.reflect</code> 包中弃用的声明。如果你正在使用它们，你需要切换到使用 <code>kotlin.reflect.full</code> 包中的声明，自 Kotlin 1.1 起就支持这个包了。</p>
+<h3 id="windowed、chunked、zipWithNext"><a href="#windowed、chunked、zipWithNext" class="headerlink" title="windowed、chunked、zipWithNext"></a>windowed、chunked、zipWithNext</h3><p>用于 <code>Iterable&lt;T&gt;</code>、 <code>Sequence&lt;T&gt;</code> 与 <code>CharSequence</code> 的新的扩展覆盖了这些应用场景：缓存或批处理（<code>chunked</code>）、 滑动窗口与计算滑动均值（<code>windowed</code>）以及处理成对的后续条目（<code>zipWithNext</code>）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> items = (<span class="number">1.</span><span class="number">.9</span>).map &#123; it * it &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> chunkedIntoLists = items.chunked(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">val</span> points3d = items.chunked(<span class="number">3</span>) &#123; (x, y, z) -&gt; Triple(x, y, z) &#125;</span><br><span class="line">    <span class="keyword">val</span> windowed = items.windowed(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">val</span> slidingAverage = items.windowed(<span class="number">4</span>) &#123; it.average() &#125;</span><br><span class="line">    <span class="keyword">val</span> pairwiseDifferences = items.zipWithNext &#123; a, b -&gt; b - a &#125;</span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line">    println(<span class="string">"items: <span class="variable">$items</span>\n"</span>)</span><br><span class="line"></span><br><span class="line">    println(<span class="string">"chunked into lists: <span class="variable">$chunkedIntoLists</span>"</span>)</span><br><span class="line">    println(<span class="string">"3D points: <span class="variable">$points3d</span>"</span>)</span><br><span class="line">    println(<span class="string">"windowed by 4: <span class="variable">$windowed</span>"</span>)</span><br><span class="line">    println(<span class="string">"sliding average by 4: <span class="variable">$slidingAverage</span>"</span>)</span><br><span class="line">    println(<span class="string">"pairwise differences: <span class="variable">$pairwiseDifferences</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="fill、replaceAll、shuffle-shuffled"><a href="#fill、replaceAll、shuffle-shuffled" class="headerlink" title="fill、replaceAll、shuffle/shuffled"></a>fill、replaceAll、shuffle/shuffled</h3><p>添加了一些用于操作列表的扩展函数：<code>MutableList</code> 的 <code>fill</code>、<code>replaceAll</code> 与 <code>shuffle</code>，以及只读 <code>List</code> 的 <code>shuffled</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> items = (<span class="number">1.</span><span class="number">.5</span>).toMutableList()</span><br><span class="line"></span><br><span class="line">    items.shuffle()</span><br><span class="line">    println(<span class="string">"Shuffled items: <span class="variable">$items</span>"</span>)</span><br><span class="line"></span><br><span class="line">    items.replaceAll &#123; it * <span class="number">2</span> &#125;</span><br><span class="line">    println(<span class="string">"Items doubled: <span class="variable">$items</span>"</span>)</span><br><span class="line"></span><br><span class="line">    items.fill(<span class="number">5</span>)</span><br><span class="line">    println(<span class="string">"Items filled with 5: <span class="variable">$items</span>"</span>)</span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="kotlin-stdlib-中的数学运算"><a href="#kotlin-stdlib-中的数学运算" class="headerlink" title="kotlin-stdlib 中的数学运算"></a>kotlin-stdlib 中的数学运算</h3><p>为满足由来已久的需求，Kotlin 1.2 添加了 JVM 与 JS 公用的用于数学运算的 <code>kotlin.math</code> API，包含以下内容：</p>
+<ul>
+<li>常量：<code>PI</code> 与 <code>E</code>；</li>
+<li>三角函数：<code>cos</code>、 <code>sin</code>、 <code>tan</code> 及其反函数：<code>acos</code>、 <code>asin</code>、 <code>atan</code>、 <code>atan2</code>；</li>
+<li>双曲函数：<code>cosh</code>、 <code>sinh</code>、 <code>tanh</code> 及其反函数：<code>acosh</code>、 <code>asinh</code>、 <code>atanh</code></li>
+<li>指数函数：<code>pow</code>（扩展函数）、 <code>sqrt</code>、 <code>hypot</code>、 <code>exp</code>、 <code>expm1</code>；</li>
+<li>对数函数：<code>log</code>、 <code>log2</code>、 <code>log10</code>、 <code>ln</code>、 <code>ln1p</code>；</li>
+<li>取整:<ul>
+<li><code>ceil</code>、 <code>floor</code>、 <code>truncate</code>、 <code>round</code>（奇进偶舍）函数；</li>
+<li><code>roundToInt</code>、 <code>roundToLong</code>（四舍五入）扩展函数；</li>
+</ul>
+</li>
+<li>符号与绝对值：<ul>
+<li><code>abs</code> 与 <code>sign</code> 函数；</li>
+<li><code>absoluteValue</code> 与 <code>sign</code> 扩展属性；</li>
+<li><code>withSign</code> 扩展函数；</li>
+</ul>
+</li>
+<li>两个数的最值函数：<code>max</code> 与 <code>min</code>；</li>
+<li>二进制表示：<ul>
+<li><code>ulp</code> 扩展属性；</li>
+<li><code>nextUp</code>、 <code>nextDown</code>、 <code>nextTowards</code> 扩展函数；</li>
+<li><code>toBits</code>、 <code>toRawBits</code>、 <code>Double.fromBits</code>（这些在 <code>kotlin</code> 包中）。</li>
+</ul>
+</li>
+</ul>
+<p>这些函数同样也有 <code>Float</code> 参数版本（但不包括常量）。</p>
+<h3 id="用于-BigInteger-与-BigDecimal-的操作符与转换"><a href="#用于-BigInteger-与-BigDecimal-的操作符与转换" class="headerlink" title="用于 BigInteger 与 BigDecimal 的操作符与转换"></a>用于 BigInteger 与 BigDecimal 的操作符与转换</h3><p>Kotlin 1.2 引入了一些使用 <code>BigInteger</code> 与 <code>BigDecimal</code> 运算以及由其他数字类型创建它们的函数。具体如下：</p>
+<ul>
+<li><code>toBigInteger</code> 用于 <code>Int</code> 与 <code>Long</code>；</li>
+<li><code>toBigDecimal</code> 用于 <code>Int</code>、 <code>Long</code>、 <code>Float</code>、 <code>Double</code> 以及 <code>BigInteger</code>；</li>
+<li>算术与位运算操作符函数：<ul>
+<li>二元操作符 <code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code> 以及中缀函数 <code>and</code>、 <code>or</code>、 <code>xor</code>、 <code>shl</code>、 <code>shr</code>；</li>
+<li>一元操作符 <code>-</code>、 <code>++</code>、 <code>--</code> 以及函数 <code>inv</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="浮点数到比特的转换"><a href="#浮点数到比特的转换" class="headerlink" title="浮点数到比特的转换"></a>浮点数到比特的转换</h3><p>添加了用于将 <code>Double</code> 及 <code>Float</code> 与其比特表示形式相互转换的函数：</p>
+<ul>
+<li><code>toBits</code> 与 <code>toRawBits</code> 对于 <code>Double</code> 返回 <code>Long</code> 而对于 <code>Float</code> 返回 <code>Int</code>；</li>
+<li><code>Double.fromBits</code> 与 <code>Float.fromBits</code> 用于有相应比特表示形式创建浮点数。</li>
+</ul>
+<h3 id="正则表达式现在可序列化"><a href="#正则表达式现在可序列化" class="headerlink" title="正则表达式现在可序列化"></a>正则表达式现在可序列化</h3><p><code>kotlin.text.Regex</code> 类现在已经是 <code>Serializable</code> 的了并且可用在可序列化的继承结构中。</p>
+<h3 id="如果可用，Closeable-use-会调用-Throwable-addSuppressed"><a href="#如果可用，Closeable-use-会调用-Throwable-addSuppressed" class="headerlink" title="如果可用，Closeable.use 会调用 Throwable.addSuppressed"></a>如果可用，Closeable.use 会调用 Throwable.addSuppressed</h3><p>当在其他异常之后关闭资源期间抛出一个异常，<code>Closeable.use</code> 函数会调用 <code>Throwable.addSuppressed</code><br>。</p>
+<p>要启用这个行为，需要依赖项中有 <code>kotlin-stdlib-jdk7</code>。</p>
+<h2 id="JVM-后端"><a href="#JVM-后端" class="headerlink" title="JVM 后端"></a>JVM 后端</h2><h3 id="构造函数调用规范化"><a href="#构造函数调用规范化" class="headerlink" title="构造函数调用规范化"></a>构造函数调用规范化</h3><p>自 1.0 版起，Kotlin 就已支持带有复杂控制流的表达式，诸如 try-catch 表达式以及内联函数。根据 Java 虚拟机规范这样的代码是有效的。不幸的是，当这样的表达式出现在构造函数调用的参数中时，一些字节码处理工具不能很好地处理这种代码。</p>
+<p>为了缓解这种字节码处理工具用户的这一问题，我们添加了一个命令行选项（<code>-Xnormalize-constructor-calls=模式</code>），告诉编译器为这样的构造过程生成更接近 Java 的字节码。其中<code>模式</code>是下列之一：</p>
+<ul>
+<li><code>disable</code>（默认）——以与 Kotlin 1.0 即 1.1 相同的方式生成字节码；</li>
+<li><code>enable</code>——为构造函数调用生成类似 Java 的字节码。 这可能会改变类加载与初始化的顺序；</li>
+<li><code>preserve-class-initialization</code>——为构造函数调用生成类似 Java 的字节码，并确保类初始化顺序得到保留。这可能会影响应用程序的整体性能；仅用在多个类之间共享一些复杂状态并在类初始化时更新的场景中。</li>
+</ul>
+<p>“人工”解决办法是将具有控制流的子表达式的值存储在变量中，而不是直接在调用参数内对其求值。这与 <code>-Xnormalize-constructor-calls=enable</code> 类似。</p>
+<h3 id="Java-默认方法调用"><a href="#Java-默认方法调用" class="headerlink" title="Java 默认方法调用"></a>Java 默认方法调用</h3><p>在 Kotlin 1.2 之前，针对 JVM 1.6 的接口成员覆盖 Java 默认方法会产生一个关于超类型调用的警告：<code>Super calls to Java default methods are deprecated in JVM target 1.6. Recompile with &#39;-jvm-target 1.8&#39;</code>（“针对 JVM 1.6 的 Java 默认方法的超类型调用已弃用，请使用‘-jvm-target 1.8’重新编译”）。在 Kotlin 1.2 中，这是一个<strong>错误 </strong>，因此这样的代码都需要针对 JVM 1.8 编译。</p>
+<h3 id="阻断性变更：平台类型-x-equals-null-的一致行为"><a href="#阻断性变更：平台类型-x-equals-null-的一致行为" class="headerlink" title="阻断性变更：平台类型 x.equals(null) 的一致行为"></a>阻断性变更：平台类型 x.equals(null) 的一致行为</h3><p>在映射到 Java 原生类型（<code>Int!</code>、 <code>Boolean!</code>、 <code>Short!</code>、 <code>Long!</code>、 <code>Float!</code>、 <code>Double!</code>、 <code>Char!</code>）的平台类型上调用 <code>x.equals(null)</code>，当 <code>x</code> 为 <code>null</code> 时错误地返回了 <code>true</code>。自 Kotlin 1.2 起，在平台类型的空值上调用 <code>x.equals(……)</code> 都会<strong>抛出 NPE</strong> （但 <code>x == ...</code> 不会）。</p>
+<p>要返回到 1.2 之前的行为，请将标志 <code>-Xno-exception-on-explicit-equals-for-boxed-null</code> 传给编译器。</p>
+<h3 id="阻断性变更：修正平台-null-透过内联扩展接收者逃逸"><a href="#阻断性变更：修正平台-null-透过内联扩展接收者逃逸" class="headerlink" title="阻断性变更：修正平台 null 透过内联扩展接收者逃逸"></a>阻断性变更：修正平台 null 透过内联扩展接收者逃逸</h3><p>在平台类型的空值上调用内联扩展函数并没有检测接收者是否为 null，因而允许 null 逃逸到其他代码中。Kotlin 1.2 在调用处强制执行这项检测，如果接收者为空就抛出异常。</p>
+<p>要切换到旧版行为，请将回退标志 <code>-Xno-receiver-assertions</code> 传给编译器。</p>
+<h2 id="JavaScript-后端"><a href="#JavaScript-后端" class="headerlink" title="JavaScript 后端"></a>JavaScript 后端</h2><h3 id="默认启用-TypedArrays-支持"><a href="#默认启用-TypedArrays-支持" class="headerlink" title="默认启用 TypedArrays 支持"></a>默认启用 TypedArrays 支持</h3><p>将 Kotlin 原生数组（如 <code>IntArray</code>、 <code>DoubleArray</code> 等）翻译为 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays" target="_blank" rel="noopener">JavaScript 有类型数组</a>的 JS 有类型数组支持之前是选择性加入的功能，现在已默认启用。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="警告作为错误"><a href="#警告作为错误" class="headerlink" title="警告作为错误"></a>警告作为错误</h3><p>编译器现在提供一个将所有警告视为错误的选项。可在命令行中使用 <code>-Werror</code>，或者在 Gradle 中使用以下代码片段：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compileKotlin &#123;</span><br><span class="line">    kotlinOptions.allWarningsAsErrors = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/basic-syntax.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    基本语法
+                
+            </div>
+        </a>
+    
+    
+        <a href="/kotlin/reference/whatsnew1.1.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Kotlin 1.1 的新特性</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/returns.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="返回和跳转" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/returns.html" class="title">返回和跳转</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T10:00:56.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/control-flow.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="控制流：if、when、for、while" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/control-flow.html" class="title">控制流：if、when、for、while</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:47:44.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/packages.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="包和导入" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/packages.html" class="title">包和导入</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:14:17.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/basic-types.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="基本类型" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/basic-types.html" class="title">基本类型</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T09:01:18.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/coding-conventions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="编码规范" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/coding-conventions.html" class="title">编码规范</a></p>
+                            <p class="item-date"><time datetime="2018-05-15T08:50:55.000Z" itemprop="datePublished">2018-05-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native/">Native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据类型/">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码规范/">编码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Native/" style="font-size: 10px;">Native</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/编码规范/" style="font-size: 10px;">编码规范</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

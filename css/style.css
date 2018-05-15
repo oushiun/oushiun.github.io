@@ -129,9 +129,8 @@ a:visited {
   color: #38b7ea;
 }
 code {
-  margin-right: 4px;
   color: #e96900;
-  padding-right: 5px;
+  padding: 0 5px;
   font-size: 0.9em;
   border-radius: 2px;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
