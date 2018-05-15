@@ -3,20 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Categories | oushiun</title>
+    <title>CentOS 搭建 jetbrains 破解服务器 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="互联网产品、技术、设计文章分享">
-<meta name="keywords" content="css3,javascript,linux,开发,运维,网络,设计">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="http://oushiun.com/categories/index.html">
+    <meta name="description" content="CentOS 搭建 jetbrains 破解服务器">
+<meta name="keywords" content="CentOS,jetbrains">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 搭建 jetbrains 破解服务器">
+<meta property="og:url" content="http://oushiun.com/2018/05/08/centos-install-jetbrains-server/index.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="互联网产品、技术、设计文章分享">
+<meta property="og:description" content="CentOS 搭建 jetbrains 破解服务器">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-09T03:07:44.547Z">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/jetbrains.png">
+<meta property="og:updated_time" content="2018-05-15T03:05:30.929Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Categories">
-<meta name="twitter:description" content="互联网产品、技术、设计文章分享">
+<meta name="twitter:title" content="CentOS 搭建 jetbrains 破解服务器">
+<meta name="twitter:description" content="CentOS 搭建 jetbrains 破解服务器">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/jetbrains.png">
     
 
     
@@ -210,16 +212,219 @@ ga('send', 'pageview');
 </aside>
 
             
-            <section id="main"><section class="layout-wrap">
-    <div class="layout-title">
-        <span>Categories</span>
-    </div>
-    <div class="layout-wrap-inner list-categories">
+            <section id="main"><article id="post-centos-install-jetbrains-server" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css/">Css</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/jetbrains.png" class="article-banner" />
+	
+
+
+
         
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            CentOS 搭建 jetbrains 破解服务器
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/05/08/centos-install-jetbrains-server/">
+            <time datetime="2018-05-08T09:18:37.000Z" itemprop="datePublished">2018-05-08</time>
+        </a>
     </div>
-</section></section>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/软件/">软件</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CentOS/">CentOS</a>, <a class="tag-link" href="/tags/jetbrains/">jetbrains</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS-搭建-jetbrains-破解服务器"><span class="toc-number">1.</span> <span class="toc-text">CentOS 搭建 jetbrains 破解服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装步骤"><span class="toc-number">1.1.</span> <span class="toc-text">安装步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加用户及额外配置"><span class="toc-number">1.2.</span> <span class="toc-text">添加用户及额外配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传文件"><span class="toc-number">1.3.</span> <span class="toc-text">上传文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装配置Nginx"><span class="toc-number">1.4.</span> <span class="toc-text">安装配置Nginx</span></a></li></ol></li></ol>
+                </div>
+            
+            <h2 id="CentOS-搭建-jetbrains-破解服务器"><a href="#CentOS-搭建-jetbrains-破解服务器" class="headerlink" title="CentOS 搭建 jetbrains 破解服务器"></a>CentOS 搭建 jetbrains 破解服务器</h2><a id="more"></a>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
+<li>检查是否安装了vsftpd</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa |grep vsftpd</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Linux系统：CentOS 7 x86_64</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/os-release</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>通过yum来安装vsftpd</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>设置为开机启动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> vsftpd</span><br><span class="line"></span><br><span class="line">systemctl start vsftpd <span class="comment">#启动vsftpd命令</span></span><br><span class="line">systemctl stop vsftpd <span class="comment">#停止vsftpd命令</span></span><br><span class="line">systemctl status vsftpd <span class="comment">#查看vsftpd状态</span></span><br><span class="line">systemctl restart vsftpd <span class="comment">#重启vsftpd命令</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改配置文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<h3 id="添加用户及额外配置"><a href="#添加用户及额外配置" class="headerlink" title="添加用户及额外配置"></a>添加用户及额外配置</h3><ol>
+<li><p>启用root用户<br>进入 <code>/etc/vsftpd</code> 目录下修改 ::ftpusers:: &amp; ::user_list::<br>将 <strong>root</strong> 用户注释 #</p>
+</li>
+<li><p>开放 21 端口</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=21/tcp --permanent</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld <span class="comment">#安装firewalld 防火墙</span></span><br><span class="line">systemctl start firewalld.service <span class="comment">#开启防火墙</span></span><br><span class="line">systemctl stop firewalld.service <span class="comment">#关闭防火墙</span></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld.service <span class="comment">#开机自动启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service <span class="comment">#禁止开机制动启动</span></span><br><span class="line">firewall-cmd --state <span class="comment">#running 表示运行</span></span><br><span class="line">firewall-cmd --reload <span class="comment">#重新载入以生效</span></span><br><span class="line">firewall-cmd --complete-reload <span class="comment">#更新规则，重启服务</span></span><br></pre></td></tr></table></figure>
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>下载<a href="http://blog.lanyus.com/archives/326.html" target="_blank" rel="noopener">IntelliJ IDEA License Server v1.6</a>(当前使用是v1.6，新版本还请及时关注<a href="blog.lanyus.com">lanyus</a>)</p>
+<p>解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是x86_64 GNU/Linux，so 给IntelliJIDEALicenseServer_linux_amd64 赋可执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x IntelliJIDEALicenseServer_linux_amd64</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装配置Nginx"><a href="#安装配置Nginx" class="headerlink" title="安装配置Nginx"></a>安装配置Nginx</h3><ol>
+<li>通过yum安装Nginx</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+<p>常用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br><span class="line">systemctl <span class="built_in">enable</span> nginx</span><br><span class="line">systemctl status nginx</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>配置防火墙</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --permanent --add-service=http</span><br><span class="line">firewall-cmd --zone=public --permanent --add-service=https</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>测试Nginx是否正常访问<br><a href="http://SERVER_DOMAIN_NAME_OR_IP" target="_blank" rel="noopener">http://SERVER_DOMAIN_NAME_OR_IP </a></p>
+</li>
+<li><p>修改Nginx配置文件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#vi /usr/local/nginx/conf/nginx.conf</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name idea.oushiun.com;</span><br><span class="line">    root /usr/<span class="built_in">local</span>/nginx/html;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:1027;</span><br><span class="line">        proxy_redirect off;</span><br><span class="line">        proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">        proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"></span><br><span class="line">        proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    access_log /dev/null;</span><br><span class="line">    error_log /dev/null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意事项：需要展示破解地址文档，通过nginx反向代理需要将IntelliJIDEALicenseServer.html 放在/目录，如果是通过直接运行脚本需要和脚本在同一目录。  </p>
+<ol start="5">
+<li>systemd 设置</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim /etc/systemd/system/intellij.service</span></span><br><span class="line">[Unit]</span><br><span class="line">Description= IntelliJIDEALicenseServe Service</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/root/jetbrains/IntelliJIDEALicenseServer_linux_amd64</span><br><span class="line">PrivateTmp=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=default.target</span><br><span class="line"></span><br><span class="line"><span class="comment"># systemctl daemon-reload # 重载</span></span><br><span class="line"><span class="comment"># systemctl start intellij # 启动</span></span><br><span class="line"><span class="comment"># systemctl enable intellij # 开机启动</span></span><br><span class="line"><span class="comment"># systemctl disable intellij # 撤销开机启动</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>IntelliJIDEALicenseServer 帮助</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">./IntelliJIDEALicenseServer_linux_amd64 -h</span><br><span class="line">-l string 绑定的host，基本默认</span><br><span class="line">       <span class="built_in">bind</span> on host (default <span class="string">"0.0.0.0"</span>)</span><br><span class="line"> -p int 监听端口，建议改下</span><br><span class="line">       port (default 1027)</span><br><span class="line"> -prolongationPeriod string 过期时间</span><br><span class="line">       prolongationPeriod (default <span class="string">"607875500"</span>)</span><br><span class="line"> -u string 当未设置-u参数，且计算机用户名为^[a-zA-Z0-9]+$时，使用计算机用户名作为idea用户名</span><br><span class="line">       username (default <span class="string">"ilanyu"</span>)</span><br></pre></td></tr></table></figure>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/05/09/markdown/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Markdown
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/05/08/hello-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Hello Hexo</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
             
                 
 <aside id="sidebar">
