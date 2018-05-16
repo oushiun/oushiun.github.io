@@ -1,41 +1,43 @@
 ---
-title: CentOS搭建jetbrains破解服务器
-banner: http://static.oushiun.com/blog/banner/jetbrains.png
-date: 2018-05-08 17:18:37
-categories:
-- 软件
+title: CentOS 搭建 jetbrains 破解服务器
+
+toc: true
 tags:
  - CentOS
  - jetbrains
-toc: true
+categories:
+ - 软件
+date: 2018-05-08 17:18:37
+banner: https://static.oushiun.com/blog/banner/jetbrains.png
 ---
 
-##  CentOS 搭建 jetbrains 破解服务器
+## CentOS 搭建 jetbrains 破解服务器
 
 <!-- more -->
 
 ### 安装步骤
-1. 检查是否安装了vsftpd
 
-``` bash
+1.  检查是否安装了 vsftpd
+
+```bash
 rpm -qa |grep vsftpd
 ```
 
-3. Linux系统：CentOS 7 x86_64
+3.  Linux 系统：CentOS 7 x86_64
 
-``` bash
+```bash
 cat /etc/os-release
 ```
 
-2. 通过yum来安装vsftpd
+2.  通过 yum 来安装 vsftpd
 
-``` bash
+```bash
 yum -y install vsftpd
 ```
 
-3. 设置为开机启动
+3.  设置为开机启动
 
-``` bash
+```bash
 systemctl enable vsftpd
 
 systemctl start vsftpd #启动vsftpd命令
@@ -44,24 +46,24 @@ systemctl status vsftpd #查看vsftpd状态
 systemctl restart vsftpd #重启vsftpd命令
 ```
 
-4. 修改配置文件
+4.  修改配置文件
 
-``` bash
+```bash
 vi /etc/vsftpd/vsftpd.conf
 ```
 
 ### 添加用户及额外配置
-1. 启用root用户
-进入 `/etc/vsftpd` 目录下修改 ::ftpusers:: & ::user_list::
-将 **root** 用户注释 #
 
-2. 开放 21 端口
+1.  启用 root 用户进入 `/etc/vsftpd` 目录下修改 ::ftpusers:: & ::user_list::
+    将 **root** 用户注释 #
 
-``` bash
+2.  开放 21 端口
+
+```bash
 firewall-cmd --zone=public --add-port=21/tcp --permanent
 ```
 
-``` bash
+```bash
 yum install firewalld #安装firewalld 防火墙
 systemctl start firewalld.service #开启防火墙
 systemctl stop firewalld.service #关闭防火墙
@@ -73,42 +75,46 @@ firewall-cmd --complete-reload #更新规则，重启服务
 ```
 
 ### 上传文件
-下载[IntelliJ IDEA License Server v1.6](http://blog.lanyus.com/archives/326.html)(当前使用是v1.6，新版本还请及时关注[lanyus](blog.lanyus.com))
 
-解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是x86_64 GNU/Linux，so 给IntelliJIDEALicenseServer_linux_amd64 赋可执行权限
-``` bash
+下载[IntelliJ IDEA License Server v1.6](http://blog.lanyus.com/archives/326.html)(当前使用是 v1.6，新版本还请及时关注[lanyus](blog.lanyus.com))
+
+解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是 x86_64 GNU/Linux，so 给 IntelliJIDEALicenseServer_linux_amd64 赋可执行权限
+
+```bash
 chmod +x IntelliJIDEALicenseServer_linux_amd64
 ```
 
-### 安装配置Nginx
-1. 通过yum安装Nginx
+### 安装配置 Nginx
 
-``` bash
+1.  通过 yum 安装 Nginx
+
+```bash
 yum install epel-release
 yum install nginx
 ```
 
 常用命令
-``` bash
+
+```bash
 systemctl start nginx
 systemctl enable nginx
 systemctl status nginx
 ```
 
-2. 配置防火墙
+2.  配置防火墙
 
-``` bash
+```bash
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
 
-3. 测试Nginx是否正常访问
-[http://SERVER_DOMAIN_NAME_OR_IP ](http://SERVER_DOMAIN_NAME_OR_IP)
+3.  测试 Nginx 是否正常访问
+    [http://SERVER_DOMAIN_NAME_OR_IP ](http://SERVER_DOMAIN_NAME_OR_IP)
 
-4. 修改Nginx配置文件
+4.  修改 Nginx 配置文件
 
-``` bash
+```bash
 #vi /usr/local/nginx/conf/nginx.conf
 server {
     listen 80;
@@ -128,11 +134,11 @@ server {
 }
 ```
 
-注意事项：需要展示破解地址文档，通过nginx反向代理需要将IntelliJIDEALicenseServer.html 放在/目录，如果是通过直接运行脚本需要和脚本在同一目录。  
+注意事项：需要展示破解地址文档，通过 nginx 反向代理需要将 IntelliJIDEALicenseServer.html 放在/目录，如果是通过直接运行脚本需要和脚本在同一目录。
 
-5. systemd 设置
+5.  systemd 设置
 
-``` bash
+```bash
 # vim /etc/systemd/system/intellij.service
 [Unit]
 Description= IntelliJIDEALicenseServe Service
@@ -151,9 +157,9 @@ WantedBy=default.target
 # systemctl disable intellij # 撤销开机启动
 ```
 
-6. IntelliJIDEALicenseServer 帮助
+6.  IntelliJIDEALicenseServer 帮助
 
-``` bash
+```bash
 ./IntelliJIDEALicenseServer_linux_amd64 -h
 -l string 绑定的host，基本默认
        bind on host (default "0.0.0.0")

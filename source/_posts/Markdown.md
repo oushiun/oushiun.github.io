@@ -1,11 +1,12 @@
 ---
 title: Markdown
-date: 2018-05-09 09:41:47 
-banner: http://static.oushiun.com/blog/banner/markdown.png
-categories:
- - 工具
+
 tags:
  - Markdown
+categories:
+ - 工具
+date: 2018-05-09 09:41:47 
+banner: https://static.oushiun.com/blog/banner/markdown.png
 ---
 
 A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).
@@ -409,14 +410,14 @@ The outer **pipes (|)** and alignment are optional. There are **3 delimiters** e
 
 Code:
 ```
-| Left | Center | Right |
-|:-----|:------:|------:|
-|aaa   |bbb     |ccc    |
-|ddd   |eee     |fff    |
+| Left   | Center   | Right   |
+| :----- | :------: | ------: |
+| aaa    | bbb      | ccc     |
+| ddd    | eee      | fff     |
 
- A | B
----|---
-123|456
+ | | A     | B   |   |
+ |  | ---  |  --- | |
+ |  | 123  |  456 | |
 
 
 A |B
@@ -425,14 +426,14 @@ A |B
 ```
 Preview:
 ***
-| Left | Center | Right |
-|:-----|:------:|------:|
-|aaa   |bbb     |ccc    |
-|ddd   |eee     |fff    |
+| Left   | Center   | Right   |
+| :----- | :------: | ------: |
+| aaa    | bbb      | ccc     |
+| ddd    | eee      | fff     |
 
- A | B
----|---
-123|456
+ | A   | B   |
+ | --- | --- |
+ | 123 | 456 |
 
 A |B
 --|--
@@ -592,14 +593,14 @@ Title is optional.
 
 Code:
 
-    ![Alt text](http://static.oushiun.com/blog/img/desk.jpg)
+    ![Alt text](https://static.oushiun.com/blog/img/desk.jpg)
 
-    ![Alt text](http://static.oushiun.com/blog/img/desk.jpg "Optional title")
+    ![Alt text](https://static.oushiun.com/blog/img/desk.jpg "Optional title")
 Preview:
 ***
-![Alt text](http://static.oushiun.com/blog/img/desk.jpg)
+![Alt text](https://static.oushiun.com/blog/img/desk.jpg)
 
-![Alt text](http://static.oushiun.com/blog/img/desk.jpg "Optional title")
+![Alt text](https://static.oushiun.com/blog/img/desk.jpg "Optional title")
 ***
 That is:
 
@@ -612,11 +613,11 @@ Reference-style image syntax looks like this: `![Alt text][id]`
 
 Code:
 
-    [img id]: http://static.oushiun.com/blog/img/desk.jpg  "Optional title attribute"
+    [img id]: https://static.oushiun.com/blog/img/desk.jpg  "Optional title attribute"
     ![Alt text][img id]
 Preview:
 ***
-[img id]: http://static.oushiun.com/blog/img/desk.jpg  "Optional title attribute"
+[img id]: https://static.oushiun.com/blog/img/desk.jpg  "Optional title attribute"
 ![Alt text][img id]
 ***
 ### Strikethrough

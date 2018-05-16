@@ -1,40 +1,42 @@
 ---
-title: CentOS搭建shadowsocks
-banner: http://static.oushiun.com/blog/banner/shadowsocks.png
-date: 2018-05-09 22:20:38
-categories:
-- 工具
+title: CentOS 搭建 shadowsocks
+
+toc: true
 tags:
  - CentOS
  - shadowsocks
-toc: true
+categories:
+ - 工具
+date: 2018-05-09 22:20:38
+banner: https://static.oushiun.com/blog/banner/shadowsocks.png
 ---
 
 Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。
 
 <!-- more -->
 
-### 安装shadowsocks
+### 安装 shadowsocks
 
-#### 安装pip
+#### 安装 pip
+
 Pip 是 Python 的包管理工具，这里我们用 pip 安装 shadowsocks。
 
-``` bash
+```bash
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip -V #pip 10.0.1 from /usr/lib/python2.7/site-packages/pip (python 2.7)
 ```
 
-#### 通过pip安装shadowsocks
+#### 通过 pip 安装 shadowsocks
 
-``` bash
+```bash
 pip install --upgrade pip
 pip install shadowsocks
 ```
 
-#### 配置shadowsocks
+#### 配置 shadowsocks
 
-``` bash
+```bash
 # vi /etc/shadowsocks.json
 {
   "server":"x.x.x.x",             #你的 ss 服务器 ip
@@ -48,9 +50,9 @@ pip install shadowsocks
 }
 ```
 
-#### systemctl设置
+#### systemctl 设置
 
-``` bash
+```bash
 # vi /etc/systemd/system/shadowsocks.service
 [Unit]
 Description=Shadowsocks
@@ -67,23 +69,23 @@ Restart=on-abort
 WantedBy=multi-user.target
 ```
 
-#### 配置firwall规则
+#### 配置 firwall 规则
 
 输入以下命令开启一个端口，如果不是 9002 端口，修改成自己需要添加的端口（–permanent 永久生效，没有此参数重启后失效）。
 
-``` bash
+```bash
 firewall-cmd --zone=public --add-port=9002/tcp --permanent
 ```
 
-添加端口后系统返回success说明添加成功。这个时候需要重新载入 firewall，输入以下命令，返回success后此端口就可使用
+添加端口后系统返回 success 说明添加成功。这个时候需要重新载入 firewall，输入以下命令，返回 success 后此端口就可使用
 
-``` bash
+```bash
 firewall-cmd --reload
 ```
 
-#### shadowsocks其他配置
+#### shadowsocks 其他配置
 
-``` bash
+```bash
 ssserver -h
 usage: ssserver [OPTION]...
 A fast tunnel proxy that helps you bypass firewalls.
