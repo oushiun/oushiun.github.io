@@ -173,7 +173,7 @@ ga('send', 'pageview');
                 <span>posts</span>
             </div>
             <div class="article-info-block">
-                11
+                9
                 <span>tags</span>
             </div>
         </div>
@@ -601,12 +601,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/object-declarations" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/enum-classes" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/object-declarations.html" itemprop="url">
+		<a href="/kotlin/reference/enum-classes.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -619,7 +619,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/object-declarations.html">对象表达式与对象声明</a>
+            <a class="article-title" href="/kotlin/reference/enum-classes.html">枚举类</a>
         </h1>
     
 
@@ -628,7 +628,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/object-declarations.html">
+        <a href="/kotlin/reference/enum-classes.html">
             <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -653,9 +653,11 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。<br>Java 用<em>匿名内部类</em> 处理这种情况。<br>Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微概括了下。</p></p>
+            <p><p>枚举类的最基本的用法是实现类型安全的枚举：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">Direction</span> </span>&#123;</span><br><span class="line">    NORTH, SOUTH, WEST, EAST</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个枚举常量都是一个对象。枚举常量用逗号分隔。</p></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/object-declarations.html#more">Read More</a>
+                <a href="/kotlin/reference/enum-classes.html#more">Read More</a>
             </p>
         
         </div>
@@ -729,12 +731,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/enum-classes" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/object-declarations" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/enum-classes.html" itemprop="url">
+		<a href="/kotlin/reference/object-declarations.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -747,7 +749,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/enum-classes.html">枚举类</a>
+            <a class="article-title" href="/kotlin/reference/object-declarations.html">对象表达式与对象声明</a>
         </h1>
     
 
@@ -756,7 +758,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/enum-classes.html">
+        <a href="/kotlin/reference/object-declarations.html">
             <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -781,11 +783,9 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>枚举类的最基本的用法是实现类型安全的枚举：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">Direction</span> </span>&#123;</span><br><span class="line">    NORTH, SOUTH, WEST, EAST</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>每个枚举常量都是一个对象。枚举常量用逗号分隔。</p></p>
+            <p><p>有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。<br>Java 用<em>匿名内部类</em> 处理这种情况。<br>Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微概括了下。</p></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/enum-classes.html#more">Read More</a>
+                <a href="/kotlin/reference/object-declarations.html#more">Read More</a>
             </p>
         
         </div>
@@ -988,12 +988,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/sealed-classes" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/data-classes" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/sealed-classes.html" itemprop="url">
+		<a href="/kotlin/reference/data-classes.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -1006,7 +1006,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/sealed-classes.html">密封类</a>
+            <a class="article-title" href="/kotlin/reference/data-classes.html">数据类</a>
         </h1>
     
 
@@ -1015,7 +1015,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/sealed-classes.html">
+        <a href="/kotlin/reference/data-classes.html">
             <time datetime="2018-05-17T02:31:00.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -1040,10 +1040,10 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>密封类用来表示受限的类继承结构：当一个值为有限集中的类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集合也是受限的，但每个枚举常量只存在一个实例，而密封类的一个子类可以有可包含状态的多个实例。</p>
-<p>要声明一个密封类，需要在类名前面添加 <code>sealed</code> 修饰符。虽然密封类也可以有子类，但是所有子类都必须在与密封类自身相同的文件中声明。（在 Kotlin 1.1 之前，该规则更加严格：子类必须嵌套在密封类声明的内部）。</p></p>
+            <p><p>我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从数据机械推导而来的。在 Kotlin 中，这叫做 <em>数据类</em> 并标记为 <code>data</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/sealed-classes.html#more">Read More</a>
+                <a href="/kotlin/reference/data-classes.html#more">Read More</a>
             </p>
         
         </div>
@@ -1117,12 +1117,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/data-classes" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/sealed-classes" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/data-classes.html" itemprop="url">
+		<a href="/kotlin/reference/sealed-classes.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -1135,7 +1135,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/data-classes.html">数据类</a>
+            <a class="article-title" href="/kotlin/reference/sealed-classes.html">密封类</a>
         </h1>
     
 
@@ -1144,7 +1144,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/data-classes.html">
+        <a href="/kotlin/reference/sealed-classes.html">
             <time datetime="2018-05-17T02:31:00.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -1169,10 +1169,10 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从数据机械推导而来的。在 Kotlin 中，这叫做 <em>数据类</em> 并标记为 <code>data</code>：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure></p>
+            <p><p>密封类用来表示受限的类继承结构：当一个值为有限集中的类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集合也是受限的，但每个枚举常量只存在一个实例，而密封类的一个子类可以有可包含状态的多个实例。</p>
+<p>要声明一个密封类，需要在类名前面添加 <code>sealed</code> 修饰符。虽然密封类也可以有子类，但是所有子类都必须在与密封类自身相同的文件中声明。（在 Kotlin 1.1 之前，该规则更加严格：子类必须嵌套在密封类声明的内部）。</p></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/data-classes.html#more">Read More</a>
+                <a href="/kotlin/reference/sealed-classes.html#more">Read More</a>
             </p>
         
         </div>
@@ -1576,25 +1576,6 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/kotlin/reference/object-declarations.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="对象表达式与对象声明" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
-                            <p class="item-title"><a href="/kotlin/reference/object-declarations.html" class="title">对象表达式与对象声明</a></p>
-                            <p class="item-date"><time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/kotlin/reference/enum-classes.html" class="thumbnail">
     
     
@@ -1607,6 +1588,25 @@ ga('send', 'pageview');
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
                             <p class="item-title"><a href="/kotlin/reference/enum-classes.html" class="title">枚举类</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/object-declarations.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="对象表达式与对象声明" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/object-declarations.html" class="title">对象表达式与对象声明</a></p>
                             <p class="item-date"><time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time></p>
                         </div>
                     </li>
@@ -1638,7 +1638,7 @@ ga('send', 'pageview');
     <div class="widget-wrap">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native/">Native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1647,7 +1647,7 @@ ga('send', 'pageview');
     <div class="widget-wrap">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Native/" style="font-size: 10px;">Native</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
         </div>
     </div>
 
