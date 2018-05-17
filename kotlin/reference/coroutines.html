@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>协程 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="在 Kotlin 1.1+ 中协程是实验性的。详见下文  一些 API 启动长时间运行的操作（例如网络 IO、文件 IO、CPU 或 GPU 密集型任务等），并要求调用者阻塞直到它们完成。协程提供了一种避免阻塞线程并用更廉价、更可控的操作替代线程阻塞的方法：协程挂起。 协程通过将复杂性放入库来简化异步编程。程序的逻辑可以在协程中顺序地表达，而底层库会为我们解决其异步性。该库可以将用户代码的相关部">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="协程">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/coroutines.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="在 Kotlin 1.1+ 中协程是实验性的。详见下文  一些 API 启动长时间运行的操作（例如网络 IO、文件 IO、CPU 或 GPU 密集型任务等），并要求调用者阻塞直到它们完成。协程提供了一种避免阻塞线程并用更廉价、更可控的操作替代线程阻塞的方法：协程挂起。 协程通过将复杂性放入库来简化异步编程。程序的逻辑可以在协程中顺序地表达，而底层库会为我们解决其异步性。该库可以将用户代码的相关部">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-17T12:36:03.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="协程">
+<meta name="twitter:description" content="在 Kotlin 1.1+ 中协程是实验性的。详见下文  一些 API 启动长时间运行的操作（例如网络 IO、文件 IO、CPU 或 GPU 密集型任务等），并要求调用者阻塞直到它们完成。协程提供了一种避免阻塞线程并用更廉价、更可控的操作替代线程阻塞的方法：协程挂起。 协程通过将复杂性放入库来简化异步编程。程序的逻辑可以在协程中顺序地表达，而底层库会为我们解决其异步性。该库可以将用户代码的相关部">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                36
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/coroutines" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            协程
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/coroutines.html">
+            <time datetime="2018-05-17T12:35:52.000Z" itemprop="datePublished">2018-05-17</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/函数与-Lambda-表达式/">函数与 Lambda 表达式</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p>在 Kotlin 1.1+ 中协程是<em>实验性的</em>。详见<a href="#协程的实验性状态">下文</a></p>
+</blockquote>
+<p>一些 API 启动长时间运行的操作（例如网络 IO、文件 IO、CPU 或 GPU 密集型任务等），并要求调用者阻塞直到它们完成。协程提供了一种避免阻塞线程并用更廉价、更可控的操作替代线程阻塞的方法：协程<em>挂起</em>。</p>
+<p>协程通过将复杂性放入库来简化异步编程。程序的逻辑可以在协程中<em>顺序</em>地表达，而底层库会为我们解决其异步性。该库可以将用户代码的相关部分包装为回调、订阅相关事件、在不同线程（甚至不同机器！）上调度执行，而代码则保持如同顺序执行一样简单。</p>
+<p>许多在其他语言中可用的异步机制可以使用 Kotlin 协程实现为库。这包括源于 C# 和 ECMAScript 的 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions" target="_blank" rel="noopener"><code>async</code>/<code>await</code></a>、源于 Go 的 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels" target="_blank" rel="noopener">管道</a> 和 <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression" target="_blank" rel="noopener"><code>select</code></a> 以及源于 C# 和 Python <a href="#kotlincoroutines-中的生成器-api">生成器/<code>yield</code></a>。关于提供这些结构的库请参见其<a href="coroutines.html#标准-api">下文</a>描述。</p>
+<a id="more"></a>
+<h2 id="阻塞-vs-挂起"><a href="#阻塞-vs-挂起" class="headerlink" title="阻塞 vs 挂起"></a>阻塞 vs 挂起</h2><p>基本上，协程计算可以<em>被挂起</em>而无需<em>阻塞线程</em>。线程阻塞的代价通常是昂贵的，尤其在高负载时，因为只有相对少量线程实际可用，因此阻塞其中一个会导致一些重要的任务被延迟。</p>
+<p>另一方面，协程挂起几乎是无代价的。不需要上下文切换或者 OS 的任何其他干预。最重要的是，挂起可以在很大程度上由用户库控制：作为库的作者，我们可以决定挂起时发生什么并根据需求优化/记日志/截获。</p>
+<p>另一个区别是，协程不能在随机的指令中挂起，而只能在所谓的<em>挂起点</em>挂起，这会调用特别标记的函数。</p>
+<h2 id="挂起函数"><a href="#挂起函数" class="headerlink" title="挂起函数"></a>挂起函数</h2><p>当我们调用标记有特殊修饰符 <code>suspend</code> 的函数时，会发生挂起：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="title">doSomething</span><span class="params">(foo: <span class="type">Foo</span>)</span></span>: Bar &#123;</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的函数称为<em>挂起函数</em>，因为调用它们可能挂起协程（如果相关调用的结果已经可用，库可以决定继续进行而不挂起）。挂起函数能够以与普通函数相同的方式获取参数和返回值，但它们只能从协程、其他挂起函数以及内联到其中的函数字面值中调用。</p>
+<p>事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 <code>async()</code> 函数（源自 <a href="#kotlincoroutines-中的生成器-api"><code>kotlinx.coroutines</code></a> 库）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">async</span><span class="params">(block: <span class="type">suspend</span> ()</span></span> -&gt; T)</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>async()</code> 是一个普通函数（不是挂起函数），但是它的 <code>block</code> 参数具有一个带 <code>suspend</code> 修饰符的函数类型： <code>suspend () -&gt; T</code>。所以，当我们将一个 lambda 表达式传给 <code>async()</code> 时，它会是<em>挂起 lambda 表达式</em>，于是我们可以从中调用挂起函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">async &#123;</span><br><span class="line">    doSomething(foo)</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>目前挂起函数类型不能用作超类型，并且目前不支持匿名挂起函数。</p>
+</blockquote>
+<p>继续该类比，<code>await()</code> 可以是一个挂起函数（因此也可以在一个 <code>async {}</code> 块中调用），该函数挂起一个协程，直到一些计算完成并返回其结果：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">async &#123;</span><br><span class="line">    ……</span><br><span class="line">    <span class="keyword">val</span> result = computation.await()</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更多关于 <code>async/await</code> 函数实际在 <code>kotlinx.coroutines</code> 中如何工作的信息可以在<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions" target="_blank" rel="noopener">这里</a>找到。</p>
+<p>请注意，挂起函数 <code>await()</code> 与 <code>doSomething()</code> 不能在没有内联到挂起函数体的函数字面值以及像 <code>main()</code> 这样的普通函数中调用：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    doSomething() <span class="comment">// 错误：挂起函数从非协程上下文调用</span></span><br><span class="line"></span><br><span class="line">    async &#123;</span><br><span class="line">        ...</span><br><span class="line">        computations.forEach &#123; <span class="comment">// `forEach` 是一个内联函数，该 lambda 表达式是内联的</span></span><br><span class="line">            it.await() <span class="comment">// OK</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        thread &#123; <span class="comment">// `thread` 不是内联函数，所以该 lambda 表达式并非内联的</span></span><br><span class="line">            doSomething() <span class="comment">// 错误</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还要注意的是，挂起函数可以是虚拟的，当覆盖它们时，必须指定 <code>suspend</code> 修饰符：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    suspend <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>: <span class="type">Base &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> suspend <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="RestrictsSuspension-注解"><a href="#RestrictsSuspension-注解" class="headerlink" title="@RestrictsSuspension 注解"></a><code>@RestrictsSuspension</code> 注解</h3><p>扩展函数（和 lambda 表达式）也可以标记为 <code>suspend</code>，就像普通的一样。这允许创建 <a href="type-safe-builders.html">DSL</a> 及其他用户可扩展的 API。在某些情况下，库作者需要阻止用户添加<em>新方式</em>来挂起协程。</p>
+<p>为了实现这一点，可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html" target="_blank" rel="noopener"><code>@RestrictsSuspension</code></a> 注解。当接收者类/接口 <code>R</code> 用它标注时，所有挂起扩展都需要委托给 <code>R</code> 的成员或其它委托给它的扩展。由于扩展不能无限相互委托（程序不会终止），这保证所有挂起都通过调用 <code>R</code> 的成员发生，库的作者就可以完全控制了。</p>
+<p>这在<em>少数</em>情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html" target="_blank" rel="noopener"><code>buildSequence()</code></a> 函数实现<a href="#kotlincoroutines-中的生成器-api">下文</a>所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 <code>yield()</code> 或 <code>yieldAll()</code> 而不是任何其他函数。这就是为什么 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html" target="_blank" rel="noopener"><code>SequenceBuilder</code></a> 用 <code>@RestrictsSuspension</code> 注解：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestrictsSuspension</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SequenceBuilder</span>&lt;<span class="type">in T</span>&gt; </span>&#123;</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见其 <a href="https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt" target="_blank" rel="noopener">Github 上</a> 的源代码。</p>
+<h2 id="协程的内部机制"><a href="#协程的内部机制" class="headerlink" title="协程的内部机制"></a>协程的内部机制</h2><p>我们不是在这里给出一个关于协程如何工作的完整解释，然而粗略地认识发生了什么是相当重要的。</p>
+<p>协程完全通过编译技术实现（不需要来自 VM 或 OS 端的支持），挂起通过代码来生效。基本上，每个挂起函数（优化可能适用，但我们不在这里讨论）都转换为状态机，其中的状态对应于挂起调用。刚好在挂起前，下一状态与相关局部变量等一起存储在编译器生成的类的字段中。在恢复该协程时，恢复局部变量并且状态机从刚好挂起之后的状态进行。</p>
+<p>挂起的协程可以作为保持其挂起状态与局部变量的对象来存储和传递。这种对象的类型是 <code>Continuation</code>，而这里描述的整个代码转换对应于经典的<a href="https://en.wikipedia.org/wiki/Continuation-passing_style" target="_blank" rel="noopener">延续性传递风格（Continuation-passing style）</a>。因此，挂起函数有一个 <code>Continuation</code> 类型的额外参数作为高级选项。</p>
+<p>关于协程工作原理的更多细节可以在<a href="https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md" target="_blank" rel="noopener">这个设计文档</a>中找到。在其他语言（如 C# 或者 ECMAScript 2016）中的 async/await 的类似描述与此相关，虽然它们实现的语言功能可能不像 Kotlin 协程这样通用。</p>
+<h2 id="协程的实验性状态"><a href="#协程的实验性状态" class="headerlink" title="协程的实验性状态"></a>协程的实验性状态</h2><p>协程的设计是<a href="compatibility.html#实验性的功能">实验性的</a>，这意味着它会在即将发布的版本中更改。当在 Kotlin 1.1+ 中编译协程时，默认情况下会报一个警告：<em>“协程”功能是实验性的</em>。要移出该警告，你需要指定 <a href="/docs/diagnostics/experimental-coroutines.html">opt-in 标志</a>。</p>
+<p>由于其实验性状态，标准库中协程相关的 API 放在 <code>kotlin.coroutines.experimental</code> 包下。当设计完成并且实验性状态解除时，最终的 API 会移动到 <code>kotlin.coroutines</code>，并且实验包会被保留（可能在一个单独的构件中）以实现向后兼容。</p>
+<p><strong>重要注意事项</strong>：我们建议库作者遵循相同惯例：给暴露基于协程 API 的包添加“experimental”后缀（如 <code>com.example.experimental</code>），以使你的库保持二进制兼容。当最终 API 发布时，请按照下列步骤操作：</p>
+<ul>
+<li>将所有 API 复制到 <code>com.example</code>（没有 experimental 后缀），</li>
+<li>保持实验包的向后兼容性。</li>
+</ul>
+<p>这将最小化你的用户的迁移问题。</p>
+<h2 id="标准-API"><a href="#标准-API" class="headerlink" title="标准 API"></a>标准 API</h2><p>协程有三个主要组成部分：</p>
+<ul>
+<li>语言支持（即如上所述的挂起功能）；</li>
+<li>Kotlin 标准库中的底层核心 API；</li>
+<li>可以直接在用户代码中使用的高级 API。</li>
+</ul>
+<h3 id="底层-API：kotlin-coroutines"><a href="#底层-API：kotlin-coroutines" class="headerlink" title="底层 API：kotlin.coroutines"></a>底层 API：<code>kotlin.coroutines</code></h3><p>底层 API 相对较小，并且除了创建更高级的库之外，不应该使用它。 它由两个主要包组成：</p>
+<ul>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html" target="_blank" rel="noopener"><code>kotlin.coroutines.experimental</code></a> 带有主要类型与下述原语：<ul>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html" target="_blank" rel="noopener"><code>createCoroutine()</code></a>，</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html" target="_blank" rel="noopener"><code>startCoroutine()</code></a>，</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html" target="_blank" rel="noopener"><code>suspendCoroutine()</code></a>；</li>
+</ul>
+</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html" target="_blank" rel="noopener"><code>kotlin.coroutines.experimental.intrinsics</code></a> 带有甚至更底层的内在函数如 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html" target="_blank" rel="noopener"><code>suspendCoroutineOrReturn</code></a>。</li>
+</ul>
+<p>关于这些 API 用法的更多细节可以在<a href="https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md" target="_blank" rel="noopener">这里</a>找到。</p>
+<h3 id="kotlin-coroutines-中的生成器-API"><a href="#kotlin-coroutines-中的生成器-API" class="headerlink" title="kotlin.coroutines 中的生成器 API"></a><code>kotlin.coroutines</code> 中的生成器 API</h3><p><code>kotlin.coroutines.experimental</code> 中仅有的“应用程序级”函数是</p>
+<ul>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html" target="_blank" rel="noopener"><code>buildSequence()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html" target="_blank" rel="noopener"><code>buildIterator()</code></a></li>
+</ul>
+<p>这些包含在 <code>kotlin-stdlib</code> 中因为他们与序列相关。这些函数（我们可以仅限于这里的 <code>buildSequence()</code>）实现了 <em>生成器</em> ，即提供一种廉价构建惰性序列的方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.coroutines.experimental.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> fibonacciSeq = buildSequence &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">0</span></span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        yield(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            yield(a + b)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">val</span> tmp = a + b</span><br><span class="line">            a = b</span><br><span class="line">            b = tmp</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出前五个斐波纳契数字</span></span><br><span class="line">    println(fibonacciSeq.take(<span class="number">8</span>).toList())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这通过创建一个协程生成一个惰性的、潜在无限的斐波那契数列，该协程通过调用 <code>yield()</code> 函数来产生连续的斐波纳契数。当在这样的序列的迭代器上迭代每一步，都会执行生成下一个数的协程的另一部分。因此，我们可以从该序列中取出任何有限的数字列表，例如 <code>fibonacciSeq.take(8).toList()</code> 结果是 <code>[1, 1, 2, 3, 5, 8, 13, 21]</code>。协程足够廉价使这很实用。</p>
+<p>为了演示这样一个序列的真正惰性，让我们在调用 <code>buildSequence()</code> 内部输出一些调试信息：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.coroutines.experimental.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> lazySeq = buildSequence &#123;</span><br><span class="line">        print(<span class="string">"START "</span>)</span><br><span class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span>) &#123;</span><br><span class="line">            yield(i)</span><br><span class="line">            print(<span class="string">"STEP "</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        print(<span class="string">"END"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出序列的前三个元素</span></span><br><span class="line">    lazySeq.take(<span class="number">3</span>).forEach &#123; print(<span class="string">"<span class="variable">$it</span> "</span>) &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上述代码会输出前三个元素。这些数字与生成循环中的 <code>STEP</code> 相交叉。这意味着计算确实是惰性的。要输出 <code>1</code>，我们只执行到第一个 <code>yield(i)</code>，并且过程中会输出 <code>START</code>。然后，输出 <code>2</code>，我们需要继续下一个 <code>yield(i)</code>，并会输出 <code>STEP</code>。<code>3</code> 也一样。永远不会输出再下一个 <code>STEP</code>（以及<code>END</code>），因为我们再也没有请求序列的后续元素。</p>
+<p>为了一次产生值的集合（或序列），可以使用 <code>yieldAll()</code> 函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.coroutines.experimental.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> lazySeq = buildSequence &#123;</span><br><span class="line">        yield(<span class="number">0</span>)</span><br><span class="line">        yieldAll(<span class="number">1.</span><span class="number">.10</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    lazySeq.forEach &#123; print(<span class="string">"<span class="variable">$it</span> "</span>) &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>buildIterator()</code> 的工作方式类似于 <code>buildSequence()</code>，但返回一个惰性迭代器。</p>
+<p>可以通过为 <code>SequenceBuilder</code> 类写挂起扩展（带有<a href="#restrictssuspension-注解">上文</a>描述的 <code>@RestrictsSuspension</code> 注解）来为 <code>buildSequence()</code> 添加自定义生产逻辑（custom yielding logic）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.coroutines.experimental.*</span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">suspend <span class="function"><span class="keyword">fun</span> SequenceBuilder<span class="type">&lt;Int&gt;</span>.<span class="title">yieldIfOdd</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x % <span class="number">2</span> != <span class="number">0</span>) yield(x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> lazySeq = buildSequence &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.10</span>) yieldIfOdd(i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    lazySeq.forEach &#123; print(<span class="string">"<span class="variable">$it</span> "</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他高级-API：kotlinx-coroutines"><a href="#其他高级-API：kotlinx-coroutines" class="headerlink" title="其他高级 API：kotlinx.coroutines"></a>其他高级 API：<code>kotlinx.coroutines</code></h3><p>只有与协程相关的核心 API 可以从 Kotlin 标准库获得。这主要包括所有基于协程的库可能使用的核心原语和接口。</p>
+<p>大多数基于协程的应用程序级 API 都作为单独的库发布：<a href="https://github.com/Kotlin/kotlinx.coroutines" target="_blank" rel="noopener"><code>kotlinx.coroutines</code></a>。这个库覆盖了</p>
+<ul>
+<li>使用 <code>kotlinx-coroutines-core</code> 的平台无关异步编程：<ul>
+<li>此模块包括支持 <code>select</code> 和其他便利原语的类似 Go 的管道，</li>
+<li>这个库的综合指南<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md" target="_blank" rel="noopener">在这里</a>；</li>
+</ul>
+</li>
+<li>基于 JDK 8 中的 <code>CompletableFuture</code> 的 API：<code>kotlinx-coroutines-jdk8</code>；</li>
+<li>基于 JDK 7 及更高版本 API 的非阻塞 IO（NIO）：<code>kotlinx-coroutines-nio</code>；</li>
+<li>支持 Swing (<code>kotlinx-coroutines-swing</code>) 和 JavaFx (<code>kotlinx-coroutines-javafx</code>)；</li>
+<li>支持 RxJava：<code>kotlinx-coroutines-rx</code>。</li>
+</ul>
+<p>这些库既作为使通用任务易用的便利的 API，也作为如何构建基于协程的库的端到端示例。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/kotlin/reference/inline-functions.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">内联函数</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/coroutines.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="协程" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/coroutines.html" class="title">协程</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:35:52.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/inline-functions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="内联函数" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/inline-functions.html" class="title">内联函数</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:26:23.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/lambdas.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="高阶函数与 lambda 表达式" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/lambdas.html" class="title">高阶函数与 lambda 表达式</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/functions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="函数" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/functions.html" class="title">函数</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/delegated-properties.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="委托属性" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/delegated-properties.html" class="title">委托属性</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T06:48:41.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">30</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">30</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/函数与-Lambda-表达式/">函数与 Lambda 表达式</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">36</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

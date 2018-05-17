@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>高阶函数与 lambda 表达式 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Kotlin 函数都是头等的，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他高阶函数以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。 为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列函数类型来表示函数并提供一组特定的语言结构，例如 lambda 表达式。">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高阶函数与 lambda 表达式">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/lambdas.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="Kotlin 函数都是头等的，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他高阶函数以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。 为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列函数类型来表示函数并提供一组特定的语言结构，例如 lambda 表达式。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-17T12:27:05.319Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高阶函数与 lambda 表达式">
+<meta name="twitter:description" content="Kotlin 函数都是头等的，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他高阶函数以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。 为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列函数类型来表示函数并提供一组特定的语言结构，例如 lambda 表达式。">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                36
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/lambdas" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            高阶函数与 lambda 表达式
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/lambdas.html">
+            <time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/函数与-Lambda-表达式/">函数与 Lambda 表达式</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Kotlin 函数都是<a href="https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%89%E5%87%BD%E6%95%B0" target="_blank" rel="noopener"><em>头等的</em></a>，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他<a href="#高阶函数">高阶函数</a>以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。</p>
+<p>为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列<a href="#函数类型">函数类型</a>来表示函数并提供一组特定的语言结构，例如 <a href="#lambda-表达式与匿名函数">lambda 表达式</a>。</p>
+<a id="more"></a>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>高阶函数是将函数用作参数或返回值的函数。</p>
+<p>一个不错的示例是集合的<a href="https://en.wikipedia.org/wiki/Fold_(higher-order_function" target="_blank" rel="noopener">函数式风格的 <code>fold</code></a>&gt;)，它接受一个初始累积值与一个接合函数，并通过将当前累积值与每个集合元素连续接合起来代入累积值来构建返回值：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> Collection<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    initial: <span class="type">R</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    combine: (<span class="type">acc</span>: <span class="type">R</span>, nextElement: <span class="type">T</span>)</span></span> -&gt; R</span><br><span class="line">): R &#123;</span><br><span class="line">    <span class="keyword">var</span> accumulator: R = initial</span><br><span class="line">    <span class="keyword">for</span> (element: T <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">        accumulator = combine(accumulator, element)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> accumulator</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，参数 <code>combine</code> 具有<a href="#函数类型">函数类型</a> <code>(R, T) -&gt; R</code>，因此 <code>fold</code> 接受一个函数作为参数，该函数接受类型分别为 <code>R</code> 与 <code>T</code> 的两个参数并返回一个 <code>R</code> 类型的值。在 <em>for</em>{: .keyword }-循环内部调用该函数，然后将其返回值赋值给 <code>accumulator</code>。</p>
+<p>为了调用 <code>fold</code>，需要传给它一个<a href="#函数类型实例化">函数类型的实例</a>作为参数，而在高阶函数调用处，（<a href="#lambda-表达式与匿名函数">下文详述的</a>）lambda 表达式广泛用于此目的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> items = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Lambdas 表达式是花括号括起来的代码块。</span></span><br><span class="line">    items.fold(<span class="number">0</span>, &#123;</span><br><span class="line">        <span class="comment">// 如果一个 lambda 表达式有参数，前面是参数，后跟“-&gt;”</span></span><br><span class="line">        acc: <span class="built_in">Int</span>, i: <span class="built_in">Int</span> -&gt;</span><br><span class="line">        print(<span class="string">"acc = <span class="variable">$acc</span>, i = <span class="variable">$i</span>, "</span>)</span><br><span class="line">        <span class="keyword">val</span> result = acc + i</span><br><span class="line">        println(<span class="string">"result = <span class="variable">$result</span>"</span>)</span><br><span class="line">        <span class="comment">// lambda 表达式中的最后一个表达式是返回值：</span></span><br><span class="line">        result</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// lambda 表达式的参数类型是可选的，如果能够推断出来的话：</span></span><br><span class="line">    <span class="keyword">val</span> joinedToString = items.fold(<span class="string">"Elements:"</span>, &#123; acc, i -&gt; acc + <span class="string">" "</span> + i &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 函数引用也可以用于高阶函数调用：</span></span><br><span class="line">    <span class="keyword">val</span> product = items.fold(<span class="number">1</span>, <span class="built_in">Int</span>::times)</span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"joinedToString = <span class="variable">$joinedToString</span>"</span>)</span><br><span class="line">    println(<span class="string">"product = <span class="variable">$product</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下各节会更详细地解释上文提到的这些概念。</p>
+<h2 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h2><p>Kotlin 使用类似 <code>(Int) -&gt; String</code> 的一系列函数类型来处理函数的声明： <code>val onClick: () -&gt; Unit = ……</code>。</p>
+<p>这些类型具有与函数签名相对应的特殊表示法，即它们的参数和返回值：</p>
+<ul>
+<li><p>所有函数类型都有一个圆括号括起来的参数类型列表以及一个返回类型：<code>(A, B) -&gt; C</code> 表示接受类型分别为 <code>A</code> 与 <code>B</code> 两个参数并返回一个 <code>C</code> 类型值的函数类型。参数类型列表可以为空，如 <code>() -&gt; A</code>。<a href="functions.html#unit-返回类型"><code>Unit</code> 返回类型</a>不可省略。</p>
+</li>
+<li><p>函数类型可以有一个额外的<em>接收者</em>类型，它在表示法中的点之前指定：类型 <code>A.(B) -&gt; C</code> 表示可以在 <code>A</code> 的接收者对象上以一个 <code>B</code> 类型参数来调用并返回一个<br><code>C</code> 类型值的函数。<br><a href="#带有接收者的函数字面值">带有接收者的函数字面值</a>通常与这些类型一起使用。</p>
+</li>
+<li><p><a href="coroutines.html#挂起函数">挂起函数</a>属于特殊种类的函数类型，它的表示法中有一个 <em>suspend</em>{: .keyword} 修饰符，例如 <code>suspend () -&gt; Unit</code> 或者 <code>suspend A.(B) -&gt; C</code>。</p>
+</li>
+</ul>
+<p>函数类型表示法可以选择性地包含函数的参数名：<code>(x: Int, y: Int) -&gt; Point</code>。这些名称可用于表明参数的含义。</p>
+<blockquote>
+<p>如需将函数类型指定为<a href="null-safety.html#可空与非空类型">可空</a>，请使用圆括号：<code>((Int, Int) -&gt; Int)?</code>。</p>
+<p>函数类型可以使用圆括号进行接合：<code>(Int) -&gt; ((Int) -&gt; Unit)</code></p>
+<p>箭头表示法是右结合的，<code>(Int) -&gt; (Int) -&gt; Unit</code> 与前述示例等价，但不等于<br><code>((Int) -&gt; (Int)) -&gt; Unit</code>。</p>
+</blockquote>
+<p>还可以通过使用<a href="type-aliases.html">类型别名</a>给函数类型起一个别称：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typealias ClickHandler = (Button, ClickEvent) -&gt; <span class="built_in">Unit</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数类型实例化"><a href="#函数类型实例化" class="headerlink" title="函数类型实例化"></a>函数类型实例化</h3><p>有几种方法可以获得函数类型的实例：</p>
+<ul>
+<li>使用函数字面值的代码块，采用以下形式之一：<ul>
+<li><a href="#lambda-表达式与匿名函数">lambda 表达式</a>: <code>{ a, b -&gt; a + b }</code>,</li>
+<li><a href="#匿名函数">匿名函数</a>: <code>fun(s: String): Int { return s.toIntOrNull() ?: 0 }</code> <a href="#带有接收者的函数字面值">带有接收者的函数字面值</a>可用作带有接收者的函数类型的值。</li>
+</ul>
+</li>
+<li>使用已有声明的可调用引用：<ul>
+<li>顶层、局部、成员、扩展<a href="reflection.html#函数引用">函数</a>：<code>::isOdd</code>、 <code>String::toInt</code>，</li>
+<li>顶层、成员、扩展<a href="reflection.html#属性引用">属性</a>：<code>List&lt;Int&gt;::size</code>，</li>
+<li><a href="reflection.html#构造函数引用">构造函数</a>：<code>::Regex</code> 这包括指向特定实例成员的<a href="reflection.html#绑定的函数与属性引用自-11-起">绑定的可调用引用</a>：<code>foo::toString</code>。</li>
+</ul>
+</li>
+<li><p>使用实现函数类型接口的自定义类的实例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IntTransformer</span>: <span class="type"></span></span>(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">invoke</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = TODO()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> intFunction: (<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = IntTransformer()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果有足够信息，编译器可以推断变量的函数类型：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = &#123; i: <span class="built_in">Int</span> -&gt; i + <span class="number">1</span> &#125; <span class="comment">// 推断出的类型是 (Int) -&gt; Int</span></span><br></pre></td></tr></table></figure>
+<p>带与不带接收者的函数类型<em>非字面</em>值可以互换，其中接收者可以替代第一个参数，反之亦然。例如，<code>(A, B) -&gt; C</code> 类型的值可以传给或赋值给期待 <code>A.(B) -&gt; C</code> 的地方，反之亦然：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> repeat: String.(<span class="built_in">Int</span>) -&gt; String = &#123; times -&gt; repeat(times) &#125;</span><br><span class="line">    <span class="keyword">val</span> twoParameters: (String, <span class="built_in">Int</span>) -&gt; String = repeat <span class="comment">// OK</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">runTransformation</span><span class="params">(f: (<span class="type">String</span>, <span class="built_in">Int</span>)</span></span> -&gt; String): String &#123;</span><br><span class="line">        <span class="keyword">return</span> f(<span class="string">"hello"</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> result = runTransformation(repeat) <span class="comment">// OK</span></span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"result = <span class="variable">$result</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>请注意，默认情况下推断出的是没有接收者的函数类型，即使变量是通过<!--
+-->扩展函数引用来初始化的。如需改变这点，请显式指定变量类型。</p>
+</blockquote>
+<h3 id="函数类型实例调用"><a href="#函数类型实例调用" class="headerlink" title="函数类型实例调用"></a>函数类型实例调用</h3><p>函数类型的值可以通过其 <a href="operator-overloading.html#invoke"><code>invoke(……)</code> 操作符</a>调用：<code>f.invoke(x)</code> 或者直接 <code>f(x)</code>。</p>
+<p>如果该值具有接收者类型，那么应该将接收者对象作为第一个参数传递。调用带有接收者的函数类型值的另一个方式是在其前面加上接收者对象，就好比该值是一个<a href="extensions.html">扩展函数</a>：<code>1.foo(2)</code>，</p>
+<p>例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> stringPlus: (String, String) -&gt; String = String::plus</span><br><span class="line">    <span class="keyword">val</span> intPlus: <span class="built_in">Int</span>.(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = <span class="built_in">Int</span>::plus</span><br><span class="line"></span><br><span class="line">    println(stringPlus.invoke(<span class="string">"&lt;-"</span>, <span class="string">"-&gt;"</span>))</span><br><span class="line">    println(stringPlus(<span class="string">"Hello, "</span>, <span class="string">"world!"</span>))</span><br><span class="line"></span><br><span class="line">    println(intPlus.invoke(<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    println(intPlus(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">    println(<span class="number">2.</span>intPlus(<span class="number">3</span>)) <span class="comment">// 类扩展调用</span></span><br><span class="line">    <span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>有时使用<a href="inline-functions.html">内联函数</a>可以为高阶函数提供灵活的控制流。</p>
+<h2 id="Lambda-表达式与匿名函数"><a href="#Lambda-表达式与匿名函数" class="headerlink" title="Lambda 表达式与匿名函数"></a>Lambda 表达式与匿名函数</h2><p>lambda 表达式与匿名函数是“函数字面值”，即未声明的函数，但立即做为表达式传递。考虑下面的例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(strings, &#123; a, b -&gt; a.length &lt; b.length &#125;)</span><br></pre></td></tr></table></figure>
+<p>函数 <code>max</code> 是一个高阶函数，它接受一个函数作为第二个参数。其第二个参数是一个表达式，它本身是一个函数，即函数字面值，它等价于以下命名函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">compare</span><span class="params">(a: <span class="type">String</span>, b: <span class="type">String</span>)</span></span>: <span class="built_in">Boolean</span> = a.length &lt; b.length</span><br></pre></td></tr></table></figure>
+<h3 id="Lambda-表达式语法"><a href="#Lambda-表达式语法" class="headerlink" title="Lambda 表达式语法"></a>Lambda 表达式语法</h3><p>Lambda 表达式的完整语法形式如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum = &#123; x: <span class="built_in">Int</span>, y: <span class="built_in">Int</span> -&gt; x + y &#125;</span><br></pre></td></tr></table></figure>
+<p>lambda 表达式总是括在花括号中，完整语法形式的参数声明放在花括号内，并有可选的类型标注，函数体跟在一个 <code>-&gt;</code> 符号之后。如果推断出的该 lambda 的返回类型不是 <code>Unit</code>，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。</p>
+<p>如果我们把所有可选标注都留下，看起来如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum: (<span class="built_in">Int</span>, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123; x, y -&gt; x + y &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将-lambda-表达式传给最后一个参数"><a href="#将-lambda-表达式传给最后一个参数" class="headerlink" title="将 lambda 表达式传给最后一个参数"></a>将 lambda 表达式传给最后一个参数</h3><p>在 Kotlin 中有一个约定：如果函数的最后一个参数接受函数，那么作为相应参数传入的 lambda 表达式可以放在圆括号之外：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> product = items.fold(<span class="number">1</span>) &#123; acc, e -&gt; acc * e &#125;</span><br></pre></td></tr></table></figure>
+<p>如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run &#123; println(<span class="string">"..."</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>{:#it 单个参数的隐式名称}</p>
+<h3 id="it：单个参数的隐式名称"><a href="#it：单个参数的隐式名称" class="headerlink" title="it：单个参数的隐式名称"></a><code>it</code>：单个参数的隐式名称</h3><p>一个 lambda 表达式只有一个参数是很常见的。</p>
+<p>如果编译器自己可以识别出签名，也可以不用声明唯一的参数并忽略 <code>-&gt;</code>。该参数会隐式声明为 <code>it</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ints.filter &#123; it &gt; <span class="number">0</span> &#125; <span class="comment">// 这个字面值是“(it: Int) -&gt; Boolean”类型的</span></span><br></pre></td></tr></table></figure>
+<h3 id="从-lambda-表达式中返回一个值"><a href="#从-lambda-表达式中返回一个值" class="headerlink" title="从 lambda 表达式中返回一个值"></a>从 lambda 表达式中返回一个值</h3><p>我们可以使用<a href="returns.html#标签处返回">限定的返回</a>语法从 lambda 显式返回一个值。否则，将隐式返回最后一个表达式的值。</p>
+<p>因此，以下两个片段是等价的：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ints.filter &#123;</span><br><span class="line">    <span class="keyword">val</span> shouldFilter = it &gt; <span class="number">0</span></span><br><span class="line">    shouldFilter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ints.filter &#123;</span><br><span class="line">    <span class="keyword">val</span> shouldFilter = it &gt; <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span><span class="symbol">@filter</span> shouldFilter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这一约定连同<a href="将-lambda-表达式传给最后一个参数">在圆括号外传递 lambda 表达式</a>一起支持<br><a href="http://msdn.microsoft.com/en-us/library/bb308959.aspx" target="_blank" rel="noopener">LINQ-风格</a> 的代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings.filter &#123; it.length == <span class="number">5</span> &#125;.sortedBy &#123; it &#125;.map &#123; it.toUpperCase() &#125;</span><br></pre></td></tr></table></figure>
+<p>{:#下划线用于未使用的变量自-11-起}</p>
+<h3 id="下划线用于未使用的变量（自-1-1-起）"><a href="#下划线用于未使用的变量（自-1-1-起）" class="headerlink" title="下划线用于未使用的变量（自 1.1 起）"></a>下划线用于未使用的变量（自 1.1 起）</h3><p>如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map.forEach &#123; _, value -&gt; println(<span class="string">"<span class="variable">$value</span>!"</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>{:#在-lambda-表达式中解构自-11-起}</p>
+<h3 id="在-lambda-表达式中解构（自-1-1-起）"><a href="#在-lambda-表达式中解构（自-1-1-起）" class="headerlink" title="在 lambda 表达式中解构（自 1.1 起）"></a>在 lambda 表达式中解构（自 1.1 起）</h3><p>在 lambda 表达式中解构是作为<a href="multi-declarations.html#在-lambda-表达式中解构自-11-起">解构声明</a>的一部分描述的。</p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>上面提供的 lambda 表达式语法缺少的一个东西是指定函数的返回类型的能力。在大多数情况下，这是不必要的。因为返回类型可以自动推断出来。然而，如果确实需要显式指定，可以使用另一种语法： <em>匿名函数</em> 。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">fun</span><span class="params">(x: <span class="type">Int</span>, y: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = x + y</span><br></pre></td></tr></table></figure>
+<p>匿名函数看起来非常像一个常规函数声明，除了其名称省略了。其函数体可以是表达式（如上所示）或代码块：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">fun</span><span class="params">(x: <span class="type">Int</span>, y: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参数和返回类型的指定方式与常规函数相同，除了能够从上下文推断出的参数类型可以省略：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ints.filter(<span class="function"><span class="title">fun</span><span class="params">(item)</span></span> = item &gt; <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>匿名函数的返回类型推断机制与正常函数一样：对于具有表达式函数体的匿名函数将自动推断返回类型，而具有代码块函数体的返回类型必须显式指定（或者已假定为 <code>Unit</code>）。</p>
+<p>请注意，匿名函数参数总是在括号内传递。 允许将函数留在圆括号外的简写语法仅适用于 lambda 表达式。</p>
+<p>Lambda 表达式与匿名函数之间的另一个区别是<a href="inline-functions.html#非局部返回">非局部返回</a>的行为。一个不带标签的 <em>return</em>{: .keyword } 语句总是在用 <em>fun</em>{: .keyword } 关键字声明的函数中返回。这意味着 lambda 表达式中的 <em>return</em>{: .keyword }<br>将从包含它的函数返回，而匿名函数中的 <em>return</em>{: .keyword }<br>将从匿名函数自身返回。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>Lambda 表达式或者匿名函数（以及<a href="functions.html#局部函数">局部函数</a>和<a href="object-declarations.html#对象表达式">对象表达式</a>）可以访问其 _闭包_ ，即在外部作用域中声明的变量。 与 Java 不同的是可以修改闭包中捕获的变量：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">ints.filter &#123; it &gt; <span class="number">0</span> &#125;.forEach &#123;</span><br><span class="line">    sum += it</span><br><span class="line">&#125;</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure>
+<h3 id="带接收者的函数字面值"><a href="#带接收者的函数字面值" class="headerlink" title="带接收者的函数字面值"></a>带接收者的函数字面值</h3><p>带有接收者的<a href="#函数类型">函数类型</a>，例如 <code>A.(B) -&gt; C</code>，可以用特殊形式的函数字面值实例化——<br>带有接收者的函数字面值。</p>
+<p>如上所述，Kotlin 提供了<a href="函数类型实例调用">调用</a>带有接收者（提供<em>接收者对象</em>）的函数类型实例的能力。</p>
+<p>在这样的函数字面值内部，传给调用的接收者对象成为<em>隐式</em>的<em>this</em>{: .keyword}，以便访问接收者对象的成员而无需任何额外的限定符，亦可使用<br><a href="this-expressions.html"><code>this</code> 表达式</a> 访问接收者对象。</p>
+<p>这种行为与<a href="extensions.html">扩展函数</a>类似，扩展函数也允许在函数体内部访问接收者对象的成员。</p>
+<p>这里有一个带有接收者的函数字面值及其类型的示例，其中在接收者对象上调用了 <code>plus</code><br>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum: <span class="built_in">Int</span>.(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123; other -&gt; plus(other) &#125;</span><br></pre></td></tr></table></figure>
+<p>匿名函数语法允许你直接指定函数字面值的接收者类型。如果你需要使用带接收者的函数类型声明一个变量，并在之后使用它，这将非常有用。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum = <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="params">(other: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = <span class="keyword">this</span> + other</span><br></pre></td></tr></table></figure>
+<p>当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。<br>One of the most important examples of their usage is <a href="type-safe-builders.html">type-safe builders</a>:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HTML</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">body</span><span class="params">()</span></span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">html</span><span class="params">(init: <span class="type">HTML</span>.()</span></span> -&gt; <span class="built_in">Unit</span>): HTML &#123;</span><br><span class="line">    <span class="keyword">val</span> html = HTML()  <span class="comment">// 创建接收者对象</span></span><br><span class="line">    html.init()        <span class="comment">// 将该接收者对象传给该 lambda</span></span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">html &#123;       <span class="comment">// 带接收者的 lambda 由此开始</span></span><br><span class="line">    body()   <span class="comment">// 调用该接收者对象的一个方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/inline-functions.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    内联函数
+                
+            </div>
+        </a>
+    
+    
+        <a href="/kotlin/reference/functions.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">函数</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/coroutines.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="协程" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/coroutines.html" class="title">协程</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:35:52.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/inline-functions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="内联函数" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/inline-functions.html" class="title">内联函数</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:26:23.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/lambdas.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="高阶函数与 lambda 表达式" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/lambdas.html" class="title">高阶函数与 lambda 表达式</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/functions.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="函数" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/functions.html" class="title">函数</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/delegated-properties.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="委托属性" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/delegated-properties.html" class="title">委托属性</a></p>
+                            <p class="item-date"><time datetime="2018-05-17T06:48:41.000Z" itemprop="datePublished">2018-05-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">30</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">30</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/函数与-Lambda-表达式/">函数与 Lambda 表达式</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">36</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
