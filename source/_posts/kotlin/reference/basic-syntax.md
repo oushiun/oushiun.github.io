@@ -3,7 +3,6 @@ title: 基本语法
 
 tags:
  - Kotlin
- - 语法
 categories:
  - 后端
  - Kotlin
@@ -191,7 +190,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-使用 _if_{: .keyword } 作为表达式:
+使用 `if` 作为表达式:
 
 ```kotlin
 //sampleStart
@@ -203,13 +202,13 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见[_if_{: .keyword } 表达式](control-flow.html#if-表达式)。
+参见[`if` 表达式](control-flow.html#if-表达式)。
 
-#### 使用可空值及 _null_{: .keyword } 检测
+#### 使用可空值及 `null` 检测
 
-当某个变量的值可以为 _null_{: .keyword } 的时候，必须在声明处的类型后添加 `?` 来标识该引用可为空。
+当某个变量的值可以为 `null` 的时候，必须在声明处的类型后添加 `?` 来标识该引用可为空。
 
-如果 `str` 的内容不是数字返回 _null_{: .keyword }：
+如果 `str` 的内容不是数字返回 `null`：
 
 ```kotlin
 fun parseInt(str: String): Int? {
@@ -218,8 +217,6 @@ fun parseInt(str: String): Int? {
 ```
 
 使用返回可空值的函数:
-
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ```kotlin
 fun parseInt(str: String): Int? {
@@ -251,8 +248,6 @@ fun main(args: Array<String>) {
 ```
 
 或者
-
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ```kotlin
 fun parseInt(str: String): Int? {
@@ -290,7 +285,7 @@ fun main(args: Array<String>) {
 
 #### 使用类型检测及自动类型转换
 
-_is_{: .keyword } 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：
+`is` 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：
 
 ```kotlin
 //sampleStart
@@ -438,7 +433,7 @@ fun main(args: Array<String>) {
 
 #### 使用区间（range）
 
-使用 _in_{: .keyword } 运算符来检测某个数字是否在指定区间内：
+使用 `in` 运算符来检测某个数字是否在指定区间内：
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -514,7 +509,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-使用 _in_{: .keyword } 运算符来判断集合内是否包含某实例：
+使用 `in` 运算符来判断集合内是否包含某实例：
 
 ```kotlin
 fun main(args: Array<String>) {

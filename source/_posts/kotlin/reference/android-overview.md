@@ -3,7 +3,6 @@ title: 使用 Kotlin 进行 Android 开发
 
 tags:
  - Kotlin
- - Android
 categories:
  - 后端
  - Kotlin

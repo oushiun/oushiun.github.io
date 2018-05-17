@@ -70,7 +70,7 @@ import foo.Bar // 现在 Bar 可以不用限定符访问
 import foo.* // “foo”中的一切都可访问
 ```
 
-如果出现名字冲突，可以使用 _as_{: .keyword } 关键字在本地重命名冲突项来消歧义：
+如果出现名字冲突，可以使用 `as` 关键字在本地重命名冲突项来消歧义：
 
 ```kotlin
 import foo.Bar // Bar 可访问
@@ -87,4 +87,4 @@ import bar.Bar as bBar // bBar 代表“bar.Bar”
 
 ### 顶层声明的可见性
 
-如果顶层声明是 _private_{: .keyword } 的，它是声明它的文件所私有的（参见 [可见性修饰符](visibility-modifiers.html)）。
+如果顶层声明是 `private` 的，它是声明它的文件所私有的（参见 [可见性修饰符](visibility-modifiers.html)）。

@@ -23,7 +23,7 @@ data class Customer(val name: String, val email: String)
 
 会为 `Customer` 类提供以下功能：
 
-*   所有属性的 getters （对于 _var_{: .keyword } 定义的还有 setters）
+*   所有属性的 getters （对于 `var` 定义的还有 setters）
 *   `equals()`
 *   `hashCode()`
 *   `toString()`
@@ -238,7 +238,7 @@ fun theAnswer(): Int {
 }
 ```
 
-单表达式函数与其它惯用法一起使用能简化代码，例如和 _when_{: .keyword } 表达式一起使用：
+单表达式函数与其它惯用法一起使用能简化代码，例如和 `when` 表达式一起使用：
 
 ```kotlin
 fun transform(color: String): Int = when (color) {

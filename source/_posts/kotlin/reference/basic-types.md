@@ -4,7 +4,6 @@ title: 基本类型
 toc: true
 tags:
  - Kotlin
- - 数据类型
 categories:
  - 后端
  - Kotlin
@@ -201,7 +200,7 @@ fun decimalDigitValue(c: Char): Int {
 
 ## 布尔
 
-布尔用 `Boolean` 类型表示，它有两个值：*true*{: .keyword } 和 *false*{: .keyword }。
+布尔用 `Boolean` 类型表示，它有两个值：`true` 和 `false`。
 
 若需要可空引用布尔会被装箱。
 
@@ -252,7 +251,7 @@ x[0] = x[1] + x[2]
 
 字符串用 `String` 类型表示。字符串是不可变的。
 字符串的元素——字符可以使用索引运算符访问: `s[i]`。
-可以用 *for*{: .keyword } 循环迭代字符串:
+可以用 `for` 循环迭代字符串:
 
 ``` kotlin
 fun main(args: Array<String>) {
