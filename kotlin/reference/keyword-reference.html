@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>关键字与操作符 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="硬关键字以下符号会始终解释为关键字，不能用作标识符：  as 用于类型转换 为导入指定一个别名   as? 用于安全类型转换 break 终止循环的执行 class 声明一个类 continue 继续最近层循环的下一步 do 开始一个 do/while 循环（后置条件的循环） else 定义一个 if 表达式条件为 false 时执行的分支 false 指定布尔类型的“假”值 for 开始一个 f">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关键字与操作符">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/keyword-reference.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="硬关键字以下符号会始终解释为关键字，不能用作标识符：  as 用于类型转换 为导入指定一个别名   as? 用于安全类型转换 break 终止循环的执行 class 声明一个类 continue 继续最近层循环的下一步 do 开始一个 do/while 循环（后置条件的循环） else 定义一个 if 表达式条件为 false 时执行的分支 false 指定布尔类型的“假”值 for 开始一个 f">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-22T03:38:55.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关键字与操作符">
+<meta name="twitter:description" content="硬关键字以下符号会始终解释为关键字，不能用作标识符：  as 用于类型转换 为导入指定一个别名   as? 用于安全类型转换 break 终止循环的执行 class 声明一个类 continue 继续最近层循环的下一步 do 开始一个 do/while 循环（后置条件的循环） else 定义一个 if 表达式条件为 false 时执行的分支 false 指定布尔类型的“假”值 for 开始一个 f">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                60
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/keyword-reference" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            关键字与操作符
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/keyword-reference.html">
+            <time datetime="2018-05-22T02:21:57.000Z" itemprop="datePublished">2018-05-22</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/参考/">参考</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="硬关键字"><a href="#硬关键字" class="headerlink" title="硬关键字"></a>硬关键字</h2><p>以下符号会始终解释为关键字，不能用作标识符：</p>
+<ul>
+<li><code>as</code><ul>
+<li>用于<a href="typecasts.html#不安全的转换操作符">类型转换</a></li>
+<li>为<a href="packages.html#导入">导入指定一个别名</a></li>
+</ul>
+</li>
+<li><code>as?</code> 用于<a href="typecasts.html#安全的可空转换操作符">安全类型转换</a></li>
+<li><code>break</code> <a href="returns.html">终止循环的执行</a></li>
+<li><code>class</code> 声明一个<a href="classes.html">类</a></li>
+<li><code>continue</code> <a href="returns.html">继续最近层循环的下一步</a></li>
+<li><code>do</code> 开始一个 <a href="control-flow.html#while-循环">do/while 循环</a>（后置条件的循环）</li>
+<li><code>else</code> 定义一个 <a href="control-flow.html#if-表达式">if 表达式</a>条件为 false 时执行的分支</li>
+<li><code>false</code> 指定<a href="basic-types.html#布尔">布尔类型</a>的“假”值</li>
+<li><code>for</code> 开始一个 <a href="control-flow.html#for-循环">for 循环</a></li>
+<li><code>fun</code> 声明一个<a href="functions.html">函数</a></li>
+<li><code>if</code> 开始一个 <a href="control-flow.html#if-表达式">if 表达式</a></li>
+<li><code>in</code><ul>
+<li>指定在 <a href="control-flow.html#for-循环">for 循环</a>中迭代的对象</li>
+<li>用作中缀操作符以检查一个值属于<a href="ranges.html">一个区间</a>、一个集合或者其他<a href="operator-overloading.html#in">定义“contains”方法</a>的实体</li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
+<li>将一个类型参数标记为<a href="generics.html#声明处型变">逆变</a></li>
+</ul>
+</li>
+<li><code>!in</code><ul>
+<li>用作中缀操作符以检查一个值<strong>不</strong>属于<a href="ranges.html">一个区间</a>、一个集合或者其他<a href="operator-overloading.html#in">定义“contains”方法</a>的实体</li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
+</ul>
+</li>
+<li><code>interface</code> 声明一个<a href="interfaces.html">接口</a></li>
+<li><code>is</code><ul>
+<li>检查<a href="typecasts.html#is-与-is-操作符">一个值具有指定类型</a></li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
+</ul>
+</li>
+<li><code>!is</code><ul>
+<li>检查<a href="typecasts.html#is-与-is-操作符">一个值<strong>不</strong>具有指定类型</a></li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
+</ul>
+</li>
+<li><code>null</code> 是表示不指向任何对象的对象引用的常量</li>
+<li><code>object</code> 同时声明<a href="object-declarations.html">一个类及其实例</a></li>
+<li><code>package</code> 指定<a href="packages.html">当前文件的包</a></li>
+<li><code>return</code> <a href="returns.html">从最近层的函数或匿名函数返回</a></li>
+<li><code>super</code><ul>
+<li><a href="classes.html#调用超类实现">引用一个方法或属性的超类实现</a></li>
+<li><a href="classes.html#继承">在次构造函数中调用超类构造函数</a></li>
+</ul>
+</li>
+<li><code>this</code><ul>
+<li>引用<a href="this-expressions.html">当前接收者</a></li>
+<li><a href="classes.html#构造函数">在次构造函数中调用同一个类的另一个构造函数</a></li>
+</ul>
+</li>
+<li><code>throw</code> <a href="exceptions.html">抛出一个异常</a></li>
+<li><code>true</code> 指定<a href="basic-types.html#布尔">布尔类型</a>的“真”值</li>
+<li><code>try</code> <a href="exceptions.html">开始一个异常处理块</a></li>
+<li><code>typealias</code> 声明一个<a href="type-aliases.html">类型别名</a></li>
+<li><code>val</code> 声明一个只读<a href="properties.html">属性</a>或<a href="basic-syntax.html#定义变量">局部变量</a></li>
+<li><code>var</code> 声明一个可变<a href="properties.html">属性</a>或<a href="basic-syntax.html#定义变量">局部变量</a></li>
+<li><code>when</code> 开始一个 <a href="control-flow.html#when-表达式">when 表达式</a>（执行其中一个给定分支）</li>
+<li><code>while</code> 开始一个 <a href="control-flow.html#while-循环">while 循环</a>（前置条件的循环）</li>
+</ul>
+<a id="more"></a>
+<h2 id="软关键字"><a href="#软关键字" class="headerlink" title="软关键字"></a>软关键字</h2><p>以下符号在适用的上下文中充当关键字，而在<!--
+-->其他上下文中可用作标识符：</p>
+<ul>
+<li><code>by</code><ul>
+<li><a href="delegation.html">将接口的实现委托给另一个对象</a></li>
+<li><a href="delegated-properties.html">将属性访问器的实现委托给另一个对象</a></li>
+</ul>
+</li>
+<li><code>catch</code> 开始一个<a href="exceptions.html">处理指定异常类型</a>的块</li>
+<li><code>constructor</code> 声明一个<a href="classes.html#构造函数">主构造函数或次构造函数</a></li>
+<li><code>delegate</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>dynamic</code> 引用一个 Kotlin/JS 代码中的<a href="dynamic-type.html">动态类型</a></li>
+<li><code>field</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>file</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>finally</code> 开始一个<a href="exceptions.html">当 try 块退出时总会执行的块</a></li>
+<li><code>get</code><ul>
+<li>声明<a href="properties.html#getters-与-setters">属性的 getter</a></li>
+<li>用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+</ul>
+</li>
+<li><code>import</code> <a href="packages.html">将另一个包中的声明导入当前文件</a></li>
+<li><code>init</code> 开始一个<a href="classes.html#构造函数">初始化块</a></li>
+<li><code>param</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>property</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>receiver</code>用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>set</code><ul>
+<li>声明<a href="properties.html#getters-与-setters">属性的 setter</a></li>
+<li>用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+</ul>
+</li>
+<li><code>setparam</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>where</code> 指定<a href="generics.html#上界">泛型类型参数的约束</a></li>
+</ul>
+<h2 id="修饰符关键字"><a href="#修饰符关键字" class="headerlink" title="修饰符关键字"></a>修饰符关键字</h2><p>以下符号作为声明中修饰符列表中的关键字，并可用作其他上下文中<!--
+-->的标识符：</p>
+<ul>
+<li><code>actual</code> 表示<a href="/docs/reference/multiplatform.html">多平台项目</a>中的一个平台相关实现</li>
+<li><code>abstract</code> 将一个类或成员标记为<a href="classes.html#抽象类">抽象</a></li>
+<li><code>annotation</code> 声明一个<a href="annotations.html">注解类</a></li>
+<li><code>companion</code> 声明一个<a href="object-declarations.html#伴生对象">伴生对象</a></li>
+<li><code>const</code> 将属性标记为<a href="properties.html#编译期常量">编译期常量</a></li>
+<li><code>crossinline</code> 禁止<a href="inline-functions.html#非局部返回">传递给内联函数的 lambda 中的非局部返回</a></li>
+<li><code>data</code> 指示编译器<a href="data-classes.html">为类生成典型成员</a></li>
+<li><code>enum</code> 声明一个<a href="enum-classes.html">枚举</a></li>
+<li><code>expect</code> 将一个声明标记为<a href="/docs/reference/multiplatform.html">平台相关</a>，并期待在平台模块中实现。</li>
+<li><code>external</code> 将一个声明标记为不是在 Kotlin 中实现（通过 <a href="java-interop.html#在-kotlin-中使用-jni">JNI</a> 访问或者在 <a href="js-interop.html#external-修饰符">JavaScript</a> 中实现）</li>
+<li><code>final</code> 禁止<a href="classes.html#覆盖方法">成员覆盖</a></li>
+<li><code>infix</code> 允许以<a href="functions.html#中缀表示法">中缀表示法</a>调用函数</li>
+<li><code>inline</code> 告诉编译器<a href="inline-functions.html">在调用处内联传给它的函数和 lambda 表达式</a></li>
+<li><code>inner</code> 允许在<a href="nested-classes.html">嵌套类</a>中引用外部类实例</li>
+<li><code>internal</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前模块中可见</a></li>
+<li><code>lateinit</code> 允许<a href="properties.html#延迟初始化属性与变量">在构造函数之外初始化非空属性</a></li>
+<li><code>noinline</code> 关闭<a href="inline-functions.html#禁用内联">传给内联函数的 lambda 表达式的内联</a></li>
+<li><code>open</code> 允许<a href="classes.html#继承">一个类子类化或覆盖成员</a></li>
+<li><code>operator</code> 将一个函数标记为<a href="operator-overloading.html">重载一个操作符或者实现一个约定</a></li>
+<li><code>out</code> 将类型参数标记为<a href="generics.html#声明处型变">协变</a></li>
+<li><code>override</code> 将一个成员标记为<a href="classes.html#覆盖方法">超类成员的覆盖</a></li>
+<li><code>private</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前类或文件中可见</a></li>
+<li><code>protected</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前类及其子类中可见</a></li>
+<li><code>public</code> 将一个声明标记为<a href="visibility-modifiers.html">在任何地方可见</a></li>
+<li><code>reified</code> 将内联函数的类型参数标记为<a href="inline-functions.html#具体化的类型参数">在运行时可访问</a></li>
+<li><code>sealed</code> 声明一个<a href="sealed-classes.html">密封类</a>（限制子类化的类）</li>
+<li><code>suspend</code> 将一个函数或 lambda 表达式标记为挂起式（可用做<a href="coroutines.html">协程</a>）</li>
+<li><code>tailrec</code> 将一个函数标记为<a href="functions.html#尾递归函数">尾递归</a>（允许编译器将递归替换为迭代）</li>
+<li><code>vararg</code> 允许<a href="functions.html#可变数量的参数varargs">一个参数传入可变数量的参数</a></li>
+</ul>
+<h2 id="特殊标识符"><a href="#特殊标识符" class="headerlink" title="特殊标识符"></a>特殊标识符</h2><p>以下标识符由编译器在指定上下文中定义，并且可以用作其他上下文中的常规<!--
+-->标识符：</p>
+<ul>
+<li><code>field</code> 用在属性访问器内部来引用该<a href="properties.html#幕后字段">属性的幕后字段</a></li>
+<li><code>it</code> 用在 lambda 表达式内部来<a href="lambdas.html#it单个参数的隐式名称">隐式引用其参数</a></li>
+</ul>
+<h2 id="操作符和特殊符号"><a href="#操作符和特殊符号" class="headerlink" title="操作符和特殊符号"></a>操作符和特殊符号</h2><p>Kotlin 支持以下操作符和特殊符号：</p>
+<ul>
+<li><code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code> —— 数学操作符<ul>
+<li><code>*</code> 也用于<a href="functions.html#可变数量的参数varargs">将数组传递给 vararg 参数</a></li>
+</ul>
+</li>
+<li><code>=</code><ul>
+<li>赋值操作符</li>
+<li>也用于指定<a href="functions.html#默认参数">参数的默认值</a></li>
+</ul>
+</li>
+<li><code>+=</code>、 <code>-=</code>、 <code>*=</code>、 <code>/=</code>、 <code>%=</code> —— <a href="operator-overloading.html#assignments">广义赋值操作符</a></li>
+<li><code>++</code>、 <code>--</code> —— <a href="operator-overloading.html#递增与递减">递增与递减操作符</a></li>
+<li><code>&amp;&amp;</code>、 <code>||</code>、 <code>!</code> —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的<a href="basic-types.html#运算">中缀函数</a>）</li>
+<li><code>==</code>、 <code>!=</code> —— <a href="operator-overloading.html#equals">相等操作符</a>（对于非原生类型会翻译为调用 <code>equals()</code>）</li>
+<li><code>===</code>、 <code>!==</code> —— <a href="equality.html#引用相等">引用相等操作符</a></li>
+<li><code>&lt;</code>、 <code>&gt;</code>、 <code>&lt;=</code>、 <code>&gt;=</code> —— <a href="operator-overloading.html#comparison">比较操作符</a>（对于非原生类型会翻译为调用 <code>compareTo()</code>）</li>
+<li><code>[</code>、 <code>]</code> —— <a href="operator-overloading.html#indexed">索引访问操作符</a>（会翻译为调用 <code>get</code> 与 <code>set</code>）</li>
+<li><code>!!</code> <a href="null-safety.html#-操作符">断言一个表达式非空</a></li>
+<li><code>?.</code> 执行<a href="null-safety.html#安全的调用">安全调用</a>（如果接收者非空，就调用一个方法或访问一个属性）</li>
+<li><code>?:</code> 如果左侧的值为空，就取右侧的值（<a href="null-safety.html#elvis-操作符">elvis 操作符</a>）</li>
+<li><code>::</code> 创建一个<a href="reflection.html#函数引用">成员引用</a>或者一个<a href="reflection.html#类引用">类引用</a></li>
+<li><code>..</code> 创建一个<a href="ranges.html">区间</a></li>
+<li><code>:</code> 分隔声明中的名称与类型</li>
+<li><code>?</code> 将类型标记为<a href="null-safety.html#可空类型与非空类型">可空</a></li>
+<li><code>-&gt;</code><ul>
+<li>分隔 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>的参数与主体</li>
+<li>分隔在<a href="lambdas.html#函数类型">函数类型</a>中的参数类型与返回类型声明</li>
+<li>分隔 <a href="control-flow.html#when-表达式">when 表达式</a>分支的条件与代码体</li>
+</ul>
+</li>
+<li><code>@</code><ul>
+<li>引入一个<a href="annotations.html#用法">注解</a></li>
+<li>引入或引用一个<a href="returns.html#break-与-continue-标签">循环标签</a></li>
+<li>引入或引用一个 <a href="returns.html#标签处返回">lambda 表达式标签</a></li>
+<li>引用一个来自外部作用域的 <a href="this-expressions.html#限定的-this">“this”表达式</a></li>
+<li>引用一个<a href="classes.html#调用超类实现">外部超类</a></li>
+</ul>
+</li>
+<li><code>;</code> 分隔位于同一行的多个语句</li>
+<li><code>$</code> 在<a href="basic-types.html#字符串模板">字符串模版</a>中引用变量或者表达式</li>
+<li><code>_</code><ul>
+<li>在 <a href="lambdas.html#下划线用于未使用的变量自-11-起">lambda 表达式</a>中代替未使用的参数</li>
+<li>在<a href="multi-declarations.html#下划线用于未使用的变量自-11-起">解构声明</a>中代替未使用的参数</li>
+</ul>
+</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/multiplatform.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    多平台项目
+                
+            </div>
+        </a>
+    
+    
+        <a href="/kotlin/reference/type-aliases.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">类型别名</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/javascript-dce.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript DCE" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/javascript-dce.html" class="title">JavaScript DCE</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:31:56.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-reflection.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript 反射" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-reflection.html" class="title">JavaScript 反射</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:30:07.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-modules.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript 模块" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-modules.html" class="title">JavaScript 模块</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:28:55.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-to-kotlin-interop.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript 中调用 Kotlin" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-to-kotlin-interop.html" class="title">JavaScript 中调用 Kotlin</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:27:24.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-interop.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="Kotlin 中调用 JavaScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-interop.html" class="title">Kotlin 中调用 JavaScript</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:26:14.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/">参考</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/JavaScript/">JavaScript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/其他/">其他</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/函数与Lambda表达式/">函数与Lambda表达式</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/参考/">参考</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">60</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">54</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

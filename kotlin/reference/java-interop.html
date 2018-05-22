@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>在 Kotlin 中调用 Java 代码 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Kotlin 中调用 Java 代码">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/java-interop.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-22T03:38:26.100Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Kotlin 中调用 Java 代码">
+<meta name="twitter:description" content="Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                60
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/java-interop" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            在 Kotlin 中调用 Java 代码
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/java-interop.html">
+            <time datetime="2018-05-22T03:13:16.000Z" itemprop="datePublished">2018-05-22</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。</p>
+<a id="more"></a>
+<p>几乎所有 Java 代码都可以使用而没有任何问题：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(source: <span class="type">List</span>&lt;<span class="type">Int</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> list = ArrayList&lt;<span class="built_in">Int</span>&gt;()</span><br><span class="line">    <span class="comment">// “for”-循环用于 Java 集合：</span></span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> source) &#123;</span><br><span class="line">        list.add(item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 操作符约定同样有效：</span></span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0.</span>.source.size - <span class="number">1</span>) &#123;</span><br><span class="line">        list[i] = source[i] <span class="comment">// 调用 get 和 set</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Getter-和-Setter"><a href="#Getter-和-Setter" class="headerlink" title="Getter 和 Setter"></a>Getter 和 Setter</h2><p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。<br><code>Boolean</code> 访问器方法（其中 getter 的名称以 <code>is</code> 开头而 setter 的名称以 <code>set</code> 开头）会表示为与 getter 方法具有相同名称的属性。<br>例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">calendarDemo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> calendar = Calendar.getInstance()</span><br><span class="line">    <span class="keyword">if</span> (calendar.firstDayOfWeek == Calendar.SUNDAY) &#123;  <span class="comment">// 调用 getFirstDayOfWeek()</span></span><br><span class="line">        calendar.firstDayOfWeek = Calendar.MONDAY      <span class="comment">// 调用ll setFirstDayOfWeek()</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!calendar.isLenient) &#123;                         <span class="comment">// 调用 isLenient()</span></span><br><span class="line">        calendar.isLenient = <span class="literal">true</span>                      <span class="comment">// 调用 setLenient()</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，如果 Java 类只有一个 setter，它在 Kotlin 中不会作为属性可见，因为 Kotlin 目前不支持只写（set-only）属性。</p>
+<h2 id="返回-void-的方法"><a href="#返回-void-的方法" class="headerlink" title="返回 void 的方法"></a>返回 void 的方法</h2><p>如果一个 Java 方法返回 void，那么从 Kotlin 调用时中返回 <code>Unit</code>。<br>万一有人使用其返回值，它将由 Kotlin 编译器在调用处赋值，<br>因为该值本身是预先知道的（是 <code>Unit</code>）。</p>
+<h2 id="将-Kotlin-中是关键字的-Java-标识符进行转义"><a href="#将-Kotlin-中是关键字的-Java-标识符进行转义" class="headerlink" title="将 Kotlin 中是关键字的 Java 标识符进行转义"></a>将 Kotlin 中是关键字的 Java 标识符进行转义</h2><p>一些 Kotlin 关键字在 Java 中是有效标识符：<code>in</code>、 <code>object</code>、 <code>is</code> 等等。<br>如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它来调用该方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.`<span class="keyword">is</span>`(bar)</span><br></pre></td></tr></table></figure>
+<h2 id="空安全与平台类型"><a href="#空安全与平台类型" class="headerlink" title="空安全与平台类型"></a>空安全与平台类型</h2><p>Java 中的任何引用都可能是 <code>null</code>，这使得 Kotlin 对来自 Java 的对象要求严格空安全是不现实的。<br>Java 声明的类型在 Kotlin 中会被特别对待并称为<em>平台类型</em>。对这种类型的空检查会放宽，<br>因此它们的安全保证与在 Java 中相同（更多请参见<a href="#已映射类型">下文</a>）。</p>
+<p>考虑以下示例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = ArrayList&lt;String&gt;() <span class="comment">// 非空（构造函数结果）</span></span><br><span class="line">list.add(<span class="string">"Item"</span>)</span><br><span class="line"><span class="keyword">val</span> size = list.size <span class="comment">// 非空（原生 int）</span></span><br><span class="line"><span class="keyword">val</span> item = list[<span class="number">0</span>] <span class="comment">// 推断为平台类型（普通 Java 对象）</span></span><br></pre></td></tr></table></figure>
+<p>当我们调用平台类型变量的方法时，Kotlin 不会在编译时报告可空性错误，<br>但在运行时调用可能会失败，因为空指针异常或者 Kotlin 生成的阻止空值传播的断言：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item.substring(<span class="number">1</span>) <span class="comment">// 允许，如果 item == null 可能会抛出异常</span></span><br></pre></td></tr></table></figure>
+<p>平台类型是<em>不可标示</em>的，意味着不能在语言中明确地写下它们。<br>当把一个平台值赋值给一个 Kotlin 变量时，可以依赖类型推断（该变量会具有推断出的的平台类型，<br>如上例中 <code>item</code> 所具有的类型），或者我们可以选择我们期望的类型（可空或非空类型均可）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> nullable: String? = item <span class="comment">// 允许，没有问题</span></span><br><span class="line"><span class="keyword">val</span> notNull: String = item <span class="comment">// 允许，运行时可能失败</span></span><br></pre></td></tr></table></figure>
+<p>如果我们选择非空类型，编译器会在赋值时触发一个断言。这防止 Kotlin 的非空变量保存空值。当我们把平台值传递给期待非空值等的 Kotlin 函数时，也会触发断言。<br>总的来说，编译器尽力阻止空值通过程序向远传播（尽管鉴于泛型的原因，有时这不可能完全消除）。</p>
+<h3 id="平台类型表示法"><a href="#平台类型表示法" class="headerlink" title="平台类型表示法"></a>平台类型表示法</h3><p>如上所述，平台类型不能在程序中显式表述，因此在语言中没有相应语法。<br>然而，编译器和 IDE 有时需要（在错误信息中、参数信息中等）显示他们，所以我们用一个助记符来表示他们：</p>
+<ul>
+<li><code>T!</code> 表示“<code>T</code> 或者 <code>T?</code>”，</li>
+<li><code>(Mutable)Collection&lt;T&gt;!</code> 表示“可以可变或不可变、可空或不可空的 <code>T</code> 的 Java 集合”，</li>
+<li><code>Array&lt;(out) T&gt;!</code> 表示“可空或者不可空的 <code>T</code>（或 <code>T</code> 的子类型）的 Java 数组”</li>
+</ul>
+<h3 id="可空性注解"><a href="#可空性注解" class="headerlink" title="可空性注解"></a>可空性注解</h3><p>具有可空性注解的Java类型并不表示为平台类型，而是表示为实际可空或非空的<br>Kotlin 类型。编译器支持多种可空性注解，包括：</p>
+<ul>
+<li><a href="https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html" target="_blank" rel="noopener">JetBrains</a><br>（<code>org.jetbrains.annotations</code> 包中的  <code>@Nullable</code> 和 <code>@NotNull</code>）</li>
+<li>Android（<code>com.android.annotations</code> 和 <code>android.support.annotations</code>)</li>
+<li>JSR-305（<code>javax.annotation</code>，详见下文）</li>
+<li>FindBugs（<code>edu.umd.cs.findbugs.annotations</code>）</li>
+<li>Eclipse（<code>org.eclipse.jdt.annotation</code>）</li>
+<li>Lombok（<code>lombok.NonNull</code>）。</li>
+</ul>
+<p>你可以在 <a href="https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt" target="_blank" rel="noopener">Kotlin 编译器源代码</a>中找到完整的列表。</p>
+<h3 id="Annotating-type-parameters"><a href="#Annotating-type-parameters" class="headerlink" title="Annotating type parameters"></a>Annotating type parameters</h3><p>It is possible to annotate type arguments of generic types to provide nullability information for them as well. For example, consider these annotations on a Java declaration:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotNull</span></span><br><span class="line">Set&lt;<span class="meta">@NotNull</span> String&gt; toSet(<span class="meta">@NotNull</span> Collection&lt;<span class="meta">@NotNull</span> String&gt; elements) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>It leads to the following signature seen in Kotlin:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">toSet</span><span class="params">(elements: (<span class="type">Mutable</span>)</span></span>Collection&lt;String&gt;) : (Mutable)Set&lt;String&gt; &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>Note the <code>@NotNull</code> annotations on <code>String</code> type arguments. Without them, we get platform types in the type arguments:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">toSet</span><span class="params">(elements: (<span class="type">Mutable</span>)</span></span>Collection&lt;String!&gt;) : (Mutable)Set&lt;String!&gt; &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>Annotating type arguments works with Java 8 target or higher and requires the nullability annotations to support the <code>TYPE_USE</code> target (<code>org.jetbrains.annotations</code> supports this in version 15 and above).</p>
+<h3 id="JSR-305-支持"><a href="#JSR-305-支持" class="headerlink" title="JSR-305 支持"></a>JSR-305 支持</h3><p>已支持 <a href="https://jcp.org/en/jsr/detail?id=305" target="_blank" rel="noopener">JSR-305</a> 中定义的 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html" target="_blank" rel="noopener"><code>@Nonnull</code></a><br>注解来表示 Java 类型的可空性。</p>
+<p>如果 <code>@Nonnull(when = ...)</code> 值为 <code>When.ALWAYS</code>，那么该注解类型会被视为非空；<code>When.MAYBE</code> 与<br><code>When.NEVER</code> 表示可空类型；而 <code>When.UNKNOWN</code> 强制类型为<a href="#空安全与平台类型">平台类型</a>。</p>
+<p>可针对 JSR-305 注解编译库，但不需要为库的消费者将注解构件（如 <code>jsr305.jar</code>）指定为编译依赖。Kotlin 编译器可以从库中读取 JSR-305 注解，并不需要该注解出现在类路径中。</p>
+<p>自 Kotlin 1.1.50 起，<br>也支持<a href="https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md" target="_blank" rel="noopener">自定义可空限定符（KEEP-79）</a><br>（见下文）。</p>
+<h4 id="类型限定符别称（自-1-1-50-起）"><a href="#类型限定符别称（自-1-1-50-起）" class="headerlink" title="类型限定符别称（自 1.1.50 起）"></a>类型限定符别称（自 1.1.50 起）</h4><p>如果一个注解类型同时标注有<br><a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html" target="_blank" rel="noopener"><code>@TypeQualifierNickname</code></a><br>与 JSR-305 <code>@Nonnull</code>（或者它的其他别称，如 <code>@CheckForNull</code>），那么该注解类型自身将用于<br>检索精确的可空性，且具有与该可空性注解相同的含义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TypeQualifierNickname</span></span><br><span class="line"><span class="meta">@Nonnull</span>(when = When.ALWAYS)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyNonnull &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@TypeQualifierNickname</span></span><br><span class="line"><span class="meta">@CheckForNull</span> <span class="comment">// 另一个类型限定符别称的别称</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyNullable &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MyNullable</span> <span class="function">String <span class="title">foo</span><span class="params">(@MyNonnull String x)</span></span>; </span><br><span class="line">    <span class="comment">// 在 Kotlin（严格模式）中：`fun foo(x: String): String?`</span></span><br><span class="line">    </span><br><span class="line">    <span class="function">String <span class="title">bar</span><span class="params">(List&lt;@MyNonnull String&gt; x)</span></span>;       </span><br><span class="line">    <span class="comment">// 在 Kotlin（严格模式）中：`fun bar(x: List&lt;String&gt;!): String!`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="类型限定符默认值（自-1-1-50-起）"><a href="#类型限定符默认值（自-1-1-50-起）" class="headerlink" title="类型限定符默认值（自 1.1.50 起）"></a>类型限定符默认值（自 1.1.50 起）</h4><p><a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html" target="_blank" rel="noopener"><code>@TypeQualifierDefault</code></a><br>引入应用时在所标注元素的作用域内定义默认可空性的注解。</p>
+<p>这些注解类型应自身同时标注有 <code>@Nonnull</code>（或其别称）与 <code>@TypeQualifierDefault(...)</code> 注解，<br>后者带有一到多个 <code>ElementType</code> 值：</p>
+<ul>
+<li><code>ElementType.METHOD</code> 用于方法的返回值；</li>
+<li><code>ElementType.PARAMETER</code> 用于值参数；</li>
+<li><code>ElementType.FIELD</code> 用于字段；以及</li>
+<li><code>ElementType.TYPE_USE</code>（自 1.1.60 起）适用于任何类型，包括类型参数、类型参数的上界与通配符类型。</li>
+</ul>
+<p>当类型并未标注可空性注解时使用默认可空性，并且该默认值是由最内层标注有带有与所用类型相匹配的<br><code>ElementType</code> 的类型限定符默认注解的元素确定。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nonnull</span></span><br><span class="line"><span class="meta">@TypeQualifierDefault</span>(&#123;ElementType.METHOD, ElementType.PARAMETER&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NonNullApi &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Nonnull</span>(when = When.MAYBE)</span><br><span class="line"><span class="meta">@TypeQualifierDefault</span>(&#123;ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE_USE&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NullableApi &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NullableApi</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">foo</span><span class="params">(String x)</span></span>; <span class="comment">// fun foo(x: String?): String?</span></span><br><span class="line"> </span><br><span class="line">    <span class="meta">@NotNullApi</span> <span class="comment">// 覆盖来自接口的默认值</span></span><br><span class="line">    <span class="function">String <span class="title">bar</span><span class="params">(String x, @Nullable String y)</span></span>; <span class="comment">// fun bar(x: String, y: String?): String </span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 由于 `@NullableApi` 具有 `TYPE_USE` 元素类型，</span></span><br><span class="line">    <span class="comment">// 因此认为 List&lt;String&gt; 类型参数是可空的：</span></span><br><span class="line">    <span class="function">String <span class="title">baz</span><span class="params">(List&lt;String&gt; x)</span></span>; <span class="comment">// fun baz(List&lt;String?&gt;?): String?</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// “x”参数仍然是平台类型，因为有显式</span></span><br><span class="line">    <span class="comment">// UNKNOWN 标记的可空性注解：</span></span><br><span class="line">    <span class="function">String <span class="title">qux</span><span class="params">(@Nonnull(when = When.UNKNOWN)</span> String x)</span>; <span class="comment">// fun baz(x: String!): String?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 <a href="#undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解</a>与<a href="#编译器配置">编译器配置</a>两节。</p>
+</blockquote>
+<p>也支持包级的默认可空性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件：test/package-info.java</span></span><br><span class="line"><span class="meta">@NonNullApi</span> <span class="comment">// 默认将“test”包中所有类型声明为不可空</span></span><br><span class="line"><span class="keyword">package</span> test;</span><br></pre></td></tr></table></figure>
+<h4 id="UnderMigration-注解（自-1-1-60-起）"><a href="#UnderMigration-注解（自-1-1-60-起）" class="headerlink" title="@UnderMigration 注解（自 1.1.60 起）"></a><code>@UnderMigration</code> 注解（自 1.1.60 起）</h4><p>库的维护者可以使用 <code>@UnderMigration</code> 注解（在单独的构件 <code>kotlin-annotations-jvm</code> 中提供）来定义可为空性类型限定符的迁移状态。</p>
+<p><code>@UnderMigration(status = ...)</code> 中的状态值指定了编译器如何处理 Kotlin 中注解类型的不当用法（例如，使用 <code>@MyNullable</code> 标注的类型值作为非空值）：</p>
+<ul>
+<li><p><code>MigrationStatus.STRICT</code> 使注解像任何纯可空性注解一样工作，即对不当用法报错并影响注解声明内的类型在 Kotlin 中的呈现；</p>
+</li>
+<li><p>对于 <code>MigrationStatus.WARN</code>，不当用法报为警告而不是错误；<br>但注解声明内的类型仍是平台类型；而</p>
+</li>
+<li><p><code>MigrationStatus.IGNORE</code> 则使编译器完全忽略可空性注解。</p>
+</li>
+</ul>
+<p>库的维护者还可以将 <code>@UnderMigration</code> 状态添加到类型限定符别称与类型限定符默认值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nonnull</span>(when = When.ALWAYS)</span><br><span class="line"><span class="meta">@TypeQualifierDefault</span>(&#123;ElementType.METHOD, ElementType.PARAMETER&#125;)</span><br><span class="line"><span class="meta">@UnderMigration</span>(status = MigrationStatus.WARN)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NonNullApi &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类中的类型是非空的，但是只报警告</span></span><br><span class="line"><span class="comment">// 因为 `@NonNullApi` 标注了 `@UnderMigration(status = MigrationStatus.WARN)`</span></span><br><span class="line"><span class="meta">@NonNullApi</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：可空性注解的迁移状态并不会从其类型限定符别称继承，而是适用于默认类型限定符的用法。</p>
+<p>如果默认类型限定符使用类型限定符别称，并且它们都标注有 <code>@UnderMigration</code>，那么使用默认类型限定符的状态。</p>
+<h4 id="编译器配置"><a href="#编译器配置" class="headerlink" title="编译器配置"></a>编译器配置</h4><p>可以通过添加带有以下选项的 <code>-Xjsr305</code> 编译器标志来配置 JSR-305 检测：</p>
+<ul>
+<li><p><code>-Xjsr305={strict|warn|ignore}</code> 设置非 <code>@UnderMigration</code> 注解的行为。<br>自定义的可空性限定符，尤其是<br><code>@TypeQualifierDefault</code> 已经在很多知名库中流传，而用户更新到包含 JSR-305 支持的 Kotlin 版本时可能需要平滑迁移。自 Kotlin 1.1.60 起，这一标志只影响非 <code>@UnderMigration</code> 注解。</p>
+</li>
+<li><p><code>-Xjsr305=under-migration:{strict|warn|ignore}</code>（自 1.1.60 起）覆盖 <code>@UnderMigration</code> 注解的行为。<br>用户可能对库的迁移状态有不同的看法：<br>他们可能希望在官方迁移状态为 <code>WARN</code> 时报错误，反之亦然，他们可能希望推迟错误报告直到他们完成迁移。</p>
+</li>
+<li><p><code>-Xjsr305=@&lt;fq.name&gt;:{strict|warn|ignore}</code>（自 1.1.60 起）覆盖单个注解的行为，其中 <code>&lt;fq.name&gt;</code> 是该注解的完整限定类名。对于不同的注解可以多次出现。这对于管理特定库的迁移状态非常有用。</p>
+</li>
+</ul>
+<p>其中 <code>strict</code>、 <code>warn</code> 与 <code>ignore</code> 值的含义与 <code>MigrationStatus</code> 中的相同，并且只有 <code>strict</code> 模式会影响注解声明中的类型在 Kotlin 中的呈现。</p>
+<blockquote>
+<p>注意：内置的 JSR-305 注解 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html" target="_blank" rel="noopener"><code>@Nonnull</code></a>、 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html" target="_blank" rel="noopener"><code>@Nullable</code></a> 与 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html" target="_blank" rel="noopener"><code>@CheckForNull</code></a> 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 <code>-Xjsr305</code> 标志。</p>
+</blockquote>
+<p>例如，将 <code>-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn</code> 添加到编译器参数中，会使编译器对由<br><a href="mailto:`@org.library.MyNullable" target="_blank" rel="noopener">`@org.library.MyNullable</a>` 标注的不当用法生成警告，而忽略所有其他 JSR-305 注解。</p>
+<p>对于 kotlin 1.1.50+/1.2 版本，其默认行为等同于 <code>-Xjsr305=warn</code>。<br><code>strict</code> 值应认为是实验性的（以后可能添加更多检测）。</p>
+<h2 id="已映射类型"><a href="#已映射类型" class="headerlink" title="已映射类型"></a>已映射类型</h2><p>Kotlin 特殊处理一部分 Java 类型。这样的类型不是“按原样”从 Java 加载，而是 _映射_ 到相应的 Kotlin 类型。<br>映射只发生在编译期间，运行时表示保持不变。<br>Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安全与平台类型">平台类型</a>）：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Java 类型</strong></th>
+<th><strong>Kotlin 类型</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>byte</code></td>
+<td><code>kotlin.Byte</code></td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td><code>kotlin.Short</code></td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>kotlin.Int</code></td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>kotlin.Long</code></td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td><code>kotlin.Char</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>kotlin.Float</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td><code>kotlin.Double</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>kotlin.Boolean</code></td>
+</tr>
+</tbody>
+</table>
+<p>一些非原生的内置类型也会作映射：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Java 类型</strong></th>
+<th><strong>Kotlin 类型</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java.lang.Object</code></td>
+<td><code>kotlin.Any!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Cloneable</code></td>
+<td><code>kotlin.Cloneable!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Comparable</code></td>
+<td><code>kotlin.Comparable!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Enum</code></td>
+<td><code>kotlin.Enum!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Annotation</code></td>
+<td><code>kotlin.Annotation!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Deprecated</code></td>
+<td><code>kotlin.Deprecated!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.CharSequence</code></td>
+<td><code>kotlin.CharSequence!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.String</code></td>
+<td><code>kotlin.String!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Number</code></td>
+<td><code>kotlin.Number!</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Throwable</code></td>
+<td><code>kotlin.Throwable!</code></td>
+</tr>
+</tbody>
+</table>
+<p>Java 的装箱原始类型映射到可空的 Kotlin 类型：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Java type</strong></th>
+<th><strong>Kotlin type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java.lang.Byte</code></td>
+<td><code>kotlin.Byte?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Short</code></td>
+<td><code>kotlin.Short?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Integer</code></td>
+<td><code>kotlin.Int?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Long</code></td>
+<td><code>kotlin.Long?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Character</code></td>
+<td><code>kotlin.Char?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Float</code></td>
+<td><code>kotlin.Float?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Double</code></td>
+<td><code>kotlin.Double?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Boolean</code></td>
+<td><code>kotlin.Boolean?</code></td>
+</tr>
+</tbody>
+</table>
+<p>请注意，用作类型参数的装箱原始类型映射到平台类型：<br>例如，<code>List&lt;java.lang.Integer&gt;</code> 在 Kotlin 中会成为 <code>List&lt;Int!&gt;</code>。</p>
+<p>集合类型在 Kotlin 中可以是只读的或可变的，因此 Java 集合类型作如下映射：<br>（下表中的所有 Kotlin 类型都驻留在 <code>kotlin.collections</code>包中）:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Java 类型</strong></th>
+<th><strong>Kotlin 只读类型</strong></th>
+<th><strong>Kotlin 可变类型</strong></th>
+<th><strong>加载的平台类型</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Iterator&lt;T&gt;</code></td>
+<td><code>Iterator&lt;T&gt;</code></td>
+<td><code>MutableIterator&lt;T&gt;</code></td>
+<td><code>(Mutable)Iterator&lt;T&gt;!</code></td>
+</tr>
+<tr>
+<td><code>Iterable&lt;T&gt;</code></td>
+<td><code>Iterable&lt;T&gt;</code></td>
+<td><code>MutableIterable&lt;T&gt;</code></td>
+<td><code>(Mutable)Iterable&lt;T&gt;!</code></td>
+</tr>
+<tr>
+<td><code>Collection&lt;T&gt;</code></td>
+<td><code>Collection&lt;T&gt;</code></td>
+<td><code>MutableCollection&lt;T&gt;</code></td>
+<td><code>(Mutable)Collection&lt;T&gt;!</code></td>
+</tr>
+<tr>
+<td><code>Set&lt;T&gt;</code></td>
+<td><code>Set&lt;T&gt;</code></td>
+<td><code>MutableSet&lt;T&gt;</code></td>
+<td><code>(Mutable)Set&lt;T&gt;!</code></td>
+</tr>
+<tr>
+<td><code>List&lt;T&gt;</code></td>
+<td><code>List&lt;T&gt;</code></td>
+<td><code>MutableList&lt;T&gt;</code></td>
+<td><code>(Mutable)List&lt;T&gt;!</code></td>
+</tr>
+<tr>
+<td><code>ListIterator&lt;T&gt;</code></td>
+<td><code>ListIterator&lt;T&gt;</code></td>
+<td><code>MutableListIterator&lt;T&gt;</code></td>
+<td><code>(Mutable)ListIterator&lt;T&gt;!</code></td>
+</tr>
+<tr>
+<td><code>Map&lt;K, V&gt;</code></td>
+<td><code>Map&lt;K, V&gt;</code></td>
+<td><code>MutableMap&lt;K, V&gt;</code></td>
+<td><code>(Mutable)Map&lt;K, V&gt;!</code></td>
+</tr>
+<tr>
+<td><code>Map.Entry&lt;K, V&gt;</code></td>
+<td><code>Map.Entry&lt;K, V&gt;</code></td>
+<td><code>MutableMap.MutableEntry&lt;K,V&gt;</code></td>
+<td><code>(Mutable)Map.(Mutable)Entry&lt;K, V&gt;!</code></td>
+</tr>
+</tbody>
+</table>
+<p>Java 的数组按<a href="java-interop.html#java-数组">下文</a>所述映射：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Java 类型</strong></th>
+<th><strong>Kotlin 类型</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int[]</code></td>
+<td><code>kotlin.IntArray!</code></td>
+</tr>
+<tr>
+<td><code>String[]</code></td>
+<td><code>kotlin.Array&lt;(out) String&gt;!</code></td>
+</tr>
+</tbody>
+</table>
+<p>注意：这些 Java 类型的静态成员不能在相应 Kotlin 类型的<a href="object-declarations.html#伴生对象">伴生对象</a>中直接访问。要调用它们，请使用 Java 类型的完整限定名，例如 <code>java.lang.Integer.toHexString(foo)</code>。</p>
+<h2 id="Kotlin-中的-Java-泛型"><a href="#Kotlin-中的-Java-泛型" class="headerlink" title="Kotlin 中的 Java 泛型"></a>Kotlin 中的 Java 泛型</h2><p>Kotlin 的泛型与 Java 有点不同（参见<a href="generics.html">泛型</a>）。当将 Java 类型导入 Kotlin 时，我们会执行一些转换：</p>
+<ul>
+<li><p>Java 的通配符转换成类型投影，</p>
+<ul>
+<li><code>Foo&lt;? extends Bar&gt;</code> 转换成 <code>Foo&lt;out Bar!&gt;!</code>，</li>
+<li><code>Foo&lt;? super Bar&gt;</code> 转换成 <code>Foo&lt;in Bar!&gt;!</code>；</li>
+</ul>
+</li>
+<li><p>Java的原始类型转换成星投影，</p>
+<ul>
+<li><code>List</code> 转换成 <code>List&lt;*&gt;!</code>，即 <code>List&lt;out Any?&gt;!</code>。</li>
+</ul>
+</li>
+</ul>
+<p>和 Java 一样，Kotlin 在运行时不保留泛型，即对象不携带传递到他们构造器中的那些类型参数的实际类型。<br>即 <code>ArrayList&lt;Integer&gt;()</code> 和 <code>ArrayList&lt;Character&gt;()</code> 是不能区分的。<br>这使得执行 <code>is</code> 检测不可能照顾到泛型。<br>Kotlin 只允许 <code>is</code> 检测星投影的泛型类型：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a <span class="keyword">is</span> List&lt;<span class="built_in">Int</span>&gt;) <span class="comment">// 错误：无法检查它是否真的是一个 Int 列表</span></span><br><span class="line"><span class="comment">// but</span></span><br><span class="line"><span class="keyword">if</span> (a <span class="keyword">is</span> List&lt;*&gt;) <span class="comment">// OK：不保证列表的内容</span></span><br></pre></td></tr></table></figure>
+<h3 id="Java-数组"><a href="#Java-数组" class="headerlink" title="Java 数组"></a>Java 数组</h3><p>与 Java 不同，Kotlin 中的数组是不型变的。这意味着 Kotlin 不允许我们把一个 <code>Array&lt;String&gt;</code> 赋值给一个 <code>Array&lt;Any&gt;</code>，<br>从而避免了可能的运行时故障。Kotlin 也禁止我们把一个子类的数组当做超类的数组传递给 Kotlin 的方法，<br>但是对于 Java 方法，这是允许的（通过 <code>Array&lt;(out) String&gt;!</code> 这种形式的<a href="#空安全与平台类型">平台类型</a>）。</p>
+<p>Java 平台上，数组会使用原生数据类型以避免装箱/拆箱操作的开销。<br>由于 Kotlin 隐藏了这些实现细节，因此需要一个变通方法来与 Java 代码进行交互。<br>对于每种原生类型的数组都有一个特化的类（<code>IntArray</code>、 <code>DoubleArray</code>、 <code>CharArray</code> 等等）来处理这种情况。<br>它们与 <code>Array</code> 类无关，并且会编译成 Java 原生类型数组以获得最佳性能。</p>
+<p>假设有一个接受 int 数组索引的 Java 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaArrayExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeIndices</span><span class="params">(<span class="keyword">int</span>[] indices)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 在此编码……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Kotlin 中你可以这样传递一个原生类型的数组：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> javaObj = JavaArrayExample()</span><br><span class="line"><span class="keyword">val</span> array = intArrayOf(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">javaObj.removeIndices(array)  <span class="comment">// 将 int[] 传给方法</span></span><br></pre></td></tr></table></figure>
+<p>当编译为 JVM 字节代码时，编译器会优化对数组的访问，这样就不会引入任何开销：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> array = arrayOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">array[<span class="number">1</span>] = array[<span class="number">1</span>] * <span class="number">2</span> <span class="comment">// 不会实际生成对 get() 和 set() 的调用</span></span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> array) &#123; <span class="comment">// 不会创建迭代器</span></span><br><span class="line">    print(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即使当我们使用索引定位时，也不会引入任何开销：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> array.indices) &#123;<span class="comment">// 不会创建迭代器</span></span><br><span class="line">    array[i] += <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，<code>in</code>-检测也没有额外开销：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i <span class="keyword">in</span> array.indices) &#123; <span class="comment">// 同 (i &gt;= 0 &amp;&amp; i &lt; array.size)</span></span><br><span class="line">    print(array[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-可变参数"><a href="#Java-可变参数" class="headerlink" title="Java 可变参数"></a>Java 可变参数</h2><p>Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaArrayExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeIndicesVarArg</span><span class="params">(<span class="keyword">int</span>... indices)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 在此编码……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，你需要使用展开运算符 <code>*</code> 来传递 <code>IntArray</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> javaObj = JavaArrayExample()</span><br><span class="line"><span class="keyword">val</span> array = intArrayOf(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">javaObj.removeIndicesVarArg(*array)</span><br></pre></td></tr></table></figure>
+<p>目前无法传递 <code>null</code> 给一个声明为可变参数的方法。</p>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>由于 Java 无法标记用于运算符语法的方法，Kotlin 允许具有正确名称和签名的任何 Java 方法作为运算符重载和其他约定（<code>invoke()</code> 等）使用。<br>不允许使用中缀调用语法调用 Java 方法。</p>
+<h2 id="受检异常"><a href="#受检异常" class="headerlink" title="受检异常"></a>受检异常</h2><p>在 Kotlin 中，所有异常都是非受检的，这意味着编译器不会强迫你捕获其中的任何一个。<br>因此，当你调用一个声明受检异常的 Java 方法时，Kotlin 不会强迫你做任何事情：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">render</span><span class="params">(list: <span class="type">List</span>&lt;*&gt;, to: <span class="type">Appendable</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> list) &#123;</span><br><span class="line">        to.append(item.toString()) <span class="comment">// Java 会要求我们在这里捕获 IOException</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对象方法"><a href="#对象方法" class="headerlink" title="对象方法"></a>对象方法</h2><p>当 Java 类型导入到 Kotlin 中时，类型 <code>java.lang.Object</code> 的所有引用都成了 <code>Any</code>。<br>而因为 <code>Any</code> 不是平台指定的，它只声明了 <code>toString()</code>、<code>hashCode()</code> 和 <code>equals()</code> 作为其成员，<br>所以为了能用到 <code>java.lang.Object</code> 的其他成员，Kotlin 要用到<a href="extensions.html">扩展函数</a>。</p>
+<h3 id="wait-notify"><a href="#wait-notify" class="headerlink" title="wait()/notify()"></a>wait()/notify()</h3><p><a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html" target="_blank" rel="noopener">《Effective Java》第三版</a> 第 81 条善意地建议优先使用并发工具（concurrency utilities）而不是 <code>wait()</code> 和 <code>notify()</code>。<br>因此，类型 <code>Any</code> 的引用不提供这两个方法。<br>如果你真的需要调用它们的话，你可以将其转换为 <code>java.lang.Object</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(foo <span class="keyword">as</span> java.lang.Object).wait()</span><br></pre></td></tr></table></figure>
+<h3 id="getClass"><a href="#getClass" class="headerlink" title="getClass()"></a>getClass()</h3><p>要取得对象的 Java 类，请在<a href="reflection.html#类引用">类引用</a>上使用 <code>java</code> 扩展属性：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> fooClass = foo::<span class="class"><span class="keyword">class</span>.<span class="title">java</span></span></span><br></pre></td></tr></table></figure>
+<p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#绑定的类引用自-11-起">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> fooClass = foo.javaClass</span><br></pre></td></tr></table></figure>
+<h3 id="clone"><a href="#clone" class="headerlink" title="clone()"></a>clone()</h3><p>要覆盖 <code>clone()</code>，需要继承 <code>kotlin.Cloneable</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> : <span class="type">Cloneable &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">clone</span><span class="params">()</span></span>: Any &#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不要忘记<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html" target="_blank" rel="noopener">《Effective Java》第三版</a> 的第 13 条: <em>谨慎地改写clone</em>。</p>
+<h3 id="finalize"><a href="#finalize" class="headerlink" title="finalize()"></a>finalize()</h3><p>要覆盖 <code>finalize()</code>，所有你需要做的就是简单地声明它，而不需要 <em>override</em>{:.keyword} 关键字：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">fun</span> <span class="title">finalize</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 终止化逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据 Java 的规则，<code>finalize()</code> 不能是 <em>private</em>{: .keyword } 的。</p>
+<h2 id="从-Java-类继承"><a href="#从-Java-类继承" class="headerlink" title="从 Java 类继承"></a>从 Java 类继承</h2><p>在 kotlin 中，类的超类中最多只能有一个 Java 类（以及按你所需的多个 Java 接口）。</p>
+<h2 id="访问静态成员"><a href="#访问静态成员" class="headerlink" title="访问静态成员"></a>访问静态成员</h2><p>Java 类的静态成员会形成该类的“伴生对象”。我们无法将这样的“伴生对象”作为值来传递，<br>但可以显式访问其成员，例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Character.isLetter(a)) &#123;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要访问<a href="#已映射类型">已映射</a>到 Kotlin 类型的 Java 类型的静态成员，请使用 Java 类型的完整限定名：<code>java.lang.Integer.bitCount(foo)</code>。</p>
+<h2 id="Java-反射"><a href="#Java-反射" class="headerlink" title="Java 反射"></a>Java 反射</h2><p>Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 <code>instance::class.java</code>,<br><code>ClassName::class.java</code> 或者 <code>instance.javaClass</code> 通过 <code>java.lang.Class</code> 来进入 Java 反射。</p>
+<p>其他支持的情况包括为一个 Kotlin 属性获取一个 Java 的 getter/setter 方法或者幕后字段、为一个 Java 字段获取一个 <code>KProperty</code>、为一个 <code>KFunction</code> 获取一个 Java 方法或者构造函数，反之亦然。</p>
+<h2 id="SAM-转换"><a href="#SAM-转换" class="headerlink" title="SAM 转换"></a>SAM 转换</h2><p>就像 Java 8 一样，Kotlin 支持 SAM 转换。这意味着 Kotlin 函数字面值可以被自动的转换成只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型能够与这个 Kotlin 函数的参数类型相匹配。</p>
+<p>你可以这样创建 SAM 接口的实例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> runnable = Runnable &#123; println(<span class="string">"This runs in a runnable"</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>……以及在方法调用中：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> executor = ThreadPoolExecutor()</span><br><span class="line"><span class="comment">// Java 签名：void execute(Runnable command)</span></span><br><span class="line">executor.execute &#123; println(<span class="string">"This runs in a thread pool"</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>如果 Java 类有多个接受函数式接口的方法，那么可以通过使用将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需由编译器生成：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">executor.execute(Runnable &#123; println(<span class="string">"This runs in a thread pool"</span>) &#125;)</span><br></pre></td></tr></table></figure>
+<p>请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个抽象方法。</p>
+<p>还要注意，此功能只适用于 Java 互操作；因为 Kotlin 具有合适的函数类型，所以不需要将函数自动转换为 Kotlin 接口的实现，因此不受支持。</p>
+<h2 id="在-Kotlin-中使用-JNI"><a href="#在-Kotlin-中使用-JNI" class="headerlink" title="在 Kotlin 中使用 JNI"></a>在 Kotlin 中使用 JNI</h2><p>要声明一个在本地（C 或 C++）代码中实现的函数，你需要使用 <code>external</code> 修饰符来标记它：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">external <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Double</span></span><br></pre></td></tr></table></figure>
+<p>其余的过程与 Java 中的工作方式完全相同。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/java-to-kotlin-interop.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Java 中调用 Kotlin
+                
+            </div>
+        </a>
+    
+    
+        <a href="/kotlin/reference/compatibility.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">兼容性</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/javascript-dce.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript DCE" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/javascript-dce.html" class="title">JavaScript DCE</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:31:56.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-reflection.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript 反射" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-reflection.html" class="title">JavaScript 反射</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:30:07.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-modules.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript 模块" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-modules.html" class="title">JavaScript 模块</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:28:55.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-to-kotlin-interop.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="JavaScript 中调用 Kotlin" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-to-kotlin-interop.html" class="title">JavaScript 中调用 Kotlin</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:27:24.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/js-interop.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="Kotlin 中调用 JavaScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/js-interop.html" class="title">Kotlin 中调用 JavaScript</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T03:26:14.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/">参考</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/JavaScript/">JavaScript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/其他/">其他</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/函数与Lambda表达式/">函数与Lambda表达式</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/参考/">参考</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">60</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">54</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
