@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>类型的检查与转换“is”与“as” | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="is 与 !is 操作符我们可以在运行时通过使用 is 操作符或其否定形式 !is 来检查对象是否符合给定类型： 12345678910if (obj is String) &amp;#123;    print(obj.length)&amp;#125;if (obj !is String) &amp;#123; // 与 !(obj is String) 相同    print(&quot;Not a String&quot;)&amp;#12">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类型的检查与转换“is”与“as”">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/typecasts.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="is 与 !is 操作符我们可以在运行时通过使用 is 操作符或其否定形式 !is 来检查对象是否符合给定类型： 12345678910if (obj is String) &amp;#123;    print(obj.length)&amp;#125;if (obj !is String) &amp;#123; // 与 !(obj is String) 相同    print(&quot;Not a String&quot;)&amp;#12">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-22T01:47:45.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类型的检查与转换“is”与“as”">
+<meta name="twitter:description" content="is 与 !is 操作符我们可以在运行时通过使用 is 操作符或其否定形式 !is 来检查对象是否符合给定类型： 12345678910if (obj is String) &amp;#123;    print(obj.length)&amp;#125;if (obj !is String) &amp;#123; // 与 !(obj is String) 相同    print(&quot;Not a String&quot;)&amp;#12">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                50
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/typecasts" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            类型的检查与转换“is”与“as”
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/typecasts.html">
+            <time datetime="2018-05-22T01:40:43.000Z" itemprop="datePublished">2018-05-22</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/其他/">其他</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="is-与-is-操作符"><a href="#is-与-is-操作符" class="headerlink" title="is 与 !is 操作符"></a><code>is</code> 与 <code>!is</code> 操作符</h2><p>我们可以在运行时通过使用 <code>is</code> 操作符或其否定形式 <code>!is</code> 来检查对象是否符合给定类型：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (obj <span class="keyword">is</span> String) &#123;</span><br><span class="line">    print(obj.length)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (obj !<span class="keyword">is</span> String) &#123; <span class="comment">// 与 !(obj is String) 相同</span></span><br><span class="line">    print(<span class="string">"Not a String"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    print(obj.length)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="智能转换"><a href="#智能转换" class="headerlink" title="智能转换"></a>智能转换</h2><p>在许多情况下，不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪不可变值的 <code>is</code>-检查以及<a href="#不安全的转换操作符">显式转换</a>，并在需要时自动插入（安全的）转换：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(x: <span class="type">Any</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x <span class="keyword">is</span> String) &#123;</span><br><span class="line">        print(x.length) <span class="comment">// x 自动转换为字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译器足够聪明，能够知道如果反向检查导致返回那么该转换是安全的：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x !<span class="keyword">is</span> String) <span class="keyword">return</span></span><br><span class="line">print(x.length) <span class="comment">// x 自动转换为字符串</span></span><br></pre></td></tr></table></figure>
+<p>或者在 <code>&amp;&amp;</code> 和 <code>||</code> 的右侧：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `||` 右侧的 x 自动转换为字符串</span></span><br><span class="line"><span class="keyword">if</span> (x !<span class="keyword">is</span> String || x.length == <span class="number">0</span>) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `&amp;&amp;` 右侧的 x 自动转换为字符串</span></span><br><span class="line"><span class="keyword">if</span> (x <span class="keyword">is</span> String &amp;&amp; x.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    print(x.length) <span class="comment">// x 自动转换为字符串</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些 <em>智能转换</em> 用于 <a href="control-flow.html#when-表达式"><em>when</em>-表达式</a> 和 <a href="control-flow.html#while-循环"><em>while</em>-循环 </a> 也一样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">when</span> (x) &#123;</span><br><span class="line">    <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; print(x + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">is</span> String -&gt; print(x.length + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">is</span> IntArray -&gt; print(x.sum())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，当编译器不能保证变量在检查和使用之间不可改变时，智能转换不能用。更具体地，智能转换能否适用根据以下规则：</p>
+<ul>
+<li><em>val</em> 局部变量——总是可以，<a href="delegated-properties.html#局部委托属性自-11-起">局部委托属性除外</a>；</li>
+<li><em>val</em> 属性——如果属性是 private 或 internal，或者该检查在声明属性的同一模块中执行。智能转换不适用于 open 的属性或者具有自定义 getter 的属性；</li>
+<li><em>var</em> 局部变量——如果变量在检查和使用之间没有修改、没有在会修改它的 lambda 中捕获、并且不是局部委托属性；</li>
+<li><em>var</em> 属性——决不可能（因为该变量可以随时被其他代码修改）。</li>
+</ul>
+<h2 id="“不安全的”转换操作符"><a href="#“不安全的”转换操作符" class="headerlink" title="“不安全的”转换操作符"></a>“不安全的”转换操作符</h2><p>通常，如果转换是不可能的，转换操作符会抛出一个异常。因此，我们称之为<em>不安全的</em>。<br>Kotlin 中的不安全转换由中缀操作符 _as_（参见<a href="grammar.html#precedence">operator precedence</a>）完成：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x: String = y <span class="keyword">as</span> String</span><br></pre></td></tr></table></figure>
+<p>请注意，<em>null</em> 不能转换为 <code>String</code> 因该类型不是<a href="null-safety.html">可空的</a>，即如果 <code>y</code> 为空，上面的代码会抛出一个异常。为了匹配 Java 转换语义，我们必须在转换右边有可空类型，就像：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x: String? = y <span class="keyword">as</span> String?</span><br></pre></td></tr></table></figure>
+<h2 id="“安全的”（可空）转换操作符"><a href="#“安全的”（可空）转换操作符" class="headerlink" title="“安全的”（可空）转换操作符"></a>“安全的”（可空）转换操作符</h2><p>为了避免抛出异常，可以使用<em>安全</em>转换操作符 <em>as?</em>，它可以在失败时返回 <em>null</em>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x: String? = y <span class="keyword">as</span>? String</span><br></pre></td></tr></table></figure>
+<p>请注意，尽管事实上 <em>as?</em> 的右边是一个非空类型的 <code>String</code>，但是其转换的结果是可空的。</p>
+<h2 id="类型擦除与泛型检测"><a href="#类型擦除与泛型检测" class="headerlink" title="类型擦除与泛型检测"></a>类型擦除与泛型检测</h2><p>Kotlin 在编译时确保涉及<a href="generics.html">泛型</a>操作的类型安全性，而在运行时，泛型类型的实例并无未带有关于它们实际类型参数的信息。例如，<br><code>List&lt;Foo&gt;</code> 会被擦除为 <code>List&lt;*&gt;</code>。通常，在运行时无法检测一个实例是否属于带有某个类型参数的泛型类型。</p>
+<p>为此，编译器会禁止由于类型擦除而无法执行的 _is_ 检测，例如<br><code>ints is List&lt;Int&gt;</code> 或者 <code>list is T</code>（类型参数）。当然，你可以对一个实例检测<a href="generics.html#星投影">星投影的类型</a>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (something <span class="keyword">is</span> List&lt;*&gt;) &#123;</span><br><span class="line">    something.forEach &#123; println(it) &#125; <span class="comment">// 这些项的类型都是 `Any?`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类似地，当已经让一个实例的类型参数（在编译期）静态检测，就可以对涉及非泛型部分做 _is_ 检测或者类型转换。请注意，在这种情况下，会省略尖括号：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">handleStrings</span><span class="params">(list: <span class="type">List</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (list <span class="keyword">is</span> ArrayList) &#123;</span><br><span class="line">        <span class="comment">// `list` 会智能转换为 `ArrayList&lt;String&gt;`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>省略类型参数的这种语法可用于不考虑类型参数的类型转换：<code>list as ArrayList</code>。</p>
+<p>带有<a href="inline-functions.html#具体化的类型参数">具体化的类型参数</a>的内联函数使其类型实参在每个调用处内联，这就能够对类型参数进行 <code>arg is T</code> 检测，但是如果 <code>arg</code><br>自身是一个泛型实例，<strong>其</strong>类型参数还是会被擦除。例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> A, <span class="keyword">reified</span> B&gt;</span> Pair<span class="type">&lt;*, *&gt;</span>.<span class="title">asPairOf</span><span class="params">()</span></span>: Pair&lt;A, B&gt;? &#123;</span><br><span class="line">    <span class="keyword">if</span> (first !<span class="keyword">is</span> A || second !<span class="keyword">is</span> B) <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> first <span class="keyword">as</span> A to second <span class="keyword">as</span> B</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> somePair: Pair&lt;Any?, Any?&gt; = <span class="string">"items"</span> to listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> stringToSomething = somePair.asPairOf&lt;String, Any&gt;()</span><br><span class="line"><span class="keyword">val</span> stringToInt = somePair.asPairOf&lt;String, <span class="built_in">Int</span>&gt;()</span><br><span class="line"><span class="keyword">val</span> stringToList = somePair.asPairOf&lt;String, List&lt;*&gt;&gt;()</span><br><span class="line"><span class="keyword">val</span> stringToStringList = somePair.asPairOf&lt;String, List&lt;String&gt;&gt;() <span class="comment">// 破坏类型安全！</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"stringToSomething = "</span> + stringToSomething)</span><br><span class="line">    println(<span class="string">"stringToInt = "</span> + stringToInt)</span><br><span class="line">    println(<span class="string">"stringToList = "</span> + stringToList)</span><br><span class="line">    println(<span class="string">"stringToStringList = "</span> + stringToStringList)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="非受检类型转换"><a href="#非受检类型转换" class="headerlink" title="非受检类型转换"></a>非受检类型转换</h2><p>如上所述，类型擦除使运行时不可能对泛型类型实例的类型实参进行检测，并且代码中的泛型可能相互连接不够紧密，以致于编译器无法确保类型安全。</p>
+<p>即便如此，有时候我们有高级的程序逻辑来暗示类型安全。例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">readDictionary</span><span class="params">(file: <span class="type">File</span>)</span></span>: Map&lt;String, *&gt; = file.inputStream().use &#123;</span><br><span class="line">    TODO(<span class="string">"Read a mapping of strings to arbitrary elements."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们已将存有一些 `Int` 的映射保存到该文件</span></span><br><span class="line"><span class="keyword">val</span> intsFile = File(<span class="string">"ints.dictionary"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Warning: Unchecked cast: `Map&lt;String, *&gt;` to `Map&lt;String, Int&gt;`</span></span><br><span class="line"><span class="keyword">val</span> intsDictionary: Map&lt;String, <span class="built_in">Int</span>&gt; = readDictionary(intsFile) <span class="keyword">as</span> Map&lt;String, <span class="built_in">Int</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>编译器会对最后一行的类型转换产生一个警告。该类型转换不能在运行时完全检测，并且不能保证映射中的值是“Int”。</p>
+<p>为避免未受检类型转换，可以重新设计程序结构：在上例中，可以使用具有类型安全实现的不同接口<br><code>DictionaryReader&lt;T&gt;</code> 与 <code>DictionaryWriter&lt;T&gt;</code>。可以引入合理的抽象，将未受检的类型转换从调用代码移动到实现细节中。正确使用<a href="generics.html#型变">泛型型变</a>也有帮助。</p>
+<p>对于泛型函数，使用<a href="inline-functions.html#具体化的类型参数">具体化的类型参数</a>可以使诸如 <code>arg as T</code> 这样的类型转换受检，除非 <code>arg</code> 对应类型的<em>自身</em>类型参数已被擦除。</p>
+<p>可以通过在产生警告的语句或声明上用注解 <code>@Suppress(&quot;UNCHECKED_CAST&quot;)</code><br><a href="annotations.html#注解">标注</a>来禁止未受检类型转换警告：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> List<span class="type">&lt;*&gt;</span>.<span class="title">asListOfType</span><span class="params">()</span></span>: List&lt;T&gt;? =</span><br><span class="line">    <span class="keyword">if</span> (all &#123; it <span class="keyword">is</span> T &#125;)</span><br><span class="line">        <span class="meta">@Suppress(<span class="meta-string">"UNCHECKED_CAST"</span>)</span></span><br><span class="line">        <span class="keyword">this</span> <span class="keyword">as</span> List&lt;T&gt; <span class="keyword">else</span></span><br><span class="line">        <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<p>在 JVM 平台中，<a href="basic-types.html#数组">数组类型</a>（<code>Array&lt;Foo&gt;</code>）会保留关于其元素被擦除类型的信息，并且类型转换为一个数组类型可以部分受检：元素类型的可空性与类型实参仍然会被擦除。例如，如果 <code>foo</code> 是一个保存了任何 <code>List&lt;*&gt;</code>（无论可不可空）的数组的话，类型转换 <code>foo as Array&lt;List&lt;String&gt;?&gt;</code> 都会成功。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/this-expressions.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    This 表达式
+                
+            </div>
+        </a>
+    
+    
+        <a href="/kotlin/reference/ranges.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">区间</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/multiplatform.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="多平台项目" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/multiplatform.html" class="title">多平台项目</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T02:21:57.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/type-aliases.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="类型别名" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/type-aliases.html" class="title">类型别名</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T02:18:55.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/type-safe-builders.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="类型安全的构建器" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/type-safe-builders.html" class="title">类型安全的构建器</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T02:17:35.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/reflection.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="反射" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/reflection.html" class="title">反射</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T02:14:39.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/annotations.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="注解" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/annotations.html" class="title">注解</a></p>
+                            <p class="item-date"><time datetime="2018-05-22T02:09:55.000Z" itemprop="datePublished">2018-05-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/其他/">其他</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/函数与-Lambda-表达式/">函数与 Lambda 表达式</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">50</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">44</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
