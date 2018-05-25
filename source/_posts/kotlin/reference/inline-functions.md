@@ -7,7 +7,7 @@ categories:
  - 后端
  - Kotlin
  - 参考
- - 函数与Lambda表达式
+ - 函数
 date: 2018-05-17 20:26:23
 banner: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
