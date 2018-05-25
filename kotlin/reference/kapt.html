@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Kotlin 注解处理 | oushiun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。  在 Kotlin 中通过 kapt 编译器插件支持注解处理器（参见JSR 269）。 简而言之，你可以在 Kotlin 项目中使用像 Dagger 或者 Data Binding 这样的库。 关于如何将 kapt 插件应用于 Gradle/Maven 构建中，请阅读下文。">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 注解处理">
+<meta property="og:url" content="http://oushiun.com/kotlin/reference/kapt.html">
+<meta property="og:site_name" content="oushiun">
+<meta property="og:description" content="译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。  在 Kotlin 中通过 kapt 编译器插件支持注解处理器（参见JSR 269）。 简而言之，你可以在 Kotlin 项目中使用像 Dagger 或者 Data Binding 这样的库。 关于如何将 kapt 插件应用于 Gradle/Maven 构建中，请阅读下文。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta property="og:updated_time" content="2018-05-25T02:25:44.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 注解处理">
+<meta name="twitter:description" content="译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。  在 Kotlin 中通过 kapt 编译器插件支持注解处理器（参见JSR 269）。 简而言之，你可以在 Kotlin 项目中使用像 Dagger 或者 Data Binding 这样的库。 关于如何将 kapt 插件应用于 Gradle/Maven 构建中，请阅读下文。">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-65562224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">oushiun</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">oushiun</h2>
+            <h3 id="title">Web Developer &amp; PM</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                67
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
+                            <i class="fa fa-steam"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
+                            <i class="fa fa-paypal"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-kotlin/reference/kapt" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Kotlin 注解处理
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/kapt.html">
+            <time datetime="2018-05-25T01:26:29.000Z" itemprop="datePublished">2018-05-25</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/工具/">工具</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p>译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。</p>
+</blockquote>
+<p>在 Kotlin 中通过 <em>kapt</em> 编译器插件支持注解处理器（参见<a href="https://jcp.org/en/jsr/detail?id=269" target="_blank" rel="noopener">JSR 269</a>）。</p>
+<p>简而言之，你可以在 Kotlin 项目中使用像 <a href="https://google.github.io/dagger/" target="_blank" rel="noopener">Dagger</a> 或者 <a href="https://developer.android.com/topic/libraries/data-binding/index.html" target="_blank" rel="noopener">Data Binding</a> 这样的库。</p>
+<p>关于如何将 <em>kapt</em> 插件应用于 Gradle/Maven 构建中，请阅读下文。</p>
+<a id="more"></a>
+<h2 id="在-Gradle-中使用"><a href="#在-Gradle-中使用" class="headerlink" title="在 Gradle 中使用"></a>在 Gradle 中使用</h2><p>应用 <code>kotlin-kapt</code> Gradle 插件：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">plugin:</span> <span class="string">'kotlin-kapt'</span></span><br></pre></td></tr></table></figure>
+<p>或者，你可以使用插件 DSL 应用它：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">"org.jetbrains.kotlin.kapt"</span> version <span class="string">"&#123;&#123; site.data.releases.latest.version &#125;&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在 <code>dependencies</code> 块中使用 <code>kapt</code> 配置添加相应的依赖项：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    kapt <span class="string">'groupId:artifactId:版本'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你以前使用 <a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config" target="_blank" rel="noopener">Android 支持</a>作为注解处理器，那么以 <code>kapt</code> 取代 <code>annotationProcessor</code> 配置的使用。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
+<p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
+<h2 id="注解处理器参数"><a href="#注解处理器参数" class="headerlink" title="注解处理器参数"></a>注解处理器参数</h2><p>使用 <code>arguments {}</code> 块将参数传给注解处理器：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kapt &#123;</span><br><span class="line">    arguments &#123;</span><br><span class="line">        arg(<span class="string">"key"</span>, <span class="string">"value"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-编译器选项"><a href="#Java-编译器选项" class="headerlink" title="Java 编译器选项"></a>Java 编译器选项</h2><p>Kapt 使用 Java 编译器来运行注解处理器。以下是将任意选项传给 javac 的方式：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kapt &#123;</span><br><span class="line">    javacOptions &#123;</span><br><span class="line">        <span class="comment">// 增加注解处理器的最大错误次数</span></span><br><span class="line">        <span class="comment">// 默认为 100。</span></span><br><span class="line">        option(<span class="string">"-Xmaxerrs"</span>, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="非存在类型校正"><a href="#非存在类型校正" class="headerlink" title="非存在类型校正"></a>非存在类型校正</h2><p>一些注解处理器（如 <code>AutoFactory</code>）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 <code>NonExistentClass</code>，但你可以更改此行为。将额外标志添加到 <code>build.gradle</code> 文件以启用在存根（stub）中推断出的错误类型：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kapt &#123;</span><br><span class="line">    correctErrorTypes = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在-Maven-中使用"><a href="#在-Maven-中使用" class="headerlink" title="在 Maven 中使用"></a>在 Maven 中使用</h2><p>在 <code>compile</code> 之前在 kotlin-maven-plugin 中添加 <code>kapt</code> 目标的执行：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>kapt<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>kapt<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceDirs</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">sourceDir</span>&gt;</span>src/main/kotlin<span class="tag">&lt;/<span class="name">sourceDir</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">sourceDir</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">sourceDir</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">sourceDirs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">annotationProcessorPaths</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 在此处指定你的注解处理器。 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">annotationProcessorPath</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.dagger<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dagger-compiler<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">annotationProcessorPath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">annotationProcessorPaths</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>你可以在<a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example" target="_blank" rel="noopener">Kotlin 示例版本库</a> 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。</p>
+<p>请注意，IntelliJ IDEA 自身的构建系统目前还不支持 kapt。当你想要重新运行注解处理时，请从“Maven Projects”工具栏启动构建。</p>
+<h2 id="在命令行中使用"><a href="#在命令行中使用" class="headerlink" title="在命令行中使用"></a>在命令行中使用</h2><p>Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。</p>
+<p>可以使用 kotlinc 选项 <code>Xplugin</code> 提供该 JAR 文件的路径来附加该插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xplugin=<span class="variable">$KOTLIN_HOME</span>/lib/kotlin-annotation-processing.jar</span><br></pre></td></tr></table></figure>
+<p>以下是可用选项的列表：</p>
+<ul>
+<li><code>sources</code>（_必需_）：所生成文件的输出路径。</li>
+<li><code>classes</code>（_必需_）：所生成类文件与资源的输出路径。</li>
+<li><code>stubs</code>（_必需_）：存根文件的输出路径。换句话说，一些临时目录。</li>
+<li><code>incrementalData</code>：二进制存根的输出路径。</li>
+<li><code>apclasspath</code>（<em>可重复</em>）：注解处理器 JAR 包路径。如果有的多个 JAR 包就传多个 <code>apclasspath</code> 选项。</li>
+<li><code>apoptions</code>：注解处理器选项的 base64 编码列表。详见 <a href="#apjavac-选项编码">AP/javac options encoding</a>。</li>
+<li><code>javacArguments</code>：传给 javac 的选项的 base64 编码列表。详见 <a href="#apjavac-选项编码">AP/javac options encoding</a>。</li>
+<li><code>processors</code>：逗号分隔的注解处理器全类名列表。如果指定，kapt 就不会尝试在 <code>apclasspath</code> 中查找注解处理器。</li>
+<li><code>verbose</code>：启用详细输出。</li>
+<li><code>aptMode</code>（_必需_）<ul>
+<li><code>stubs</code>——只生成注解处理所需的存根；</li>
+<li><code>apt</code>——只运行注解处理；</li>
+<li><code>stubsAndApt</code>——生成存根并运行注解处理。</li>
+</ul>
+</li>
+<li><code>correctErrorTypes</code>：参见<a href="#在-gradle-中使用">下文</a>。默认未启用。</li>
+</ul>
+<p>插件选项格式为：<code>-P plugin:&lt;plugin id&gt;:&lt;key&gt;=&lt;value&gt;</code>。选项可以重复。</p>
+<p>一个示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-P plugin:org.jetbrains.kotlin.kapt3:sources=build/kapt/sources</span><br><span class="line">-P plugin:org.jetbrains.kotlin.kapt3:classes=build/kapt/classes</span><br><span class="line">-P plugin:org.jetbrains.kotlin.kapt3:stubs=build/kapt/stubs</span><br><span class="line"></span><br><span class="line">-P plugin:org.jetbrains.kotlin.kapt3:apclasspath=lib/ap.jar</span><br><span class="line">-P plugin:org.jetbrains.kotlin.kapt3:apclasspath=lib/anotherAp.jar</span><br><span class="line"></span><br><span class="line">-P plugin:org.jetbrains.kotlin.kapt3:correctErrorTypes=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="生成-Kotlin-代码"><a href="#生成-Kotlin-代码" class="headerlink" title="生成 Kotlin 代码"></a>生成 Kotlin 代码</h2><p>Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入<code>processingEnv.options[&quot;kapt.kotlin.generated&quot;]</code> 所指定的目录，这些文件会与主源代码一起编译。</p>
+<p>可以在 <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-code-generation" target="_blank" rel="noopener">kotlin-examples</a> Github 版本库中找到完整的示例。</p>
+<p>请注意，对于所生成 Kotlin 文件，Kapt 不支持多轮处理。</p>
+<h2 id="AP-javac-选项编码"><a href="#AP-javac-选项编码" class="headerlink" title="AP/javac 选项编码"></a>AP/javac 选项编码</h2><p><code>apoptions</code> 与 <code>javacArguments</code> 命令行选项接受选项编码映射。这是自己编码选项的方式：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">encodeList</span><span class="params">(options: <span class="type">Map</span>&lt;<span class="type">String</span>, String&gt;)</span></span>: String &#123;</span><br><span class="line">    <span class="keyword">val</span> os = ByteArrayOutputStream()</span><br><span class="line">    <span class="keyword">val</span> oos = ObjectOutputStream(os)</span><br><span class="line"></span><br><span class="line">    oos.writeInt(options.size)</span><br><span class="line">    <span class="keyword">for</span> ((key, value) <span class="keyword">in</span> options.entries) &#123;</span><br><span class="line">        oos.writeUTF(key)</span><br><span class="line">        oos.writeUTF(value)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    oos.flush()</span><br><span class="line">    <span class="keyword">return</span> Base64.getEncoder().encodeToString(os.toByteArray())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/kotlin/reference/using-gradle.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    使用 Gradle
+                
+            </div>
+        </a>
+    
+    
+        <a href="/kotlin/reference/kotlin-doc.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">编写 Kotlin 代码文档</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/compiler-plugins.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="编译器插件" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/compiler-plugins.html" class="title">编译器插件</a></p>
+                            <p class="item-date"><time datetime="2018-05-25T02:22:26.000Z" itemprop="datePublished">2018-05-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/kotlin-osgi.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="Kotlin 与 OSGi" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/kotlin-osgi.html" class="title">Kotlin 与 OSGi</a></p>
+                            <p class="item-date"><time datetime="2018-05-25T02:07:33.000Z" itemprop="datePublished">2018-05-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/using-ant.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="使用 Ant" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/using-ant.html" class="title">使用 Ant</a></p>
+                            <p class="item-date"><time datetime="2018-05-25T02:05:03.000Z" itemprop="datePublished">2018-05-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/using-maven.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="使用 Maven" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/using-maven.html" class="title">使用 Maven</a></p>
+                            <p class="item-date"><time datetime="2018-05-25T02:02:55.000Z" itemprop="datePublished">2018-05-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/kotlin/reference/using-gradle.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="使用 Gradle" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
+                            <p class="item-title"><a href="/kotlin/reference/using-gradle.html" class="title">使用 Gradle</a></p>
+                            <p class="item-date"><time datetime="2018-05-25T01:34:05.000Z" itemprop="datePublished">2018-05-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/">参考</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/JavaScript/">JavaScript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/其他/">其他</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/函数/">函数</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/参考/">参考</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/工具/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">67</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">61</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 oushiun<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-thread' ,
+            lang:'en',
+            avatar:'identicon',
+            notify:false,
+            verify:false,
+            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+            placeholder: ''
+        });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
