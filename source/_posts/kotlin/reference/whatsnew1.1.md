@@ -1,7 +1,6 @@
 ---
 title: Kotlin 1.1 的新特性
 
-toc: true
 tags:
  - Kotlin
 categories:
@@ -171,7 +170,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构自-11-起)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
+更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构（自-1-1-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
 
 ### 下划线用于未使用的参数
 
@@ -260,7 +259,7 @@ fun main(args: Array<String>) {
 
 你也可以将整个属性标记为 `inline`——这样修饰符应用于两个访问器。
 
-更详细信息请参阅其[文档](inline-functions.html#inline-properties)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
+更详细信息请参阅其[文档](inline-functions.html#内联属性（自-1-1-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
 
 ### 局部委托属性
 
@@ -313,7 +312,7 @@ class MyUI {
 
 `provideDelegate` 方法在创建 `MyUI` 实例期间将会为每个属性调用，并且可以立即执行必要的验证。
 
-更详细信息请参阅其[文档](delegated-properties.html#提供委托自-11-起)。
+更详细信息请参阅其[文档](delegated-properties.html#提供委托（自-1-1-起）)。
 
 ### 泛型枚举值访问
 
@@ -349,7 +348,7 @@ table {
 
 在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 `td` 的隐式接收者上定义的方法会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解并将其应用于标记类的基类。
 
-更详细信息请参阅其[文档](type-safe-builders.html#作用域控制dslmarker自-11-起)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
+更详细信息请参阅其[文档](type-safe-builders.html#作用域控制：-DslMarker（自-1-1-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
 
 ### `rem` 操作符
 

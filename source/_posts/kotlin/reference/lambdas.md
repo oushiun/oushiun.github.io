@@ -14,7 +14,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 Kotlin 函数都是[_头等的_](https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%89%E5%87%BD%E6%95%B0)，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他[高阶函数](#高阶函数)以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。
 
-为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列[函数类型](#函数类型)来表示函数并提供一组特定的语言结构，例如 [lambda 表达式](#lambda-表达式与匿名函数)。
+为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列[函数类型](#函数类型)来表示函数并提供一组特定的语言结构，例如 [lambda 表达式](#Lambda-表达式与匿名函数)。
 
 <!-- more -->
 
@@ -22,7 +22,7 @@ Kotlin 函数都是[_头等的_](https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%8
 
 高阶函数是将函数用作参数或返回值的函数。
 
-一个不错的示例是集合的[函数式风格的 `fold`](<https://en.wikipedia.org/wiki/Fold_(higher-order_function)>)，它接受一个初始累积值与一个接合函数，并通过将当前累积值与每个集合元素连续接合起来代入累积值来构建返回值：
+一个不错的示例是集合的[函数式风格的 *fold*](https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29)，它接受一个初始累积值与一个接合函数，并通过将当前累积值与每个集合元素连续接合起来代入累积值来构建返回值：
 
 ```kotlin
 fun <T, R> Collection<T>.fold(
@@ -37,9 +37,9 @@ fun <T, R> Collection<T>.fold(
 }
 ```
 
-在上述代码中，参数 `combine` 具有[函数类型](#函数类型) `(R, T) -> R`，因此 `fold` 接受一个函数作为参数，该函数接受类型分别为 `R` 与 `T` 的两个参数并返回一个 `R` 类型的值。在 _for_{: .keyword }-循环内部调用该函数，然后将其返回值赋值给 `accumulator`。
+在上述代码中，参数 `combine` 具有[函数类型](#函数类型) `(R, T) -> R`，因此 `fold` 接受一个函数作为参数，该函数接受类型分别为 `R` 与 `T` 的两个参数并返回一个 `R` 类型的值。在 _for_-循环内部调用该函数，然后将其返回值赋值给 `accumulator`。
 
-为了调用 `fold`，需要传给它一个[函数类型的实例](#函数类型实例化)作为参数，而在高阶函数调用处，（[下文详述的](#lambda-表达式与匿名函数)）lambda 表达式广泛用于此目的。
+为了调用 `fold`，需要传给它一个[函数类型的实例](#函数类型实例化)作为参数，而在高阶函数调用处，（[下文详述的](#Lambda-表达式与匿名函数)）lambda 表达式广泛用于此目的。
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -76,17 +76,15 @@ Kotlin 使用类似 `(Int) -> String` 的一系列函数类型来处理函数的
 
 这些类型具有与函数签名相对应的特殊表示法，即它们的参数和返回值：
 
-*   所有函数类型都有一个圆括号括起来的参数类型列表以及一个返回类型：`(A, B) -> C` 表示接受类型分别为 `A` 与 `B` 两个参数并返回一个 `C` 类型值的函数类型。参数类型列表可以为空，如 `() -> A`。[`Unit` 返回类型](functions.html#unit-返回类型)不可省略。
+*   所有函数类型都有一个圆括号括起来的参数类型列表以及一个返回类型：`(A, B) -> C` 表示接受类型分别为 `A` 与 `B` 两个参数并返回一个 `C` 类型值的函数类型。参数类型列表可以为空，如 `() -> A`。[*Unit* 返回类型](functions.html#返回-Unit-的函数)不可省略。
 
-*   函数类型可以有一个额外的*接收者*类型，它在表示法中的点之前指定：类型 `A.(B) -> C` 表示可以在 `A` 的接收者对象上以一个 `B` 类型参数来调用并返回一个
-    `C` 类型值的函数。
-    [带有接收者的函数字面值](#带有接收者的函数字面值)通常与这些类型一起使用。
+*   函数类型可以有一个额外的*接收者*类型，它在表示法中的点之前指定：类型 `A.(B) -> C` 表示可以在 `A` 的接收者对象上以一个 `B` 类型参数来调用并返回一个 `C` 类型值的函数。[带有接收者的函数字面值](#带接收者的函数字面值)通常与这些类型一起使用。
 
-*   [挂起函数](coroutines.html#挂起函数)属于特殊种类的函数类型，它的表示法中有一个 _suspend_{: .keyword} 修饰符，例如 `suspend () -> Unit` 或者 `suspend A.(B) -> C`。
+*   [挂起函数](coroutines.html#挂起函数)属于特殊种类的函数类型，它的表示法中有一个 _suspend_ 修饰符，例如 `suspend () -> Unit` 或者 `suspend A.(B) -> C`。
 
 函数类型表示法可以选择性地包含函数的参数名：`(x: Int, y: Int) -> Point`。这些名称可用于表明参数的含义。
 
-> 如需将函数类型指定为[可空](null-safety.html#可空与非空类型)，请使用圆括号：`((Int, Int) -> Int)?`。
+> 如需将函数类型指定为[可空](null-safety.html#可空类型与非空类型)，请使用圆括号：`((Int, Int) -> Int)?`。
 >
 > 函数类型可以使用圆括号进行接合：`(Int) -> ((Int) -> Unit)`
 >
@@ -104,12 +102,12 @@ typealias ClickHandler = (Button, ClickEvent) -> Unit
 有几种方法可以获得函数类型的实例：
 
 *   使用函数字面值的代码块，采用以下形式之一：
-    *   [lambda 表达式](#lambda-表达式与匿名函数): `{ a, b -> a + b }`,
-    *   [匿名函数](#匿名函数): `fun(s: String): Int { return s.toIntOrNull() ?: 0 }` [带有接收者的函数字面值](#带有接收者的函数字面值)可用作带有接收者的函数类型的值。
+    *   [lambda 表达式](#Lambda-表达式与匿名函数): `{ a, b -> a + b }`,
+    *   [匿名函数](#匿名函数): `fun(s: String): Int { return s.toIntOrNull() ?: 0 }` [带有接收者的函数字面值](#带接收者的函数字面值)可用作带有接收者的函数类型的值。
 *   使用已有声明的可调用引用：
     *   顶层、局部、成员、扩展[函数](reflection.html#函数引用)：`::isOdd`、 `String::toInt`，
     *   顶层、成员、扩展[属性](reflection.html#属性引用)：`List<Int>::size`，
-    *   [构造函数](reflection.html#构造函数引用)：`::Regex` 这包括指向特定实例成员的[绑定的可调用引用](reflection.html#绑定的函数与属性引用自-11-起)：`foo::toString`。
+    *   [构造函数](reflection.html#构造函数引用)：`::Regex` 这包括指向特定实例成员的[绑定的可调用引用](reflection.html#绑定的函数与属性引用（自-1-1-起）)：`foo::toString`。
 *   使用实现函数类型接口的自定义类的实例：
 
     ```kotlin
@@ -148,7 +146,7 @@ fun main(args: Array<String>) {
 
 ### 函数类型实例调用
 
-函数类型的值可以通过其 [`invoke(……)` 操作符](operator-overloading.html#invoke)调用：`f.invoke(x)` 或者直接 `f(x)`。
+函数类型的值可以通过其 [*invoke(……)* 操作符](operator-overloading.html#invoke)调用：`f.invoke(x)` 或者直接 `f(x)`。
 
 如果该值具有接收者类型，那么应该将接收者对象作为第一个参数传递。调用带有接收者的函数类型值的另一个方式是在其前面加上接收者对象，就好比该值是一个[扩展函数](extensions.html)：`1.foo(2)`，
 
@@ -218,8 +216,6 @@ val product = items.fold(1) { acc, e -> acc * e }
 run { println("...") }
 ```
 
-{:#it 单个参数的隐式名称}
-
 ### `it`：单个参数的隐式名称
 
 一个 lambda 表达式只有一个参数是很常见的。
@@ -248,14 +244,11 @@ ints.filter {
 }
 ```
 
-这一约定连同[在圆括号外传递 lambda 表达式](将-lambda-表达式传给最后一个参数)一起支持
-[LINQ-风格](http://msdn.microsoft.com/en-us/library/bb308959.aspx) 的代码：
+这一约定连同[在圆括号外传递 lambda 表达式](#将-lambda-表达式传给最后一个参数)一起支持 [LINQ-风格](http://msdn.microsoft.com/en-us/library/bb308959.aspx) 的代码：
 
 ```kotlin
 strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 ```
-
-{:#下划线用于未使用的变量自-11-起}
 
 ### 下划线用于未使用的变量（自 1.1 起）
 
@@ -265,11 +258,9 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 map.forEach { _, value -> println("$value!") }
 ```
 
-{:#在-lambda-表达式中解构自-11-起}
-
 ### 在 lambda 表达式中解构（自 1.1 起）
 
-在 lambda 表达式中解构是作为[解构声明](multi-declarations.html#在-lambda-表达式中解构自-11-起)的一部分描述的。
+在 lambda 表达式中解构是作为[解构声明](multi-declarations.html#在-lambda-表达式中解构（自-1-1-起）)的一部分描述的。
 
 ### 匿名函数
 
@@ -297,9 +288,7 @@ ints.filter(fun(item) = item > 0)
 
 请注意，匿名函数参数总是在括号内传递。 允许将函数留在圆括号外的简写语法仅适用于 lambda 表达式。
 
-Lambda 表达式与匿名函数之间的另一个区别是[非局部返回](inline-functions.html#非局部返回)的行为。一个不带标签的 _return_{: .keyword } 语句总是在用 _fun_{: .keyword } 关键字声明的函数中返回。这意味着 lambda 表达式中的 _return_{: .keyword }
-将从包含它的函数返回，而匿名函数中的 _return_{: .keyword }
-将从匿名函数自身返回。
+Lambda 表达式与匿名函数之间的另一个区别是[非局部返回](inline-functions.html#非局部返回)的行为。一个不带标签的 _return_ 语句总是在用 _fun_ 关键字声明的函数中返回。这意味着 lambda 表达式中的 _return_ 将从包含它的函数返回，而匿名函数中的 _return_ 将从匿名函数自身返回。
 
 ### 闭包
 
@@ -315,18 +304,16 @@ print(sum)
 
 ### 带接收者的函数字面值
 
-带有接收者的[函数类型](#函数类型)，例如 `A.(B) -> C`，可以用特殊形式的函数字面值实例化——
-带有接收者的函数字面值。
+带有接收者的[函数类型](#函数类型)，例如 `A.(B) -> C`，可以用特殊形式的函数字面值实例化—— 带有接收者的函数字面值。
 
-如上所述，Kotlin 提供了[调用](函数类型实例调用)带有接收者（提供*接收者对象*）的函数类型实例的能力。
+如上所述，Kotlin 提供了[调用](#函数类型实例调用)带有接收者（提供*接收者对象*）的函数类型实例的能力。
 
-在这样的函数字面值内部，传给调用的接收者对象成为*隐式*的*this*{: .keyword}，以便访问接收者对象的成员而无需任何额外的限定符，亦可使用
-[`this` 表达式](this-expressions.html) 访问接收者对象。
+在这样的函数字面值内部，传给调用的接收者对象成为*隐式*的*this*，以便访问接收者对象的成员而无需任何额外的限定符，亦可使用
+[*this* 表达式](this-expressions.html) 访问接收者对象。
 
 这种行为与[扩展函数](extensions.html)类似，扩展函数也允许在函数体内部访问接收者对象的成员。
 
-这里有一个带有接收者的函数字面值及其类型的示例，其中在接收者对象上调用了 `plus`
-：
+这里有一个带有接收者的函数字面值及其类型的示例，其中在接收者对象上调用了 `plus` ：
 
 ```kotlin
 val sum: Int.(Int) -> Int = { other -> plus(other) }

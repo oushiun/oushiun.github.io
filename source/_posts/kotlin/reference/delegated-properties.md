@@ -70,7 +70,7 @@ NEW has been assigned to ‘p’ in Example@33a17727.
 
 委托对象的要求规范可以在[下文](delegated-properties.html#属性委托要求)找到。
 
-请注意，自 Kotlin 1.1 起你可以在函数或代码块中声明一个委托属性，因此它不一定是类的成员。你可以在下文找到[其示例](delegated-properties.html#局部委托属性自-11-起)。
+请注意，自 Kotlin 1.1 起你可以在函数或代码块中声明一个委托属性，因此它不一定是类的成员。你可以在下文找到[其示例](delegated-properties.html#局部委托属性（自-1-1-起）)。
 
 ## 标准委托
 
@@ -168,8 +168,6 @@ class MutableUser(val map: MutableMap<String, Any?>) {
 }
 ```
 
-{:#局部委托属性自-11-起}
-
 ## 局部委托属性（自 1.1 起）
 
 你可以将局部变量声明为委托属性。例如，你可以使一个局部变量惰性初始化：
@@ -238,9 +236,7 @@ class C {
 
 Kotlin 编译器在参数中提供了关于 `prop` 的所有必要信息：第一个参数 `this` 引用到外部类 `C` 的实例而 `this::prop` 是 `KProperty` 类型的反射对象，该对象描述 `prop` 自身。
 
-请注意，直接在代码中引用[绑定的可调用引用](reflection.html#绑定的函数与属性引用自-11-起)的语法 `this::prop` 自 Kotlin 1.1 起才可用。
-
-{:#提供委托自-11-起}
+请注意，直接在代码中引用[绑定的可调用引用](reflection.html#绑定的函数与属性引用（自-1-1-起）)的语法 `this::prop` 自 Kotlin 1.1 起才可用。
 
 ### 提供委托（自 1.1 起）
 

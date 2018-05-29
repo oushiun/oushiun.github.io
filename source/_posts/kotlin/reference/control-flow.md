@@ -49,7 +49,7 @@ val max = if (a > b) {
 
 如果你使用 `if` 作为表达式而不是语句（例如：返回它的值或者把它赋给变量），该表达式需要有 `else` 分支。
 
-参见 [`if` 语法](grammar.html#if)。
+参见 [*if* 语法](http://kotlinlang.org/docs/reference/grammar.html#if)。
 
 ### When 表达式
 
@@ -118,7 +118,7 @@ when {
 }
 ```
 
-参见 [`when` 语法](grammar.html#when)。
+参见 [*when* 语法](http://kotlinlang.org/docs/reference/grammar.html#when)。
 
 ### For 循环
 
@@ -187,7 +187,7 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-参见[`for` 语法](grammar.html#for)。
+参见 [*for* 语法](http://kotlinlang.org/docs/reference/grammar.html#for)。
 
 ### While 循环
 
@@ -203,7 +203,7 @@ do {
 } while (y != null) // y 在此处可见
 ```
 
-参见[`while` 语法](grammar.html#while).
+参见 [*while* 语法](http://kotlinlang.org/docs/reference/grammar.html#while).
 
 ### 循环中的 Break 和 continue
 

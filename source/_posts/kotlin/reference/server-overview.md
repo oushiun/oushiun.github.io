@@ -34,7 +34,7 @@ Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现�
 
 *   [kotlinx.html](https://github.com/kotlin/kotlinx.html) 是可在 Web 应用程序中用于构建 HTML 的 DSL。它可以作为传统模板系统（如 JSP 和 FreeMarker）的替代品。
 
-*   通过相应 Java 驱动程序进行持久化的可用选项包括直接 JDBC 访问、JPA 以及使用 NoSQL 数据库。对于 JPA，[kotlin-jpa 编译器插件](compiler-plugins.html#jpa-支持)使 Kotlin 编译的类适应框架的要求。
+*   通过相应 Java 驱动程序进行持久化的可用选项包括直接 JDBC 访问、JPA 以及使用 NoSQL 数据库。对于 JPA，[kotlin-jpa 编译器插件](compiler-plugins.html#JPA-支持)使 Kotlin 编译的类适应框架的要求。
 
 ### 部署 Kotlin 服务器端应用程序
 
@@ -54,4 +54,3 @@ AWS Labs 提供了一个[示例项目](https://github.com/awslabs/serverless-pho
 ### 下一步
 
 *   [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html) 及 [使用 Spring Boot 创建 RESTful Web 服务](/docs/tutorials/spring-boot-restful.html)教程将向你展示如何在 Kotlin 中构建和运行非常小的 Web 应用程序。
-*   关于更深入的介绍，请查看本站的[参考文档](index.html) 及 [Kotlin 心印](/docs/tutorials/koans.html)。

@@ -27,11 +27,11 @@ Kotlin 有三种结构化跳转表达式：
 val s = person.name ?: return
 ```
 
-这些表达式的类型是 [Nothing 类型](exceptions.html#nothing-类型)。
+这些表达式的类型是 [Nothing 类型](exceptions.html#Nothing-类型)。
 
 ### Break 与 Continue 标签
 
-在 Kotlin 中任何表达式都可以用标签（`label`）来标记。标签的格式为标识符后跟 `@` 符号，例如：`abc@`、`fooBar@`都是有效的标签（参见[语法](grammar.html#labelReference)）。要为一个表达式加标签，我们只要在其前加标签即可。
+在 Kotlin 中任何表达式都可以用标签（`label`）来标记。标签的格式为标识符后跟 `@` 符号，例如：`abc@`、`fooBar@`都是有效的标签（参见[语法](http://kotlinlang.org/docs/reference/grammar.html#labelReference)）。要为一个表达式加标签，我们只要在其前加标签即可。
 
 ```kotlin
 loop@ for (i in 1..100) {
@@ -39,7 +39,7 @@ loop@ for (i in 1..100) {
 }
 ```
 
-现在，我们可以用标签限制 `break` 或者*continue*``：
+现在，我们可以用标签限制 `break` 或者 `continue`：
 
 ```kotlin
 loop@ for (i in 1..100) {

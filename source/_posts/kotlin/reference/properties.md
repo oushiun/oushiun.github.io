@@ -59,7 +59,9 @@ var allByDefault: Int? // 错误：需要显式初始化器，隐含默认 gette
 var initialized = 1 // 类型 Int、默认 getter 和 setter
 ```
 
-一个只读属性的语法和一个可变的属性的语法有两方面的不同：1、只读属性的用 `val`开始代替`var` 2、只读属性不允许 setter
+一个只读属性的语法和一个可变的属性的语法有两方面的不同：
+1、只读属性的用 `val` 开始代替 `var` 
+2、只读属性不允许 setter
 
 ```kotlin
 val simple: Int? // 类型 Int、默认 getter、必须在构造函数中初始化

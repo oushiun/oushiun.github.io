@@ -203,7 +203,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见[`if` 表达式](control-flow.html#if-表达式)。
+参见 [*if* 表达式](control-flow.html#If-表达式)。
 
 #### 使用可空值及 `null` 检测
 
@@ -388,7 +388,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见 [for 循环](control-flow.html#for-循环)。
+参见 [for 循环](control-flow.html#For-循环)。
 
 #### 使用 `while` 循环
 
@@ -405,7 +405,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见 [while 循环](control-flow.html#while-循环)。
+参见 [while 循环](control-flow.html#While-循环)。
 
 #### 使用 `when` 表达式
 
@@ -430,7 +430,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见 [when 表达式](control-flow.html#when-表达式)。
+参见 [when 表达式](control-flow.html#When-表达式)。
 
 #### 使用区间（range）
 

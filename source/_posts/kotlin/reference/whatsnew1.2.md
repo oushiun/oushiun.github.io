@@ -1,7 +1,6 @@
 ---
 title: Kotlin 1.2 的新特性
 
-toc: true
 tags:
  - Kotlin
 categories:

@@ -49,7 +49,7 @@ data class User(val name: String, val age: Int)
 data class User(val name: String = "", val age: Int = 0)
 ```
 
-## 在类体中声明的属性
+### 在类体中声明的属性
 
 请注意，对于那些自动生成的函数，编译器只使用在主构造函数内部定义的属性。如需在生成的实现中排出一个属性，请将其声明在类体中：
 
@@ -81,7 +81,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-## 复制
+### 复制
 
 在很多情况下，我们需要复制一个对象改变它的一些属性，但其余部分保持不变。
 `copy()` 函数就是为此而生成。对于上文的 `User` 类，其实现会类似下面这样：
@@ -97,7 +97,7 @@ val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
 
-## 数据类和解构声明
+### 数据类和解构声明
 
 为数据类生成的 _Component 函数_ 使它们可在[解构声明](multi-declarations.html)中使用：
 
@@ -107,6 +107,6 @@ val (name, age) = jane
 println("$name, $age years of age") // 输出 "Jane, 35 years of age"
 ```
 
-## 标准数据类
+### 标准数据类
 
 标准库提供了 `Pair` 和 `Triple`。尽管在很多情况下命名数据类是更好的设计选择，因为它们通过为属性提供有意义的名称使代码更具可读性。

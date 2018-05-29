@@ -14,7 +14,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 ## 属性委托
 
-属性委托在单独一页中讲：[属性委托](kotlin/reference/delegated-properties.html)。
+属性委托在单独一页中讲：[属性委托](delegated-properties.html)。
 
 ## 由委托实现
 
@@ -45,9 +45,7 @@ fun main(args: Array<String>) {
 
 ### 覆盖由委托实现的接口成员
 
-[覆盖](classes.html#覆盖方法)符合预期：编译器会使用 `override`
-覆盖的实现而不是委托对象中的。如果将 `override fun print() { print("abc") }` 添加到
-`Derived`，那么当调用 `print` 时程序会输出“abc”而不是“10”：
+[覆盖](classes.html#覆盖方法)符合预期：编译器会使用 `override` 覆盖的实现而不是委托对象中的。如果将 `override fun print() { print("abc") }` 添加到 `Derived`，那么当调用 `print` 时程序会输出“abc”而不是“10”：
 
 ```kotlin
 interface Base {
