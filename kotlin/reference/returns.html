@@ -14,7 +14,7 @@
 <meta property="og:description" content="Kotlin 有三种结构化跳转表达式：  return。默认从最直接包围它的函数或者匿名函数返回。 break。终止最直接包围它的循环。 continue。继续下一次最直接包围它的循环。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:39:38.849Z">
+<meta property="og:updated_time" content="2018-05-29T08:31:13.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="返回和跳转">
 <meta name="twitter:description" content="Kotlin 有三种结构化跳转表达式：  return。默认从最直接包围它的函数或者匿名函数返回。 break。终止最直接包围它的循环。 continue。继续下一次最直接包围它的循环。">
@@ -272,10 +272,10 @@ ga('send', 'pageview');
 <a id="more"></a>
 <p>所有这些表达式都可以用作更大表达式的一部分：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> s = person.name ?: <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-<p>这些表达式的类型是 <a href="exceptions.html#nothing-类型">Nothing 类型</a>。</p>
-<h3 id="Break-与-Continue-标签"><a href="#Break-与-Continue-标签" class="headerlink" title="Break 与 Continue 标签"></a>Break 与 Continue 标签</h3><p>在 Kotlin 中任何表达式都可以用标签（<code>label</code>）来标记。标签的格式为标识符后跟 <code>@</code> 符号，例如：<code>abc@</code>、<code>fooBar@</code>都是有效的标签（参见<a href="grammar.html#labelReference">语法</a>）。要为一个表达式加标签，我们只要在其前加标签即可。</p>
+<p>这些表达式的类型是 <a href="exceptions.html#Nothing-类型">Nothing 类型</a>。</p>
+<h3 id="Break-与-Continue-标签"><a href="#Break-与-Continue-标签" class="headerlink" title="Break 与 Continue 标签"></a>Break 与 Continue 标签</h3><p>在 Kotlin 中任何表达式都可以用标签（<code>label</code>）来标记。标签的格式为标识符后跟 <code>@</code> 符号，例如：<code>abc@</code>、<code>fooBar@</code>都是有效的标签（参见<a href="http://kotlinlang.org/docs/reference/grammar.html#labelReference" target="_blank" rel="noopener">语法</a>）。要为一个表达式加标签，我们只要在其前加标签即可。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在，我们可以用标签限制 <code>break</code> 或者<em>continue</em><code></code>：</p>
+<p>现在，我们可以用标签限制 <code>break</code> 或者 <code>continue</code>：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (……) <span class="keyword">break</span><span class="symbol">@loop</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。<br><code>continue</code> 继续标签指定的循环的下一次迭代。</p>
 <h3 id="标签处返回"><a href="#标签处返回" class="headerlink" title="标签处返回"></a>标签处返回</h3><p>Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。标签限制的 <code>return</code> 允许我们从外层函数返回。最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>

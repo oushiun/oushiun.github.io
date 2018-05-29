@@ -14,7 +14,7 @@
 <meta property="og:description" content="在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数和属性。一些类型可以有特殊的内部表示——例如，数字、字符和布尔值可以在运行时表示为原生类型值，但是对于用户来说，它们看起来就像普通的类。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:36:08.756Z">
+<meta property="og:updated_time" content="2018-05-29T08:16:34.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本类型">
 <meta name="twitter:description" content="在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数和属性。一些类型可以有特殊的内部表示——例如，数字、字符和布尔值可以在运行时表示为原生类型值，但是对于用户来说，它们看起来就像普通的类。">
@@ -348,7 +348,7 @@ ga('send', 'pageview');
 </ul>
 <p>缺乏隐式类型转换并不显著，因为类型会从上下文推断出来，而算术运算会有重载做适当转换，例如：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> l = <span class="number">1</span>L + <span class="number">3</span> <span class="comment">// Long + Int =&gt; Long</span></span><br></pre></td></tr></table></figure>
-<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><p>Kotlin支持数字运算的标准集，运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。<br>参见<a href="operator-overloading.html">运算符重载</a>。</p>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><p>Kotlin支持数字运算的标准集，运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。参见<a href="operator-overloading.html">运算符重载</a>。</p>
 <p>对于位运算，没有特殊字符来表示，而只可用中缀方式调用命名函数，例如:</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = (<span class="number">1</span> shl <span class="number">2</span>) and <span class="number">0x000FF000</span></span><br></pre></td></tr></table></figure>
 <p>这是完整的位运算列表（只用于 <code>Int</code> 和 <code>Long</code>）：</p>
@@ -368,8 +368,7 @@ ga('send', 'pageview');
 <li>区间实例以及区间检测：<code>a..b</code>、 <code>x in a..b</code>、 <code>x !in a..b</code></li>
 </ul>
 <p>当其中的操作数 <code>a</code> 与 <code>b</code> 都是静态已知的 <code>Float</code> 或 <code>Double</code> 或者它们对应的可空类型（声明为该类型，或者推断为该类型，或者<a href="typecasts.html#智能转换">智能类型转换</a>的结果是该类型），两数字所形成的操作或者区间遵循 IEEE 754 浮点运算标准。</p>
-<p>然而，为了支持泛型场景并提供全序支持，当这些操作符<strong>并非</strong>静态类型为<!-- 
--->浮点数（例如是 <code>Any</code>、 <code>Comparable&lt;……&gt;</code>、 类型参数）时，这些操作使用为 <code>Float</code> 与 <code>Double</code> 实现的不符合标准的 <code>equals</code> 与 <code>compareTo</code>，这会出现：</p>
+<p>然而，为了支持泛型场景并提供全序支持，当这些操作符<strong>并非</strong>静态类型为浮点数（例如是 <code>Any</code>、 <code>Comparable&lt;……&gt;</code>、 类型参数）时，这些操作使用为 <code>Float</code> 与 <code>Double</code> 实现的不符合标准的 <code>equals</code> 与 <code>compareTo</code>，这会出现：</p>
 <ul>
 <li>认为 <code>NaN</code> 与其自身相等</li>
 <li>认为 <code>NaN</code> 比包括正无穷大（<code>POSITIVE_INFINITY</code>）在内的任何其他元素都大</li>
@@ -391,7 +390,7 @@ ga('send', 'pageview');
 </ul>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组在 Kotlin 中使用 <code>Array</code> 类来表示，它定义了 <code>get</code> 和 <code>set</code> 函数（按照运算符重载约定这会转变为 <code>[]</code>）和 <code>size</code> 属性，以及一些其他有用的成员函数：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Array</span>&lt;<span class="type">T</span>&gt; <span class="keyword">private</span> <span class="keyword">constructor</span></span>() &#123;</span><br><span class="line">    <span class="keyword">val</span> size: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(index: <span class="type">Int</span>)</span></span>: T</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(index: <span class="type">Int</span>, value: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">iterator</span><span class="params">()</span></span>: Iterator&lt;T&gt;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3]。<br>或者，库函数 <code>arrayOfNulls()</code> 可以用于创建一个指定大小的、所有元素都为空的数组。</p>
+<p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3]。或者，库函数 <code>arrayOfNulls()</code> 可以用于创建一个指定大小的、所有元素都为空的数组。</p>
 <p>另一个选项是用接受数组大小和一个函数参数的 <code>Array</code> 构造函数，用作参数的函数能够返回给定索引的每个元素初始值：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个 Array&lt;String&gt; 初始化为 ["0", "1", "4", "9", "16"]</span></span><br><span class="line"><span class="keyword">val</span> asc = Array(<span class="number">5</span>, &#123; i -&gt; (i * i).toString() &#125;)</span><br></pre></td></tr></table></figure>
 <p>如上所述，<code>[]</code> 运算符代表调用成员函数 <code>get()</code> 和 <code>set()</code>。</p>

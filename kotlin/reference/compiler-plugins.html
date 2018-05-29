@@ -14,7 +14,7 @@
 <meta property="og:description" content="全开放编译器插件Kotlin 有类及其默认为 final 的成员，这使得像 Spring AOP 这样需要类为 open 的框架和库用起来很不方便。这个 all-open 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 open 关键字打开。 例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 @Configur">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-25T02:25:38.515Z">
+<meta property="og:updated_time" content="2018-05-29T07:43:07.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译器插件">
 <meta name="twitter:description" content="全开放编译器插件Kotlin 有类及其默认为 final 的成员，这使得像 Spring AOP 这样需要类为 open 的框架和库用起来很不方便。这个 all-open 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 open 关键字打开。 例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 @Configur">
@@ -295,7 +295,7 @@ ga('send', 'pageview');
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xplugin=<span class="variable">$KOTLIN_HOME</span>/lib/allopen-compiler-plugin.jar</span><br></pre></td></tr></table></figure>
 <p>可以使用 <code>annotation</code> 插件选项或者启用“预设”来直接指定全开放注解。现在可用于全开放的唯一预设是 <code>spring</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The plugin option format is: "-P plugin:&lt;plugin id&gt;:&lt;key&gt;=&lt;value&gt;".</span></span><br><span class="line"><span class="comment"># Options can be repeated.</span></span><br><span class="line"></span><br><span class="line">-P plugin:org.jetbrains.kotlin.allopen:annotation=com.my.Annotation</span><br><span class="line">-P plugin:org.jetbrains.kotlin.allopen:preset=spring</span><br></pre></td></tr></table></figure>
-<h2 id="无参编译器插件"><a href="#无参编译器插件" class="headerlink" title="无参编译器插件"></a>无参编译器插件</h2><p><em>无参（no-arg）</em>编译器插件为具有特定注解的类生成一个额外的零参数构造函数。</p>
+<h3 id="无参编译器插件"><a href="#无参编译器插件" class="headerlink" title="无参编译器插件"></a>无参编译器插件</h3><p><em>无参（no-arg）</em>编译器插件为具有特定注解的类生成一个额外的零参数构造函数。</p>
 <p>这个生成的构造函数是合成的，因此不能从 Java 或 Kotlin 中直接调用，但可以使用反射调用。</p>
 <p>这允许 Java Persistence API（JPA）实例化 <code>data</code> 类，虽然它从 Kotlin 或 Java 的角度看没有无参构造函数（参见<a href="compiler-plugins.html#jpa-支持">下面</a>的 <code>kotlin-jpa</code> 插件的描述）。</p>
 <h3 id="在-Gradle-中使用-1"><a href="#在-Gradle-中使用-1" class="headerlink" title="在 Gradle 中使用"></a>在 Gradle 中使用</h3><p>其用法非常类似于全开放插件。</p>

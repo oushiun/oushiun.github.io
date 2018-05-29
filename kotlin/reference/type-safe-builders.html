@@ -14,7 +14,7 @@
 <meta property="og:description" content="通过使用命名得当的函数作为构建器，结合带接收者的函数字面值，可以在 Kotlin 中创建类型安全、静态类型的构建器。 类型安全的构建器可以创建基于 Kotlin 的适用于采用半声明方式构建复杂层次数据结构领域专用语言（DSL）。以下是构建器的一些示例应用场景：  使用 Kotlin 代码生成标记语言，例如 HTML 或 XML； 以编程方式布局 UI 组件：Anko； 为 Web 服务器配置路由：">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T04:10:42.250Z">
+<meta property="og:updated_time" content="2018-05-29T10:10:05.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型安全的构建器">
 <meta name="twitter:description" content="通过使用命名得当的函数作为构建器，结合带接收者的函数字面值，可以在 Kotlin 中创建类型安全、静态类型的构建器。 类型安全的构建器可以创建基于 Kotlin 的适用于采用半声明方式构建复杂层次数据结构领域专用语言（DSL）。以下是构建器的一些示例应用场景：  使用 Kotlin 代码生成标记语言，例如 HTML 或 XML； 以编程方式布局 UI 组件：Anko； 为 Web 服务器配置路由：">
@@ -298,7 +298,6 @@ ga('send', 'pageview');
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> String.<span class="title">unaryPlus</span><span class="params">()</span></span> &#123;</span><br><span class="line">    children.add(TextElement(<span class="keyword">this</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>所以，在这里前缀 <code>+</code> 所做的事情是把一个字符串包装到一个 <code>TextElement</code> 实例中，并将其添加到 <code>children</code> 集合中，以使其成为标签树的一个适当的部分。</p>
 <p>所有这些都在上面构建器示例顶部导入的包 <code>com.example.html</code> 中定义。在最后一节中，你可以阅读这个包的完整定义。</p>
-<p>{:#作用域控制 dslmarker 自-11-起}</p>
 <h2 id="作用域控制：-DslMarker（自-1-1-起）"><a href="#作用域控制：-DslMarker（自-1-1-起）" class="headerlink" title="作用域控制：@DslMarker（自 1.1 起）"></a>作用域控制：@DslMarker（自 1.1 起）</h2><p>使用 DSL 时，可能会遇到上下文中可以调用太多函数的问题。我们可以调用 lambda 表达式内部每个可用的隐式接收者的方法，因此得到一个不一致的结果，就像在另一个 <code>head</code> 内部的 <code>head</code> 标记那样：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html &#123;</span><br><span class="line">    head &#123;</span><br><span class="line">        head &#123;&#125; <span class="comment">// 应该禁止</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在这个例子中，必须只有最近层的隐式接收者 <code>this@head</code> 的成员可用；<code>head()</code> 是外部接收者 <code>this@html</code> 的成员，所以调用它一定是非法的。</p>

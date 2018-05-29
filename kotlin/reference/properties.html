@@ -14,7 +14,7 @@
 <meta property="og:description" content="声明属性Kotlin 的类可以有属性。属性可以用关键字 var 声明为可变的，否则使用只读关键字 val。 1234567class Address &amp;#123;    var name: String = ……    var street: String = ……    var city: String = ……    var state: String? = ……    var zip: St">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:39:30.485Z">
+<meta property="og:updated_time" content="2018-05-29T08:34:51.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="属性和字段">
 <meta name="twitter:description" content="声明属性Kotlin 的类可以有属性。属性可以用关键字 var 声明为可变的，否则使用只读关键字 val。 1234567class Address &amp;#123;    var name: String = ……    var street: String = ……    var city: String = ……    var state: String? = ……    var zip: St">
@@ -273,7 +273,7 @@ ga('send', 'pageview');
 <p>其初始器（initializer）、getter 和 setter 都是可选的。属性类型如果可以从初始器（或者从其 getter 返回值，如下文所示）中推断出来，也可以省略。</p>
 <p>例如:</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> allByDefault: <span class="built_in">Int</span>? <span class="comment">// 错误：需要显式初始化器，隐含默认 getter 和 setter</span></span><br><span class="line"><span class="keyword">var</span> initialized = <span class="number">1</span> <span class="comment">// 类型 Int、默认 getter 和 setter</span></span><br></pre></td></tr></table></figure>
-<p>一个只读属性的语法和一个可变的属性的语法有两方面的不同：1、只读属性的用 <code>val</code>开始代替<code>var</code> 2、只读属性不允许 setter</p>
+<p>一个只读属性的语法和一个可变的属性的语法有两方面的不同：<br>1、只读属性的用 <code>val</code> 开始代替 <code>var</code><br>2、只读属性不允许 setter</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> simple: <span class="built_in">Int</span>? <span class="comment">// 类型 Int、默认 getter、必须在构造函数中初始化</span></span><br><span class="line"><span class="keyword">val</span> inferredType = <span class="number">1</span> <span class="comment">// 类型 Int 、默认 getter</span></span><br></pre></td></tr></table></figure>
 <p>我们可以编写自定义的访问器，非常像普通函数，刚好在属性声明内部。这里有一个自定义 getter 的例子:</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> isEmpty: <span class="built_in">Boolean</span></span><br><span class="line">    <span class="keyword">get</span>() = <span class="keyword">this</span>.size == <span class="number">0</span></span><br></pre></td></tr></table></figure>
