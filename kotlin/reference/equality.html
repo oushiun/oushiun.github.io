@@ -14,7 +14,7 @@
 <meta property="og:description" content="Kotlin 中有两种类型的相等性：  结构相等（用 equals() 检查）； 引用相等（两个引用指向同一对象）。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:37:29.215Z">
+<meta property="og:updated_time" content="2018-05-30T07:24:42.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="相等性">
 <meta name="twitter:description" content="Kotlin 中有两种类型的相等性：  结构相等（用 equals() 检查）； 引用相等（两个引用指向同一对象）。">
@@ -276,7 +276,7 @@ ga('send', 'pageview');
 <h2 id="浮点数相等性"><a href="#浮点数相等性" class="headerlink" title="浮点数相等性"></a>浮点数相等性</h2><p>当相等性检测的两个操作数都是静态已知的（可空或非空的）<code>Float</code> 或 <code>Double</code> 类型时，该检测遵循 IEEE 754<br>浮点数运算标准。</p>
 <p>否则会使用不符合该标准的结构相等性检测，这会导致 <code>NaN</code> 等于其自身，而 <code>-0.0</code> 不等于 <code>0.0</code>。</p>
 <p>参见：<a href="basic-types.html#浮点数比较">浮点数比较</a>。</p>
-<h2 id="引用相等"><a href="#引用相等" class="headerlink" title="引用相等"></a>引用相等</h2><p>引用相等由 <code>===</code>（以及其否定形式 <code>!==</code>）操作判断。<code>a === b</code><br>当且仅当 <code>a</code> 和 <code>b</code> 指向同一个对象时求值为 true。对于运行时表示为原生类型的值（例如 <code>Int</code>），<code>===</code> 相等检测等价于 <code>==</code> 检测。</p>
+<h2 id="引用相等"><a href="#引用相等" class="headerlink" title="引用相等"></a>引用相等</h2><p>引用相等由 <code>===</code>（以及其否定形式 <code>!==</code>）操作判断。<code>a === b</code> 当且仅当 <code>a</code> 和 <code>b</code> 指向同一个对象时求值为 true。对于运行时表示为原生类型的值（例如 <code>Int</code>），<code>===</code> 相等检测等价于 <code>==</code> 检测。</p>
 
         
         </div>

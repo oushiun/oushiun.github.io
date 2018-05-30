@@ -14,7 +14,7 @@
 <meta property="og:description" content="要启用 Kotlin OSGi 支持，你需要引入 kotlin-osgi-bundle 而不是常规的 Kotlin 库。建议删除 kotlin-runtime、 kotlin-stdlib 和 kotlin-reflect 依赖，因为 kotlin-osgi-bundle 已经包含了所有这些。当引入外部 Kotlin 库时你也应该注意。大多数常规 Kotlin 依赖不是 OSGi-就绪的，所以你不">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-25T02:25:49.045Z">
+<meta property="og:updated_time" content="2018-05-30T08:46:36.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin 与 OSGi">
 <meta name="twitter:description" content="要启用 Kotlin OSGi 支持，你需要引入 kotlin-osgi-bundle 而不是常规的 Kotlin 库。建议删除 kotlin-runtime、 kotlin-stdlib 和 kotlin-reflect 依赖，因为 kotlin-osgi-bundle 已经包含了所有这些。当引入外部 Kotlin 库时你也应该注意。大多数常规 Kotlin 依赖不是 OSGi-就绪的，所以你不">
@@ -273,7 +273,7 @@ ga('send', 'pageview');
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">"org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"</span></span><br></pre></td></tr></table></figure>
 <p>要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line"> compile (</span><br><span class="line">   [<span class="string">group:</span> <span class="string">'some.group.id'</span>, <span class="string">name:</span> <span class="string">'some.library'</span>, <span class="string">version:</span> <span class="string">'someversion'</span>],</span><br><span class="line">   ……) &#123;</span><br><span class="line">  exclude <span class="string">group:</span> <span class="string">'org.jetbrains.kotlin'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h4 id="为什么不只是添加必需的清单选项到所有-Kotlin-库"><a href="#为什么不只是添加必需的清单选项到所有-Kotlin-库" class="headerlink" title="为什么不只是添加必需的清单选项到所有 Kotlin 库"></a>为什么不只是添加必需的清单选项到所有 Kotlin 库</h4><p>尽管它是提供 OSGi 支持的最好的方式，遗憾的是现在做不到，是因为不能轻易消除的所谓的<br><a href="http://wiki.osgi.org/wiki/Split_Packages" target="_blank" rel="noopener">“包拆分”问题</a>并且这么大的变化不可能现在规划。有 <code>Require-Bundle</code> 功能，但它也不是最好的选择，不推荐使用。所以决定为 OSGi 做一个单独的构件。</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h4 id="为什么不只是添加必需的清单选项到所有-Kotlin-库"><a href="#为什么不只是添加必需的清单选项到所有-Kotlin-库" class="headerlink" title="为什么不只是添加必需的清单选项到所有 Kotlin 库"></a>为什么不只是添加必需的清单选项到所有 Kotlin 库</h4><p>尽管它是提供 OSGi 支持的最好的方式，遗憾的是现在做不到，是因为不能轻易消除的所谓的 <a href="http://wiki.osgi.org/wiki/Split_Packages" target="_blank" rel="noopener">“包拆分”问题</a>并且这么大的变化不可能现在规划。有 <code>Require-Bundle</code> 功能，但它也不是最好的选择，不推荐使用。所以决定为 OSGi 做一个单独的构件。</p>
 
         
         </div>

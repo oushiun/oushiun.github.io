@@ -14,7 +14,7 @@
 <meta property="og:description" content="获取 Ant 任务Kotlin 为 Ant 提供了三个任务：  kotlinc: 针对 JVM 的 Kotlin 编译器； kotlin2js: 针对 JavaScript 的 Kotlin 编译器； withKotlin: 使用标准 javac Ant 任务时编译 Kotlin 文件的任务。  这仨任务在 kotlin-ant.jar 库中定义，该库位于 Kotlin 编译器的 lib 文件夹中">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-25T02:25:51.892Z">
+<meta property="og:updated_time" content="2018-05-30T08:45:46.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Ant">
 <meta name="twitter:description" content="获取 Ant 任务Kotlin 为 Ant 提供了三个任务：  kotlinc: 针对 JVM 的 Kotlin 编译器； kotlin2js: 针对 JavaScript 的 Kotlin 编译器； withKotlin: 使用标准 javac Ant 任务时编译 Kotlin 文件的任务。  这仨任务在 kotlin-ant.jar 库中定义，该库位于 Kotlin 编译器的 lib 文件夹中">
@@ -269,7 +269,7 @@ ga('send', 'pageview');
 <li>kotlin2js: 针对 JavaScript 的 Kotlin 编译器；</li>
 <li>withKotlin: 使用标准 <em>javac</em> Ant 任务时编译 Kotlin 文件的任务。</li>
 </ul>
-<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="!--￼8--">Kotlin 编译器</a>的 <em>lib</em> 文件夹中 需要 Ant 1.8.2+ 版本。</p>
+<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.2.41" target="_blank" rel="noopener">Kotlin 编译器</a>的 <em>lib</em> 文件夹中 需要 Ant 1.8.2+ 版本。</p>
 <a id="more"></a>
 <h2 id="针对-JVM-只用-Kotlin-源代码"><a href="#针对-JVM-只用-Kotlin-源代码" class="headerlink" title="针对 JVM 只用 Kotlin 源代码"></a>针对 JVM 只用 Kotlin 源代码</h2><p>当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 <em>kotlinc</em> 任务：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"Ant Task Test"</span> <span class="attr">default</span>=<span class="string">"build"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typedef</span> <span class="attr">resource</span>=<span class="string">"org/jetbrains/kotlin/ant/antlib.xml"</span> <span class="attr">classpath</span>=<span class="string">"$&#123;kotlin.lib&#125;/kotlin-ant.jar"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kotlinc</span> <span class="attr">src</span>=<span class="string">"hello.kt"</span> <span class="attr">output</span>=<span class="string">"hello.jar"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>

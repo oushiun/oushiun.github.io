@@ -14,7 +14,7 @@
 <meta property="og:description" content="使用高阶函数会带来一些运行时的效率损失：每一个函数都是一个对象，并且会捕获一个闭包。即那些在函数体内会访问到的变量。内存分配（对于函数对象和类）和虚拟调用会引入运行时间开销。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-25T01:24:26.181Z">
+<meta property="og:updated_time" content="2018-05-30T02:59:11.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内联函数">
 <meta name="twitter:description" content="使用高阶函数会带来一些运行时的效率损失：每一个函数都是一个对象，并且会捕获一个闭包。即那些在函数体内会访问到的变量。内存分配（对于函数对象和类）和虚拟调用会引入运行时间开销。">
@@ -307,7 +307,6 @@ ga('send', 'pageview');
 <p>你也可以标注整个属性，将它的两个访问器都标记为内联：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">var</span> bar: Bar</span><br><span class="line">    <span class="keyword">get</span>() = ……</span><br><span class="line">    <span class="keyword">set</span>(v) &#123; …… &#125;</span><br></pre></td></tr></table></figure>
 <p>在调用处，内联访问器如同内联函数一样内联。</p>
-<p>{:#public-inline-restrictions}</p>
 <h2 id="公有-API-内联函数的限制"><a href="#公有-API-内联函数的限制" class="headerlink" title="公有 API 内联函数的限制"></a>公有 API 内联函数的限制</h2><p>当一个内联函数是 <code>public</code> 或 <code>protected</code> 而不是 <code>private</code> 或 <code>internal</code> 声明的一部分时，就会认为它是一个<a href="visibility-modifiers.html#模块">模块级</a>的公有 API。可以在其他模块中调用它，并且也可以在调用处内联这样的调用。</p>
 <p>这带来了一些由模块做这样变更时导致的二进制兼容的风险——声明一个内联函数但调用它的模块在它修改后并没有重新编译。</p>
 <p>为了消除这种由<strong>非</strong>公有 API 变更引入的不兼容的风险，公有 API 内联函数体内不允许使用非公有声明，即，不允许使用 <code>private</code> 与 <code>internal</code> 声明以及其部件。</p>

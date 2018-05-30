@@ -5,19 +5,19 @@
     
     <title>操作符重载 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
+    <meta name="description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。 重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
 <meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作符重载">
 <meta property="og:url" content="http://oushiun.com/kotlin/reference/operator-overloading.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
+<meta property="og:description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。 重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:39:20.633Z">
+<meta property="og:updated_time" content="2018-05-30T07:26:20.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作符重载">
-<meta name="twitter:description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
+<meta name="twitter:description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。 重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
 <meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
     
 
@@ -263,7 +263,8 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 <code>+</code> 或 <code>*</code>）和固定的<a href="grammar.html#precedence">优先级</a>。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的<a href="functions.html#成员函数">成员函数</a>或<a href="extensions.html">扩展函数</a>。<br>重载操作符的函数需要用 <code>operator</code> 修饰符标记。</p>
+            <p>Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 <code>+</code> 或 <code>*</code>）和固定的<a href="http://kotlinlang.org/docs/reference/grammar.html#precedence" target="_blank" rel="noopener">优先级</a>。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的<a href="functions.html#成员函数">成员函数</a>或<a href="extensions.html">扩展函数</a>。</p>
+<p>重载操作符的函数需要用 <code>operator</code> 修饰符标记。</p>
 <p>另外，我们描述为不同操作符规范操作符重载的约定。</p>
 <a id="more"></a>
 <h2 id="一元操作"><a href="#一元操作" class="headerlink" title="一元操作"></a>一元操作</h2><h3 id="一元前缀操作符"><a href="#一元前缀操作符" class="headerlink" title="一元前缀操作符"></a>一元前缀操作符</h3><table>
@@ -316,7 +317,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<p><code>inc()</code> 和 <code>dec()</code> 函数必须返回一个值，它用于赋值给使用<br><code>++</code> 或 <code>--</code> 操作的变量。它们不应该改变在其上调用 <code>inc()</code> 或 <code>dec()</code> 的对象。</p>
+<p><code>inc()</code> 和 <code>dec()</code> 函数必须返回一个值，它用于赋值给使用 <code>++</code> 或 <code>--</code> 操作的变量。它们不应该改变在其上调用 <code>inc()</code> 或 <code>dec()</code> 的对象。</p>
 <p>编译器执行以下步骤来解析<em>后缀</em>形式的操作符，例如 <code>a++</code>：</p>
 <ul>
 <li>确定 <code>a</code> 的类型，令其为 <code>T</code>；</li>

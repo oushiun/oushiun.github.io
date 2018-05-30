@@ -14,7 +14,7 @@
 <meta property="og:description" content="在面向 JVM 平台的代码中不支持动态类型">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:37:21.919Z">
+<meta property="og:updated_time" content="2018-05-30T08:28:33.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态类型">
 <meta name="twitter:description" content="在面向 JVM 平台的代码中不支持动态类型">
@@ -278,7 +278,7 @@ ga('send', 'pageview');
 <p><code>dynamic</code> 最特别的特性是，我们可以对 <code>dynamic</code> 变量调用<strong>任何</strong>属性或以任意参数调用<strong>任何</strong>函数：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dyn.whatever(<span class="number">1</span>, <span class="string">"foo"</span>, dyn) <span class="comment">// “whatever”在任何地方都没有定义</span></span><br><span class="line">dyn.whatever(*arrayOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
 <p>在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin 中的 <code>dyn.whatever(1)</code> 变为 <code>dyn.whatever(1)</code>。</p>
-<p>当在 <code>dynamic</code> 类型的值上调用 Kotlin 写的函数时，请记住由 Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 <a href="js-to-kotlin-interop.html#jsname-注解">@JsName 注解</a>为要调用的函数分配明确的名称。</p>
+<p>当在 <code>dynamic</code> 类型的值上调用 Kotlin 写的函数时，请记住由 Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 <a href="js-to-kotlin-interop.html#JsName-注解">@JsName 注解</a>为要调用的函数分配明确的名称。</p>
 <p>动态调用总是返回 <code>dynamic</code> 作为结果，所以我们可以自由地这样链接调用：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dyn.foo().bar.baz()</span><br></pre></td></tr></table></figure>
 <p>当我们把一个 lambda 表达式传给一个动态调用时，它的所有参数默认都是 <code>dynamic</code> 类型的：</p>

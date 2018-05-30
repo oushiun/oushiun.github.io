@@ -14,7 +14,7 @@
 <meta property="og:description" content="自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。该工具允许在生成的 JS 中删除未使用的属性、函数和类。出现未使用的声明有这几种可能情况：  函数可以内联并且从未直接调用（除少数情况之外，这总会出现）。 你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（kotlin.js）包含用于操作列表、数组、字符序列、">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:38:33.183Z">
+<meta property="og:updated_time" content="2018-05-30T08:33:58.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript DCE">
 <meta name="twitter:description" content="自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。该工具允许在生成的 JS 中删除未使用的属性、函数和类。出现未使用的声明有这几种可能情况：  函数可以内联并且从未直接调用（除少数情况之外，这总会出现）。 你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（kotlin.js）包含用于操作列表、数组、字符序列、">
@@ -266,7 +266,7 @@ ga('send', 'pageview');
             <p>自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。该工具允许在生成的 JS 中删除未使用的属性、函数和类。出现未使用的声明有这几种可能情况：</p>
 <ul>
 <li>函数可以内联并且从未直接调用（除少数情况之外，这总会出现）。</li>
-<li>你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（<code>kotlin.js</code>）包含用于操作列表、数组、字符序列、<br>DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要控制台程序，整个文件只有几千字节。</li>
+<li>你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（<code>kotlin.js</code>）包含用于操作列表、数组、字符序列、DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要控制台程序，整个文件只有几千字节。</li>
 </ul>
 <p>无用代码消除通常也称为“tree shaking”。</p>
 <a id="more"></a>
@@ -286,7 +286,7 @@ ga('send', 'pageview');
 <h3 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h3><p>运行 DCE 在每次构建时会额外花费一些时间，而且输出大小在开发过程中无关紧要。可以通过 DCE 任务的 <code>dceOptions.devMode</code> 标志使 DCE 工具跳过实际的无效代码消除从而缩短开发构建时间。</p>
 <p>例如，如需根据自定义条件禁用 <code>main</code> 源集的 DCE 并且总是禁用 <code>test</code> 代码的 DCE，请将下述几行添加到构建脚本中：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">runDceKotlinJs.dceOptions.devMode = isDevMode</span><br><span class="line">runDceTestKotlinJs.dceOptions.devMode = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>显示如何将 Kotlin 与 DCE 及 webpack 集成并得到一个小的捆绑的完整示例，可以在<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-dce" target="_blank" rel="noopener">这里</a>找到。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>显示如何将 Kotlin 与 DCE 及 webpack 集成并得到一个小的捆绑的完整示例，可以在<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-dce" target="_blank" rel="noopener">这里</a>找到。</p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li>对于 1.1.x 版本，DCE 工具是一个 <em>实验性的</em> 功能。这并不意味着我们要删除它，或者它不能用于生产。这意味着我们可能更改配置参数的名称、默认设置等等。</li>
 <li>目前，如果你的项目是共享库，那么不应使用 DCE 工具。它只适用于开发应用程序（可能使用共享库）时。原因是：DCE 不知道库的哪些部分会被用户的应用程序所使用。</li>

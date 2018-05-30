@@ -5,19 +5,19 @@
     
     <title>JavaScript 反射 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 ::class 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 ::class 表达式的值是一个只能支持 simpleName 和isInstance 成员的精简版 KClass 实现。 除此之外，你可以使用 KClass.js 访问与 JsClass 类对应的实例。该 JsClass">
+    <meta name="description" content="目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 ::class 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 ::class 表达式的值是一个只能支持 simpleName 和 isInstance 成员的精简版 KClass 实现。 除此之外，你可以使用 KClass.js 访问与 JsClass 类对应的实例。该 JsClas">
 <meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 反射">
 <meta property="og:url" content="http://oushiun.com/kotlin/reference/js-reflection.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 ::class 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 ::class 表达式的值是一个只能支持 simpleName 和isInstance 成员的精简版 KClass 实现。 除此之外，你可以使用 KClass.js 访问与 JsClass 类对应的实例。该 JsClass">
+<meta property="og:description" content="目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 ::class 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 ::class 表达式的值是一个只能支持 simpleName 和 isInstance 成员的精简版 KClass 实现。 除此之外，你可以使用 KClass.js 访问与 JsClass 类对应的实例。该 JsClas">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:38:49.145Z">
+<meta property="og:updated_time" content="2018-05-30T08:32:47.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 反射">
-<meta name="twitter:description" content="目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 ::class 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 ::class 表达式的值是一个只能支持 simpleName 和isInstance 成员的精简版 KClass 实现。 除此之外，你可以使用 KClass.js 访问与 JsClass 类对应的实例。该 JsClass">
+<meta name="twitter:description" content="目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 ::class 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 ::class 表达式的值是一个只能支持 simpleName 和 isInstance 成员的精简版 KClass 实现。 除此之外，你可以使用 KClass.js 访问与 JsClass 类对应的实例。该 JsClas">
 <meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
     
 
@@ -263,7 +263,7 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 <code>::class</code> 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 <code>::class</code> 表达式的值是一个只能支持 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html" target="_blank" rel="noopener">simpleName</a> 和<br><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html" target="_blank" rel="noopener">isInstance</a> 成员的精简版 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/" target="_blank" rel="noopener">KClass</a> 实现。</p>
+            <p>目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 <code>::class</code> 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 <code>::class</code> 表达式的值是一个只能支持 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html" target="_blank" rel="noopener">simpleName</a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html" target="_blank" rel="noopener">isInstance</a> 成员的精简版 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/" target="_blank" rel="noopener">KClass</a> 实现。</p>
 <p>除此之外，你可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html" target="_blank" rel="noopener">KClass.js</a> 访问与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-js-class/index.html" target="_blank" rel="noopener">JsClass</a> 类对应的实例。该 <code>JsClass</code> 实例本身就是对构造函数的引用。这可以用于与期望构造函数的引用的 JS 函数进行互操作。</p>
 <a id="more"></a>
 <p>示例：</p>

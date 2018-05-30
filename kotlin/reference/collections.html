@@ -14,7 +14,7 @@
 <meta property="og:description" content="与大多数语言不同，Kotlin 区分可变集合和不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 和设计良好的 API。 预先了解一个可变集合的只读 _视图_ 和一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。 Kotlin 的 List&amp;lt;out T&amp;gt; 类型是一个提供只读操作">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-22T03:36:27.243Z">
+<meta property="og:updated_time" content="2018-05-30T03:07:05.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集合：List、Set、Map">
 <meta name="twitter:description" content="与大多数语言不同，Kotlin 区分可变集合和不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 和设计良好的 API。 预先了解一个可变集合的只读 _视图_ 和一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。 Kotlin 的 List&amp;lt;out T&amp;gt; 类型是一个提供只读操作">
@@ -269,7 +269,7 @@ ga('send', 'pageview');
 <a id="more"></a>
 <p>我们可以看下 list 及 set 类型的基本用法：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers: MutableList&lt;<span class="built_in">Int</span>&gt; = mutableListOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">val</span> readOnlyView: List&lt;<span class="built_in">Int</span>&gt; = numbers</span><br><span class="line">println(numbers)        <span class="comment">// 输出 "[1, 2, 3]"</span></span><br><span class="line">numbers.add(<span class="number">4</span>)</span><br><span class="line">println(readOnlyView)   <span class="comment">// 输出 "[1, 2, 3, 4]"</span></span><br><span class="line">readOnlyView.clear()    <span class="comment">// -&gt; 不能编译</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> strings = hashSetOf(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"c"</span>)</span><br><span class="line">assert(strings.size == <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如<br><code>listOf()</code>、 <code>mutableListOf()</code>、 <code>setOf()</code>、 <code>mutableSetOf()</code>。在非性能关键代码中创建 map 可以用一个简单的<a href="idioms.html#只读-map">惯用法</a>来完成：<code>mapOf(a to b, c to d)</code>。</p>
+<p>Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如 <code>listOf()</code>、 <code>mutableListOf()</code>、 <code>setOf()</code>、 <code>mutableSetOf()</code>。在非性能关键代码中创建 map 可以用一个简单的<a href="idioms.html#只读-map">惯用法</a>来完成：<code>mapOf(a to b, c to d)</code>。</p>
 <p>注意上面的 <code>readOnlyView</code> 变量（译者注：与对应可变集合变量 <code>numbers</code>）指向相同的底层 list 并会随之改变。 如果一个 list 只存在只读引用，我们可以考虑该集合完全不可变。创建一个这样的集合的一个简单方式如下：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> items = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 <p>目前 <code>listOf</code> 方法是使用 array list 实现的，但是未来可以利用它们知道自己不能变的事实，返回更节约内存的完全不可变的集合类型。</p>

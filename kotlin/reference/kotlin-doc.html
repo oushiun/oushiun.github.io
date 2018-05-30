@@ -14,7 +14,7 @@
 <meta property="og:description" content="用来编写 Kotlin 代码文档的语言（相当于 Java 的 JavaDoc）称为 KDoc。本质上 KDoc 是将 JavaDoc 的块标签（block tags）语法（扩展为支持 Kotlin 的特定构造）和 Markdown 的内联标记（inline markup）结合在一起。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-25T02:25:47.578Z">
+<meta property="og:updated_time" content="2018-05-30T08:37:35.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编写 Kotlin 代码文档">
 <meta name="twitter:description" content="用来编写 Kotlin 代码文档的语言（相当于 Java 的 JavaDoc）称为 KDoc。本质上 KDoc 是将 JavaDoc 的块标签（block tags）语法（扩展为支持 Kotlin 的特定构造）和 Markdown 的内联标记（inline markup）结合在一起。">
@@ -265,14 +265,14 @@ ga('send', 'pageview');
             
             <p>用来编写 Kotlin 代码文档的语言（相当于 Java 的 JavaDoc）称为 <strong>KDoc</strong>。本质上 KDoc 是将 JavaDoc 的块标签（block tags）语法（扩展为支持 Kotlin 的特定构造）和 Markdown 的内联标记（inline markup）结合在一起。</p>
 <a id="more"></a>
-<h2 id="生成文档"><a href="#生成文档" class="headerlink" title="生成文档"></a>生成文档</h2><p>Kotlin 的文档生成工具称为 <a href="https://github.com/Kotlin/dokka" target="_blank" rel="noopener">Dokka</a>。其使用说明请参见 <a href="https://github.com/Kotlin/dokka/blob/master/README.md" target="_blank" rel="noopener">Dokka README</a>。</p>
+<h3 id="生成文档"><a href="#生成文档" class="headerlink" title="生成文档"></a>生成文档</h3><p>Kotlin 的文档生成工具称为 <a href="https://github.com/Kotlin/dokka" target="_blank" rel="noopener">Dokka</a>。其使用说明请参见 <a href="https://github.com/Kotlin/dokka/blob/master/README.md" target="_blank" rel="noopener">Dokka README</a>。</p>
 <p>Dokka 有 Gradle、Maven 和 Ant 的插件，因此你可以将文档生成集成到你的构建过程中。</p>
-<h2 id="KDoc-语法"><a href="#KDoc-语法" class="headerlink" title="KDoc 语法"></a>KDoc 语法</h2><p>像 JavaDoc 一样，KDoc 注释也以 <code>/**</code> 开头、以 <code>*/</code> 结尾。注释的每一行可以以星号开头，该星号不会当作注释内容的一部分。</p>
+<h3 id="KDoc-语法"><a href="#KDoc-语法" class="headerlink" title="KDoc 语法"></a>KDoc 语法</h3><p>像 JavaDoc 一样，KDoc 注释也以 <code>/**</code> 开头、以 <code>*/</code> 结尾。注释的每一行可以以星号开头，该星号不会当作注释内容的一部分。</p>
 <p>按惯例来说，文档文本的第一段（到第一行空白行结束）是该元素的总体描述，接下来的注释是详细描述。</p>
 <p>每个块标签都以一个新行开始且以 <code>@</code> 字符开头。</p>
 <p>以下是使用 KDoc 编写类文档的一个示例：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一组*成员*。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 这个类没有有用的逻辑; 它只是一个文档示例。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> T 这个组中的成员的类型。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@property</span> name 这个组的名称。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@constructor</span> 创建一个空组。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Group</span>&lt;<span class="type">T</span>&gt;</span>(<span class="keyword">val</span> name: String) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将 [member] 添加到这个组。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 这个组的新大小。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(member: <span class="type">T</span>)</span></span>: <span class="built_in">Int</span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="块标签"><a href="#块标签" class="headerlink" title="块标签"></a>块标签</h2><p>KDoc 目前支持以下块标签（block tags）：</p>
+<h3 id="块标签"><a href="#块标签" class="headerlink" title="块标签"></a>块标签</h3><p>KDoc 目前支持以下块标签（block tags）：</p>
 <h4 id="param-lt-名称-gt"><a href="#param-lt-名称-gt" class="headerlink" title="@param &lt;名称&gt;"></a><code>@param &lt;名称&gt;</code></h4><p>用于函数的值参数或者类、属性或函数的类型参数。为了更好地将参数名称与描述分开，如果你愿意，可以将参数的名称括在方括号中。因此，以下两种语法是等效的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@param name 描述。</span><br><span class="line">@param[name] 描述。</span><br></pre></td></tr></table></figure>
 <h4 id="return"><a href="#return" class="headerlink" title="@return"></a><code>@return</code></h4><p>用于函数的返回值。</p>
@@ -288,8 +288,8 @@ ga('send', 'pageview');
 <blockquote>
 <p>KDoc 不支持 <code>@deprecated</code> 这个标签。作为替代，请使用 <code>@Deprecated</code> 注解。</p>
 </blockquote>
-<h2 id="内联标记"><a href="#内联标记" class="headerlink" title="内联标记"></a>内联标记</h2><p>对于内联标记，KDoc 使用常规 <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">Markdown</a> 语法，扩展了支持用于链接到代码中其他元素的简写语法。</p>
-<h3 id="链接到元素"><a href="#链接到元素" class="headerlink" title="链接到元素"></a>链接到元素</h3><p>要链接到另一个元素（类、方法、属性或参数），只需将其名称放在方括号中：</p>
+<h3 id="内联标记"><a href="#内联标记" class="headerlink" title="内联标记"></a>内联标记</h3><p>对于内联标记，KDoc 使用常规 <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">Markdown</a> 语法，扩展了支持用于链接到代码中其他元素的简写语法。</p>
+<h4 id="链接到元素"><a href="#链接到元素" class="headerlink" title="链接到元素"></a>链接到元素</h4><p>要链接到另一个元素（类、方法、属性或参数），只需将其名称放在方括号中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为此目的，请使用方法 [foo]。</span><br></pre></td></tr></table></figure>
 <p>如果要为链接指定自定义标签（label），请使用 Markdown 引用样式语法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为此目的，请使用[这个方法][foo]。</span><br></pre></td></tr></table></figure>
@@ -297,7 +297,7 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用 [kotlin.reflect.KClass.properties] 来枚举类的属性。</span><br></pre></td></tr></table></figure>
 <p>链接中的名称与正写文档的元素内使用该名称使用相同的规则解析。特别是，这意味着如果你已将名称导入当前文件，那么当你在 KDoc 注释中使用它时，不需要再对其进行完整限定。</p>
 <p>请注意 KDoc 没有用于解析链接中的重载成员的任何语法。 因为 Kotlin 文档生成工具将一个函数的所有重载的文档放在同一页面上，标识一个特定的重载函数并不是链接生效所必需的。</p>
-<h2 id="模块和包文档"><a href="#模块和包文档" class="headerlink" title="模块和包文档"></a>模块和包文档</h2><p>作为一个整体的模块、以及该模块中的包的文档，由单独的 Markdown 文件提供，并且使用 <code>-include</code> 命令行参数或 Ant、Maven 和 Gradle 中的相应插件将该文件的路径传递给 Dokka。</p>
+<h3 id="模块和包文档"><a href="#模块和包文档" class="headerlink" title="模块和包文档"></a>模块和包文档</h3><p>作为一个整体的模块、以及该模块中的包的文档，由单独的 Markdown 文件提供，并且使用 <code>-include</code> 命令行参数或 Ant、Maven 和 Gradle 中的相应插件将该文件的路径传递给 Dokka。</p>
 <p>在该文件内部，作为一个整体的模块和分开的软件包的文档由相应的一级标题引入。标题的文本对于模块必须是“Module <code>&lt;模块名&gt;</code>”，对于包必须是“Package <code>&lt;限定的包名&gt;</code>”。</p>
 <p>以下是该文件的一个示例内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Module kotlin-demo</span><br><span class="line"></span><br><span class="line">该模块显示 Dokka 语法的用法。</span><br><span class="line"></span><br><span class="line"># Package org.jetbrains.kotlin.demo</span><br><span class="line"></span><br><span class="line">包含各种有用的东西。</span><br><span class="line"></span><br><span class="line">## 二级标题</span><br><span class="line"></span><br><span class="line">这个标题下的文本也是 `org.jetbrains.kotlin.demo` 文档的一部分。</span><br><span class="line"></span><br><span class="line"># Package org.jetbrains.kotlin.demo2</span><br><span class="line"></span><br><span class="line">另一个包中有用的东西。</span><br></pre></td></tr></table></figure>

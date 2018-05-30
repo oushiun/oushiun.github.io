@@ -265,7 +265,7 @@ ga('send', 'pageview');
             <p><h2 id="全开放编译器插件"><a href="#全开放编译器插件" class="headerlink" title="全开放编译器插件"></a>全开放编译器插件</h2><p>Kotlin 有类及其默认为 <code>final</code> 的成员，这使得像 Spring AOP 这样需要类为 <code>open</code> 的框架和库用起来很不方便。这个 <em>all-open</em> 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 <code>open</code> 关键字打开。</p>
 <p>例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 <code>@Configuration</code> 或 <code>@Service</code>。<em>All-open</em> 允许指定这些注解。</p>
 <p>我们为全开放插件提供 Gradle 与 Maven 支持并有完整的 IDE 集成。</p>
-<p>注意：对于 Spring，你可以使用 <code>kotlin-spring</code> 编译器插件（<a href="compiler-plugins.html#spring-支持">见下文</a>）。</p></p>
+<p>注意：对于 Spring，你可以使用 <code>kotlin-spring</code> 编译器插件（<a href="compiler-plugins.html#Spring-支持">见下文</a>）。</p></p>
             <p class="article-more-link">
                 <a href="/kotlin/reference/compiler-plugins.html#more">Read More</a>
             </p>
@@ -527,7 +527,7 @@ ga('send', 'pageview');
 <li>kotlin2js: 针对 JavaScript 的 Kotlin 编译器；</li>
 <li>withKotlin: 使用标准 <em>javac</em> Ant 任务时编译 Kotlin 文件的任务。</li>
 </ul>
-<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="!--￼8--">Kotlin 编译器</a>的 <em>lib</em> 文件夹中 需要 Ant 1.8.2+ 版本。</p></p>
+<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.2.41" target="_blank" rel="noopener">Kotlin 编译器</a>的 <em>lib</em> 文件夹中 需要 Ant 1.8.2+ 版本。</p></p>
             <p class="article-more-link">
                 <a href="/kotlin/reference/using-ant.html#more">Read More</a>
             </p>
@@ -1177,7 +1177,7 @@ ga('send', 'pageview');
             <p><p>自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。该工具允许在生成的 JS 中删除未使用的属性、函数和类。出现未使用的声明有这几种可能情况：</p>
 <ul>
 <li>函数可以内联并且从未直接调用（除少数情况之外，这总会出现）。</li>
-<li>你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（<code>kotlin.js</code>）包含用于操作列表、数组、字符序列、<br>DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要控制台程序，整个文件只有几千字节。</li>
+<li>你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（<code>kotlin.js</code>）包含用于操作列表、数组、字符序列、DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要控制台程序，整个文件只有几千字节。</li>
 </ul>
 <p>无用代码消除通常也称为“tree shaking”。</p></p>
             <p class="article-more-link">
@@ -1307,7 +1307,7 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 <code>::class</code> 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 <code>::class</code> 表达式的值是一个只能支持 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html" target="_blank" rel="noopener">simpleName</a> 和<br><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html" target="_blank" rel="noopener">isInstance</a> 成员的精简版 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/" target="_blank" rel="noopener">KClass</a> 实现。</p>
+            <p><p>目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 <code>::class</code> 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 <code>::class</code> 表达式的值是一个只能支持 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html" target="_blank" rel="noopener">simpleName</a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html" target="_blank" rel="noopener">isInstance</a> 成员的精简版 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/" target="_blank" rel="noopener">KClass</a> 实现。</p>
 <p>除此之外，你可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html" target="_blank" rel="noopener">KClass.js</a> 访问与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-js-class/index.html" target="_blank" rel="noopener">JsClass</a> 类对应的实例。该 <code>JsClass</code> 实例本身就是对构造函数的引用。这可以用于与期望构造函数的引用的 JS 函数进行互操作。</p></p>
             <p class="article-more-link">
                 <a href="/kotlin/reference/js-reflection.html#more">Read More</a>

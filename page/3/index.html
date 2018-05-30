@@ -658,7 +658,7 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><h2 id="可空类型与非空类型"><a href="#可空类型与非空类型" class="headerlink" title="可空类型与非空类型"></a>可空类型与非空类型</h2><p>Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为<a href="http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions" target="_blank" rel="noopener">《十亿美元的错误》</a>。</p>
+            <p><h3 id="可空类型与非空类型"><a href="#可空类型与非空类型" class="headerlink" title="可空类型与非空类型"></a>可空类型与非空类型</h3><p>Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为<a href="http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions" target="_blank" rel="noopener">《十亿美元的错误》</a>。</p>
 <p>许多编程语言（包括 Java）中最常见的陷阱之一，就是访问空引用的成员会导致空引用异常。在 Java 中，这等同于 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p></p>
             <p class="article-more-link">
                 <a href="/kotlin/reference/null-safety.html#more">Read More</a>
@@ -787,7 +787,8 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 <code>+</code> 或 <code>*</code>）和固定的<a href="grammar.html#precedence">优先级</a>。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的<a href="functions.html#成员函数">成员函数</a>或<a href="extensions.html">扩展函数</a>。<br>重载操作符的函数需要用 <code>operator</code> 修饰符标记。</p>
+            <p><p>Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 <code>+</code> 或 <code>*</code>）和固定的<a href="http://kotlinlang.org/docs/reference/grammar.html#precedence" target="_blank" rel="noopener">优先级</a>。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的<a href="functions.html#成员函数">成员函数</a>或<a href="extensions.html">扩展函数</a>。</p>
+<p>重载操作符的函数需要用 <code>operator</code> 修饰符标记。</p>
 <p>另外，我们描述为不同操作符规范操作符重载的约定。</p></p>
             <p class="article-more-link">
                 <a href="/kotlin/reference/operator-overloading.html#more">Read More</a>
@@ -1181,7 +1182,7 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><h2 id="is-与-is-操作符"><a href="#is-与-is-操作符" class="headerlink" title="is 与 !is 操作符"></a><code>is</code> 与 <code>!is</code> 操作符</h2><p>我们可以在运行时通过使用 <code>is</code> 操作符或其否定形式 <code>!is</code> 来检查对象是否符合给定类型：</p>
+            <p><h3 id="is-与-is-操作符"><a href="#is-与-is-操作符" class="headerlink" title="is 与 !is 操作符"></a><code>is</code> 与 <code>!is</code> 操作符</h3><p>我们可以在运行时通过使用 <code>is</code> 操作符或其否定形式 <code>!is</code> 来检查对象是否符合给定类型：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (obj <span class="keyword">is</span> String) &#123;</span><br><span class="line">    print(obj.length)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (obj !<span class="keyword">is</span> String) &#123; <span class="comment">// 与 !(obj is String) 相同</span></span><br><span class="line">    print(<span class="string">"Not a String"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    print(obj.length)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
             <p class="article-more-link">
                 <a href="/kotlin/reference/typecasts.html#more">Read More</a>
