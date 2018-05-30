@@ -18,7 +18,7 @@ Kotlin 多平台项目允许你将相同的代码编译到多个目标平台。�
 
 <!-- more -->
 
-## 多平台项目结构
+### 多平台项目结构
 
 多平台项目由三种类型的模块组成：
 
@@ -34,7 +34,7 @@ Kotlin 多平台项目允许你将相同的代码编译到多个目标平台。�
 
 因此，每个多平台库需要分发为一组构件—— 一个包含用于公共代码的元数据的公共 .jar，以及包含用于每个平台的编译后的实现代码的多个平台相关 .jar。
 
-## 设置多平台项目
+### 设置多平台项目
 
 截止到 Kotlin 1.2，多平台项目必须用 Gradle 构建；暂不支持其他构建系统。If you work with a multiplatform project in IDE, make sure that `Delegate IDE build/run actions to gradle` option is enabled and `Gradle Test Runner` is set for `Run tests using` option. Both options may be found here: _Settings > Build, execution, Deployment > Build Tools > Gradle > Runner_
 
@@ -103,7 +103,7 @@ dependencies {
 }
 ```
 
-## 平台相关声明
+### 平台相关声明
 
 Kotlin 多平台代码的关键潜能之一就是公共代码依赖平台相关声明的一种方式。在其他语言中，这通常可以通过在公共代码中构建一组接口并在平台相关模块中实现这些接口来完成。不过，当有其中一个平台的库实现了所需功能，并且希望直接使用该库的 API 而无需额外包装时，这种方式并不理想。另外，它需要公共声明表示为接口，而这并不能覆盖所有可能场景。
 
@@ -137,8 +137,7 @@ actual class Foo actual constructor(val bar: String) {
 
 *   公共模块中的预期声明与相应的实际声明总是具有完全相同的完整限定名。
 *   预期声明标有 `expect` 关键字；实际声明标有 `actual` 关键字。
-*   与预期声明的任何部分相匹配的所有实际声明都需要标记为
-    `actual`。
+*   与预期声明的任何部分相匹配的所有实际声明都需要标记为 `actual`。
 *   预期声明决不包含任何实现代码。
 
 请注意，预期声明并不仅限于接口与接口成员。在本例中，预期的类有一个构造函数，可以直接在公共代码中创建该类。也可以将 `expect` 修饰符应用于其他声明，包括顶层声明与注解：
@@ -172,13 +171,10 @@ expect class AtomicRef<V>(value: V) {
 actual typealias AtomicRef<V> = java.util.concurrent.atomic.AtomicReference<V>
 ```
 
-## 多平台测试
+### 多平台测试
 
 可以在公共项目中编写测试，这样就可以在每个平台中编译与运行了。
-`kotlin.test` 包中提供了 4 个注解用于标记公共代码中的测试：`@Test`、 `@Ignore`、
-`@BeforeTest` 以及 `@AfterTest`.
-在 JVM 平台中这些注解会映射到相应 JUnit 4 注解，而在 JS 中自 1.1.4 起它们也已<!--
-可用于支持 JS 单元测试。
+`kotlin.test` 包中提供了 4 个注解用于标记公共代码中的测试：`@Test`、 `@Ignore`、 `@BeforeTest` 以及 `@AfterTest`.
+在 JVM 平台中这些注解会映射到相应 JUnit 4 注解，而在 JS 中自 1.1.4 起它们也已可用于支持 JS 单元测试。
 
-为了使用它们，你需要将依赖 `kotlin-test-annotations-common` 添加到你的公共模块，将依赖
-`kotlin-test-junit` 添加到你的 JVM 模块，并且将依赖 `kotlin-test-js` 添加到 JS 模块。
+为了使用它们，你需要将依赖 `kotlin-test-annotations-common` 添加到你的公共模块，将依赖 `kotlin-test-junit` 添加到你的 JVM 模块，并且将依赖 `kotlin-test-js` 添加到 JS 模块。

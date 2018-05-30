@@ -20,7 +20,7 @@ Kotlin 为 Ant 提供了三个任务：
 * kotlin2js: 针对 JavaScript 的 Kotlin 编译器；
 * withKotlin: 使用标准 *javac* Ant 任务时编译 Kotlin 文件的任务。
 
-这仨任务在 *kotlin-ant.jar* 库中定义，该库位于 [Kotlin 编译器]({{site.data.releases.latest.url}})的 *lib* 文件夹中 需要 Ant 1.8.2+ 版本。
+这仨任务在 *kotlin-ant.jar* 库中定义，该库位于 [Kotlin 编译器](https://github.com/JetBrains/kotlin/releases/tag/v1.2.41)的 *lib* 文件夹中 需要 Ant 1.8.2+ 版本。
 
 <!-- more -->
 

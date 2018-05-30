@@ -73,8 +73,7 @@ MyClass.prototype.ownMember = function() {
 }
 ```
 
-Kotlin 中没有这样的语法。然而，在 Kotlin 中我们有伴生（`companion`）对象。Kotlin 以特殊的方式处理
-`external` 类的伴生对象：替代期待一个对象的是，它假定伴生对象的成员就是该类自身的成员。要描述来自上例中的 `MyClass`，你可以这样写：
+Kotlin 中没有这样的语法。然而，在 Kotlin 中我们有伴生（`companion`）对象。Kotlin 以特殊的方式处理 `external` 类的伴生对象：替代期待一个对象的是，它假定伴生对象的成员就是该类自身的成员。要描述来自上例中的 `MyClass`，你可以这样写：
 
 ```kotlin
 external class MyClass {
@@ -124,8 +123,7 @@ class CustomElement : HTMLElement() {
 
 ### `external` 接口
 
-JavaScript 没有接口的概念。当函数期望其参数支持 `foo`
-和 `bar` 方法时，只需传递实际具有这些方法的对象。对于静态类型的 Kotlin，你可以使用接口来表达这点，例如：
+JavaScript 没有接口的概念。当函数期望其参数支持 `foo` 和 `bar` 方法时，只需传递实际具有这些方法的对象。对于静态类型的 Kotlin，你可以使用接口来表达这点，例如：
 
 ```kotlin
 external interface HasFooAndBar {

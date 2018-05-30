@@ -197,8 +197,7 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 
 ## 独立的 Jar 文件
 
-要创建一个独立的（self-contained）Jar 文件，包含模块中的代码及其依赖项，请在 Maven pom.xml 文件中的 `build->plugins` 下面包含以下内容<!--
--->其中 `main.class` 定义为一个属性，并指向主 Kotlin 或 Java 类：
+要创建一个独立的（self-contained）Jar 文件，包含模块中的代码及其依赖项，请在 Maven pom.xml 文件中的 `build->plugins` 下面包含以下内容其中 `main.class` 定义为一个属性，并指向主 Kotlin 或 Java 类：
 
 ``` xml
 <plugin>

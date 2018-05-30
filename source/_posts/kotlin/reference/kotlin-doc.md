@@ -16,13 +16,13 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 <!-- more -->
 
-## 生成文档
+### 生成文档
 
 Kotlin 的文档生成工具称为 [Dokka](https://github.com/Kotlin/dokka)。其使用说明请参见 [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md)。
 
 Dokka 有 Gradle、Maven 和 Ant 的插件，因此你可以将文档生成集成到你的构建过程中。
 
-## KDoc 语法
+### KDoc 语法
 
 像 JavaDoc 一样，KDoc 注释也以 `/**` 开头、以 `*/` 结尾。注释的每一行可以以星号开头，该星号不会当作注释内容的一部分。
 
@@ -51,7 +51,7 @@ class Group<T>(val name: String) {
 }
 ```
 
-## 块标签
+### 块标签
 
 KDoc 目前支持以下块标签（block tags）：
 
@@ -106,11 +106,11 @@ KDoc 目前支持以下块标签（block tags）：
 
 > KDoc 不支持 `@deprecated` 这个标签。作为替代，请使用 `@Deprecated` 注解。
 
-## 内联标记
+### 内联标记
 
 对于内联标记，KDoc 使用常规 [Markdown](http://daringfireball.net/projects/markdown/syntax) 语法，扩展了支持用于链接到代码中其他元素的简写语法。
 
-### 链接到元素
+#### 链接到元素
 
 要链接到另一个元素（类、方法、属性或参数），只需将其名称放在方括号中：
 
@@ -134,7 +134,7 @@ KDoc 目前支持以下块标签（block tags）：
 
 请注意 KDoc 没有用于解析链接中的重载成员的任何语法。 因为 Kotlin 文档生成工具将一个函数的所有重载的文档放在同一页面上，标识一个特定的重载函数并不是链接生效所必需的。
 
-## 模块和包文档
+### 模块和包文档
 
 作为一个整体的模块、以及该模块中的包的文档，由单独的 Markdown 文件提供，并且使用 `-include` 命令行参数或 Ant、Maven 和 Gradle 中的相应插件将该文件的路径传递给 Dokka。
 

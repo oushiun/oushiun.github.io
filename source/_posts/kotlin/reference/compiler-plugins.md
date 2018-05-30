@@ -20,7 +20,7 @@ Kotlin 有类及其默认为 `final` 的成员，这使得像 Spring AOP 这样�
 
 我们为全开放插件提供 Gradle 与 Maven 支持并有完整的 IDE 集成。
 
-注意：对于 Spring，你可以使用 `kotlin-spring` 编译器插件（[见下文](compiler-plugins.html#spring-支持)）。
+注意：对于 Spring，你可以使用 `kotlin-spring` 编译器插件（[见下文](compiler-plugins.html#Spring-支持)）。
 
 <!-- more -->
 
@@ -137,7 +137,7 @@ plugins {
 ```
 
 该插件指定了以下注解：
-[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)、 [`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html)、 [`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)、 [`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html) 以及 [`@SpringBootTest`](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html)。由于元注解的支持，标注有 [`@Configuration`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html)、 [`@Controller`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html)、 [`@RestController`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html)、 [`@Service`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Service.html) 或者 [`@Repository`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html) 的类会自动打开，因为这些注解标注有元注解 [`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)。
+[*@Component*](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)、 [*@Async*](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html)、 [*@Transactional*](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)、 [*@Cacheable*](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html) 以及 [*@SpringBootTest*](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html)。由于元注解的支持，标注有 [*@Configuration*](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html)、 [*@Controller*](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html)、 [*@RestController*](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html)、 [*@Service*](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Service.html) 或者 [*@Repository*](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html) 的类会自动打开，因为这些注解标注有元注解 [*@Component*](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)。
 
 当然，你可以在同一个项目中同时使用 `kotlin-allopen` 与 `kotlin-spring`。
 
@@ -167,7 +167,7 @@ plugins {
 
 这个生成的构造函数是合成的，因此不能从 Java 或 Kotlin 中直接调用，但可以使用反射调用。
 
-这允许 Java Persistence API（JPA）实例化 `data` 类，虽然它从 Kotlin 或 Java 的角度看没有无参构造函数（参见[下面](compiler-plugins.html#jpa-支持)的 `kotlin-jpa` 插件的描述）。
+这允许 Java Persistence API（JPA）实例化 `data` 类，虽然它从 Kotlin 或 Java 的角度看没有无参构造函数（参见[下面](compiler-plugins.html#JPA-支持)的 `kotlin-jpa` 插件的描述）。
 
 ### 在 Gradle 中使用
 
@@ -242,7 +242,7 @@ noArg {
 
 ### JPA 支持
 
-与 _kotlin-spring_ 插件类似，_kotlin-jpa_ 是在 _no-arg_ 之上的一层包装。该插件自动指定了[`@Entity`](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html)、 [`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html) 与 [`@MappedSuperclass`](https://docs.oracle.com/javaee/7/api/javax/persistence/MappedSuperclass.html) 这几个 *无参* 注解。
+与 _kotlin-spring_ 插件类似，_kotlin-jpa_ 是在 _no-arg_ 之上的一层包装。该插件自动指定了[*@Entity*](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html)、 [*@Embeddable*](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html) 与 [*@MappedSuperclass*](https://docs.oracle.com/javaee/7/api/javax/persistence/MappedSuperclass.html) 这几个 *无参* 注解。
 
 这是在 Gradle 中添加该插件的方法：
 
@@ -284,7 +284,7 @@ plugins {
 
 ## 带有接收者的 SAM 编译器插件
 
-编译器插件 _sam-with-receiver_ 使所注解的 Java“单抽象方法”接口方法的第一个参数成为 Kotlin 中的接收者。这一转换只适用于当 SAM 接口作为 Kotlin 的 lambda 表达式传递时，对 SAM 适配器与 SAM 构造函数均适用（详见其[文档](java-interop.html#sam-转换)）。
+编译器插件 _sam-with-receiver_ 使所注解的 Java“单抽象方法”接口方法的第一个参数成为 Kotlin 中的接收者。这一转换只适用于当 SAM 接口作为 Kotlin 的 lambda 表达式传递时，对 SAM 适配器与 SAM 构造函数均适用（详见其[文档](java-interop.html#SAM-转换)）。
 
 这里有一个示例：
 

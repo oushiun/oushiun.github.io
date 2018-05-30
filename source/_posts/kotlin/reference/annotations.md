@@ -109,8 +109,7 @@ annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any>)
 
 ### Lambda 表达式
 
-注解也可以用于 lambda 表达式。它们会被应用于生成 lambda 表达式体的 `invoke()`
-方法上。这对于像 [Quasar](http://www.paralleluniverse.co/quasar/) 这样的框架很有用，该框架使用注解进行并发控制。
+注解也可以用于 lambda 表达式。它们会被应用于生成 lambda 表达式体的 `invoke()` 方法上。这对于像 [Quasar](http://www.paralleluniverse.co/quasar/) 这样的框架很有用，该框架使用注解进行并发控制。
 
 ```kotlin
 annotation class Suspendable
@@ -235,8 +234,7 @@ public @interface AnnWithArrayValue {
 @AnnWithArrayValue("abc", "foo", "bar") class C
 ```
 
-对于具有数组类型的其他参数，你需要显式使用数组字面值语法（自 Kotlin 1.2 起）或者
-`arrayOf(……)`：
+对于具有数组类型的其他参数，你需要显式使用数组字面值语法（自 Kotlin 1.2 起）或者 `arrayOf(……)`：
 
 ```java
 // Java

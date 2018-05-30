@@ -23,27 +23,27 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 *   `break` [终止循环的执行](returns.html)
 *   `class` 声明一个[类](classes.html)
 *   `continue` [继续最近层循环的下一步](returns.html)
-*   `do` 开始一个 [do/while 循环](control-flow.html#while-循环)（后置条件的循环）
-*   `else` 定义一个 [if 表达式](control-flow.html#if-表达式)条件为 false 时执行的分支
+*   `do` 开始一个 [do/while 循环](control-flow.html#While-循环)（后置条件的循环）
+*   `else` 定义一个 [if 表达式](control-flow.html#If-表达式)条件为 false 时执行的分支
 *   `false` 指定[布尔类型](basic-types.html#布尔)的“假”值
-*   `for` 开始一个 [for 循环](control-flow.html#for-循环)
+*   `for` 开始一个 [for 循环](control-flow.html#For-循环)
 *   `fun` 声明一个[函数](functions.html)
-*   `if` 开始一个 [if 表达式](control-flow.html#if-表达式)
+*   `if` 开始一个 [if 表达式](control-flow.html#If-表达式)
 *   `in`
-    *   指定在 [for 循环](control-flow.html#for-循环)中迭代的对象
-    *   用作中缀操作符以检查一个值属于[一个区间](ranges.html)、一个集合或者其他[定义“contains”方法](operator-overloading.html#in)的实体
-    *   在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+    *   指定在 [for 循环](control-flow.html#For-循环)中迭代的对象
+    *   用作中缀操作符以检查一个值属于[一个区间](ranges.html)、一个集合或者其他[定义“contains”方法](operator-overloading.html#“In”操作符)的实体
+    *   在 [when 表达式中](control-flow.html#When-表达式)用于上述目的
     *   将一个类型参数标记为[逆变](generics.html#声明处型变)
 *   `!in`
-    *   用作中缀操作符以检查一个值**不**属于[一个区间](ranges.html)、一个集合或者其他[定义“contains”方法](operator-overloading.html#in)的实体
-    *   在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+    *   用作中缀操作符以检查一个值**不**属于[一个区间](ranges.html)、一个集合或者其他[定义“contains”方法](operator-overloading.html#“In”操作符)的实体
+    *   在 [when 表达式中](control-flow.html#When-表达式)用于上述目的
 *   `interface` 声明一个[接口](interfaces.html)
 *   `is`
     *   检查[一个值具有指定类型](typecasts.html#is-与-is-操作符)
-    *   在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+    *   在 [when 表达式中](control-flow.html#When-表达式)用于上述目的
 *   `!is`
     *   检查[一个值**不**具有指定类型](typecasts.html#is-与-is-操作符)
-    *   在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+    *   在 [when 表达式中](control-flow.html#When-表达式)用于上述目的
 *   `null` 是表示不指向任何对象的对象引用的常量
 *   `object` 同时声明[一个类及其实例](object-declarations.html)
 *   `package` 指定[当前文件的包](packages.html)
@@ -60,8 +60,8 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 *   `typealias` 声明一个[类型别名](type-aliases.html)
 *   `val` 声明一个只读[属性](properties.html)或[局部变量](basic-syntax.html#定义变量)
 *   `var` 声明一个可变[属性](properties.html)或[局部变量](basic-syntax.html#定义变量)
-*   `when` 开始一个 [when 表达式](control-flow.html#when-表达式)（执行其中一个给定分支）
-*   `while` 开始一个 [while 循环](control-flow.html#while-循环)（前置条件的循环）
+*   `when` 开始一个 [when 表达式](control-flow.html#When-表达式)（执行其中一个给定分支）
+*   `while` 开始一个 [while 循环](control-flow.html#While-循环)（前置条件的循环）
 
 <!-- more -->
 
@@ -81,7 +81,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 *   `file` 用作[注解使用处目标](annotations.html#注解使用处目标)
 *   `finally` 开始一个[当 try 块退出时总会执行的块](exceptions.html)
 *   `get`
-    *   声明[属性的 getter](properties.html#getters-与-setters)
+    *   声明[属性的 getter](properties.html#Getters-与-Setters)
     *   用作[注解使用处目标](annotations.html#注解使用处目标)
 *   `import` [将另一个包中的声明导入当前文件](packages.html)
 *   `init` 开始一个[初始化块](classes.html#构造函数)
@@ -89,7 +89,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 *   `property` 用作[注解使用处目标](annotations.html#注解使用处目标)
 *   `receiver`用作[注解使用处目标](annotations.html#注解使用处目标)
 *   `set`
-    *   声明[属性的 setter](properties.html#getters-与-setters)
+    *   声明[属性的 setter](properties.html#Getters-与-Setters)
     *   用作[注解使用处目标](annotations.html#注解使用处目标)
 *   `setparam` 用作[注解使用处目标](annotations.html#注解使用处目标)
 *   `where` 指定[泛型类型参数的约束](generics.html#上界)
@@ -108,7 +108,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 *   `data` 指示编译器[为类生成典型成员](data-classes.html)
 *   `enum` 声明一个[枚举](enum-classes.html)
 *   `expect` 将一个声明标记为[平台相关](/docs/reference/multiplatform.html)，并期待在平台模块中实现。
-*   `external` 将一个声明标记为不是在 Kotlin 中实现（通过 [JNI](java-interop.html#在-kotlin-中使用-jni) 访问或者在 [JavaScript](js-interop.html#external-修饰符) 中实现）
+*   `external` 将一个声明标记为不是在 Kotlin 中实现（通过 [JNI](java-interop.html#在-Kotlin-中使用-JNI) 访问或者在 [JavaScript](js-interop.html#external-修饰符) 中实现）
 *   `final` 禁止[成员覆盖](classes.html#覆盖方法)
 *   `infix` 允许以[中缀表示法](functions.html#中缀表示法)调用函数
 *   `inline` 告诉编译器[在调用处内联传给它的函数和 lambda 表达式](inline-functions.html)
@@ -127,7 +127,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 *   `sealed` 声明一个[密封类](sealed-classes.html)（限制子类化的类）
 *   `suspend` 将一个函数或 lambda 表达式标记为挂起式（可用做[协程](coroutines.html)）
 *   `tailrec` 将一个函数标记为[尾递归](functions.html#尾递归函数)（允许编译器将递归替换为迭代）
-*   `vararg` 允许[一个参数传入可变数量的参数](functions.html#可变数量的参数varargs)
+*   `vararg` 允许[一个参数传入可变数量的参数](functions.html#可变数量的参数（Varargs）)
 
 ## 特殊标识符
 
@@ -135,43 +135,43 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 -->标识符：
 
 *   `field` 用在属性访问器内部来引用该[属性的幕后字段](properties.html#幕后字段)
-*   `it` 用在 lambda 表达式内部来[隐式引用其参数](lambdas.html#it单个参数的隐式名称)
+*   `it` 用在 lambda 表达式内部来[隐式引用其参数](lambdas.html#it：单个参数的隐式名称)
 
 ## 操作符和特殊符号
 
 Kotlin 支持以下操作符和特殊符号：
 
 *   `+`、 `-`、 `*`、 `/`、 `%` —— 数学操作符
-    *   `*` 也用于[将数组传递给 vararg 参数](functions.html#可变数量的参数varargs)
+    *   `*` 也用于[将数组传递给 vararg 参数](functions.html#可变数量的参数（Varargs）)
 *   `=`
     *   赋值操作符
     *   也用于指定[参数的默认值](functions.html#默认参数)
-*   `+=`、 `-=`、 `*=`、 `/=`、 `%=` —— [广义赋值操作符](operator-overloading.html#assignments)
+*   `+=`、 `-=`、 `*=`、 `/=`、 `%=` —— [广义赋值操作符](operator-overloading.html#广义赋值)
 *   `++`、 `--` —— [递增与递减操作符](operator-overloading.html#递增与递减)
 *   `&&`、 `||`、 `!` —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的[中缀函数](basic-types.html#运算)）
-*   `==`、 `!=` —— [相等操作符](operator-overloading.html#equals)（对于非原生类型会翻译为调用 `equals()`）
+*   `==`、 `!=` —— [相等操作符](operator-overloading.html#相等与不等操作符)（对于非原生类型会翻译为调用 `equals()`）
 *   `===`、 `!==` —— [引用相等操作符](equality.html#引用相等)
-*   `<`、 `>`、 `<=`、 `>=` —— [比较操作符](operator-overloading.html#comparison)（对于非原生类型会翻译为调用 `compareTo()`）
-*   `[`、 `]` —— [索引访问操作符](operator-overloading.html#indexed)（会翻译为调用 `get` 与 `set`）
-*   `!!` [断言一个表达式非空](null-safety.html#-操作符)
+*   `<`、 `>`、 `<=`、 `>=` —— [比较操作符](operator-overloading.html#比较操作符)（对于非原生类型会翻译为调用 `compareTo()`）
+*   `[`、 `]` —— [索引访问操作符](operator-overloading.html#索引访问操作符)（会翻译为调用 `get` 与 `set`）
+*   `!!` [断言一个表达式非空](null-safety.html#操作符)
 *   `?.` 执行[安全调用](null-safety.html#安全的调用)（如果接收者非空，就调用一个方法或访问一个属性）
-*   `?:` 如果左侧的值为空，就取右侧的值（[elvis 操作符](null-safety.html#elvis-操作符)）
+*   `?:` 如果左侧的值为空，就取右侧的值（[elvis 操作符](null-safety.html#Elvis-操作符)）
 *   `::` 创建一个[成员引用](reflection.html#函数引用)或者一个[类引用](reflection.html#类引用)
 *   `..` 创建一个[区间](ranges.html)
 *   `:` 分隔声明中的名称与类型
 *   `?` 将类型标记为[可空](null-safety.html#可空类型与非空类型)
 *   `->`
-    *   分隔 [lambda 表达式](lambdas.html#lambda-表达式语法)的参数与主体
+    *   分隔 [lambda 表达式](lambdas.html#Lambda-表达式语法)的参数与主体
     *   分隔在[函数类型](lambdas.html#函数类型)中的参数类型与返回类型声明
-    *   分隔 [when 表达式](control-flow.html#when-表达式)分支的条件与代码体
+    *   分隔 [when 表达式](control-flow.html#When-表达式)分支的条件与代码体
 *   `@`
     *   引入一个[注解](annotations.html#用法)
-    *   引入或引用一个[循环标签](returns.html#break-与-continue-标签)
+    *   引入或引用一个[循环标签](returns.html#Break-与-Continue-标签)
     *   引入或引用一个 [lambda 表达式标签](returns.html#标签处返回)
     *   引用一个来自外部作用域的 [“this”表达式](this-expressions.html#限定的-this)
     *   引用一个[外部超类](classes.html#调用超类实现)
 *   `;` 分隔位于同一行的多个语句
 *   `$` 在[字符串模版](basic-types.html#字符串模板)中引用变量或者表达式
 *   `_`
-    *   在 [lambda 表达式](lambdas.html#下划线用于未使用的变量自-11-起)中代替未使用的参数
-    *   在[解构声明](multi-declarations.html#下划线用于未使用的变量自-11-起)中代替未使用的参数
+    *   在 [lambda 表达式](lambdas.html#下划线用于未使用的变量（自-1-1-起）)中代替未使用的参数
+    *   在[解构声明](multi-declarations.html#下划线用于未使用的变量（自-1-1-起）)中代替未使用的参数

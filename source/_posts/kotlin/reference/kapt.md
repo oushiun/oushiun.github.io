@@ -22,7 +22,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 <!-- more -->
 
-## 在 Gradle 中使用
+### 在 Gradle 中使用
 
 应用 `kotlin-kapt` Gradle 插件：
 
@@ -50,7 +50,7 @@ dependencies {
 
 如果为 `androidTest` 或 `test` 源代码使用注解处理器，那么相应的 `kapt` 配置名为 `kaptAndroidTest` 和 `kaptTest`。请注意 `kaptAndroidTest` 和 `kaptTest` 扩展了 `kapt`，所以你可以只提供 `kapt` 依赖而它对生产和测试源代码都可用。
 
-## 注解处理器参数
+### 注解处理器参数
 
 使用 `arguments {}` 块将参数传给注解处理器：
 
@@ -62,7 +62,7 @@ kapt {
 }
 ```
 
-## Java 编译器选项
+### Java 编译器选项
 
 Kapt 使用 Java 编译器来运行注解处理器。以下是将任意选项传给 javac 的方式：
 
@@ -76,7 +76,7 @@ kapt {
 }
 ```
 
-## 非存在类型校正
+### 非存在类型校正
 
 一些注解处理器（如 `AutoFactory`）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 `NonExistentClass`，但你可以更改此行为。将额外标志添加到 `build.gradle` 文件以启用在存根（stub）中推断出的错误类型：
 
@@ -86,7 +86,7 @@ kapt {
 }
 ```
 
-## 在 Maven 中使用
+### 在 Maven 中使用
 
 在 `compile` 之前在 kotlin-maven-plugin 中添加 `kapt` 目标的执行：
 
@@ -117,7 +117,7 @@ kapt {
 
 请注意，IntelliJ IDEA 自身的构建系统目前还不支持 kapt。当你想要重新运行注解处理时，请从“Maven Projects”工具栏启动构建。
 
-## 在命令行中使用
+### 在命令行中使用
 
 Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。
 
@@ -129,20 +129,20 @@ Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。
 
 以下是可用选项的列表：
 
-*   `sources`（_必需_）：所生成文件的输出路径。
-*   `classes`（_必需_）：所生成类文件与资源的输出路径。
-*   `stubs`（_必需_）：存根文件的输出路径。换句话说，一些临时目录。
+*   `sources`（*必需*）：所生成文件的输出路径。
+*   `classes`（*必需*）：所生成类文件与资源的输出路径。
+*   `stubs`（*必需*）：存根文件的输出路径。换句话说，一些临时目录。
 *   `incrementalData`：二进制存根的输出路径。
-*   `apclasspath`（_可重复_）：注解处理器 JAR 包路径。如果有的多个 JAR 包就传多个 `apclasspath` 选项。
-*   `apoptions`：注解处理器选项的 base64 编码列表。详见 [AP/javac options encoding](#apjavac-选项编码)。
-*   `javacArguments`：传给 javac 的选项的 base64 编码列表。详见 [AP/javac options encoding](#apjavac-选项编码)。
+*   `apclasspath`（*可重复*）：注解处理器 JAR 包路径。如果有的多个 JAR 包就传多个 `apclasspath` 选项。
+*   `apoptions`：注解处理器选项的 base64 编码列表。详见 [AP/javac options encoding](#AP-javac-选项编码)。
+*   `javacArguments`：传给 javac 的选项的 base64 编码列表。详见 [AP/javac options encoding](#AP-javac-选项编码)。
 *   `processors`：逗号分隔的注解处理器全类名列表。如果指定，kapt 就不会尝试在 `apclasspath` 中查找注解处理器。
 *   `verbose`：启用详细输出。
-*   `aptMode`（_必需_）
+*   `aptMode`（*必需*）
     *   `stubs`——只生成注解处理所需的存根；
     *   `apt`——只运行注解处理；
     *   `stubsAndApt`——生成存根并运行注解处理。
-*   `correctErrorTypes`：参见[下文](#在-gradle-中使用)。默认未启用。
+*   `correctErrorTypes`：参见[下文](#在-Gradle-中使用)。默认未启用。
 
 插件选项格式为：`-P plugin:<plugin id>:<key>=<value>`。选项可以重复。
 
@@ -159,7 +159,7 @@ Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。
 -P plugin:org.jetbrains.kotlin.kapt3:correctErrorTypes=true
 ```
 
-## 生成 Kotlin 代码
+### 生成 Kotlin 代码
 
 Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入`processingEnv.options["kapt.kotlin.generated"]` 所指定的目录，这些文件会与主源代码一起编译。
 
@@ -167,7 +167,7 @@ Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入`processing
 
 请注意，对于所生成 Kotlin 文件，Kapt 不支持多轮处理。
 
-## AP/javac 选项编码
+### AP/javac 选项编码
 
 `apoptions` 与 `javacArguments` 命令行选项接受选项编码映射。这是自己编码选项的方式：
 

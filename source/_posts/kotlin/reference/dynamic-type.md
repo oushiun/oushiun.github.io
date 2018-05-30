@@ -37,7 +37,7 @@ dyn.whatever(*arrayOf(1, 2, 3))
 
 在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin 中的 `dyn.whatever(1)` 变为 `dyn.whatever(1)`。
 
-当在 `dynamic` 类型的值上调用 Kotlin 写的函数时，请记住由 Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 [@JsName 注解](js-to-kotlin-interop.html#jsname-注解)为要调用的函数分配明确的名称。
+当在 `dynamic` 类型的值上调用 Kotlin 写的函数时，请记住由 Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 [@JsName 注解](js-to-kotlin-interop.html#JsName-注解)为要调用的函数分配明确的名称。
 
 动态调用总是返回 `dynamic` 作为结果，所以我们可以自由地这样链接调用：
 

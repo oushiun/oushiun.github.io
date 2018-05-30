@@ -15,8 +15,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。该工具允许在生成的 JS 中删除未使用的属性、函数和类。出现未使用的声明有这几种可能情况：
 
 *   函数可以内联并且从未直接调用（除少数情况之外，这总会出现）。
-*   你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（`kotlin.js`）包含用于操作列表、数组、字符序列、
-    DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要控制台程序，整个文件只有几千字节。
+*   你所使用的共享库提供了比实际需要更多的功能/函数。例如，标准库（`kotlin.js`）包含用于操作列表、数组、字符序列、DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要控制台程序，整个文件只有几千字节。
 
 无用代码消除通常也称为“tree shaking”。
 
@@ -71,7 +70,7 @@ runDceKotlinJs.dceOptions.devMode = isDevMode
 runDceTestKotlinJs.dceOptions.devMode = true
 ```
 
-# 示例
+### 示例
 
 显示如何将 Kotlin 与 DCE 及 webpack 集成并得到一个小的捆绑的完整示例，可以在[这里](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-dce)找到。
 

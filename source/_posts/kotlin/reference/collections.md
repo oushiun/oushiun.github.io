@@ -34,8 +34,7 @@ val strings = hashSetOf("a", "b", "c", "c")
 assert(strings.size == 3)
 ```
 
-Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如
-`listOf()`、 `mutableListOf()`、 `setOf()`、 `mutableSetOf()`。在非性能关键代码中创建 map 可以用一个简单的[惯用法](idioms.html#只读-map)来完成：`mapOf(a to b, c to d)`。
+Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如 `listOf()`、 `mutableListOf()`、 `setOf()`、 `mutableSetOf()`。在非性能关键代码中创建 map 可以用一个简单的[惯用法](idioms.html#只读-map)来完成：`mapOf(a to b, c to d)`。
 
 注意上面的 `readOnlyView` 变量（译者注：与对应可变集合变量 `numbers`）指向相同的底层 list 并会随之改变。 如果一个 list 只存在只读引用，我们可以考虑该集合完全不可变。创建一个这样的集合的一个简单方式如下：
 

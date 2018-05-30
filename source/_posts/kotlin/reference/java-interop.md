@@ -36,8 +36,8 @@ fun demo(source: List<Int>) {
 
 ## Getter 和 Setter
 
-遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。
-`Boolean` 访问器方法（其中 getter 的名称以 `is` 开头而 setter 的名称以 `set` 开头）会表示为与 getter 方法具有相同名称的属性。
+遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。 `Boolean` 访问器方法（其中 getter 的名称以 `is` 开头而 setter 的名称以 `set` 开头）会表示为与 getter 方法具有相同名称的属性。
+
 例如：
 
 ``` kotlin
@@ -154,24 +154,18 @@ Annotating type arguments works with Java 8 target or higher and requires the nu
 
 ### JSR-305 支持
 
-已支持 [JSR-305](https://jcp.org/en/jsr/detail?id=305) 中定义的 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)
-注解来表示 Java 类型的可空性。
+已支持 [JSR-305](https://jcp.org/en/jsr/detail?id=305) 中定义的 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html) 注解来表示 Java 类型的可空性。
 
 如果 `@Nonnull(when = ...)` 值为 `When.ALWAYS`，那么该注解类型会被视为非空；`When.MAYBE` 与
 `When.NEVER` 表示可空类型；而 `When.UNKNOWN` 强制类型为[平台类型](#空安全与平台类型)。
 
 可针对 JSR-305 注解编译库，但不需要为库的消费者将注解构件（如 `jsr305.jar`）指定为编译依赖。Kotlin 编译器可以从库中读取 JSR-305 注解，并不需要该注解出现在类路径中。
 
-自 Kotlin 1.1.50 起，
-也支持[自定义可空限定符（KEEP-79）](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md)
-（见下文）。
+自 Kotlin 1.1.50 起，也支持[自定义可空限定符（KEEP-79）](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md)（见下文）。
 
 #### 类型限定符别称（自 1.1.50 起）
 
-如果一个注解类型同时标注有
-[`@TypeQualifierNickname`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html)
-与 JSR-305 `@Nonnull`（或者它的其他别称，如 `@CheckForNull`），那么该注解类型自身将用于
-检索精确的可空性，且具有与该可空性注解相同的含义：
+如果一个注解类型同时标注有 [`@TypeQualifierNickname`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html) 与 JSR-305 `@Nonnull`（或者它的其他别称，如 `@CheckForNull`），那么该注解类型自身将用于检索精确的可空性，且具有与该可空性注解相同的含义：
 
 ``` java
 @TypeQualifierNickname
@@ -197,8 +191,7 @@ interface A {
 
 #### 类型限定符默认值（自 1.1.50 起）
 
-[`@TypeQualifierDefault`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html)
-引入应用时在所标注元素的作用域内定义默认可空性的注解。
+[`@TypeQualifierDefault`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html) 引入应用时在所标注元素的作用域内定义默认可空性的注解。
 
 这些注解类型应自身同时标注有 `@Nonnull`（或其别称）与 `@TypeQualifierDefault(...)` 注解，
 后者带有一到多个 `ElementType` 值：
@@ -208,8 +201,7 @@ interface A {
 * `ElementType.TYPE_USE`（自 1.1.60 起）适用于任何类型，包括类型参数、类型参数的上界与通配符类型。
 
 
-当类型并未标注可空性注解时使用默认可空性，并且该默认值是由最内层标注有带有与所用类型相匹配的
-`ElementType` 的类型限定符默认注解的元素确定。
+当类型并未标注可空性注解时使用默认可空性，并且该默认值是由最内层标注有带有与所用类型相匹配的 `ElementType` 的类型限定符默认注解的元素确定。
 
 ```java
 @Nonnull
@@ -239,7 +231,7 @@ interface A {
 }
 ```
 
-> 注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 [`@UnderMigration` 注解](#undermigration-注解自-1160-起)与[编译器配置](#编译器配置)两节。
+> 注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 [*@UnderMigration* 注解](#UnderMigration-注解（自-1-1-60-起）)与[编译器配置](#编译器配置)两节。
 
 也支持包级的默认可空性：
 
@@ -257,10 +249,9 @@ package test;
 
 * `MigrationStatus.STRICT` 使注解像任何纯可空性注解一样工作，即对不当用法报错并影响注解声明内的类型在 Kotlin 中的呈现；
 
-* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；
-但注解声明内的类型仍是平台类型；而
+* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；但注解声明内的类型仍是平台类型；
 
-* `MigrationStatus.IGNORE` 则使编译器完全忽略可空性注解。
+* 而 `MigrationStatus.IGNORE` 则使编译器完全忽略可空性注解。
 
 库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别称与类型限定符默认值：
 
@@ -286,8 +277,7 @@ public class Test {}
 可以通过添加带有以下选项的 `-Xjsr305` 编译器标志来配置 JSR-305 检测：
 
 * `-Xjsr305={strict|warn|ignore}` 设置非 `@UnderMigration` 注解的行为。
-自定义的可空性限定符，尤其是
-`@TypeQualifierDefault` 已经在很多知名库中流传，而用户更新到包含 JSR-305 支持的 Kotlin 版本时可能需要平滑迁移。自 Kotlin 1.1.60 起，这一标志只影响非 `@UnderMigration` 注解。
+自定义的可空性限定符，尤其是 `@TypeQualifierDefault` 已经在很多知名库中流传，而用户更新到包含 JSR-305 支持的 Kotlin 版本时可能需要平滑迁移。自 Kotlin 1.1.60 起，这一标志只影响非 `@UnderMigration` 注解。
 
 * `-Xjsr305=under-migration:{strict|warn|ignore}`（自 1.1.60 起）覆盖 `@UnderMigration` 注解的行为。
 用户可能对库的迁移状态有不同的看法：
@@ -297,10 +287,9 @@ public class Test {}
 
 其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同，并且只有 `strict` 模式会影响注解声明中的类型在 Kotlin 中的呈现。
 
-> 注意：内置的 JSR-305 注解 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)、 [`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html) 与 [`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html) 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 `-Xjsr305` 标志。
+> 注意：内置的 JSR-305 注解 [*@Nonnull*](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)、 [*@Nullable*](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html) 与 [*@CheckForNull*](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html) 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 `-Xjsr305` 标志。
 
-例如，将 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` 添加到编译器参数中，会使编译器对由
-`@org.library.MyNullable` 标注的不当用法生成警告，而忽略所有其他 JSR-305 注解。
+例如，将 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` 添加到编译器参数中，会使编译器对由 `@org.library.MyNullable` 标注的不当用法生成警告，而忽略所有其他 JSR-305 注解。
 
 对于 kotlin 1.1.50+/1.2 版本，其默认行为等同于 `-Xjsr305=warn`。
 `strict` 值应认为是实验性的（以后可能添加更多检测）。
@@ -367,7 +356,7 @@ Java 的装箱原始类型映射到可空的 Kotlin 类型：
 | `Map<K, V>`       | `Map<K, V>`         | `MutableMap<K, V>`             | `(Mutable)Map<K, V>!`                |
 | `Map.Entry<K, V>` | `Map.Entry<K, V>`   | `MutableMap.MutableEntry<K,V>` | `(Mutable)Map.(Mutable)Entry<K, V>!` |
 
-Java 的数组按[下文](java-interop.html#java-数组)所述映射：
+Java 的数组按[下文](java-interop.html#Java-数组)所述映射：
 
 | **Java 类型** | **Kotlin 类型**               |
 | ------------- | ----------------------------- |
@@ -520,7 +509,7 @@ fun render(list: List<*>, to: Appendable) {
 val fooClass = foo::class.java
 ```
 
-上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#绑定的类引用自-11-起)。你也可以使用 `javaClass` 扩展属性：
+上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#绑定的类引用（自-1-1-起）)。你也可以使用 `javaClass` 扩展属性：
 
 ``` kotlin
 val fooClass = foo.javaClass

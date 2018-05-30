@@ -186,8 +186,6 @@ inline var bar: Bar
 
 在调用处，内联访问器如同内联函数一样内联。
 
-{:#public-inline-restrictions}
-
 ## 公有 API 内联函数的限制
 
 当一个内联函数是 `public` 或 `protected` 而不是 `private` 或 `internal` 声明的一部分时，就会认为它是一个[模块级](visibility-modifiers.html#模块)的公有 API。可以在其他模块中调用它，并且也可以在调用处内联这样的调用。

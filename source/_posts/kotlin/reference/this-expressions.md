@@ -1,6 +1,5 @@
 ---
 title: This 表达式
-
 tags:
  - Kotlin
 categories:
@@ -21,7 +20,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 <!-- more -->
 
-## 限定的 _this_
+### 限定的 _this_
 
 要访问来自外部作用域的*this*（一个[类](classes.html) 或者[扩展函数](extensions.html)，或者带标签的[带接收者的函数字面值](lambdas.html#带接收者的函数字面值)）我们使用`this@label`，其中 `@label` 是一个<!--
 -->代指 _this_ 来源的标签：

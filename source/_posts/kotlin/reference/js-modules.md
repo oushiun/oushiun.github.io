@@ -27,16 +27,13 @@ Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模�
 
 ### 在 IntelliJ IDEA 中
 
-设置每个模块：打开“File → Project Structure...”，在“Modules”中找到你的模块并选择其下的“Kotlin”facet。在
-“Module kind”字段中选择合适的模块系统。
+设置每个模块：打开“File → Project Structure...”，在“Modules”中找到你的模块并选择其下的“Kotlin”facet。在“Module kind”字段中选择合适的模块系统。
 
-为整个项目设置：打开“File → Settings”，选择“Build, Execution, Deployment”→“Compiler”→“Kotlin compiler”。 在
-“Module kind”字段中选择合适的模块系统。
+为整个项目设置：打开“File → Settings”，选择“Build, Execution, Deployment”→“Compiler”→“Kotlin compiler”。 在“Module kind”字段中选择合适的模块系统。
 
 ### 在 Maven 中
 
-要选择通过 Maven 编译时的模块系统，你应该设置 `moduleKind` 配置属性，即你的
-`pom.xml` 应该看起来像这样：
+要选择通过 Maven 编译时的模块系统，你应该设置 `moduleKind` 配置属性，即你的 `pom.xml` 应该看起来像这样：
 
 ```xml
 <plugin>
@@ -199,4 +196,4 @@ external fun sayHello(name: String)
 
 ### 备注
 
-Kotlin 以 `kotlin.js` 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此你可以使用上述任何模块系统。也可以在 NPM 上使用 [`kotlin` 包](https://www.npmjs.com/package/kotlin)
+Kotlin 以 `kotlin.js` 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此你可以使用上述任何模块系统。也可以在 NPM 上使用 [*kotlin* 包](https://www.npmjs.com/package/kotlin)

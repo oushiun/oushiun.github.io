@@ -80,7 +80,7 @@ fun foo(bar: Int = 0, baz: Int) { /* …… */ }
 foo(baz = 1) // 使用默认值 bar = 0
 ```
 
-不过如果最后一个 [lambda 表达式](lambdas.html#lambda-表达式与匿名函数)参数从括号外传给函数函数调用，那么允许默认参数不传值：
+不过如果最后一个 [lambda 表达式](lambdas.html#Lambda-表达式与匿名函数)参数从括号外传给函数函数调用，那么允许默认参数不传值：
 
 ```kotlin
 fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { /* …… */ }
@@ -184,7 +184,7 @@ fun double(x: Int) = x * 2
 
 ### 显式返回类型
 
-具有块代码体的函数必须始终显式指定返回类型，除非他们旨在返回 `Unit`，[在这种情况下它是可选的](#返回-unit-的函数)。
+具有块代码体的函数必须始终显式指定返回类型，除非他们旨在返回 `Unit`，[在这种情况下它是可选的](#返回-Unit-的函数)。
 Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函数在代码体中可能有复杂的控制流，并且返回类型对于读者（有时甚至对于编译器）是不明显的。
 
 ### 可变数量的参数（Varargs）
@@ -248,7 +248,7 @@ infix fun Int.shl(x: Int): Int {
 > *   `a && b xor c` 与 `a && (b xor c)`
 > *   `a xor b in c` 与 `(a xor b) in c`
 >
-> 完整的优先级层次结构请参见其[语法参考](grammar.html#precedence)。
+> 完整的优先级层次结构请参见其[语法参考](http://kotlinlang.org/docs/reference/grammar.html#precedence)。
 
 请注意，中缀函数总是要求指定接收者与参数。当使用中缀表示法在当前接收者上调用方法时，需要显式使用 `this`；不能像常规方法调用那样省略。这是确保非模糊解析所必需的。
 

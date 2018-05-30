@@ -47,7 +47,7 @@ assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 
 函数、属性以及构造函数的引用，除了作为自省程序结构外，还可以用于调用或者用作[函数类型](lambdas.html#函数类型)的实例。
 
-所有可调用引用的公共超类型是 [`KCallable<out R>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-callable/index.html)，其中 `R` 是返回值类型，对于属性是属性类型，对于构造函数是所构造类型。
+所有可调用引用的公共超类型是 [*KCallable<out R>*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-callable/index.html)，其中 `R` 是返回值类型，对于属性是属性类型，对于构造函数是所构造类型。
 
 ### 函数引用
 
@@ -72,8 +72,7 @@ fun main(args: Array<String>) {
 
 这里 `::isOdd` 是函数类型 `(Int) -> Boolean` 的一个值。
 
-函数引用属于 [`KFunction<out R>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-function/index.html)
-的子类型之一，取决于参数个数，例如 `KFunction3<T1, T2, T3, R>`。
+函数引用属于 [*KFunction<out R>*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-function/index.html) 的子类型之一，取决于参数个数，例如 `KFunction3<T1, T2, T3, R>`。
 
 当上下文中已知函数期望的类型时，`::` 可以用于重载函数。例如：
 
@@ -147,8 +146,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-表达式 `::x` 求值为 `KProperty<Int>` 类型的属性对象，它允许我们使用
-`get()` 读取它的值，或者使用 `name` 属性来获取属性名。更多信息请参见[关于 `KProperty` 类的文档](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)。
+表达式 `::x` 求值为 `KProperty<Int>` 类型的属性对象，它允许我们使用 `get()` 读取它的值，或者使用 `name` 属性来获取属性名。更多信息请参见[关于 *KProperty* 类的文档](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)。
 
 对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，该类型有一个 `set()` 方法。
 
@@ -197,8 +195,7 @@ fun main(args: Array<String>) {
 
 ### 与 Java 反射的互操作性
 
-在 Java 平台上，标准库包含反射类的扩展，它提供了与 Java
-反射对象之间映射（参见 `kotlin.reflect.jvm` 包）。例如，要查找一个用作 Kotlin 属性 getter 的 幕后字段或 Java 方法，可以这样写：
+在 Java 平台上，标准库包含反射类的扩展，它提供了与 Java 反射对象之间映射（参见 `kotlin.reflect.jvm` 包）。例如，要查找一个用作 Kotlin 属性 getter 的 幕后字段或 Java 方法，可以这样写：
 
 ```kotlin
 import kotlin.reflect.jvm.*
@@ -235,8 +232,7 @@ fun function(factory: () -> Foo) {
 function(::Foo)
 ```
 
-构造函数的可调用引用的类型也是
-[`KFunction<out R>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-function/index.html) 的子类型之一，取决于其参数个数。
+构造函数的可调用引用的类型也是 [*KFunction<out R>*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-function/index.html) 的子类型之一，取决于其参数个数。
 
 ## 绑定的函数与属性引用（自 1.1 起）
 

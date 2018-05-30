@@ -18,7 +18,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 协程通过将复杂性放入库来简化异步编程。程序的逻辑可以在协程中*顺序*地表达，而底层库会为我们解决其异步性。该库可以将用户代码的相关部分包装为回调、订阅相关事件、在不同线程（甚至不同机器！）上调度执行，而代码则保持如同顺序执行一样简单。
 
-许多在其他语言中可用的异步机制可以使用 Kotlin 协程实现为库。这包括源于 C# 和 ECMAScript 的 [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions)、源于 Go 的 [管道](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) 和 [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) 以及源于 C# 和 Python [生成器/`yield`](#kotlincoroutines-中的生成器-api)。关于提供这些结构的库请参见其[下文](coroutines.html#标准-api)描述。
+许多在其他语言中可用的异步机制可以使用 Kotlin 协程实现为库。这包括源于 C# 和 ECMAScript 的 [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions)、源于 Go 的 [管道](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) 和 [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) 以及源于 C# 和 Python [生成器/*yield*](#kotlin-coroutines-中的生成器-API)。关于提供这些结构的库请参见其[下文](coroutines.html#标准-API)描述。
 
 <!-- more -->
 
@@ -242,7 +242,7 @@ fun main(args: Array<String>) {
 
 `buildIterator()` 的工作方式类似于 `buildSequence()`，但返回一个惰性迭代器。
 
-可以通过为 `SequenceBuilder` 类写挂起扩展（带有[上文](#restrictssuspension-注解)描述的 `@RestrictsSuspension` 注解）来为 `buildSequence()` 添加自定义生产逻辑（custom yielding logic）：
+可以通过为 `SequenceBuilder` 类写挂起扩展（带有[上文](#RestrictsSuspension-注解)描述的 `@RestrictsSuspension` 注解）来为 `buildSequence()` 添加自定义生产逻辑（custom yielding logic）：
 
 ```kotlin
 import kotlin.coroutines.experimental.*
