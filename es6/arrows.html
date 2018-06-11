@@ -5,19 +5,19 @@
     
     <title>箭头函数 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="基本用法胖箭头函数 Fat arrow functions，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 =&amp;gt;，是受到了 CoffeeScript 的影响，并且与 CoffeeScript 中的 =&amp;gt; 语法一样，共享 this 上下文。 箭头函数的产生，主要由两个目的：更简洁的语法和与父作用域共享关键字 this。 123">
+    <meta name="description" content="基本用法胖箭头函数 Fat arrow functions，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 =&amp;gt;，是受到了 CoffeeScript 的影响，并且与 CoffeeScript 中的 =&amp;gt; 语法一样，共享 this 上下文。">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="箭头函数">
 <meta property="og:url" content="http://oushiun.com/es6/arrows.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="基本用法胖箭头函数 Fat arrow functions，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 =&amp;gt;，是受到了 CoffeeScript 的影响，并且与 CoffeeScript 中的 =&amp;gt; 语法一样，共享 this 上下文。 箭头函数的产生，主要由两个目的：更简洁的语法和与父作用域共享关键字 this。 123">
+<meta property="og:description" content="基本用法胖箭头函数 Fat arrow functions，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 =&amp;gt;，是受到了 CoffeeScript 的影响，并且与 CoffeeScript 中的 =&amp;gt; 语法一样，共享 this 上下文。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/es6.png">
-<meta property="og:updated_time" content="2018-06-11T02:03:11.753Z">
+<meta property="og:updated_time" content="2018-06-11T02:04:08.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="箭头函数">
-<meta name="twitter:description" content="基本用法胖箭头函数 Fat arrow functions，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 =&amp;gt;，是受到了 CoffeeScript 的影响，并且与 CoffeeScript 中的 =&amp;gt; 语法一样，共享 this 上下文。 箭头函数的产生，主要由两个目的：更简洁的语法和与父作用域共享关键字 this。 123">
+<meta name="twitter:description" content="基本用法胖箭头函数 Fat arrow functions，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 =&amp;gt;，是受到了 CoffeeScript 的影响，并且与 CoffeeScript 中的 =&amp;gt; 语法一样，共享 this 上下文。">
 <meta name="twitter:image" content="https://static.oushiun.com/blog/banner/es6.png">
     
 
@@ -264,6 +264,7 @@ ga('send', 'pageview');
         
             
             <h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>胖箭头函数 <strong>Fat arrow functions</strong>，又称箭头函数，是一个来自 ECMAScript 2015（又称 ES6）的全新特性。有传闻说，箭头函数的语法 <code>=&gt;</code>，是受到了 <em>CoffeeScript</em> 的影响，并且与 <em>CoffeeScript</em> 中的 <code>=&gt;</code> 语法一样，共享 <em>this</em> 上下文。</p>
+<a id="more"></a>
 <p>箭头函数的产生，主要由两个目的：更简洁的语法和与父作用域共享关键字 <em>this</em>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> v</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。</p>
