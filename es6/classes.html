@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>简介 | oushiun</title>
+    <title>classes | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="IntroductionECMAScript 6, also known as ECMAScript 2015, is the latest version of the ECMAScript standard.  ES6 is a significant update to the language, and the first update to the language since ES5">
+    <meta name="description" content="简介ECMAScript 6 引入的 JavaScript 类（class）是 JavaScript 现有的原型继承的语法糖。 javascript 传统做法是当生成一个对象实例，需要定义构造函数，然后通过 new 的方式完成。 12345678910function StdInfo() &amp;#123;    this.name = &apos;job&apos;    this.age = 30&amp;#125;StdIn">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简介">
-<meta property="og:url" content="http://oushiun.com/es6/intro.html">
+<meta property="og:title" content="classes">
+<meta property="og:url" content="http://oushiun.com/es6/classes.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="IntroductionECMAScript 6, also known as ECMAScript 2015, is the latest version of the ECMAScript standard.  ES6 is a significant update to the language, and the first update to the language since ES5">
+<meta property="og:description" content="简介ECMAScript 6 引入的 JavaScript 类（class）是 JavaScript 现有的原型继承的语法糖。 javascript 传统做法是当生成一个对象实例，需要定义构造函数，然后通过 new 的方式完成。 12345678910function StdInfo() &amp;#123;    this.name = &apos;job&apos;    this.age = 30&amp;#125;StdIn">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/es6.png">
-<meta property="og:updated_time" content="2018-06-04T03:27:57.603Z">
+<meta property="og:updated_time" content="2018-06-11T08:26:34.297Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简介">
-<meta name="twitter:description" content="IntroductionECMAScript 6, also known as ECMAScript 2015, is the latest version of the ECMAScript standard.  ES6 is a significant update to the language, and the first update to the language since ES5">
+<meta name="twitter:title" content="classes">
+<meta name="twitter:description" content="简介ECMAScript 6 引入的 JavaScript 类（class）是 JavaScript 现有的原型继承的语法糖。 javascript 传统做法是当生成一个对象实例，需要定义构造函数，然后通过 new 的方式完成。 12345678910function StdInfo() &amp;#123;    this.name = &apos;job&apos;    this.age = 30&amp;#125;StdIn">
 <meta name="twitter:image" content="https://static.oushiun.com/blog/banner/es6.png">
     
 
@@ -212,7 +212,7 @@ ga('send', 'pageview');
 </aside>
 
             
-            <section id="main"><article id="post-es6/intro" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-es6/classes" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
@@ -228,7 +228,7 @@ ga('send', 'pageview');
                 
     
         <h1 class="article-title" itemprop="name">
-            简介
+            classes
         </h1>
     
 
@@ -237,8 +237,8 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/es6/intro.html">
-            <time datetime="2018-06-04T02:34:10.000Z" itemprop="datePublished">2018-06-04</time>
+        <a href="/es6/classes.html">
+            <time datetime="2018-06-11T08:07:32.000Z" itemprop="datePublished">2018-06-11</time>
         </a>
     </div>
 
@@ -263,33 +263,41 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>ECMAScript 6, also known as ECMAScript 2015, is the latest version of the ECMAScript standard.  ES6 is a significant update to the language, and the first update to the language since ES5 was standardized in 2009. Implementation of these features in major JavaScript engines is <a href="http://kangax.github.io/es5-compat-table/es6/" target="_blank" rel="noopener">underway now</a>.</p>
-<p>See the <a href="http://www.ecma-international.org/ecma-262/6.0/" target="_blank" rel="noopener">ES6 standard</a> for full specification of the ECMAScript 6 language.</p>
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>ECMAScript 6 引入的 JavaScript 类（class）是 JavaScript 现有的原型继承的语法糖。</p>
+<p>javascript 传统做法是当生成一个对象实例，需要定义构造函数，然后通过 new 的方式完成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">StdInfo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'job'</span></span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StdInfo.prototype.getNames = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'name：'</span> + <span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 得到一个学员信息对象</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> StdInfo()</span><br></pre></td></tr></table></figure>
+<p>javacript 中只有对象，没有类。它是是基于原型的语言，原型对象是新对象的模板，它将自身的属性共享给新对象。这样的写法和传统面向对象语言差异很大，很容易让新手感到困惑。</p>
 <a id="more"></a>
-<p>ES6 includes the following new features:</p>
-<ul>
-<li><a href="arrows.html">arrows</a></li>
-<li><a href="classes.html">classes</a></li>
-<li><a href="enhanced-object-literals.html">enhanced object literals</a></li>
-<li><a href="template-strings.html">template strings</a></li>
-<li><a href="destructuring.html">destructuring</a></li>
-<li><a href="default--rest--spread.html">default + rest + spread</a></li>
-<li><a href="let--const.html">let + const</a></li>
-<li><a href="iterators--forof.html">iterators + for..of</a></li>
-<li><a href="generators.html">generators</a></li>
-<li><a href="unicode.html">unicode</a></li>
-<li><a href="modules.html">modules</a></li>
-<li><a href="module-loaders.html">module loaders</a></li>
-<li><a href="map--set--weakmap--weakset.html">map + set + weakmap + weakset</a></li>
-<li><a href="proxies.html">proxies</a></li>
-<li><a href="symbols.html">symbols</a></li>
-<li><a href="subclassable-built-ins.html">subclassable built-ins</a></li>
-<li><a href="promises.html">promises</a></li>
-<li><a href="math--number--string--array--object-apis.html">math + number + string + array + object APIs</a></li>
-<li><a href="binary-and-octal-literals.html">binary and octal literals</a></li>
-<li><a href="reflect-api.html">reflect api</a></li>
-<li><a href="tail-calls.html">tail calls</a></li>
-</ul>
+<h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><p>到了 ES6 添加了类，作为对象的模板。通过 class 来定义一个类：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StdInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'job'</span></span><br><span class="line">        <span class="keyword">this</span>.age = <span class="number">30</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义在类中的方法不需要添加function</span></span><br><span class="line">    getNames() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'name：'</span> + <span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用new的方式得到一个实例对象</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> StdInfo()</span><br></pre></td></tr></table></figure>
+<p>上面的写法更加清晰、更像面向对象编程的语法，看起来也更容易理解。</p>
+<p>定义的类只是语法糖，目的是让我们用更简洁明了的语法创建对象及处理相关的继承。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StdInfo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> StdInfo) <span class="comment">//function</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(StdInfo === StdInfo.prototype.constructor) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>从上面的测试中可以看出来，类的类型就是一个函数，是一个“特殊函数”，指向的是构造函数。</p>
+<p>函数的定义方式有函数声明和函数表达式两种，类的定义方式也有两种，分别是：<a href="#类声明">类声明</a> 和 <a href="#类表达式">类表达式</a>。</p>
+<h3 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h3><p>类声明是定义类的一种方式，使用关键字 class，后面跟上类名，然后就是一对大括号。把这一类需要定义的方法放在大括号中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义类，可以省略constructor</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StdInfo</span> </span>&#123;</span><br><span class="line">    getNames() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'name：'</span> + <span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义类，加上constructor</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StdInfo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用new定义实例对象时，自动调用这个函数，传入参数</span></span><br><span class="line">    <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">        <span class="keyword">this</span>.age = age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    getNames() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'name：'</span> + <span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义实例对象时，传入参数</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> StdInfo(<span class="string">'job'</span>, <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<p><em>constructor</em> 是一个默认方法，使用 new 来定义实例对象时，自动执行 <em>constructor</em> 函数，传入所需要的参数,执行完 <em>constructor</em> 后自动返回实例对象。</p>
+<p>一个类中只能有一个 <em>constructor</em> 函数，定义多个会报错。</p>
+<p><em>constructor</em> 中的 <code>this</code> 指向新创建的实例对象，利用 <code>this</code> 往新创建的实例对象扩展属性。</p>
+<p>在定义实例对象时，不需要在初始化阶段做一些事，可以不用显示的写 <em>constructor</em> 函数。如果没有显式定义，一个空的 <em>constructor</em> 方法会被默认添加，<code>constructor(){}</code></p>
+<h3 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h3><p>类表达式是定义类的另一种形式，类似于函数表达式，把一个函数作为值赋给变量。可以把定义的类赋值给一个变量，这时候变量就为类名。<em>class</em> 关键字之后的类名可有可无，如果存在，则只能在类内部使用。</p>
+<p>定义类 <em>class</em> 后面有类名：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> People = <span class="class"><span class="keyword">class</span> <span class="title">StdInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(StdInfo) <span class="comment">//可以打印出值，是一个函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> People()</span><br><span class="line"><span class="keyword">new</span> StdInfo() <span class="comment">//报错，StdInfo is not defined；</span></span><br></pre></td></tr></table></figure>
+<p>定义类 class 后面没有类名：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> People = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> People()</span><br></pre></td></tr></table></figure>
+<p>立即执行的类：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(name, age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="string">'job'</span>, <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<p>立即执行的类，在类前要加上 <strong>new</strong>。<code>p</code> 为类的实例对象。</p>
+<h3 id="不存在变量提升"><a href="#不存在变量提升" class="headerlink" title="不存在变量提升"></a>不存在变量提升</h3><p>定义类不存在变量提升，只能先定义类后使用，跟函数声明有区别的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-----函数声明-------</span></span><br><span class="line"><span class="comment">// 定义前可以先使用，因为函数声明提升的缘故，调用合法。</span></span><br><span class="line">func()</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//-----定义类---------------</span></span><br><span class="line"><span class="keyword">new</span> StdInfo() <span class="comment">// 报错，StdInfo is not defined</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StdInfo</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="extends-继承"><a href="#extends-继承" class="headerlink" title="extends 继承"></a>extends 继承</h3><p>使用 <code>extends</code> 关键字实现类之间的继承。这比在 ES5 中使用继承要方便很多。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义类父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">        <span class="keyword">this</span>.age = age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    speakSometing() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'I can speek chinese'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义子类，继承父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    coding() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'coding javascript'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以调用父类的方法</span></span><br><span class="line">c.speakSometing() <span class="comment">// I can speek chinese</span></span><br></pre></td></tr></table></figure>
+<p>使用继承的方式，子类就拥有了父类的方法。</p>
+<p>如果子类中有 <em>constructor</em> 构造函数，则必须使用调用 <code>super</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义类父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">        <span class="keyword">this</span>.age = age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    speakSometing() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'I can speek chinese'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义子类，继承父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">        <span class="comment">// 不调super()，则会报错  this is not defined</span></span><br><span class="line">        <span class="comment">// 必须调用super</span></span><br><span class="line">        <span class="keyword">super</span>(name, age)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    coding() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'coding javascript'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child(<span class="string">'job'</span>, <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以调用父类的方法</span></span><br><span class="line">c.speakSometing() <span class="comment">// I can speek chinese</span></span><br></pre></td></tr></table></figure>
+<p>子类必须在 <em>constructor</em> 方法中调用 <code>super</code> 方法，否则新建实例时会报错(<code>this is not defined</code>)。这是因为子类没有自己的 <code>this</code> 对象，而是继承父类的 <code>this</code> 对象，然后对其进行加工。如果不调用 <code>super</code> 方法，子类就得不到 <code>this</code> 对象。</p>
+<h3 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="noopener">Classes</a></p>
 
         
         </div>
@@ -362,19 +370,10 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/es6/arrows.html" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
-            <div class="article-nav-title">
-                
-                    箭头函数
-                
-            </div>
-        </a>
     
-    
-        <a href="/kotlin/reference/compiler-plugins.html" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/es6/arrows.html" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">编译器插件</div>
+            <div class="article-nav-title">箭头函数</div>
         </a>
     
 </nav>
