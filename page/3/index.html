@@ -169,7 +169,7 @@ ga('send', 'pageview');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                70
+                71
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -210,6 +210,196 @@ ga('send', 'pageview');
 
             
             <section id="main">
+    <article id="post-kotlin/reference/keyword-reference" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/kotlin/reference/keyword-reference.html" itemprop="url">
+            <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/kotlin/reference/keyword-reference.html">关键字与操作符</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/kotlin/reference/keyword-reference.html">
+            <time datetime="2018-05-22T02:21:57.000Z" itemprop="datePublished">2018-05-22</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/参考/">参考</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h2 id="硬关键字"><a href="#硬关键字" class="headerlink" title="硬关键字"></a>硬关键字</h2><p>以下符号会始终解释为关键字，不能用作标识符：</p>
+<ul>
+<li><code>as</code><ul>
+<li>用于<a href="typecasts.html#不安全的转换操作符">类型转换</a></li>
+<li>为<a href="packages.html#导入">导入指定一个别名</a></li>
+</ul>
+</li>
+<li><code>as?</code> 用于<a href="typecasts.html#安全的可空转换操作符">安全类型转换</a></li>
+<li><code>break</code> <a href="returns.html">终止循环的执行</a></li>
+<li><code>class</code> 声明一个<a href="classes.html">类</a></li>
+<li><code>continue</code> <a href="returns.html">继续最近层循环的下一步</a></li>
+<li><code>do</code> 开始一个 <a href="control-flow.html#While-循环">do/while 循环</a>（后置条件的循环）</li>
+<li><code>else</code> 定义一个 <a href="control-flow.html#If-表达式">if 表达式</a>条件为 false 时执行的分支</li>
+<li><code>false</code> 指定<a href="basic-types.html#布尔">布尔类型</a>的“假”值</li>
+<li><code>for</code> 开始一个 <a href="control-flow.html#For-循环">for 循环</a></li>
+<li><code>fun</code> 声明一个<a href="functions.html">函数</a></li>
+<li><code>if</code> 开始一个 <a href="control-flow.html#If-表达式">if 表达式</a></li>
+<li><code>in</code><ul>
+<li>指定在 <a href="control-flow.html#For-循环">for 循环</a>中迭代的对象</li>
+<li>用作中缀操作符以检查一个值属于<a href="ranges.html">一个区间</a>、一个集合或者其他<a href="operator-overloading.html#“In”操作符">定义“contains”方法</a>的实体</li>
+<li>在 <a href="control-flow.html#When-表达式">when 表达式中</a>用于上述目的</li>
+<li>将一个类型参数标记为<a href="generics.html#声明处型变">逆变</a></li>
+</ul>
+</li>
+<li><code>!in</code><ul>
+<li>用作中缀操作符以检查一个值<strong>不</strong>属于<a href="ranges.html">一个区间</a>、一个集合或者其他<a href="operator-overloading.html#“In”操作符">定义“contains”方法</a>的实体</li>
+<li>在 <a href="control-flow.html#When-表达式">when 表达式中</a>用于上述目的</li>
+</ul>
+</li>
+<li><code>interface</code> 声明一个<a href="interfaces.html">接口</a></li>
+<li><code>is</code><ul>
+<li>检查<a href="typecasts.html#is-与-is-操作符">一个值具有指定类型</a></li>
+<li>在 <a href="control-flow.html#When-表达式">when 表达式中</a>用于上述目的</li>
+</ul>
+</li>
+<li><code>!is</code><ul>
+<li>检查<a href="typecasts.html#is-与-is-操作符">一个值<strong>不</strong>具有指定类型</a></li>
+<li>在 <a href="control-flow.html#When-表达式">when 表达式中</a>用于上述目的</li>
+</ul>
+</li>
+<li><code>null</code> 是表示不指向任何对象的对象引用的常量</li>
+<li><code>object</code> 同时声明<a href="object-declarations.html">一个类及其实例</a></li>
+<li><code>package</code> 指定<a href="packages.html">当前文件的包</a></li>
+<li><code>return</code> <a href="returns.html">从最近层的函数或匿名函数返回</a></li>
+<li><code>super</code><ul>
+<li><a href="classes.html#调用超类实现">引用一个方法或属性的超类实现</a></li>
+<li><a href="classes.html#继承">在次构造函数中调用超类构造函数</a></li>
+</ul>
+</li>
+<li><code>this</code><ul>
+<li>引用<a href="this-expressions.html">当前接收者</a></li>
+<li><a href="classes.html#构造函数">在次构造函数中调用同一个类的另一个构造函数</a></li>
+</ul>
+</li>
+<li><code>throw</code> <a href="exceptions.html">抛出一个异常</a></li>
+<li><code>true</code> 指定<a href="basic-types.html#布尔">布尔类型</a>的“真”值</li>
+<li><code>try</code> <a href="exceptions.html">开始一个异常处理块</a></li>
+<li><code>typealias</code> 声明一个<a href="type-aliases.html">类型别名</a></li>
+<li><code>val</code> 声明一个只读<a href="properties.html">属性</a>或<a href="basic-syntax.html#定义变量">局部变量</a></li>
+<li><code>var</code> 声明一个可变<a href="properties.html">属性</a>或<a href="basic-syntax.html#定义变量">局部变量</a></li>
+<li><code>when</code> 开始一个 <a href="control-flow.html#When-表达式">when 表达式</a>（执行其中一个给定分支）</li>
+<li><code>while</code> 开始一个 <a href="control-flow.html#While-循环">while 循环</a>（前置条件的循环）</li>
+</ul></p>
+            <p class="article-more-link">
+                <a href="/kotlin/reference/keyword-reference.html#more">Read More</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-kotlin/reference/multiplatform" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1390,141 +1580,8 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/this-expressions" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/kotlin/reference/this-expressions.html" itemprop="url">
-            <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/this-expressions.html">This 表达式</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/this-expressions.html">
-            <time datetime="2018-05-22T01:47:22.000Z" itemprop="datePublished">2018-05-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/其他/">其他</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>为了表示当前的 <em>接收者</em> 我们使用 <em>this</em> 表达式：</p>
-<ul>
-<li>在<a href="classes.html#继承">类</a>的成员中，<em>this</em> 指的是该类的当前对象。</li>
-<li>在<a href="extensions.html">扩展函数</a>或者<a href="lambdas.html#带接收者的函数字面值">带接收者的函数字面值</a>中，<em>this</em> 表示在点左侧传递的 <em>接收者</em> 参数。</li>
-</ul>
-<p>如果 <em>this</em> 没有限定符，它指的是最内层的包含它的作用域。要引用其他作用域中的 <em>this</em>，请使用 <em>标签限定符</em>：</p></p>
-            <p class="article-more-link">
-                <a href="/kotlin/reference/this-expressions.html#more">Read More</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-    <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
-    <span class="a2a_divider"></span>
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_google_plus"></a>
-    <a class="a2a_button_pinterest"></a>
-    <a class="a2a_button_tumblr"></a>
-</div>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-<style>
-    .a2a_menu {
-        border-radius: 4px;
-    }
-    .a2a_menu a {
-        margin: 2px 0;
-        font-size: 14px;
-        line-height: 16px;
-        border-radius: 4px;
-        color: inherit !important;
-        font-family: 'Microsoft Yahei';
-    }
-    #a2apage_dropdown {
-        margin: 10px 0;
-    }
-    .a2a_mini_services {
-        padding: 10px;
-    }
-    a.a2a_i,
-    i.a2a_i {
-        width: 122px;
-        line-height: 16px;
-    }
-    a.a2a_i .a2a_svg,
-    a.a2a_more .a2a_svg {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: top;
-        background-size: 16px;
-    }
-    a.a2a_i {
-        border: none !important;
-    }
-    a.a2a_menu_show_more_less {
-        margin: 0;
-        padding: 10px 0;
-        line-height: 16px;
-    }
-    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-    .a2a_mini_services{*+height:1%;}
-</style>
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
 </section>
             
@@ -1536,6 +1593,25 @@ ga('send', 'pageview');
         <h3 class="widget-title">recent</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/outline.html" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/outline.html" class="title">大纲</a></p>
+                            <p class="item-date"><time datetime="2018-06-11T08:07:32.000Z" itemprop="datePublished">2018-06-11</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -1613,25 +1689,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/kotlin/reference/kotlin-osgi.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/Kotlin.png)" alt="Kotlin 与 OSGi" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a></p>
-                            <p class="item-title"><a href="/kotlin/reference/kotlin-osgi.html" class="title">Kotlin 与 OSGi</a></p>
-                            <p class="item-date"><time datetime="2018-05-25T02:07:33.000Z" itemprop="datePublished">2018-05-25</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1650,7 +1707,7 @@ ga('send', 'pageview');
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">67</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">67</span></li></ul>
         </div>
     </div>
 
