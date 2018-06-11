@@ -305,6 +305,24 @@ ga('send', 'pageview');
 <li>不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。</li>
 </ul>
 <h3 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">MDN Arrow Functions</a><br><a href="https://developer.ibm.com/node/2016/01/11/higher-order-functions-in-es6easy-as-a-b-c/" target="_blank" rel="noopener">Higher order functions in ES6:Easy as a =&gt; b =&gt; c;</a></p>
+<ol>
+<li><p>前后端分离<br>后端专注于：后端控制层（Restful API） &amp; 服务层 &amp; 数据访问层；<br>前端专注于：前端控制层 &amp; 视图层</p>
+<ul>
+<li>项目设计阶段，前后端架构负责人将项目整体进行分析，讨论并确定 API 风格、职责分配、开发协助模式，确定人员配备；设计确定后，前后端人员共同制定开发接口。</li>
+<li>项目开发阶段，前后端分离是各自分工，协同敏捷开发，后端提供 Restful API，并给出详细文档说明，前端人员进行页面渲染前台的任务是发送 API 请(GET,PUT,POST,DELETE 等)获取数据（json，xml）后渲染页面。</li>
+<li>项目测试阶段，API 完成之前，前端人员会使用 mock server 进行模拟测试，后端人员采用 junit 进行 API 单元测试，不用互相等待；API 完成之后，前后端再对接测试一下就可以了，当然并不是所有的接口都可以提前定义，有一些是在开发过程中进行调整的。</li>
+</ul>
+</li>
+<li><p>前端框架分析<br>主流三大框架：<a href="https://juejin.im/post/5a0d5df1f265da43062a542f" target="_blank" rel="noopener">优缺点分析，适用场景选择 </a><br>React Vue.js AngularJS</p>
+</li>
+<li><p>Yarn 代替 NPM</p>
+</li>
+<li><p>PWA ‘代替’ 原生 App<br>PWA（Progressive Web App）是 Google 于 2016 年提出的概念，2017 年已被迅速采用。PWA 旨在增强 Web 体验，可显著提高加载速度、可离线工作、可被添加至主屏、全屏执行、推送通知消息等等。这些特性将使得 Web 应用渐进式接近原生 App。</p>
+<p>相关阅读： <a href="https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=zh-cn" target="_blank" rel="noopener">您的第一个 Progressive Web App</a>、<a href="https://www.oschina.net/news/91277/google-removes-chrome-apps-from-chrome-web-store" target="_blank" rel="noopener">Chrome Web App 已被谷歌干掉 未来将主推 PWA</a></p>
+</li>
+<li><p><a href="https://www.graphql.com/" target="_blank" rel="noopener">GraphQL</a><br>GraphQL 并不是一个面向图数据库的查询语言，而是一个数据抽象层，包括数据格式、数据关联、查询方式定义与实现等等一揽子的东西。GraphQL 也并不是一个具体的后端编程框架，如果将 REST 看做适合于简单逻辑的查询标准，那么 GraphQL 可以做一个独立的抽象层，通过对于多个 REST 风格的简单的接口的排列组合提供更多复杂多变的查询方式。与 REST 相比，GraphQL 定义了更严格、可扩展、可维护的数据查询方式。</p>
+</li>
+</ol>
 
         
         </div>
