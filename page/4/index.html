@@ -1121,12 +1121,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/functions" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/lambdas" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/functions.html" itemprop="url">
+		<a href="/kotlin/reference/lambdas.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -1139,7 +1139,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/functions.html">函数</a>
+            <a class="article-title" href="/kotlin/reference/lambdas.html">高阶函数与 lambda 表达式</a>
         </h1>
     
 
@@ -1148,7 +1148,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/functions.html">
+        <a href="/kotlin/reference/lambdas.html">
             <time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -1173,10 +1173,10 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>Kotlin 中的函数使用 <code>fun</code> 关键字声明：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">double</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <p><p>Kotlin 函数都是<a href="https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%89%E5%87%BD%E6%95%B0" target="_blank" rel="noopener"><em>头等的</em></a>，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他<a href="#高阶函数">高阶函数</a>以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。</p>
+<p>为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列<a href="#函数类型">函数类型</a>来表示函数并提供一组特定的语言结构，例如 <a href="#Lambda-表达式与匿名函数">lambda 表达式</a>。</p></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/functions.html#more">Read More</a>
+                <a href="/kotlin/reference/lambdas.html#more">Read More</a>
             </p>
         
         </div>
@@ -1250,12 +1250,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/lambdas" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/functions" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/lambdas.html" itemprop="url">
+		<a href="/kotlin/reference/functions.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -1268,7 +1268,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/lambdas.html">高阶函数与 lambda 表达式</a>
+            <a class="article-title" href="/kotlin/reference/functions.html">函数</a>
         </h1>
     
 
@@ -1277,7 +1277,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/lambdas.html">
+        <a href="/kotlin/reference/functions.html">
             <time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -1302,10 +1302,10 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>Kotlin 函数都是<a href="https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%89%E5%87%BD%E6%95%B0" target="_blank" rel="noopener"><em>头等的</em></a>，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他<a href="#高阶函数">高阶函数</a>以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。</p>
-<p>为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列<a href="#函数类型">函数类型</a>来表示函数并提供一组特定的语言结构，例如 <a href="#Lambda-表达式与匿名函数">lambda 表达式</a>。</p></p>
+            <p><h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>Kotlin 中的函数使用 <code>fun</code> 关键字声明：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">double</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/lambdas.html#more">Read More</a>
+                <a href="/kotlin/reference/functions.html#more">Read More</a>
             </p>
         
         </div>
@@ -1551,7 +1551,7 @@ ga('send', 'pageview');
                             <a href="/es6/classes.html" class="thumbnail">
     
     
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/es6.png)" alt="classes" class="thumbnail-image"></span>
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/classes.jpeg)" alt="classes" class="thumbnail-image"></span>
     
 </a>
 
@@ -1570,7 +1570,7 @@ ga('send', 'pageview');
                             <a href="/es6/arrows.html" class="thumbnail">
     
     
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/es6.png)" alt="箭头函数" class="thumbnail-image"></span>
+        <span style="background-image:url(https://static.oushiun.com/blog/banner/arrows.jpg)" alt="箭头函数" class="thumbnail-image"></span>
     
 </a>
 
