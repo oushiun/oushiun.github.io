@@ -1379,12 +1379,12 @@ ga('send', 'pageview');
 
 
 
-    <article id="post-kotlin/reference/enum-classes" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kotlin/reference/nested-classes" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/kotlin/reference/enum-classes.html" itemprop="url">
+		<a href="/kotlin/reference/nested-classes.html" itemprop="url">
             <img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
         </a>
 	
@@ -1397,7 +1397,7 @@ ga('send', 'pageview');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/kotlin/reference/enum-classes.html">枚举类</a>
+            <a class="article-title" href="/kotlin/reference/nested-classes.html">嵌套类与内部类</a>
         </h1>
     
 
@@ -1406,7 +1406,7 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/enum-classes.html">
+        <a href="/kotlin/reference/nested-classes.html">
             <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
         </a>
     </div>
@@ -1431,11 +1431,10 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>枚举类的最基本的用法是实现类型安全的枚举：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">Direction</span> </span>&#123;</span><br><span class="line">    NORTH, SOUTH, WEST, EAST</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>每个枚举常量都是一个对象。枚举常量用逗号分隔。</p></p>
+            <p><p>类可以嵌套在其他类中：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Nested</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer.Nested().foo() <span class="comment">// == 2</span></span><br></pre></td></tr></table></figure></p>
             <p class="article-more-link">
-                <a href="/kotlin/reference/enum-classes.html#more">Read More</a>
+                <a href="/kotlin/reference/nested-classes.html#more">Read More</a>
             </p>
         
         </div>
