@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>对象表达式与对象声明 | oushiun</title>
+    <title>CSS 书写规范 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。Java 用匿名内部类 处理这种情况。Kotlin 用对象表达式和对象声明对这个概念稍微概括了下。">
-<meta name="keywords" content="Kotlin">
+    <meta name="description" content="写了这么久的 CSS，但大部分前端 er 都没有按照良好的 CSS 书写规范来写 CSS 代码，这样会影响代码的阅读体验，这里设计达人网总结一个 CSS 书写规范、CSS 书写顺序供大家参考，这些是参考了国外一些文章以及我的个人经验总结出来，我想对写 CSS 的前端用户来说是值得学习的。">
+<meta name="keywords" content="规范">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对象表达式与对象声明">
-<meta property="og:url" content="http://oushiun.com/kotlin/reference/object-declarations.html">
+<meta property="og:title" content="CSS 书写规范">
+<meta property="og:url" content="http://oushiun.com/css3/css-coding-standard.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。Java 用匿名内部类 处理这种情况。Kotlin 用对象表达式和对象声明对这个概念稍微概括了下。">
+<meta property="og:description" content="写了这么久的 CSS，但大部分前端 er 都没有按照良好的 CSS 书写规范来写 CSS 代码，这样会影响代码的阅读体验，这里设计达人网总结一个 CSS 书写规范、CSS 书写顺序供大家参考，这些是参考了国外一些文章以及我的个人经验总结出来，我想对写 CSS 的前端用户来说是值得学习的。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-29T08:47:14.718Z">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/css-coding-standard.jpg">
+<meta property="og:updated_time" content="2018-06-13T14:21:49.844Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对象表达式与对象声明">
-<meta name="twitter:description" content="有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。Java 用匿名内部类 处理这种情况。Kotlin 用对象表达式和对象声明对这个概念稍微概括了下。">
-<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+<meta name="twitter:title" content="CSS 书写规范">
+<meta name="twitter:description" content="写了这么久的 CSS，但大部分前端 er 都没有按照良好的 CSS 书写规范来写 CSS 代码，这样会影响代码的阅读体验，这里设计达人网总结一个 CSS 书写规范、CSS 书写顺序供大家参考，这些是参考了国外一些文章以及我的个人经验总结出来，我想对写 CSS 的前端用户来说是值得学习的。">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/css-coding-standard.jpg">
     
 
     
@@ -212,12 +212,12 @@ ga('send', 'pageview');
 </aside>
 
             
-            <section id="main"><article id="post-kotlin/reference/object-declarations" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-css3/css-coding-standard" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
+		<img src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" class="article-banner" />
 	
 
 
@@ -228,7 +228,7 @@ ga('send', 'pageview');
                 
     
         <h1 class="article-title" itemprop="name">
-            对象表达式与对象声明
+            CSS 书写规范
         </h1>
     
 
@@ -237,8 +237,8 @@ ga('send', 'pageview');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/object-declarations.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
+        <a href="/css3/css-coding-standard.html">
+            <time datetime="2018-06-13T11:51:56.000Z" itemprop="datePublished">2018-06-13</time>
         </a>
     </div>
 
@@ -246,13 +246,13 @@ ga('send', 'pageview');
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/Css3/">Css3</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+        <a class="tag-link" href="/tags/规范/">规范</a>
     </div>
 
                     </div>
@@ -263,42 +263,52 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。<br>Java 用<em>匿名内部类</em> 处理这种情况。<br>Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微概括了下。</p>
+            <p>写了这么久的 CSS，但大部分前端 er 都没有按照良好的 CSS 书写规范来写 CSS 代码，这样会影响代码的阅读体验，这里设计达人网总结一个 CSS 书写规范、CSS 书写顺序供大家参考，这些是参考了国外一些文章以及我的个人经验总结出来，我想对写 CSS 的前端用户来说是值得学习的。</p>
 <a id="more"></a>
-<h2 id="对象表达式"><a href="#对象表达式" class="headerlink" title="对象表达式"></a>对象表达式</h2><p>要创建一个继承自某个（或某些）类型的匿名类的对象，我们会这么写：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// ……</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// ……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>如果超类型有一个构造函数，则必须传递适当的构造函数参数给它。多个超类型可以由跟在冒号后面的逗号分隔的列表指定：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>(x: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="keyword">val</span> y: <span class="built_in">Int</span> = x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span> </span>&#123;……&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> ab: A = <span class="keyword">object</span> : A(<span class="number">1</span>), B &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> y = <span class="number">15</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>任何时候，如果我们只需要“一个对象而已”，并不需要特殊超类型，那么我们可以简单地写：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> adHoc = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> x: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">var</span> y: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    print(adHoc.x + adHoc.y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>请注意，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的返回类型或者用作公有属性的类型，那么该函数或属性的实际类型会是匿名对象声明的超类型，如果你没有声明任何超类型，就会是 <code>Any</code>。在匿名对象中添加的成员将无法访问。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 私有函数，所以其返回类型是匿名对象类型</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x: String = <span class="string">"x"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公有函数，所以其返回类型是 Any</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">publicFoo</span><span class="params">()</span></span> = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x: String = <span class="string">"x"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x1 = foo().x        <span class="comment">// 没问题</span></span><br><span class="line">        <span class="keyword">val</span> x2 = publicFoo().x  <span class="comment">// 错误：未能解析的引用“x”</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>就像 Java 匿名内部类一样，对象表达式中的代码可以访问来自包含它的作用域的变量。（与 Java 不同的是，这不仅限于 final 变量。）</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">countClicks</span><span class="params">(window: <span class="type">JComponent</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> clickCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> enterCount = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">            clickCount++</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">            enterCount++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="对象声明"><a href="#对象声明" class="headerlink" title="对象声明"></a>对象声明</h2><p><a href="http://en.wikipedia.org/wiki/Singleton_pattern" target="_blank" rel="noopener">单例模式</a>在一些场景中很有用，而 Kotlin（继 Scala 之后）使单例声明变得很容易：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> DataProviderManager &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">registerDataProvider</span><span class="params">(provider: <span class="type">DataProvider</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// ……</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> allDataProviders: Collection&lt;DataProvider&gt;</span><br><span class="line">        <span class="keyword">get</span>() = <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这称为<em>对象声明</em>。并且它总是在 <code>object</code> 关键字后跟一个名称。就像变量声明一样，对象声明不是一个表达式，不能用在赋值语句的右边。</p>
-<p>对象声明的初始化过程是线程安全的。</p>
-<p>如需引用该对象，我们直接使用其名称即可：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataProviderManager.registerDataProvider(……)</span><br></pre></td></tr></table></figure>
-<p>这些对象可以有超类型：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> DefaultListener : MouseAdapter() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// ……</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// ……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：对象声明不能在局部作用域（即直接嵌套在函数内部），但是它们可以嵌套到其他对象声明或非内部类中。</p>
-<h3 id="伴生对象"><a href="#伴生对象" class="headerlink" title="伴生对象"></a>伴生对象</h3><p>类内部的对象声明可以用 <code>companion</code> 关键字标记：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> Factory &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: MyClass = MyClass()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该伴生对象的成员可通过只使用类名作为限定符来调用：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> instance = MyClass.create()</span><br></pre></td></tr></table></figure>
-<p>可以省略伴生对象的名称，在这种情况下将使用名称 <code>Companion</code>：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x = MyClass.Companion</span><br></pre></td></tr></table></figure>
-<p>请注意，即使伴生对象的成员看起来像其他语言的静态成员，在运行时他们仍然是真实对象的实例成员，而且，例如还可以实现接口：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Factory</span>&lt;<span class="type">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> : Factory&lt;MyClass&gt; &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: MyClass = MyClass()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然，在 JVM 平台，如果使用 <code>@JvmStatic</code> 注解，你可以将伴生对象的成员生成为真正的静态方法和字段。更详细信息请参见<a href="java-to-kotlin-interop.html#静态字段">Java 互操作性</a>一节。</p>
-<h3 id="对象表达式和对象声明之间的语义差异"><a href="#对象表达式和对象声明之间的语义差异" class="headerlink" title="对象表达式和对象声明之间的语义差异"></a>对象表达式和对象声明之间的语义差异</h3><p>对象表达式和对象声明之间有一个重要的语义差别：</p>
-<ul>
-<li>对象表达式是在使用他们的地方<strong>立即</strong>执行（及初始化）的；</li>
-<li>对象声明是在第一次被访问到时<strong>延迟</strong>初始化的；</li>
-<li>伴生对象的初始化是在相应的类被加载（解析）时，与 Java 静态初始化器的语义相匹配。</li>
-</ul>
+<h2 id="CSS-书写顺序"><a href="#CSS-书写顺序" class="headerlink" title="CSS 书写顺序"></a>CSS 书写顺序</h2><ol>
+<li>位置属性(position, top, right, z-index, display, float 等)</li>
+<li>大小(width, height, padding, margin)</li>
+<li>文字系列(font, line-height, letter-spacing, color- text-align 等)</li>
+<li>背景(background, border 等)</li>
+<li>其他(animation, transition 等)</li>
+</ol>
+<p><img src="https://static.oushiun.com/blog/img/css-written-order.png" alt=""></p>
+<h2 id="CSS-书写规范"><a href="#CSS-书写规范" class="headerlink" title="CSS 书写规范"></a>CSS 书写规范</h2><h3 id="使用-CSS-缩写属性"><a href="#使用-CSS-缩写属性" class="headerlink" title="使用 CSS 缩写属性"></a>使用 CSS 缩写属性</h3><p>CSS 有些属性是可以缩写的，比如 padding,margin,font 等等，这样精简代码同时又能提高用户的阅读体验。</p>
+<p><img src="https://static.oushiun.com/blog/img/abbreviation.png" alt=""></p>
+<h3 id="去掉小数点前的“0”"><a href="#去掉小数点前的“0”" class="headerlink" title="去掉小数点前的“0”"></a>去掉小数点前的“0”</h3><p><img src="https://static.oushiun.com/blog/img/del-zero.png" alt=""></p>
+<h3 id="简写命名"><a href="#简写命名" class="headerlink" title="简写命名"></a>简写命名</h3><p>很多用户都喜欢简写类名，但前提是要让人看懂你的命名才能简写哦！</p>
+<p><img src="https://static.oushiun.com/blog/img/name.png" alt=""></p>
+<h3 id="16-进制颜色代码缩写"><a href="#16-进制颜色代码缩写" class="headerlink" title="16 进制颜色代码缩写"></a>16 进制颜色代码缩写</h3><p>有些颜色代码是可以缩写的，我们就尽量缩写吧，提高用户体验为主。</p>
+<p><img src="https://static.oushiun.com/blog/img/color-abb.png" alt=""></p>
+<h3 id="连字符-CSS-选择器命名规范"><a href="#连字符-CSS-选择器命名规范" class="headerlink" title="连字符 CSS 选择器命名规范"></a>连字符 CSS 选择器命名规范</h3><ol>
+<li><p>长名称或词组可以使用中横线来为选择器命名。</p>
+</li>
+<li><p>不建议使用“_”下划线来命名 CSS 选择器，为什么呢？</p>
+<ol>
+<li>输入的时候少按一个 shift 键；</li>
+<li>浏览器兼容问题 （比如使用*tips 的选择器命名，在 IE6 是无效的）</li>
+<li>能良好区分 JavaScript 变量命名（JS 变量命名是用“*”）</li>
+</ol>
+</li>
+</ol>
+<p>这里有一篇破折号与下划线的详细讨论，英文：<a href="http://stackoverflow.com/questions/7560813/why-are-dashes-preferred-for-css-selectors-html-attributes" target="_blank" rel="noopener">点击查看</a> 中文篇：<a href="http://www.cnblogs.com/kaiye/archive/2011/06/13/3039046.html" target="_blank" rel="noopener">点击查看</a></p>
+<p><img src="https://static.oushiun.com/blog/img/underline.png" alt=""></p>
+<h3 id="不要随意使用-Id"><a href="#不要随意使用-Id" class="headerlink" title="不要随意使用 Id"></a>不要随意使用 Id</h3><p>id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可以重复使用，另外 id 的优先级优先与 class，所以 id 应该按需使用，而不能滥用。</p>
+<p><img src="https://static.oushiun.com/blog/img/css-id.png" alt=""></p>
+<h3 id="为选择器添加状态前缀"><a href="#为选择器添加状态前缀" class="headerlink" title="为选择器添加状态前缀"></a>为选择器添加状态前缀</h3><p>有时候可以给选择器添加一个表示状态的前缀，让语义更明了，比如下图是添加了 <code>.is-</code> 前缀。</p>
+<p><img src="https://static.oushiun.com/blog/img/status-select.png" alt=""></p>
+<h2 id="CSS-命名规范（规则）"><a href="#CSS-命名规范（规则）" class="headerlink" title="CSS 命名规范（规则）"></a>CSS 命名规范（规则）</h2><h3 id="常用的-CSS-命名规则"><a href="#常用的-CSS-命名规则" class="headerlink" title="常用的 CSS 命名规则"></a>常用的 CSS 命名规则</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">头：<span class="selector-tag">header</span></span><br><span class="line">内容：content/container</span><br><span class="line">尾：<span class="selector-tag">footer</span></span><br><span class="line">导航：<span class="selector-tag">nav</span></span><br><span class="line">侧栏：<span class="selector-tag">sidebar</span></span><br><span class="line">栏目：<span class="selector-tag">column</span></span><br><span class="line">页面外围控制整体佈局宽度：<span class="selector-tag">wrapper</span></span><br><span class="line">左右中：<span class="selector-tag">left</span> <span class="selector-tag">right</span> <span class="selector-tag">center</span></span><br><span class="line">登录条：<span class="selector-tag">loginbar</span></span><br><span class="line">标志：<span class="selector-tag">logo</span></span><br><span class="line">广告：<span class="selector-tag">banner</span></span><br><span class="line">页面主体：<span class="selector-tag">main</span></span><br><span class="line">热点：<span class="selector-tag">hot</span></span><br><span class="line">新闻：<span class="selector-tag">news</span></span><br><span class="line">下载：<span class="selector-tag">download</span></span><br><span class="line">子导航：<span class="selector-tag">subnav</span></span><br><span class="line">菜单：<span class="selector-tag">menu</span></span><br><span class="line">子菜单：<span class="selector-tag">submenu</span></span><br><span class="line">搜索：<span class="selector-tag">search</span></span><br><span class="line">友情链接：<span class="selector-tag">friendlink</span></span><br><span class="line">页脚：<span class="selector-tag">footer</span></span><br><span class="line">版权：<span class="selector-tag">copyright</span></span><br><span class="line">滚动：<span class="selector-tag">scroll</span></span><br><span class="line">内容：<span class="selector-tag">content</span></span><br><span class="line">标签：<span class="selector-tag">tags</span></span><br><span class="line">文章列表：<span class="selector-tag">list</span></span><br><span class="line">提示信息：<span class="selector-tag">msg</span></span><br><span class="line">小技巧：<span class="selector-tag">tips</span></span><br><span class="line">栏目标题：<span class="selector-tag">title</span></span><br><span class="line">加入：<span class="selector-tag">joinus</span></span><br><span class="line">指南：<span class="selector-tag">guide</span></span><br><span class="line">服务：<span class="selector-tag">service</span></span><br><span class="line">注册：<span class="selector-tag">regsiter</span></span><br><span class="line">状态：<span class="selector-tag">status</span></span><br><span class="line">投票：<span class="selector-tag">vote</span></span><br><span class="line">合作伙伴：<span class="selector-tag">partner</span></span><br></pre></td></tr></table></figure>
+<h3 id="注释的写法"><a href="#注释的写法" class="headerlink" title="注释的写法"></a>注释的写法</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Header */</span></span><br><span class="line">内容区</span><br><span class="line"><span class="comment">/* End Header */</span></span><br></pre></td></tr></table></figure>
+<h3 id="Id-的命名"><a href="#Id-的命名" class="headerlink" title="Id 的命名:"></a>Id 的命名:</h3><h4 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">容器: <span class="selector-tag">container</span></span><br><span class="line">页头：<span class="selector-tag">header</span></span><br><span class="line">内容：content/container</span><br><span class="line">页面主体：<span class="selector-tag">main</span></span><br><span class="line">页尾：<span class="selector-tag">footer</span></span><br><span class="line">导航：<span class="selector-tag">nav</span></span><br><span class="line">侧栏：<span class="selector-tag">sidebar</span></span><br><span class="line">栏目：<span class="selector-tag">column</span></span><br><span class="line">页面外围控制整体佈局宽度：<span class="selector-tag">wrapper</span></span><br><span class="line">左右中：<span class="selector-tag">left</span> <span class="selector-tag">right</span> <span class="selector-tag">center</span></span><br></pre></td></tr></table></figure>
+<h4 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">导航：<span class="selector-tag">nav</span></span><br><span class="line">主导航：<span class="selector-tag">mainnav</span></span><br><span class="line">子导航：<span class="selector-tag">subnav</span></span><br><span class="line">顶导航：<span class="selector-tag">topnav</span></span><br><span class="line">边导航：<span class="selector-tag">sidebar</span></span><br><span class="line">左导航：<span class="selector-tag">leftsidebar</span></span><br><span class="line">右导航：<span class="selector-tag">rightsidebar</span></span><br><span class="line">菜单：<span class="selector-tag">menu</span></span><br><span class="line">子菜单：<span class="selector-tag">submenu</span></span><br><span class="line">标题: <span class="selector-tag">title</span></span><br><span class="line">摘要: <span class="selector-tag">summary</span></span><br></pre></td></tr></table></figure>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">标志：<span class="selector-tag">logo</span></span><br><span class="line">广告：<span class="selector-tag">banner</span></span><br><span class="line">登陆：<span class="selector-tag">login</span></span><br><span class="line">登录条：<span class="selector-tag">loginbar</span></span><br><span class="line">注册：<span class="selector-tag">register</span></span><br><span class="line">搜索：<span class="selector-tag">search</span></span><br><span class="line">功能区：<span class="selector-tag">shop</span></span><br><span class="line">标题：<span class="selector-tag">title</span></span><br><span class="line">加入：<span class="selector-tag">joinus</span></span><br><span class="line">状态：<span class="selector-tag">status</span></span><br><span class="line">按钮：<span class="selector-tag">btn</span></span><br><span class="line">滚动：<span class="selector-tag">scroll</span></span><br><span class="line">标籤页：<span class="selector-tag">tab</span></span><br><span class="line">文章列表：<span class="selector-tag">list</span></span><br><span class="line">提示信息：<span class="selector-tag">msg</span></span><br><span class="line">当前的: <span class="selector-tag">current</span></span><br><span class="line">小技巧：<span class="selector-tag">tips</span></span><br><span class="line">图标: <span class="selector-tag">icon</span></span><br><span class="line">注释：<span class="selector-tag">note</span></span><br><span class="line">指南：<span class="selector-tag">guild</span></span><br><span class="line">服务：<span class="selector-tag">service</span></span><br><span class="line">热点：<span class="selector-tag">hot</span></span><br><span class="line">新闻：<span class="selector-tag">news</span></span><br><span class="line">下载：<span class="selector-tag">download</span></span><br><span class="line">投票：<span class="selector-tag">vote</span></span><br><span class="line">合作伙伴：<span class="selector-tag">partner</span></span><br><span class="line">友情链接：<span class="selector-tag">link</span></span><br><span class="line">版权：<span class="selector-tag">copyright</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li>一律小写;</li>
+<li>尽量用英文;</li>
+<li>不加中槓和下划线;</li>
+<li>尽量不缩写，除非一看就明白的单词。</li>
+</ol>
+<h4 id="CSS-样式表文件命名"><a href="#CSS-样式表文件命名" class="headerlink" title="CSS 样式表文件命名"></a>CSS 样式表文件命名</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">主要的 <span class="selector-tag">master</span><span class="selector-class">.css</span></span><br><span class="line">模块 <span class="selector-tag">module</span><span class="selector-class">.css</span></span><br><span class="line">基本共用 <span class="selector-tag">base</span><span class="selector-class">.css</span></span><br><span class="line">布局、版面 <span class="selector-tag">layout</span><span class="selector-class">.css</span></span><br><span class="line">主题 <span class="selector-tag">themes</span><span class="selector-class">.css</span></span><br><span class="line">专栏 <span class="selector-tag">columns</span><span class="selector-class">.css</span></span><br><span class="line">文字 <span class="selector-tag">font</span><span class="selector-class">.css</span></span><br><span class="line">表单 <span class="selector-tag">forms</span><span class="selector-class">.css</span></span><br><span class="line">补丁 <span class="selector-tag">mend</span><span class="selector-class">.css</span></span><br><span class="line">打印 <span class="selector-tag">print</span><span class="selector-class">.css</span></span><br></pre></td></tr></table></figure>
 
         
         </div>
@@ -371,19 +381,10 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/kotlin/reference/delegation.html" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
-            <div class="article-nav-title">
-                
-                    委托
-                
-            </div>
-        </a>
     
-    
-        <a href="/kotlin/reference/enum-classes.html" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/es6/enhanced-object-literals.html" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">枚举类</div>
+            <div class="article-nav-title">增强的对象文本</div>
         </a>
     
 </nav>
