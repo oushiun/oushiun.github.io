@@ -3,19 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Category: 类与对象 | oushiun</title>
+    <title>解构 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="互联网产品、技术、设计文章分享">
-<meta name="keywords" content="css3,javascript,linux,开发,运维,网络,设计">
-<meta property="og:type" content="website">
-<meta property="og:title" content="oushiun">
-<meta property="og:url" content="http://oushiun.com/categories/后端/Kotlin/参考/类与对象/index.html">
+    <meta name="description" content="什么是解构赋值？解构赋值允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量。这种赋值语法极度简洁，同时还比传统的属性访问方法更为清晰。 通常来说，你很可能这样访问数组中的前三个元素： 123var first = someArray[0]var second = someArray[1]var third = someArray[2] 如果使用解构赋值的特性，将会使等效的代码变得更">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解构">
+<meta property="og:url" content="http://oushiun.com/es6/destructuring.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="互联网产品、技术、设计文章分享">
+<meta property="og:description" content="什么是解构赋值？解构赋值允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量。这种赋值语法极度简洁，同时还比传统的属性访问方法更为清晰。 通常来说，你很可能这样访问数组中的前三个元素： 123var first = someArray[0]var second = someArray[1]var third = someArray[2] 如果使用解构赋值的特性，将会使等效的代码变得更">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/destructuring.jpg">
+<meta property="og:updated_time" content="2018-06-19T08:34:31.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oushiun">
-<meta name="twitter:description" content="互联网产品、技术、设计文章分享">
+<meta name="twitter:title" content="解构">
+<meta name="twitter:description" content="什么是解构赋值？解构赋值允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量。这种赋值语法极度简洁，同时还比传统的属性访问方法更为清晰。 通常来说，你很可能这样访问数组中的前三个元素： 123var first = someArray[0]var second = someArray[1]var third = someArray[2] 如果使用解构赋值的特性，将会使等效的代码变得更">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/destructuring.jpg">
     
 
     
@@ -209,378 +212,188 @@ ga('send', 'pageview');
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">类与对象</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-es6/destructuring" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/destructuring.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/delegated-properties.html">委托属性</a>
+        <h1 class="article-title" itemprop="name">
+            解构
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/delegated-properties.html">
-            <time datetime="2018-05-17T06:48:41.000Z" itemprop="datePublished">2018-05-17</time>
+        <a href="/es6/destructuring.html">
+            <time datetime="2018-06-19T08:07:48.000Z" itemprop="datePublished">2018-06-19</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/ECMAScript-6/">ECMAScript 6</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+        <a class="tag-link" href="/tags/ES6/">ES6</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/delegation.html">委托</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="什么是解构赋值？"><a href="#什么是解构赋值？" class="headerlink" title="什么是解构赋值？"></a>什么是解构赋值？</h3><p><strong>解构赋值允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量</strong>。这种赋值语法极度简洁，同时还比传统的属性访问方法更为清晰。</p>
+<p>通常来说，你很可能这样访问数组中的前三个元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = someArray[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">var</span> second = someArray[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">var</span> third = someArray[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p>如果使用解构赋值的特性，将会使等效的代码变得更加简洁并且可读性更高：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [first, second, third] = someArray</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><em>SpiderMonkey</em>（Firefox 的 JavaScript 引擎）已经支持解构的大部分功能，但是仍不健全。你可以通过 <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=694100" target="_blank" rel="noopener">bug 694100</a> 跟踪解构和其它 ES6 特性在 SpiderMonkey 中的支持情况。</p>
+<h3 id="数组与迭代器的解构"><a href="#数组与迭代器的解构" class="headerlink" title="数组与迭代器的解构"></a>数组与迭代器的解构</h3><p>以上是数组解构赋值的一个简单示例，其语法的一般形式为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ variable1, variable2, ..., variableN ] = array</span><br></pre></td></tr></table></figure>
+<p>这将为 <em>variable1</em> 到 <em>variableN</em> 的变量赋予数组中相应元素项的值。如果你想在<em>赋值的同时声明变量</em>，可在赋值语句前加入 <code>var</code> 、<code>let</code> 或 <code>const</code> 关键字，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [ variable1, variable2, ..., variableN ] = array</span><br><span class="line"><span class="keyword">let</span> [ variable1, variable2, ..., variableN ] = array</span><br><span class="line"><span class="keyword">const</span> [ variable1, variable2, ..., variableN ] = array</span><br></pre></td></tr></table></figure>
+<p>事实上，用变量来描述并不恰当，因为你可以对任意深度的嵌套数组进行解构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [foo, [[bar], baz]] = [<span class="number">1</span>, [[<span class="number">2</span>], <span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(bar) <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(baz) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>此外，你可以在对应位留空来跳过被解构数组中的某些元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [, , third] = [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(third) <span class="comment">// "baz"</span></span><br></pre></td></tr></table></figure>
+<p>而且你还可以通过“<em>不定参数</em>”模式捕获数组中的所有尾随元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [head, ...tail] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(tail) <span class="comment">// [2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<p>当访问空数组或越界访问数组时，对其解构与对其索引的行为一致，最终得到的结果都是：<code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([][<span class="number">0</span>]) <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> [missing] = []</span><br><span class="line"><span class="built_in">console</span>.log(missing) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="解构对象"><a href="#解构对象" class="headerlink" title="解构对象"></a>解构对象</h3><p>在对象上进行解构可以将变量绑定到对象的不同属性。你指定要绑定的属性，然后指定要绑定其值的变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> robotA = &#123; <span class="attr">name</span>: <span class="string">'Bender'</span> &#125;</span><br><span class="line"><span class="keyword">var</span> robotB = &#123; <span class="attr">name</span>: <span class="string">'Flexo'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">name</span>: nameA &#125; = robotA</span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">name</span>: nameB &#125; = robotB</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(nameA) <span class="comment">// "Bender"</span></span><br><span class="line"><span class="built_in">console</span>.log(nameB) <span class="comment">// "Flexo"</span></span><br></pre></td></tr></table></figure>
+<p><strong>当属性和变量名称相同时</strong>，有一个有用的语法快捷方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">'lorem'</span>, <span class="attr">bar</span>: <span class="string">'ipsum'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// "lorem"</span></span><br><span class="line"><span class="built_in">console</span>.log(bar) <span class="comment">// "ipsum"</span></span><br></pre></td></tr></table></figure>
+<p>就像在数组上进行解构一样，你可以嵌套并结合进一步的解构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> complicatedObj = &#123;</span><br><span class="line">    arrayProp: [<span class="string">'Zapp'</span>, &#123; <span class="attr">second</span>: <span class="string">'Brannigan'</span> &#125;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;</span><br><span class="line">    arrayProp: [first, &#123; second &#125;]</span><br><span class="line">&#125; = complicatedObj</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(first) <span class="comment">// "Zapp"</span></span><br><span class="line"><span class="built_in">console</span>.log(second) <span class="comment">// "Brannigan"</span></span><br></pre></td></tr></table></figure>
+<p>当你对未定义的属性进行解构时，你会得到 <code>undefined</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123; missing &#125; = &#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(missing) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>你应该知道的一个潜在的小问题，就是当你使用一个对象上解构给变量赋值，而不是将它们声明（当没有 <code>var</code> 、<code>let</code> 或 <code>const</code>）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; blowUp &#125; = &#123; <span class="attr">blowUp</span>: <span class="number">10</span> &#125;</span><br><span class="line"><span class="comment">// Syntax error</span></span><br></pre></td></tr></table></figure>
+<p>发生这种情况是因为引擎试图将表达式解析为块语句（例如，<code>{ console }</code> 是有效的块语句）。解决方案是将模式或整个表达式包装在括号中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(&#123; safe &#125;) = &#123;&#125;</span><br><span class="line">(&#123; andSound &#125; = &#123;&#125;)</span><br><span class="line"><span class="comment">// No errors</span></span><br></pre></td></tr></table></figure>
+<h3 id="解构值不是对象或数组"><a href="#解构值不是对象或数组" class="headerlink" title="解构值不是对象或数组"></a>解构值不是对象或数组</h3><p>当你尝试使用解构 <code>null</code> 或者时 <code>undefined</code> ，你会得到一个类型错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [blowUp] = <span class="literal">null</span></span><br><span class="line"><span class="comment">// TypeError: null has no properties</span></span><br></pre></td></tr></table></figure>
+<p>但是，您可以对其他基本类型（如布尔值，数字和字符串）进行解构，并获得 <code>undefined</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [wtf] = <span class="literal">NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(wtf)</span><br><span class="line"><span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>这可能会出乎意料，但经过进一步检查后，结果很简单。当一个值被解构时，它首先<a href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-9.1.9" target="_blank" rel="noopener">使用抽象操作 ToObject 被 转换为一个对象</a>。大多数类型可以转换为一个对象，但 <code>null</code> 与 <code>undefined</code> 可能不是。</p>
+<h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><p>你还可以提供何时未解释您正在解构的属性的默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [missing = <span class="literal">true</span>] = []</span><br><span class="line"><span class="built_in">console</span>.log(missing) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; x = <span class="number">3</span> &#125; = &#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h3><p><a href="http://fitzgeraldnick.com/2013/08/15/destructuring-assignment-in-es6.html" target="_blank" rel="noopener">Destructuring Assignment in ECMAScript 6</a></p>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/delegation.html">
-            <time datetime="2018-05-17T03:44:45.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/enum-classes.html">枚举类</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/enum-classes.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/nested-classes.html">嵌套类与内部类</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/nested-classes.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/object-declarations.html">对象表达式与对象声明</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/object-declarations.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/generics.html">泛型</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/generics.html">
-            <time datetime="2018-05-17T03:33:54.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/data-classes.html">数据类</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/data-classes.html">
-            <time datetime="2018-05-17T02:31:00.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/sealed-classes.html">密封类</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/sealed-classes.html">
-            <time datetime="2018-05-17T02:31:00.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/extensions.html">扩展</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/extensions.html">
-            <time datetime="2018-05-17T02:24:03.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/visibility-modifiers.html">可见性修饰符</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/visibility-modifiers.html">
-            <time datetime="2018-05-17T02:18:56.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
 
-    <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/categories/后端/Kotlin/参考/类与对象/page/2/">2</a><a class="extend next" rel="next" href="/categories/后端/Kotlin/参考/类与对象/page/2/">Next &raquo;</a>
-    </nav>
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/es6/template-strings.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">模板字符串</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
 </section>
             
                 
