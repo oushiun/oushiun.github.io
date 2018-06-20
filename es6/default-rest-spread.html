@@ -3,19 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Category: Kotlin | oushiun</title>
+    <title>默认参数、不定参数、扩展运算符 | oushiun</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="互联网产品、技术、设计文章分享">
-<meta name="keywords" content="css3,javascript,linux,开发,运维,网络,设计">
-<meta property="og:type" content="website">
-<meta property="og:title" content="oushiun">
-<meta property="og:url" content="http://oushiun.com/categories/后端/Kotlin/page/4/index.html">
+    <meta name="description" content="默认参数(default)这是一个简单的小增加，使得处理函数参数变得更容易。无论函数定义中声明的参数数量多少，JavaScript 中的函数都允许传递任意数量的参数。您可能知道当前 JavaScript 代码中常见的模式： 123456789function inc(number, increment) &amp;#123;    // set default to 1 if increment not">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="默认参数、不定参数、扩展运算符">
+<meta property="og:url" content="http://oushiun.com/es6/default-rest-spread.html">
 <meta property="og:site_name" content="oushiun">
-<meta property="og:description" content="互联网产品、技术、设计文章分享">
+<meta property="og:description" content="默认参数(default)这是一个简单的小增加，使得处理函数参数变得更容易。无论函数定义中声明的参数数量多少，JavaScript 中的函数都允许传递任意数量的参数。您可能知道当前 JavaScript 代码中常见的模式： 123456789function inc(number, increment) &amp;#123;    // set default to 1 if increment not">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://static.oushiun.com/blog/banner/default-rest-spread.jpg">
+<meta property="og:updated_time" content="2018-06-20T07:05:09.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oushiun">
-<meta name="twitter:description" content="互联网产品、技术、设计文章分享">
+<meta name="twitter:title" content="默认参数、不定参数、扩展运算符">
+<meta name="twitter:description" content="默认参数(default)这是一个简单的小增加，使得处理函数参数变得更容易。无论函数定义中声明的参数数量多少，JavaScript 中的函数都允许传递任意数量的参数。您可能知道当前 JavaScript 代码中常见的模式： 123456789function inc(number, increment) &amp;#123;    // set default to 1 if increment not">
+<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/default-rest-spread.jpg">
     
 
     
@@ -209,378 +212,181 @@ ga('send', 'pageview');
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">Kotlin</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-es6/default-rest-spread" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/multi-declarations.html">解构声明</a>
+        <h1 class="article-title" itemprop="name">
+            默认参数、不定参数、扩展运算符
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/multi-declarations.html">
-            <time datetime="2018-05-21T01:39:03.000Z" itemprop="datePublished">2018-05-21</time>
+        <a href="/es6/default-rest-spread.html">
+            <time datetime="2018-06-20T03:02:29.000Z" itemprop="datePublished">2018-06-20</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/其他/">其他</a>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/ECMAScript-6/">ECMAScript 6</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
+        <a class="tag-link" href="/tags/ES6/">ES6</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/coroutines.html">协程</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="默认参数-default"><a href="#默认参数-default" class="headerlink" title="默认参数(default)"></a>默认参数(default)</h3><p>这是一个简单的小增加，使得处理函数参数变得更容易。无论函数定义中声明的参数数量多少，JavaScript 中的函数都允许传递任意数量的参数。您可能知道当前 JavaScript 代码中<strong>常见的模式</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inc</span>(<span class="params">number, increment</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// set default to 1 if increment not passed</span></span><br><span class="line">    <span class="comment">// (or passed as undefined)</span></span><br><span class="line">    increment = increment || <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> number + increment</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(inc(<span class="number">2</span>, <span class="number">2</span>)) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(inc(<span class="number">2</span>)) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>当 <em>increment</em> 为 <code>undefined</code> 或者不填写，通过逻辑<strong>或操作符(<code>||</code>)</strong>返回 1。</p>
+<p>ES6 为我们提供了设置默认功能参数的方法。任何具有默认值的参数都被认为是可选的。</p>
+<p><code>inc</code> 函数的 ES6 代码如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inc</span>(<span class="params">number, increment = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> number + increment</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(inc(<span class="number">2</span>, <span class="number">2</span>)) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(inc(<span class="number">2</span>)) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>你还可以将默认值设置为出现在没有默认值的参数之前的参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b = <span class="number">2</span>, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b + c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>)) <span class="comment">// 16 -&gt; b === 5</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">10</span>)) <span class="comment">// 13 -&gt; b as default</span></span><br></pre></td></tr></table></figure>
+<p>你甚至可以执行一个函数来设置默认参数。所以它不局限于<strong>原始值</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDefaultIncrement</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inc</span>(<span class="params">number, increment = getDefaultIncrement(</span>)) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> number + increment</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(inc(<span class="number">2</span>, <span class="number">2</span>)) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(inc(<span class="number">2</span>)) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="不定参数-rest"><a href="#不定参数-rest" class="headerlink" title="不定参数(rest)"></a>不定参数(rest)</h3><p>重写 <em>sum</em> 函数来处理传递给它的所有参数，如果使用 ES5，我们可能也要使用 <code>arguments</code> 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numbers = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>),</span><br><span class="line">        result = <span class="number">0</span></span><br><span class="line">    numbers.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">        result += number</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>)) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)) <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<p>但是，该函数不能够处理任何参数。我们必须扫描函数的形体并找到参数对象。<br>ECMAScript 6 引入了不定参数(<em>rest</em>)来帮助我们解决这个问题和其他问题。</p>
+<blockquote>
+<p>arguments - contains all parameters including named parameters</p>
+</blockquote>
+<p>REST 参数由三个点表示…在一个参数之前。命名参数成为包含其余参数的数组。</p>
+<p><em>sum</em> 函数使用 ES6 语法重写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...numbers</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="number">0</span></span><br><span class="line">    numbers.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">        result += number</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>)) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)) <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：在函数声明中不能使用其他命名参数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...numbers, last</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// causes a syntax error</span></span><br><span class="line">    <span class="keyword">var</span> result = <span class="number">0</span></span><br><span class="line">    numbers.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">        result += number</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩展运算符-spread"><a href="#扩展运算符-spread" class="headerlink" title="扩展运算符(spread)"></a>扩展运算符(spread)</h3><p>扩展运算符与不定参数密切相关，它允许分割数组单参数是作为单独的参数传递给函数。</p>
+<p>通过 spread 定义 <em>sum</em> 函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b + c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(sum(...args)) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p>等同于 ES5 写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b + c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(sum.apply(<span class="literal">undefined</span>, args)) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p>因此，使用 <code>apply</code> 函数，我们可以输入 <code>...args</code> 并单独传递所有数组参数。</p>
+<p>我们也可以混合使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b + c</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="built_in">console</span>.log(sum(...args, <span class="number">3</span>)) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p>结果是一样的。前两个参数来自 args 数组，最后一个参数是 3。</p>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/coroutines.html">
-            <time datetime="2018-05-17T12:35:52.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/函数/">函数</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/inline-functions.html">内联函数</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/inline-functions.html">
-            <time datetime="2018-05-17T12:26:23.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/函数/">函数</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/lambdas.html">高阶函数与 lambda 表达式</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/lambdas.html">
-            <time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/函数/">函数</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/functions.html">函数</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/functions.html">
-            <time datetime="2018-05-17T12:15:11.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/函数/">函数</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/delegated-properties.html">委托属性</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/delegated-properties.html">
-            <time datetime="2018-05-17T06:48:41.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/delegation.html">委托</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/delegation.html">
-            <time datetime="2018-05-17T03:44:45.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/object-declarations.html">对象表达式与对象声明</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/object-declarations.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/nested-classes.html">嵌套类与内部类</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/nested-classes.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/kotlin/reference/enum-classes.html">枚举类</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/enum-classes.html">
-            <time datetime="2018-05-17T03:38:12.000Z" itemprop="datePublished">2018-05-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
 
-    <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/categories/后端/Kotlin/page/3/">&laquo; Prev</a><a class="page-number" href="/categories/后端/Kotlin/">1</a><a class="page-number" href="/categories/后端/Kotlin/page/2/">2</a><a class="page-number" href="/categories/后端/Kotlin/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/categories/后端/Kotlin/page/5/">5</a><a class="page-number" href="/categories/后端/Kotlin/page/6/">6</a><a class="page-number" href="/categories/后端/Kotlin/page/7/">7</a><a class="extend next" rel="next" href="/categories/后端/Kotlin/page/5/">Next &raquo;</a>
-    </nav>
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/es6/destructuring.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">解构</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="valine-thread"></div>
+</section>
+    
+
 </section>
             
                 
