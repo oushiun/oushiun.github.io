@@ -13,7 +13,7 @@ banner: https://static.oushiun.com/blog/banner/default-rest-spread.jpg
 
 ### 默认参数(default)
 
-这是一个简单的小增加，使得处理函数参数变得更容易。无论函数定义中声明的参数数量多少，JavaScript 中的函数都允许传递任意数量的参数。您可能知道当前 JavaScript 代码中**常见的模式**：
+这是一个相加的例子，无论函数定义中声明的参数数量多少，JavaScript 中的函数都允许传递任意数量的参数。您可能知道当前 JavaScript 代码中**常见的模式**：
 
 ```javascript
 function inc(number, increment) {
@@ -26,6 +26,8 @@ function inc(number, increment) {
 console.log(inc(2, 2)) // 4
 console.log(inc(2)) // 3
 ```
+
+<!-- more -->
 
 当 _increment_ 为 `undefined` 或者不填写，通过逻辑**或操作符(`||`)**返回 1。
 

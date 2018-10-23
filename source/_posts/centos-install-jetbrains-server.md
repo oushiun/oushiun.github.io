@@ -54,7 +54,7 @@ vi /etc/vsftpd/vsftpd.conf
 
 ### 添加用户及额外配置
 
-1.  启用 root 用户进入 `/etc/vsftpd` 目录下修改 ::ftpusers:: & ::user_list::
+1.  启用 root 用户进入 `/etc/vsftpd` 目录下修改 `ftpusers` & `user_list`
     将 **root** 用户注释 #
 
 2.  开放 21 端口
@@ -65,10 +65,12 @@ firewall-cmd --zone=public --add-port=21/tcp --permanent
 
 ```bash
 yum install firewalld #安装firewalld 防火墙
-systemctl start firewalld.service #开启防火墙
-systemctl stop firewalld.service #关闭防火墙
-systemctl enable firewalld.service #开机自动启动
-systemctl disable firewalld.service #禁止开机制动启动
+
+systemctl start firewalld #开启防火墙
+systemctl stop firewalld #关闭防火墙
+systemctl enable firewalld #开机自动启动
+systemctl disable firewalld #禁止开机制动启动
+
 firewall-cmd --state #running 表示运行
 firewall-cmd --reload #重新载入以生效
 firewall-cmd --complete-reload #更新规则，重启服务
@@ -76,7 +78,7 @@ firewall-cmd --complete-reload #更新规则，重启服务
 
 ### 上传文件
 
-下载[IntelliJ IDEA License Server v1.6](http://blog.lanyus.com/archives/326.html)(当前使用是 v1.6，新版本还请及时关注[lanyus](blog.lanyus.com))
+下载[IntelliJ IDEA License Server v1.6](http://blog.lanyus.com/archives/326.html)(当前使用是 v1.6，新版本还请及时关注[lanyus](http://blog.lanyus.com/))
 
 解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是 x86_64 GNU/Linux，so 给 IntelliJIDEALicenseServer_linux_amd64 赋可执行权限
 
