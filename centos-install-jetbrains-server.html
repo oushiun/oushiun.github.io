@@ -14,7 +14,7 @@
 <meta property="og:description" content="CentOS 搭建 jetbrains 破解服务器">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://static.oushiun.com/blog/banner/jetbrains.png">
-<meta property="og:updated_time" content="2018-05-15T09:34:00.532Z">
+<meta property="og:updated_time" content="2018-10-23T07:48:21.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 搭建 jetbrains 破解服务器">
 <meta name="twitter:description" content="CentOS 搭建 jetbrains 破解服务器">
@@ -290,14 +290,14 @@ ga('send', 'pageview');
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
 <h3 id="添加用户及额外配置"><a href="#添加用户及额外配置" class="headerlink" title="添加用户及额外配置"></a>添加用户及额外配置</h3><ol>
-<li><p>启用 root 用户进入 <code>/etc/vsftpd</code> 目录下修改 ::ftpusers:: &amp; ::user_list::<br>将 <strong>root</strong> 用户注释 #</p>
+<li><p>启用 root 用户进入 <code>/etc/vsftpd</code> 目录下修改 <code>ftpusers</code> &amp; <code>user_list</code><br>将 <strong>root</strong> 用户注释 #</p>
 </li>
 <li><p>开放 21 端口</p>
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=21/tcp --permanent</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld <span class="comment">#安装firewalld 防火墙</span></span><br><span class="line">systemctl start firewalld.service <span class="comment">#开启防火墙</span></span><br><span class="line">systemctl stop firewalld.service <span class="comment">#关闭防火墙</span></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld.service <span class="comment">#开机自动启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service <span class="comment">#禁止开机制动启动</span></span><br><span class="line">firewall-cmd --state <span class="comment">#running 表示运行</span></span><br><span class="line">firewall-cmd --reload <span class="comment">#重新载入以生效</span></span><br><span class="line">firewall-cmd --complete-reload <span class="comment">#更新规则，重启服务</span></span><br></pre></td></tr></table></figure>
-<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>下载<a href="http://blog.lanyus.com/archives/326.html" target="_blank" rel="noopener">IntelliJ IDEA License Server v1.6</a>(当前使用是 v1.6，新版本还请及时关注<a href="blog.lanyus.com">lanyus</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld <span class="comment">#安装firewalld 防火墙</span></span><br><span class="line"></span><br><span class="line">systemctl start firewalld <span class="comment">#开启防火墙</span></span><br><span class="line">systemctl stop firewalld <span class="comment">#关闭防火墙</span></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld <span class="comment">#开机自动启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld <span class="comment">#禁止开机制动启动</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --state <span class="comment">#running 表示运行</span></span><br><span class="line">firewall-cmd --reload <span class="comment">#重新载入以生效</span></span><br><span class="line">firewall-cmd --complete-reload <span class="comment">#更新规则，重启服务</span></span><br></pre></td></tr></table></figure>
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>下载<a href="http://blog.lanyus.com/archives/326.html" target="_blank" rel="noopener">IntelliJ IDEA License Server v1.6</a>(当前使用是 v1.6，新版本还请及时关注<a href="http://blog.lanyus.com/" target="_blank" rel="noopener">lanyus</a>)</p>
 <p>解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是 x86_64 GNU/Linux，so 给 IntelliJIDEALicenseServer_linux_amd64 赋可执行权限</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x IntelliJIDEALicenseServer_linux_amd64</span><br></pre></td></tr></table></figure>
 <h3 id="安装配置-Nginx"><a href="#安装配置-Nginx" class="headerlink" title="安装配置 Nginx"></a>安装配置 Nginx</h3><ol>
