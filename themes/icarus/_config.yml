@@ -75,7 +75,7 @@ comment:
 share:
     # Share plugin name
     type: addthis
-    install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c18aad4678d8555
+    install_url: //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-546ef3c21741bbff
 # Sidebar settings.
 # Please be noted that a sidebar is only visible when it has at least one widget
 sidebar:
