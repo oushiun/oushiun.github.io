@@ -10,7 +10,7 @@ categories:
  - 参考
  - 概述
 date: 2018-05-15 10:47:22
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 提供了 JavaScript 作为目标平台的能力。它通过将 Kotlin 转换为 JavaScript 来实现。目前的实现目标是 ECMAScript 5.1，但也有最终目标为 ECMAScript 2015 的计划。

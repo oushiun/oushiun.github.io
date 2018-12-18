@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 10:17:35
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 通过使用命名得当的函数作为构建器，结合[带接收者的函数字面值](lambdas.html#带接收者的函数字面值)，可以在 Kotlin 中创建类型安全、静态类型的构建器。

@@ -9,7 +9,7 @@ categories:
  - 参考
  - 概述
 date: 2018-05-15 12:15:24
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 多平台项目（实验性的）

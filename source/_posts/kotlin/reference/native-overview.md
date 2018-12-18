@@ -9,7 +9,7 @@ categories:
  - 参考
  - 概述
 date: 2018-05-15 11:18:04
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 [Kotlin/Native](https://github.com/JetBrains/kotlin-native/) 是一种将 Kotlin 编译为没有任何虚拟机的原生二进制文件的技术。它包含基于 LLVM 的 Kotlin 编译器后端以及 Kotlin 运行时库的原生实现 Kotlin/Native 主要为允许在不希望或不可能使用虚拟机的平台（如 iOS、嵌入式领域等）编译、或者开发人员需要生成不需要额外运行时的合理大小的独立程序而设计的。

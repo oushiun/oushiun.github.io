@@ -9,7 +9,7 @@ categories:
  - 参考
  - 类与对象
 date: 2018-05-17 10:24:03
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 同 C# 和 Gosu 类似，能够扩展一个类的新功能而无需继承该类或使用像装饰者这样的任何类型的设计模式。这通过叫做 *扩展* 的特殊声明完成。Kotlin 支持 _扩展函数_ 和 _扩展属性_。

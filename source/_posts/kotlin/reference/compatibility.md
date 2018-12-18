@@ -9,7 +9,7 @@ categories:
  - 参考
  - 参考
 date: 2018-05-22 11:11:08
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ### 兼容性词汇表

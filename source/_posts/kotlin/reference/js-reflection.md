@@ -9,7 +9,7 @@ categories:
  - 参考
  - JavaScript
 date: 2018-05-22 11:30:07
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分是 `::class` 语法，它允许你引用一个实例的类或者与给定类型相对应的类。一个 `::class` 表达式的值是一个只能支持 [simpleName](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html) 和 [isInstance](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html) 成员的精简版 [KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/) 实现。

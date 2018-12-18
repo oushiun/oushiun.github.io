@@ -8,7 +8,7 @@ categories:
  - JavaScript
  - ECMAScript 6
 date: 2018-06-14 10:38:35
-banner: https://static.oushiun.com/blog/banner/es6.jpeg
+thumbnail: https://static.oushiun.com/blog/banner/es6.jpeg
 ---
 
 ### 语法

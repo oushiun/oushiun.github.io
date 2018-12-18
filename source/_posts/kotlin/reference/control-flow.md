@@ -9,7 +9,7 @@ categories:
  - 参考
  - 基础
 date: 2018-05-15 17:47:44
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ### If 表达式

@@ -9,7 +9,7 @@ categories:
  - 参考
  - 函数
 date: 2018-05-17 20:35:52
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 > 在 Kotlin 1.1+ 中协程是*实验性的*。详见[下文](#协程的实验性状态)

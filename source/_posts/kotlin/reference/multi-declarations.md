@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-21 09:39:03
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 有时把一个对象 *解构* 成很多变量会很方便，例如:

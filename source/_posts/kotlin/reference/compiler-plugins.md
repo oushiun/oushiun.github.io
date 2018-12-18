@@ -9,7 +9,7 @@ categories:
  - 参考
  - 工具
 date: 2018-05-25 10:22:26
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 全开放编译器插件

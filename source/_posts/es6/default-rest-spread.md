@@ -8,7 +8,7 @@ categories:
  - JavaScript
  - ECMAScript 6
 date: 2018-06-20 11:02:29
-banner: https://static.oushiun.com/blog/banner/default-rest-spread.jpg
+thumbnail: https://static.oushiun.com/blog/banner/default-rest-spread.jpg
 ---
 
 ### 默认参数(default)

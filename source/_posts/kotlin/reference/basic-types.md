@@ -10,7 +10,7 @@ categories:
  - 参考
  - 基础
 date: 2018-05-15 17:01:18
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数和属性。

@@ -9,7 +9,7 @@ categories:
  - 参考
  - 概述
 date: 2018-05-15 11:23:01
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 协程（实验性的）

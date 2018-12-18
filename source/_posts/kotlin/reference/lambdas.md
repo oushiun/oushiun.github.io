@@ -9,7 +9,7 @@ categories:
  - 参考
  - 函数
 date: 2018-05-17 20:15:11
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 函数都是[_头等的_](https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%89%E5%87%BD%E6%95%B0)，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他[高阶函数](#高阶函数)以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。

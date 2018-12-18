@@ -9,7 +9,7 @@ categories:
  - 参考
  - 工具
 date: 2018-05-25 09:26:29
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 > 译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。

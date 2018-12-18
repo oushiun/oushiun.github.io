@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 09:50:24
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 中有两种类型的相等性：

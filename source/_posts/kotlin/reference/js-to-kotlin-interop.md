@@ -9,7 +9,7 @@ categories:
  - 参考
  - JavaScript
 date: 2018-05-22 11:27:24
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 编译器生成正常的 JavaScript 类，可以在 JavaScript 代码中自由地使用的函数和属性。不过，你应该记住一些微妙的事情。

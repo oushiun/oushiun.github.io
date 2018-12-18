@@ -9,7 +9,7 @@ categories:
  - 参考
  - 工具
 date: 2018-05-25 10:05:03
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 获取 Ant 任务

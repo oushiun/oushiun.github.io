@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 10:09:55
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 注解声明

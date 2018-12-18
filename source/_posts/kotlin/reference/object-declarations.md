@@ -9,7 +9,7 @@ categories:
  - 参考
  - 类与对象
 date: 2018-05-17 11:38:12
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。

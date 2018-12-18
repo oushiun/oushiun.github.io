@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 09:40:43
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ### `is` 与 `!is` 操作符

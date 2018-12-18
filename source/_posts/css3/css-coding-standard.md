@@ -6,7 +6,7 @@ categories:
  - 前端
  - Css3
 date: 2018-06-13 19:51:56
-banner: https://static.oushiun.com/blog/banner/css-coding-standard.jpg
+thumbnail: https://static.oushiun.com/blog/banner/css-coding-standard.jpg
 ---
 
 写了这么久的 CSS，但大部分前端 er 都没有按照良好的 CSS 书写规范来写 CSS 代码，这样会影响代码的阅读体验，这里设计达人网总结一个 CSS 书写规范、CSS 书写顺序供大家参考，这些是参考了国外一些文章以及我的个人经验总结出来，我想对写 CSS 的前端用户来说是值得学习的。

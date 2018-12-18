@@ -9,7 +9,7 @@ categories:
  - 参考
  - 类与对象
 date: 2018-05-17 10:09:48
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 声明属性

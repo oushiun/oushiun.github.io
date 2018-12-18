@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 09:56:36
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 `+` 或 `*`）和固定的[优先级](http://kotlinlang.org/docs/reference/grammar.html#precedence)。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的[成员函数](functions.html#成员函数)或[扩展函数](extensions.html)。

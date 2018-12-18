@@ -8,7 +8,7 @@ categories:
  - JavaScript
  - ECMAScript 6
 date: 2018-06-04 10:34:10
-banner: https://static.oushiun.com/blog/banner/es6.jpeg
+thumbnail: https://static.oushiun.com/blog/banner/es6.jpeg
 ---
 
 ### Introduction

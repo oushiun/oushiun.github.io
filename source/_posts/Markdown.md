@@ -6,7 +6,7 @@ tags:
 categories:
  - 工具
 date: 2018-05-09 09:41:47 
-banner: https://static.oushiun.com/blog/banner/markdown.png
+thumbnail: https://static.oushiun.com/blog/banner/markdown.png
 ---
 
 A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).

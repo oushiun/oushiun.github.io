@@ -9,7 +9,7 @@ categories:
  - 参考
  - 类与对象
 date: 2018-05-17 11:38:12
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 枚举类的最基本的用法是实现类型安全的枚举：

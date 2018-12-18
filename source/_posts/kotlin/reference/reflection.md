@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 10:14:39
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 反射是这样的一组语言和库功能，它允许在运行时自省你的程序的结构。

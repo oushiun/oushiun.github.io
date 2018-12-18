@@ -9,7 +9,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 10:21:57
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 > 多平台项目是 Kotlin 1.2 中的一个新的实验性功能。本文档中所描述的全部语言与工具功能都可能在未来的 Kotlin 版本中发生变化。

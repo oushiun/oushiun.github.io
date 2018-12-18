@@ -9,7 +9,7 @@ categories:
  - 参考
  - 概述
 date: 2018-05-15 09:22:38
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现力强的代码，同时保持与现有基于 Java 的技术栈的完全兼容性以及平滑的学习曲线：

@@ -8,7 +8,7 @@ tags:
 categories:
  - 软件
 date: 2018-05-08 17:18:37
-banner: https://static.oushiun.com/blog/banner/jetbrains.png
+thumbnail: https://static.oushiun.com/blog/banner/jetbrains.png
 ---
 
 ## CentOS 搭建 jetbrains 破解服务器

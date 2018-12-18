@@ -9,7 +9,7 @@ categories:
  - 参考
  - Getting Started
 date: 2018-05-15 12:29:00
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 #### 定义包

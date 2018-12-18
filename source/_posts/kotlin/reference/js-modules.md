@@ -9,7 +9,7 @@ categories:
  - 参考
  - JavaScript
 date: 2018-05-22 11:28:55
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是可用选项的列表：

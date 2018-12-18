@@ -8,7 +8,7 @@ categories:
  - 参考
  - 其他
 date: 2018-05-22 09:47:22
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 为了表示当前的 _接收者_ 我们使用 _this_ 表达式：

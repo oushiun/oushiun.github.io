@@ -9,7 +9,7 @@ categories:
  - 参考
  - 工具
 date: 2018-05-25 10:02:55
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 插件与版本

@@ -8,7 +8,7 @@ categories:
  - JavaScript
  - ECMAScript 6
 date: 2018-06-12 10:28:54
-banner: https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg
+thumbnail: https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg
 ---
 
 使用对象文本可以做许多让人意想不到的事情！通过 ES6，我们可以把 ES5 中的 JSON 变得更加接近于一个类。

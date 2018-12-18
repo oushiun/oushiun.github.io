@@ -8,7 +8,7 @@ tags:
 categories:
  - 工具
 date: 2018-05-09 22:20:38
-banner: https://static.oushiun.com/blog/banner/shadowsocks.png
+thumbnail: https://static.oushiun.com/blog/banner/shadowsocks.png
 ---
 
 Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加密传输资料。当然，也正因为它加密传输资料的特性，使得 GFW 没法将由它传输的资料和其他普通资料区分开来，也就不能干扰我们访问那些「不存在」的网站了。

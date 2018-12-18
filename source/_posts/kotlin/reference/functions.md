@@ -9,7 +9,7 @@ categories:
  - 参考
  - 函数
 date: 2018-05-17 20:15:11
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 ## 函数声明

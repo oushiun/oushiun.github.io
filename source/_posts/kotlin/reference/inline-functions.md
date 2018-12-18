@@ -9,7 +9,7 @@ categories:
  - 参考
  - 函数
 date: 2018-05-17 20:26:23
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 使用[高阶函数](lambdas.html)会带来一些运行时的效率损失：每一个函数都是一个对象，并且会捕获一个闭包。即那些在函数体内会访问到的变量。内存分配（对于函数对象和类）和虚拟调用会引入运行时间开销。

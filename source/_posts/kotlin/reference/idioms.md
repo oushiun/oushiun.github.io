@@ -9,7 +9,7 @@ categories:
  - 参考
  - Getting Started
 date: 2018-05-15 16:42:56
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 一些在 Kotlin 中广泛使用的语法习惯，如果你有更喜欢的语法习惯或者风格，可以建一个 pull request 贡献！

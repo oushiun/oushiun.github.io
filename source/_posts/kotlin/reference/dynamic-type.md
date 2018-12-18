@@ -9,7 +9,7 @@ categories:
  - 参考
  - JavaScript
 date: 2018-05-22 11:24:14
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 > 在面向 JVM 平台的代码中不支持动态类型

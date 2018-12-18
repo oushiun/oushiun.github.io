@@ -9,7 +9,7 @@ categories:
  - 参考
  - Java 互操作
 date: 2018-05-22 11:18:33
-banner: https://static.oushiun.com/blog/banner/Kotlin.png
+thumbnail: https://static.oushiun.com/blog/banner/Kotlin.png
 ---
 
 Java 可以轻松调用 Kotlin 代码。

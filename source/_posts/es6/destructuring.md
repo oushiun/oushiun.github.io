@@ -8,7 +8,7 @@ categories:
  - JavaScript
  - ECMAScript 6
 date: 2018-06-19 16:07:48
-banner: https://static.oushiun.com/blog/banner/destructuring.jpg
+thumbnail: https://static.oushiun.com/blog/banner/destructuring.jpg
 ---
 
 ### 什么是解构赋值？
