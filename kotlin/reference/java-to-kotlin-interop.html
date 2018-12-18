@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang=en>
+<html  lang="en">
 <head>
     <meta charset="utf-8">
-    
-    <title>Java 中调用 Kotlin | oushiun</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Java 中调用 Kotlin - oushiun</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
     <meta name="description" content="Java 可以轻松调用 Kotlin 代码。">
 <meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
@@ -13,256 +15,162 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="Java 可以轻松调用 Kotlin 代码。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-30T08:27:43.776Z">
+<meta property="og:updated_time" content="2018-12-18T08:50:27.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 中调用 Kotlin">
 <meta name="twitter:description" content="Java 可以轻松调用 Kotlin 代码。">
-<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     
 
     
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+    
 
     
-        <link rel="icon" href="/favicon.png" />
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
     
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-65562224-1', 'auto');
-ga('send', 'pageview');
-
-</script>
     
     
     
 
+<link rel="stylesheet" href="/css/back-to-top.css">
 
-</head>
 
-<body>
-    <div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">oushiun</span>
-            </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/.">Home</a>
-                
-                    <a class="main-nav-link" href="/archives">Archives</a>
-                
-                    <a class="main-nav-link" href="/categories">Categories</a>
-                
-                    <a class="main-nav-link" href="/tags">Tags</a>
-                
-                    <a class="main-nav-link" href="/about">About</a>
-                
-            </nav>
-            
-                
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.jpg" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
-            
-            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-65562224-1"></script>
 <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-65562224-1');
 </script>
-<script src="/js/insight.js"></script>
-
-</div>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/.">Home</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
-                
-                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">About</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-    </div>
-
-                </td>
-            </tr>
-        </table>
-    </div>
-</header>
-
-        <div class="outer">
-            
-                
-
-<aside id="profile" class="profile-fixed">
-    <div class="inner profile-inner">
-        <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.jpg" />
-            <h2 id="name">oushiun</h2>
-            <h3 id="title">Web Developer &amp; PM</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
-            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
-        </div>
-        <div class="article-info profile-block">
-            <div class="article-info-block">
-                75
-                <span>posts</span>
-            </div>
-            <div class="article-info-block">
-                11
-                <span>tags</span>
-            </div>
-        </div>
-        
-        <div class="profile-block social-links">
-            <table>
-                <tr>
-                    
-                    
-                    <td>
-                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
-                            <i class="fa fa-steam"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
-                            <i class="fa fa-paypal"></i>
-                        </a>
-                    </td>
-                    
-                </tr>
-            </table>
-        </div>
-        
-    </div>
-</aside>
-
-            
-            <section id="main"><article id="post-kotlin/reference/java-to-kotlin-interop" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
-	
 
 
-
-        
-        
-            <header class="article-header">
-                
     
-        <h1 class="article-title" itemprop="name">
-            Java 中调用 Kotlin
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="Java 中调用 Kotlin" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-22T03:18:33.000Z">2018-05-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/后端/">后端</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/">参考</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20 minutes read (About 2980 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Java 中调用 Kotlin
+            
         </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/java-to-kotlin-interop.html">
-            <time datetime="2018-05-22T03:18:33.000Z" itemprop="datePublished">2018-05-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
+        <div class="content">
             <p>Java 可以轻松调用 Kotlin 代码。</p>
 <a id="more"></a>
 <h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>Kotlin 属性会编译成以下 Java 元素：</p>
@@ -272,21 +180,21 @@ ga('send', 'pageview');
 <li>一个私有字段，与属性名称相同（仅适用于具有幕后字段的属性）。</li>
 </ul>
 <p>例如，<code>var firstName: String</code> 编译成以下 Java 声明：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String firstName;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> firstName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirstName</span><span class="params">(String firstName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.firstName = firstName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> String firstName;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getFirstName</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> firstName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFirstName</span><span class="hljs-params">(String firstName)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.firstName = firstName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果属性的名称以 <code>is</code> 开头，则使用不同的名称映射规则：getter 的名称与属性名称相同，并且 setter 的名称是通过将 <code>is</code> 替换为 <code>set</code> 获得。例如，对于属性 <code>isOpen</code>，其 getter 会称做 <code>isOpen()</code>，而其 setter 会称做 <code>setOpen()</code>。这一规则适用于任何类型的属性，并不仅限于 <code>Boolean</code>。</p>
 <h3 id="包级函数"><a href="#包级函数" class="headerlink" title="包级函数"></a>包级函数</h3><p>在 <code>org.foo.bar</code> 包内的 <code>example.kt</code> 文件中声明的所有的函数和属性，包括扩展函数，都编译成一个名为 <code>org.foo.bar.ExampleKt</code> 的 Java 类的静态方法。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example.kt</span></span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line"><span class="keyword">new</span> demo.Foo();</span><br><span class="line">demo.ExampleKt.bar();</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// example.kt</span></span><br><span class="line"><span class="hljs-keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line"><span class="hljs-keyword">new</span> demo.Foo();</span><br><span class="line">demo.ExampleKt.bar();</span><br></pre></td></tr></table></figure>
 <p>可以使用 <code>@JvmName</code> 注解修改生成的 Java 类的类名：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@file:JvmName</span>(<span class="string">"DemoUtils"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line"><span class="keyword">new</span> demo.Foo();</span><br><span class="line">demo.DemoUtils.bar();</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@file:JvmName</span>(<span class="hljs-string">"DemoUtils"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line"><span class="hljs-keyword">new</span> demo.Foo();</span><br><span class="line">demo.DemoUtils.bar();</span><br></pre></td></tr></table></figure>
 <p>如果多个文件中生成了相同的 Java 类名（包名相同并且类名相同或者有相同的 <code>@JvmName</code> 注解）通常是错误的。然而，编译器能够生成一个单一的 Java 外观类，它具有指定的名称且包含来自所有文件中具有该名称的所有声明。要启用生成这样的外观，请在所有相关文件中使用 @JvmMultifileClass 注解。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// oldutils.kt</span></span><br><span class="line"><span class="meta">@file:JvmName</span>(<span class="string">"Utils"</span>)</span><br><span class="line"><span class="meta">@file:JvmMultifileClass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// newutils.kt</span></span><br><span class="line"><span class="meta">@file:JvmName</span>(<span class="string">"Utils"</span>)</span><br><span class="line"><span class="meta">@file:JvmMultifileClass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line">demo.Utils.foo();</span><br><span class="line">demo.Utils.bar();</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// oldutils.kt</span></span><br><span class="line"><span class="hljs-meta">@file:JvmName</span>(<span class="hljs-string">"Utils"</span>)</span><br><span class="line"><span class="hljs-meta">@file:JvmMultifileClass</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// newutils.kt</span></span><br><span class="line"><span class="hljs-meta">@file:JvmName</span>(<span class="hljs-string">"Utils"</span>)</span><br><span class="line"><span class="hljs-meta">@file:JvmMultifileClass</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line">demo.Utils.foo();</span><br><span class="line">demo.Utils.bar();</span><br></pre></td></tr></table></figure>
 <h3 id="实例字段"><a href="#实例字段" class="headerlink" title="实例字段"></a>实例字段</h3><p>如果需要在 Java 中将 Kotlin 属性作为字段暴露，那就需要使用 <code>@JvmField</code> 注解对其标注。该字段将具有与底层属性相同的可见性。如果一个属性有幕后字段（backing field）、非私有、没有 <code>open</code> / <code>override</code> 或者 <code>const</code> 修饰符并且不是被委托的属性，那么你可以用 <code>@JvmField</code> 注解该属性。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>(id: String) &#123;</span><br><span class="line">    <span class="meta">@JvmField</span> <span class="keyword">val</span> ID = id</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getID</span><span class="params">(C c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> c.ID;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span></span>(id: String) &#123;</span><br><span class="line">    <span class="hljs-meta">@JvmField</span> <span class="hljs-keyword">val</span> ID = id</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JavaClient</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getID</span><span class="hljs-params">(C c)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> c.ID;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="properties.html#延迟初始化属性与变量">延迟初始化的</a>属性（在 Java 中）也会暴露为字段。该字段的可见性与 <code>lateinit</code> 属性的 setter 相同。</p>
 <h3 id="静态字段"><a href="#静态字段" class="headerlink" title="静态字段"></a>静态字段</h3><p>在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中具有静态幕后字段。</p>
 <p>通常这些字段是私有的，但可以通过以下方式之一暴露出来：</p>
@@ -296,23 +204,23 @@ ga('send', 'pageview');
 <li><code>const</code> 修饰符。</li>
 </ul>
 <p>使用 <code>@JvmField</code> 标注这样的属性使其成为与属性本身具有相同可见性的静态字段。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Key</span></span>(<span class="keyword">val</span> value: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="meta">@JvmField</span></span><br><span class="line">        <span class="keyword">val</span> COMPARATOR: Comparator&lt;Key&gt; = compareBy&lt;Key&gt; &#123; it.value &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line">Key.COMPARATOR.compare(key1, key2);</span><br><span class="line"><span class="comment">// Key 类中的 public static final 字段</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Key</span></span>(<span class="hljs-keyword">val</span> value: <span class="hljs-built_in">Int</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">companion</span> <span class="hljs-keyword">object</span> &#123;</span><br><span class="line">        <span class="hljs-meta">@JvmField</span></span><br><span class="line">        <span class="hljs-keyword">val</span> COMPARATOR: Comparator&lt;Key&gt; = compareBy&lt;Key&gt; &#123; it.value &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line">Key.COMPARATOR.compare(key1, key2);</span><br><span class="line"><span class="hljs-comment">// Key 类中的 public static final 字段</span></span><br></pre></td></tr></table></figure>
 <p>在命名对象或者伴生对象中的一个<a href="properties.html#延迟初始化属性与变量">延迟初始化的</a>属性具有与属性 setter 相同可见性的静态幕后字段。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Singleton &#123;</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> provider: Provider</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line">Singleton.provider = <span class="keyword">new</span> Provider();</span><br><span class="line"><span class="comment">// 在 Singleton 类中的 public static 非-final 字段</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">object</span> Singleton &#123;</span><br><span class="line">    <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> provider: Provider</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line">Singleton.provider = <span class="hljs-keyword">new</span> Provider();</span><br><span class="line"><span class="hljs-comment">// 在 Singleton 类中的 public static 非-final 字段</span></span><br></pre></td></tr></table></figure>
 <p>用 <code>const</code> 标注的（在类中以及在顶层的）属性在 Java 中会成为静态字段：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件 example.kt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> Obj &#123;</span><br><span class="line">    const <span class="keyword">val</span> CONST = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        const <span class="keyword">val</span> VERSION = <span class="number">9</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const <span class="keyword">val</span> MAX = <span class="number">239</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 文件 example.kt</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">object</span> Obj &#123;</span><br><span class="line">    const <span class="hljs-keyword">val</span> CONST = <span class="hljs-number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">companion</span> <span class="hljs-keyword">object</span> &#123;</span><br><span class="line">        const <span class="hljs-keyword">val</span> VERSION = <span class="hljs-number">9</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const <span class="hljs-keyword">val</span> MAX = <span class="hljs-number">239</span></span><br></pre></td></tr></table></figure>
 <p>在 Java 中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> c = Obj.CONST;</span><br><span class="line"><span class="keyword">int</span> d = ExampleKt.MAX;</span><br><span class="line"><span class="keyword">int</span> v = C.VERSION;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span> c = Obj.CONST;</span><br><span class="line"><span class="hljs-keyword">int</span> d = ExampleKt.MAX;</span><br><span class="line"><span class="hljs-keyword">int</span> v = C.VERSION;</span><br></pre></td></tr></table></figure>
 <h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>如上所述，Kotlin 将包级函数表示为静态方法。<br>Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 <code>@JvmStatic</code> 的话。如果你使用该注解，编译器既会在相应对象的类中生成静态方法，也会在对象自身中生成实例方法。例如：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="meta">@JvmStatic</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">companion</span> <span class="hljs-keyword">object</span> &#123;</span><br><span class="line">        <span class="hljs-meta">@JvmStatic</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;&#125;</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在，<code>foo()</code> 在 Java 中是静态的，而 <code>bar()</code> 不是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C.foo(); <span class="comment">// 没问题</span></span><br><span class="line">C.bar(); <span class="comment">// 错误：不是一个静态方法</span></span><br><span class="line">C.Companion.foo(); <span class="comment">// 保留实例方法</span></span><br><span class="line">C.Companion.bar(); <span class="comment">// 唯一的工作方式</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C.foo(); <span class="hljs-comment">// 没问题</span></span><br><span class="line">C.bar(); <span class="hljs-comment">// 错误：不是一个静态方法</span></span><br><span class="line">C.Companion.foo(); <span class="hljs-comment">// 保留实例方法</span></span><br><span class="line">C.Companion.bar(); <span class="hljs-comment">// 唯一的工作方式</span></span><br></pre></td></tr></table></figure>
 <p>对于命名对象也同样：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Obj &#123;</span><br><span class="line">    <span class="meta">@JvmStatic</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">object</span> Obj &#123;</span><br><span class="line">    <span class="hljs-meta">@JvmStatic</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;&#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 Java 中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Obj.foo(); <span class="comment">// 没问题</span></span><br><span class="line">Obj.bar(); <span class="comment">// 错误</span></span><br><span class="line">Obj.INSTANCE.bar(); <span class="comment">// 没问题，通过单例实例调用</span></span><br><span class="line">Obj.INSTANCE.foo(); <span class="comment">// 也没问题</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Obj.foo(); <span class="hljs-comment">// 没问题</span></span><br><span class="line">Obj.bar(); <span class="hljs-comment">// 错误</span></span><br><span class="line">Obj.INSTANCE.bar(); <span class="hljs-comment">// 没问题，通过单例实例调用</span></span><br><span class="line">Obj.INSTANCE.foo(); <span class="hljs-comment">// 也没问题</span></span><br></pre></td></tr></table></figure>
 <p><code>@JvmStatic</code>　注解也可以应用于对象或伴生对象的属性，使其 getter 和 setter 方法在该对象或包含该伴生对象的类中是静态成员。</p>
 <h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>Kotlin 的可见性以下列方式映射到 Java：</p>
 <ul>
@@ -325,362 +233,1074 @@ ga('send', 'pageview');
 <li><code>public</code> 保持 <code>public</code>。</li>
 </ul>
 <h3 id="KClass"><a href="#KClass" class="headerlink" title="KClass"></a>KClass</h3><p>有时你需要调用有 <code>KClass</code> 类型参数的 Kotlin 方法。因为没有从 <code>Class</code> 到 <code>KClass</code> 的自动转换，所以你必须通过调用 <code>Class&lt;T&gt;.kotlin</code> 扩展属性的等价形式来手动进行转换：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kotlin.jvm.JvmClassMappingKt.getKotlinClass(MainView.<span class="keyword">class</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kotlin.jvm.JvmClassMappingKt.getKotlinClass(MainView.<span class="hljs-keyword">class</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="用-JvmName-解决签名冲突"><a href="#用-JvmName-解决签名冲突" class="headerlink" title="用 @JvmName 解决签名冲突"></a>用 @JvmName 解决签名冲突</h3><p>有时我们想让一个 Kotlin 中的命名函数在字节码中有另外一个 JVM 名称。最突出的例子是由于<em>类型擦除</em>引发的：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> List<span class="type">&lt;String&gt;</span>.<span class="title">filterValid</span><span class="params">()</span></span>: List&lt;String&gt;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> List<span class="type">&lt;Int&gt;</span>.<span class="title">filterValid</span><span class="params">()</span></span>: List&lt;<span class="built_in">Int</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> List<span class="hljs-type">&lt;String&gt;</span>.<span class="hljs-title">filterValid</span><span class="hljs-params">()</span></span>: List&lt;String&gt;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> List<span class="hljs-type">&lt;Int&gt;</span>.<span class="hljs-title">filterValid</span><span class="hljs-params">()</span></span>: List&lt;<span class="hljs-built_in">Int</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>这两个函数不能同时定义，因为它们的 JVM 签名是一样的：<code>filterValid(Ljava/util/List;)Ljava/util/List;</code>。如果我们真的希望它们在 Kotlin 中用相同名称，我们需要用 <code>@JvmName</code> 去标注其中的一个（或两个），并指定不同的名称作为参数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> List<span class="type">&lt;String&gt;</span>.<span class="title">filterValid</span><span class="params">()</span></span>: List&lt;String&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">@JvmName(<span class="meta-string">"filterValidInt"</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> List<span class="type">&lt;Int&gt;</span>.<span class="title">filterValid</span><span class="params">()</span></span>: List&lt;<span class="built_in">Int</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> List<span class="hljs-type">&lt;String&gt;</span>.<span class="hljs-title">filterValid</span><span class="hljs-params">()</span></span>: List&lt;String&gt;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@JvmName(<span class="hljs-meta-string">"filterValidInt"</span>)</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> List<span class="hljs-type">&lt;Int&gt;</span>.<span class="hljs-title">filterValid</span><span class="hljs-params">()</span></span>: List&lt;<span class="hljs-built_in">Int</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>在 Kotlin 中它们可以用相同的名称 <code>filterValid</code> 来访问，而在 Java 中，它们分别是 <code>filterValid</code> 和 <code>filterValidInt</code>。</p>
 <p>同样的技巧也适用于属性 <code>x</code> 和函数 <code>getX()</code> 共存：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x: <span class="built_in">Int</span></span><br><span class="line">    <span class="meta">@JvmName(<span class="meta-string">"getX_prop"</span>)</span></span><br><span class="line">    <span class="keyword">get</span>() = <span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getX</span><span class="params">()</span></span> = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">val</span> x: <span class="hljs-built_in">Int</span></span><br><span class="line">    <span class="hljs-meta">@JvmName(<span class="hljs-meta-string">"getX_prop"</span>)</span></span><br><span class="line">    <span class="hljs-keyword">get</span>() = <span class="hljs-number">15</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getX</span><span class="hljs-params">()</span></span> = <span class="hljs-number">10</span></span><br></pre></td></tr></table></figure>
 <h3 id="生成重载"><a href="#生成重载" class="headerlink" title="生成重载"></a>生成重载</h3><p>通常，如果你写一个有默认参数值的 Kotlin 函数，在 Java 中只会有一个所有参数都存在的完整参数签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用 <code>@JvmOverloads</code> 注解。</p>
 <p>该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括在接口中定义的方法。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> <span class="meta">@JvmOverloads</span> <span class="keyword">constructor</span></span>(x: <span class="built_in">Int</span>, y: <span class="built_in">Double</span> = <span class="number">0.0</span>) &#123;</span><br><span class="line">    <span class="meta">@JvmOverloads</span> <span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">(a: <span class="type">String</span>, b: <span class="type">Int</span> = <span class="number">0</span>, c: <span class="type">String</span> = <span class="string">"abc"</span>)</span></span> &#123;</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> <span class="hljs-meta">@JvmOverloads</span> <span class="hljs-keyword">constructor</span></span>(x: <span class="hljs-built_in">Int</span>, y: <span class="hljs-built_in">Double</span> = <span class="hljs-number">0.0</span>) &#123;</span><br><span class="line">    <span class="hljs-meta">@JvmOverloads</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">f</span><span class="hljs-params">(a: <span class="hljs-type">String</span>, b: <span class="hljs-type">Int</span> = <span class="hljs-number">0</span>, c: <span class="hljs-type">String</span> = <span class="hljs-string">"abc"</span>)</span></span> &#123;</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和它右边的所有参数都移除掉。在上例中，会生成以下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数：</span></span><br><span class="line">Foo(<span class="keyword">int</span> x, <span class="keyword">double</span> y)</span><br><span class="line">Foo(<span class="keyword">int</span> x)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(String a, <span class="keyword">int</span> b, String c)</span> </span>&#123; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(String a, <span class="keyword">int</span> b)</span> </span>&#123; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(String a)</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 构造函数：</span></span><br><span class="line">Foo(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">double</span> y)</span><br><span class="line">Foo(<span class="hljs-keyword">int</span> x)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 方法</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(String a, <span class="hljs-keyword">int</span> b, String c)</span> </span>&#123; &#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(String a, <span class="hljs-keyword">int</span> b)</span> </span>&#123; &#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(String a)</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
 <p>请注意，如<a href="classes.html#次构造函数">次构造函数</a>中所述，如果一个类的所有构造函数参数都有默认值，那么会为其生成一个公有的无参构造函数。这就算没有 <code>@JvmOverloads</code> 注解也有效。</p>
 <h3 id="受检异常"><a href="#受检异常" class="headerlink" title="受检异常"></a>受检异常</h3><p>如上所述，Kotlin 没有受检异常。所以，通常 Kotlin 函数的 Java 签名不会声明抛出异常。于是如果我们有一个这样的 Kotlin 函数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example.kt</span></span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> IOException()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// example.kt</span></span><br><span class="line"><span class="hljs-keyword">package</span> demo</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">throw</span> IOException()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后我们想要在 Java 中调用它并捕捉这个异常：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  demo.Example.foo();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (IOException e) &#123; <span class="comment">// 错误：foo() 未在 throws 列表中声明 IOException</span></span><br><span class="line">  <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Java</span></span><br><span class="line"><span class="hljs-keyword">try</span> &#123;</span><br><span class="line">  demo.Example.foo();</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">catch</span> (IOException e) &#123; <span class="hljs-comment">// 错误：foo() 未在 throws 列表中声明 IOException</span></span><br><span class="line">  <span class="hljs-comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>因为 <code>foo()</code> 没有声明 <code>IOException</code>，我们从 Java 编译器得到了一个报错消息。为了解决这个问题，要在 Kotlin 中使用 <code>@Throws</code> 注解。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> IOException()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">throw</span> IOException()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="空安全性"><a href="#空安全性" class="headerlink" title="空安全性"></a>空安全性</h3><p>当从 Java 中调用 Kotlin 函数时，没人阻止我们将 <code>null</code> 作为非空参数传递。这就是为什么 Kotlin 给所有期望非空参数的公有函数生成运行时检测。这样我们就能在 Java 代码里立即得到 <code>NullPointerException</code>。</p>
 <h3 id="型变的泛型"><a href="#型变的泛型" class="headerlink" title="型变的泛型"></a>型变的泛型</h3><p>当 Kotlin 的类使用了<a href="generics.html#声明处型变">声明处型变</a>，有两种选择可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="type">out T</span>&gt;</span>(<span class="keyword">val</span> value: T)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> : <span class="type">Base</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">boxDerived</span><span class="params">(value: <span class="type">Derived</span>)</span></span>: Box&lt;Derived&gt; = Box(value)</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">unboxBase</span><span class="params">(box: <span class="type">Box</span>&lt;<span class="type">Base</span>&gt;)</span></span>: Base = box.value</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Box</span>&lt;<span class="hljs-type">out T</span>&gt;</span>(<span class="hljs-keyword">val</span> value: T)</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Base</span></span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Derived</span> : <span class="hljs-type">Base</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">boxDerived</span><span class="hljs-params">(value: <span class="hljs-type">Derived</span>)</span></span>: Box&lt;Derived&gt; = Box(value)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">unboxBase</span><span class="hljs-params">(box: <span class="hljs-type">Box</span>&lt;<span class="hljs-type">Base</span>&gt;)</span></span>: Base = box.value</span><br></pre></td></tr></table></figure>
 <p>一种看似理所当然地将这俩函数转换成 Java 代码的方式可能会是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Box&lt;Derived&gt; <span class="title">boxDerived</span><span class="params">(Derived value)</span> </span>&#123; …… &#125;</span><br><span class="line"><span class="function">Base <span class="title">unboxBase</span><span class="params">(Box&lt;Base&gt; box)</span> </span>&#123; …… &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">Box&lt;Derived&gt; <span class="hljs-title">boxDerived</span><span class="hljs-params">(Derived value)</span> </span>&#123; …… &#125;</span><br><span class="line"><span class="hljs-function">Base <span class="hljs-title">unboxBase</span><span class="hljs-params">(Box&lt;Base&gt; box)</span> </span>&#123; …… &#125;</span><br></pre></td></tr></table></figure>
 <p>问题是，在 Kotlin 中我们可以这样写 <code>unboxBase(boxDerived(&quot;s&quot;))</code>，但是在 Java 中是行不通的，因为在 Java 中类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不型变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。要使其在 Java 中工作，我们按以下这样定义 <code>unboxBase</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Base <span class="title">unboxBase</span><span class="params">(Box&lt;? extends Base&gt; box)</span> </span>&#123; …… &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">Base <span class="hljs-title">unboxBase</span><span class="hljs-params">(Box&lt;? extends Base&gt; box)</span> </span>&#123; …… &#125;</span><br></pre></td></tr></table></figure>
 <p>这里我们使用 Java 的<em>通配符类型</em>（<code>? extends Base</code>）来通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。</p>
 <p>当它<em>作为参数</em>出现时，为了让 Kotlin 的 API 在 Java 中工作，对于协变定义的 <code>Box</code> 我们生成 <code>Box&lt;Super&gt;</code> 作为 <code>Box&lt;? extends Super&gt;</code> （或者对于逆变定义的 <code>Foo</code> 生成 <code>Foo&lt;? super Bar&gt;</code>）。当它是一个返回值时，我们不生成通配符，因为否则 Java 客户端将必须处理它们（并且它违反常用 Java 编码风格）。因此，我们的示例中的对应函数实际上翻译如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 作为返回类型——没有通配符</span></span><br><span class="line"><span class="function">Box&lt;Derived&gt; <span class="title">boxDerived</span><span class="params">(Derived value)</span> </span>&#123; …… &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 作为参数——有通配符</span></span><br><span class="line"><span class="function">Base <span class="title">unboxBase</span><span class="params">(Box&lt;? extends Base&gt; box)</span> </span>&#123; …… &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 作为返回类型——没有通配符</span></span><br><span class="line"><span class="hljs-function">Box&lt;Derived&gt; <span class="hljs-title">boxDerived</span><span class="hljs-params">(Derived value)</span> </span>&#123; …… &#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 作为参数——有通配符</span></span><br><span class="line"><span class="hljs-function">Base <span class="hljs-title">unboxBase</span><span class="hljs-params">(Box&lt;? extends Base&gt; box)</span> </span>&#123; …… &#125;</span><br></pre></td></tr></table></figure>
 <p>注意：当参数类型是 final 时，生成通配符通常没有意义，所以无论在什么地方 <code>Box&lt;String&gt;</code><br>始终转换为 <code>Box&lt;String&gt;</code>。</p>
 <p>如果我们在默认不生成通配符的地方需要通配符，我们可以使用 <code>@JvmWildcard</code> 注解：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">boxDerived</span><span class="params">(value: <span class="type">Derived</span>)</span></span>: Box&lt;<span class="meta">@JvmWildcard</span> Derived&gt; = Box(value)</span><br><span class="line"><span class="comment">// 将被转换成</span></span><br><span class="line"><span class="comment">// Box&lt;? extends Derived&gt; boxDerived(Derived value) &#123; …… &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">boxDerived</span><span class="hljs-params">(value: <span class="hljs-type">Derived</span>)</span></span>: Box&lt;<span class="hljs-meta">@JvmWildcard</span> Derived&gt; = Box(value)</span><br><span class="line"><span class="hljs-comment">// 将被转换成</span></span><br><span class="line"><span class="hljs-comment">// Box&lt;? extends Derived&gt; boxDerived(Derived value) &#123; …… &#125;</span></span><br></pre></td></tr></table></figure>
 <p>另一方面，如果我们根本不需要默认的通配符转换，我们可以使用<code>@JvmSuppressWildcards</code></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">unboxBase</span><span class="params">(box: <span class="type">Box</span>&lt;@<span class="type">JvmSuppressWildcards</span> <span class="type">Base</span>&gt;)</span></span>: Base = box.value</span><br><span class="line"><span class="comment">// 会翻译成</span></span><br><span class="line"><span class="comment">// Base unboxBase(Box&lt;Base&gt; box) &#123; …… &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">unboxBase</span><span class="hljs-params">(box: <span class="hljs-type">Box</span>&lt;@<span class="hljs-type">JvmSuppressWildcards</span> <span class="hljs-type">Base</span>&gt;)</span></span>: Base = box.value</span><br><span class="line"><span class="hljs-comment">// 会翻译成</span></span><br><span class="line"><span class="hljs-comment">// Base unboxBase(Box&lt;Base&gt; box) &#123; …… &#125;</span></span><br></pre></td></tr></table></figure>
 <p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如函数或类），从而抑制其中的所有通配符。</p>
 <h4 id="Nothing-类型翻译"><a href="#Nothing-类型翻译" class="headerlink" title="Nothing 类型翻译"></a>Nothing 类型翻译</h4><p>类型 <a href="exceptions.html#nothing-类型"><code>Nothing</code></a> 是特殊的，因为它在 Java 中没有自然的对应。确实，每个 Java 引用类型，包括<br><code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">emptyList</span><span class="params">()</span></span>: List&lt;<span class="built_in">Nothing</span>&gt; = listOf()</span><br><span class="line"><span class="comment">// 会翻译成</span></span><br><span class="line"><span class="comment">// List emptyList() &#123; …… &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">emptyList</span><span class="hljs-params">()</span></span>: List&lt;<span class="hljs-built_in">Nothing</span>&gt; = listOf()</span><br><span class="line"><span class="hljs-comment">// 会翻译成</span></span><br><span class="line"><span class="hljs-comment">// List emptyList() &#123; …… &#125;</span></span><br></pre></td></tr></table></figure>
 
-        
         </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-    <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
-    <span class="a2a_divider"></span>
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_google_plus"></a>
-    <a class="a2a_button_pinterest"></a>
-    <a class="a2a_button_tumblr"></a>
-</div>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-<style>
-    .a2a_menu {
-        border-radius: 4px;
-    }
-    .a2a_menu a {
-        margin: 2px 0;
-        font-size: 14px;
-        line-height: 16px;
-        border-radius: 4px;
-        color: inherit !important;
-        font-family: 'Microsoft Yahei';
-    }
-    #a2apage_dropdown {
-        margin: 10px 0;
-    }
-    .a2a_mini_services {
-        padding: 10px;
-    }
-    a.a2a_i,
-    i.a2a_i {
-        width: 122px;
-        line-height: 16px;
-    }
-    a.a2a_i .a2a_svg,
-    a.a2a_more .a2a_svg {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: top;
-        background-size: 16px;
-    }
-    a.a2a_i {
-        border: none !important;
-    }
-    a.a2a_menu_show_more_less {
-        margin: 0;
-        padding: 10px 0;
-        line-height: 16px;
-    }
-    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-    .a2a_mini_services{*+height:1%;}
-</style>
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
         
-<nav id="article-nav">
-    
-        <a href="/kotlin/reference/dynamic-type.html" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
-            <div class="article-nav-title">
-                
-                    动态类型
-                
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Kotlin/">Kotlin</a>
+                </div>
             </div>
-        </a>
-    
-    
-        <a href="/kotlin/reference/java-interop.html" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">在 Kotlin 中调用 Java 代码</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    
-        <section id="comments">
-    <div id="valine-thread"></div>
-</section>
-    
-
-</section>
-            
-                
-<aside id="sidebar">
-   
+        </div>
         
-    <div class="widget-wrap">
-        <h3 class="widget-title">recent</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/default-rest-spread.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/default-rest-spread.jpg)" alt="默认参数、不定参数、扩展运算符" class="thumbnail-image"></span>
-    
-</a>
+        
+        
+        
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c18aad4678d8555"></script>
 
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/default-rest-spread.html" class="title">默认参数、不定参数、扩展运算符</a></p>
-                            <p class="item-date"><time datetime="2018-06-20T03:02:29.000Z" itemprop="datePublished">2018-06-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/destructuring.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/destructuring.jpg)" alt="解构" class="thumbnail-image"></span>
-    
-</a>
+        
+    </div>
+</div>
 
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/destructuring.html" class="title">解构</a></p>
-                            <p class="item-date"><time datetime="2018-06-19T08:07:48.000Z" itemprop="datePublished">2018-06-19</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/template-strings.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/es6.jpeg)" alt="模板字符串" class="thumbnail-image"></span>
-    
-</a>
 
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/template-strings.html" class="title">模板字符串</a></p>
-                            <p class="item-date"><time datetime="2018-06-14T02:38:35.000Z" itemprop="datePublished">2018-06-14</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/css3/css-coding-standard.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/css-coding-standard.jpg)" alt="CSS 书写规范" class="thumbnail-image"></span>
-    
-</a>
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/kotlin/reference/dynamic-type.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">动态类型</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/kotlin/reference/java-interop.html">
+                <span class="level-item">在 Kotlin 中调用 Java 代码</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/Css3/">Css3</a></p>
-                            <p class="item-title"><a href="/css3/css-coding-standard.html" class="title">CSS 书写规范</a></p>
-                            <p class="item-date"><time datetime="2018-06-13T11:51:56.000Z" itemprop="datePublished">2018-06-13</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/enhanced-object-literals.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg)" alt="增强的对象文本" class="thumbnail-image"></span>
-    
-</a>
 
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/enhanced-object-literals.html" class="title">增强的对象文本</a></p>
-                            <p class="item-date"><time datetime="2018-06-12T02:28:54.000Z" itemprop="datePublished">2018-06-12</time></p>
-                        </div>
-                    </li>
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+        app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+        placeholder: '留下你想说的话吧 (๑•ᴗ•๑)'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="oushiun">
+                    
+                    <p class="is-size-4 is-block">
+                        oushiun
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer &amp; PM
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Hefei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        75
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        20
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/oushiun">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/oushiun">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Paypal" href="https://www.paypal.me/oushiun">
+                
+                <i class="fab fa-paypal"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Steam" href="https://steamcommunity.com/profiles/76561198218709653">
+                
+                <i class="fab fa-steam"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/ppoffice</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/其他/">
+            <span class="level-start">
+                <span class="level-item">其他</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/前端/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">9</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/前端/Css3/">
+            <span class="level-start">
+                <span class="level-item">Css3</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/前端/JavaScript/">
+            <span class="level-start">
+                <span class="level-item">JavaScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/后端/">
+            <span class="level-start">
+                <span class="level-item">后端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">61</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/后端/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">61</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/工具/">
+            <span class="level-start">
+                <span class="level-item">工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/软件/">
+            <span class="level-start">
+                <span class="level-item">软件</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 13.33px;">CentOS</a> <a href="/tags/ES6/" style="font-size: 16.67px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/规范/" style="font-size: 10px;">规范</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/default-rest-spread.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-20T03:02:29.000Z">2018-06-20</time></div>
+                    <a href="/es6/default-rest-spread.html" class="has-link-black-ter is-size-6">默认参数、不定参数、扩展运算符</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/destructuring.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-19T08:07:48.000Z">2018-06-19</time></div>
+                    <a href="/es6/destructuring.html" class="has-link-black-ter is-size-6">解构</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/template-strings.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-14T02:38:35.000Z">2018-06-14</time></div>
+                    <a href="/es6/template-strings.html" class="has-link-black-ter is-size-6">模板字符串</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/css3/css-coding-standard.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-13T11:51:56.000Z">2018-06-13</time></div>
+                    <a href="/css3/css-coding-standard.html" class="has-link-black-ter is-size-6">CSS 书写规范</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/Css3/">Css3</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/enhanced-object-literals.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
+                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">67</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/BBR/">
+                        <span class="level-start">
+                            <span class="level-item">BBR</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Box-Model/">
+                        <span class="level-start">
+                            <span class="level-item">Box Model</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/CentOS/">
+                        <span class="level-start">
+                            <span class="level-item">CentOS</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/ES6/">
+                        <span class="level-start">
+                            <span class="level-item">ES6</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">7</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Hexo/">
+                        <span class="level-start">
+                            <span class="level-item">Hexo</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/JavaScript/">
+                        <span class="level-start">
+                            <span class="level-item">JavaScript</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Kotlin/">
+                        <span class="level-start">
+                            <span class="level-item">Kotlin</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">61</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Markdown/">
+                        <span class="level-start">
+                            <span class="level-item">Markdown</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/jetbrains/">
+                        <span class="level-start">
+                            <span class="level-item">jetbrains</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/shadowsocks/">
+                        <span class="level-start">
+                            <span class="level-item">shadowsocks</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/规范/">
+                        <span class="level-start">
+                            <span class="level-item">规范</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
                 
             </ul>
         </div>
     </div>
-
-    
+</div>
         
-    <div class="widget-wrap">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/JavaScript/">JavaScript</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/JavaScript/ECMAScript-6/">ECMAScript 6</a><span class="category-list-count">7</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/">参考</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/JavaScript/">JavaScript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/其他/">其他</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/函数/">函数</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/参考/">参考</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/工具/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
         </div>
-    </div>
-
     
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">67</span></li></ul>
-        </div>
-    </div>
+</div>
 
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">tags</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">61</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/规范/">规范</a><span class="tag-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">tag cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 13.33px;">CentOS</a> <a href="/tags/ES6/" style="font-size: 16.67px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/规范/" style="font-size: 10px;">规范</a>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
-        <div class="widget">
-            <ul>
                 
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/default-rest-spread.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-20T03:02:29.000Z">2018-06-20</time></div>
+                    <a href="/es6/default-rest-spread.html" class="has-link-black-ter is-size-6">默认参数、不定参数、扩展运算符</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/destructuring.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-19T08:07:48.000Z">2018-06-19</time></div>
+                    <a href="/es6/destructuring.html" class="has-link-black-ter is-size-6">解构</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/template-strings.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-14T02:38:35.000Z">2018-06-14</time></div>
+                    <a href="/es6/template-strings.html" class="has-link-black-ter is-size-6">模板字符串</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/css3/css-coding-standard.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-13T11:51:56.000Z">2018-06-13</time></div>
+                    <a href="/css3/css-coding-standard.html" class="has-link-black-ter is-size-6">CSS 书写规范</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/Css3/">Css3</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/enhanced-object-literals.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
+                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">67</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/BBR/">
+                        <span class="level-start">
+                            <span class="level-item">BBR</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Box-Model/">
+                        <span class="level-start">
+                            <span class="level-item">Box Model</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/CentOS/">
+                        <span class="level-start">
+                            <span class="level-item">CentOS</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/ES6/">
+                        <span class="level-start">
+                            <span class="level-item">ES6</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">7</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Hexo/">
+                        <span class="level-start">
+                            <span class="level-item">Hexo</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/JavaScript/">
+                        <span class="level-start">
+                            <span class="level-item">JavaScript</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Kotlin/">
+                        <span class="level-start">
+                            <span class="level-item">Kotlin</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">61</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Markdown/">
+                        <span class="level-start">
+                            <span class="level-item">Markdown</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/jetbrains/">
+                        <span class="level-start">
+                            <span class="level-item">jetbrains</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/shadowsocks/">
+                        <span class="level-start">
+                            <span class="level-item">shadowsocks</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/规范/">
+                        <span class="level-start">
+                            <span class="level-item">规范</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
                 
             </ul>
         </div>
     </div>
-
-
+</div>
     
-    <div id="toTop" class="fa fa-angle-up"></div>
-</aside>
+    
+</div>
 
-            
+            </div>
         </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; 2018 oushiun<br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="Java 中调用 Kotlin" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 oushiun&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
         </div>
     </div>
 </footer>
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
     
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-    <script>
-        new Valine({
-            el: '#valine-thread' ,
-            lang:'en',
-            avatar:'identicon',
-            notify:false,
-            verify:false,
-            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
-            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
-            placeholder: ''
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         });
-    </script>
-
-
+    });
+</script>
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
     
     
 
 
+<script src="/js/main.js" defer></script>
 
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
     </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 </body>
 </html>

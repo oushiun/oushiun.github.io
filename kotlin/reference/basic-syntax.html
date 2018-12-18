@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang=en>
+<html  lang="en">
 <head>
     <meta charset="utf-8">
-    
-    <title>基本语法 | oushiun</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>基本语法 - oushiun</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
     <meta name="description" content="定义包包的声明应处于源文件顶部： 12345package my.demoimport java.util.*// …… 目录与包的结构无需匹配：源代码可以在文件系统的任意位置。">
 <meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
@@ -13,646 +15,1264 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="定义包包的声明应处于源文件顶部： 12345package my.demoimport java.util.*// …… 目录与包的结构无需匹配：源代码可以在文件系统的任意位置。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
-<meta property="og:updated_time" content="2018-05-29T08:27:12.537Z">
+<meta property="og:updated_time" content="2018-12-18T08:50:27.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本语法">
 <meta name="twitter:description" content="定义包包的声明应处于源文件顶部： 12345package my.demoimport java.util.*// …… 目录与包的结构无需匹配：源代码可以在文件系统的任意位置。">
-<meta name="twitter:image" content="https://static.oushiun.com/blog/banner/Kotlin.png">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     
 
     
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+    
 
     
-        <link rel="icon" href="/favicon.png" />
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-65562224-1', 'auto');
-ga('send', 'pageview');
+<link rel="stylesheet" href="/css/back-to-top.css">
 
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-65562224-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-65562224-1');
 </script>
+
+
+    
     
     
     
 
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body>
-    <div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">oushiun</span>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="基本语法" height="28">
+            
             </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/.">Home</a>
-                
-                    <a class="main-nav-link" href="/archives">Archives</a>
-                
-                    <a class="main-nav-link" href="/categories">Categories</a>
-                
-                    <a class="main-nav-link" href="/tags">Tags</a>
-                
-                    <a class="main-nav-link" href="/about">About</a>
-                
-            </nav>
-            
-                
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.jpg" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
-            
-            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
-        <div class="ins-section-wrapper">
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-15T04:29:00.000Z">2018-05-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/后端/">后端</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/">参考</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1758 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                基本语法
+            
+        </h1>
+        <div class="content">
+            <h4 id="定义包"><a href="#定义包" class="headerlink" title="定义包"></a>定义包</h4><p>包的声明应处于源文件顶部：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> my.demo</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.*</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// ……</span></span><br></pre></td></tr></table></figure>
+<p>目录与包的结构无需匹配：源代码可以在文件系统的任意位置。</p>
+<a id="more"></a>
+<p>参见<a href="packages.html">包</a>。</p>
+<h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><p>带有两个 <code>Int</code> 参数、返回 <code>Int</code> 的函数：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sum</span><span class="hljs-params">(a: <span class="hljs-type">Int</span>, b: <span class="hljs-type">Int</span>)</span></span>: <span class="hljs-built_in">Int</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    print(<span class="hljs-string">"sum of 3 and 5 is "</span>)</span><br><span class="line">    println(sum(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将表达式作为函数体、返回值类型自动推断的函数：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sum</span><span class="hljs-params">(a: <span class="hljs-type">Int</span>, b: <span class="hljs-type">Int</span>)</span></span> = a + b</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="hljs-string">"sum of 19 and 23 is <span class="hljs-subst">$&#123;sum(<span class="hljs-number">19</span>, <span class="hljs-number">23</span>)&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数返回无意义的值：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printSum</span><span class="hljs-params">(a: <span class="hljs-type">Int</span>, b: <span class="hljs-type">Int</span>)</span></span>: <span class="hljs-built_in">Unit</span> &#123;</span><br><span class="line">    println(<span class="hljs-string">"sum of <span class="hljs-variable">$a</span> and <span class="hljs-variable">$b</span> is <span class="hljs-subst">$&#123;a + b&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printSum(<span class="hljs-number">-1</span>, <span class="hljs-number">8</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Unit</code> 返回类型可以省略：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printSum</span><span class="hljs-params">(a: <span class="hljs-type">Int</span>, b: <span class="hljs-type">Int</span>)</span></span> &#123;</span><br><span class="line">    println(<span class="hljs-string">"sum of <span class="hljs-variable">$a</span> and <span class="hljs-variable">$b</span> is <span class="hljs-subst">$&#123;a + b&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printSum(<span class="hljs-number">-1</span>, <span class="hljs-number">8</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="functions.html">函数</a>。</p>
+<h4 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h4><p>一次赋值（只读）的局部变量:</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> a: <span class="hljs-built_in">Int</span> = <span class="hljs-number">1</span>  <span class="hljs-comment">// 立即赋值</span></span><br><span class="line">    <span class="hljs-keyword">val</span> b = <span class="hljs-number">2</span>   <span class="hljs-comment">// 自动推断出 `Int` 类型</span></span><br><span class="line">    <span class="hljs-keyword">val</span> c: <span class="hljs-built_in">Int</span>  <span class="hljs-comment">// 如果没有初始值类型不能省略</span></span><br><span class="line">    c = <span class="hljs-number">3</span>       <span class="hljs-comment">// 明确赋值</span></span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">    println(<span class="hljs-string">"a = <span class="hljs-variable">$a</span>, b = <span class="hljs-variable">$b</span>, c = <span class="hljs-variable">$c</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可变变量：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span> <span class="hljs-comment">// 自动推断出 `Int` 类型</span></span><br><span class="line">    x += <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">    println(<span class="hljs-string">"x = <span class="hljs-variable">$x</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>顶层变量：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-keyword">val</span> PI = <span class="hljs-number">3.14</span></span><br><span class="line"><span class="hljs-keyword">var</span> x = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">incrementX</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">    x += <span class="hljs-number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="hljs-string">"x = <span class="hljs-variable">$x</span>; PI = <span class="hljs-variable">$PI</span>"</span>)</span><br><span class="line">    incrementX()</span><br><span class="line">    println(<span class="hljs-string">"incrementX()"</span>)</span><br><span class="line">    println(<span class="hljs-string">"x = <span class="hljs-variable">$x</span>; PI = <span class="hljs-variable">$PI</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="properties.html">属性和字段</a>。</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>正如 Java 和 JavaScript，Kotlin 支持行注释及块注释。</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 这是一个行注释</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 这是一个多行的</span></span><br><span class="line"><span class="hljs-comment">   块注释。 */</span></span><br></pre></td></tr></table></figure>
+<p>与 Java 不同的是，Kotlin 的块注释可以嵌套。</p>
+<p>参见<a href="kotlin-doc.html">编写 Kotlin 代码文档</a> 查看关于文档注释语法的信息。</p>
+<h4 id="使用字符串模板"><a href="#使用字符串模板" class="headerlink" title="使用字符串模板"></a>使用字符串模板</h4><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span></span><br><span class="line">    <span class="hljs-comment">// 模板中的简单名称：</span></span><br><span class="line">    <span class="hljs-keyword">val</span> s1 = <span class="hljs-string">"a is <span class="hljs-variable">$a</span>"</span></span><br><span class="line"></span><br><span class="line">    a = <span class="hljs-number">2</span></span><br><span class="line">    <span class="hljs-comment">// 模板中的任意表达式：</span></span><br><span class="line">    <span class="hljs-keyword">val</span> s2 = <span class="hljs-string">"<span class="hljs-subst">$&#123;s1.replace("is", "was")&#125;</span>, but now is <span class="hljs-variable">$a</span>"</span></span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">    println(s2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="basic-types.html#字符串模板">字符串模板</a>。</p>
+<h4 id="使用条件表达式"><a href="#使用条件表达式" class="headerlink" title="使用条件表达式"></a>使用条件表达式</h4><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">maxOf</span><span class="hljs-params">(a: <span class="hljs-type">Int</span>, b: <span class="hljs-type">Int</span>)</span></span>: <span class="hljs-built_in">Int</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> a</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="hljs-string">"max of 0 and 42 is <span class="hljs-subst">$&#123;maxOf(<span class="hljs-number">0</span>, <span class="hljs-number">42</span>)&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>if</code> 作为表达式:</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">maxOf</span><span class="hljs-params">(a: <span class="hljs-type">Int</span>, b: <span class="hljs-type">Int</span>)</span></span> = <span class="hljs-keyword">if</span> (a &gt; b) a <span class="hljs-keyword">else</span> b</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="hljs-string">"max of 0 and 42 is <span class="hljs-subst">$&#123;maxOf(<span class="hljs-number">0</span>, <span class="hljs-number">42</span>)&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见 <a href="control-flow.html#If-表达式"><em>if</em> 表达式</a>。</p>
+<h4 id="使用可空值及-null-检测"><a href="#使用可空值及-null-检测" class="headerlink" title="使用可空值及 null 检测"></a>使用可空值及 <code>null</code> 检测</h4><p>当某个变量的值可以为 <code>null</code> 的时候，必须在声明处的类型后添加 <code>?</code> 来标识该引用可为空。</p>
+<p>如果 <code>str</code> 的内容不是数字返回 <code>null</code>：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">parseInt</span><span class="hljs-params">(str: <span class="hljs-type">String</span>)</span></span>: <span class="hljs-built_in">Int</span>? &#123;</span><br><span class="line">    <span class="hljs-comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用返回可空值的函数:</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">parseInt</span><span class="hljs-params">(str: <span class="hljs-type">String</span>)</span></span>: <span class="hljs-built_in">Int</span>? &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> str.toIntOrNull()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printProduct</span><span class="hljs-params">(arg1: <span class="hljs-type">String</span>, arg2: <span class="hljs-type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> x = parseInt(arg1)</span><br><span class="line">    <span class="hljs-keyword">val</span> y = parseInt(arg2)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 直接使用 `x * y` 会导致编译错误，因为他们可能为 null</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (x != <span class="hljs-literal">null</span> &amp;&amp; y != <span class="hljs-literal">null</span>) &#123;</span><br><span class="line">        <span class="hljs-comment">// 在空检测后，x 和 y 会自动转换为非空值（non-nullable）</span></span><br><span class="line">        println(x * y)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        println(<span class="hljs-string">"either '<span class="hljs-variable">$arg1</span>' or '<span class="hljs-variable">$arg2</span>' is not a number"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printProduct(<span class="hljs-string">"6"</span>, <span class="hljs-string">"7"</span>)</span><br><span class="line">    printProduct(<span class="hljs-string">"a"</span>, <span class="hljs-string">"7"</span>)</span><br><span class="line">    printProduct(<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">parseInt</span><span class="hljs-params">(str: <span class="hljs-type">String</span>)</span></span>: <span class="hljs-built_in">Int</span>? &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> str.toIntOrNull()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printProduct</span><span class="hljs-params">(arg1: <span class="hljs-type">String</span>, arg2: <span class="hljs-type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> x = parseInt(arg1)</span><br><span class="line">    <span class="hljs-keyword">val</span> y = parseInt(arg2)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-comment">// ……</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (x == <span class="hljs-literal">null</span>) &#123;</span><br><span class="line">        println(<span class="hljs-string">"Wrong number format in arg1: '<span class="hljs-variable">$arg1</span>'"</span>)</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">if</span> (y == <span class="hljs-literal">null</span>) &#123;</span><br><span class="line">        println(<span class="hljs-string">"Wrong number format in arg2: '<span class="hljs-variable">$arg2</span>'"</span>)</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 在空检测后，x 和 y 会自动转换为非空值</span></span><br><span class="line">    println(x * y)</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printProduct(<span class="hljs-string">"6"</span>, <span class="hljs-string">"7"</span>)</span><br><span class="line">    printProduct(<span class="hljs-string">"a"</span>, <span class="hljs-string">"7"</span>)</span><br><span class="line">    printProduct(<span class="hljs-string">"99"</span>, <span class="hljs-string">"b"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="null-safety.html">空安全</a>。</p>
+<h4 id="使用类型检测及自动类型转换"><a href="#使用类型检测及自动类型转换" class="headerlink" title="使用类型检测及自动类型转换"></a>使用类型检测及自动类型转换</h4><p><code>is</code> 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getStringLength</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span>: <span class="hljs-built_in">Int</span>? &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">is</span> String) &#123;</span><br><span class="line">        <span class="hljs-comment">// `obj` 在该条件分支内自动转换成 `String`</span></span><br><span class="line">        <span class="hljs-keyword">return</span> obj.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 在离开类型检测分支后，`obj` 仍然是 `Any` 类型</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printLength</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="hljs-string">"'<span class="hljs-variable">$obj</span>' string length is <span class="hljs-subst">$&#123;getStringLength(obj) ?: "... err, not a string"&#125;</span> "</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    printLength(<span class="hljs-string">"Incomprehensibilities"</span>)</span><br><span class="line">    printLength(<span class="hljs-number">1000</span>)</span><br><span class="line">    printLength(listOf(Any()))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getStringLength</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span>: <span class="hljs-built_in">Int</span>? &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (obj !<span class="hljs-keyword">is</span> String) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// `obj` 在这一分支自动转换为 `String`</span></span><br><span class="line">    <span class="hljs-keyword">return</span> obj.length</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printLength</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="hljs-string">"'<span class="hljs-variable">$obj</span>' string length is <span class="hljs-subst">$&#123;getStringLength(obj) ?: "... err, not a string"&#125;</span> "</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    printLength(<span class="hljs-string">"Incomprehensibilities"</span>)</span><br><span class="line">    printLength(<span class="hljs-number">1000</span>)</span><br><span class="line">    printLength(listOf(Any()))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getStringLength</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span>: <span class="hljs-built_in">Int</span>? &#123;</span><br><span class="line">    <span class="hljs-comment">// `obj` 在 `&amp;&amp;` 右边自动转换成 `String` 类型</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">is</span> String &amp;&amp; obj.length &gt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> obj.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printLength</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="hljs-string">"'<span class="hljs-variable">$obj</span>' string length is <span class="hljs-subst">$&#123;getStringLength(obj) ?: "... err, is empty or not a string at all"&#125;</span> "</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    printLength(<span class="hljs-string">"Incomprehensibilities"</span>)</span><br><span class="line">    printLength(<span class="hljs-string">""</span>)</span><br><span class="line">    printLength(<span class="hljs-number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="classes.html">类</a> 和 <a href="typecasts.html">类型转换</a>。</p>
+<h4 id="使用-for-循环"><a href="#使用-for-循环" class="headerlink" title="使用 for 循环"></a>使用 <code>for</code> 循环</h4><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> items = listOf(<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"kiwifruit"</span>)</span><br><span class="line">    <span class="hljs-keyword">for</span> (item <span class="hljs-keyword">in</span> items) &#123;</span><br><span class="line">        println(item)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> items = listOf(<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"kiwifruit"</span>)</span><br><span class="line">    <span class="hljs-keyword">for</span> (index <span class="hljs-keyword">in</span> items.indices) &#123;</span><br><span class="line">        println(<span class="hljs-string">"item at <span class="hljs-variable">$index</span> is <span class="hljs-subst">$&#123;items[index]&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见 <a href="control-flow.html#For-循环">for 循环</a>。</p>
+<h4 id="使用-while-循环"><a href="#使用-while-循环" class="headerlink" title="使用 while 循环"></a>使用 <code>while</code> 循环</h4><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> items = listOf(<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"kiwifruit"</span>)</span><br><span class="line">    <span class="hljs-keyword">var</span> index = <span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-keyword">while</span> (index &lt; items.size) &#123;</span><br><span class="line">        println(<span class="hljs-string">"item at <span class="hljs-variable">$index</span> is <span class="hljs-subst">$&#123;items[index]&#125;</span>"</span>)</span><br><span class="line">        index++</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见 <a href="control-flow.html#While-循环">while 循环</a>。</p>
+<h4 id="使用-when-表达式"><a href="#使用-when-表达式" class="headerlink" title="使用 when 表达式"></a>使用 <code>when</code> 表达式</h4><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">describe</span><span class="hljs-params">(obj: <span class="hljs-type">Any</span>)</span></span>: String =</span><br><span class="line">    <span class="hljs-keyword">when</span> (obj) &#123;</span><br><span class="line">        <span class="hljs-number">1</span>          -&gt; <span class="hljs-string">"One"</span></span><br><span class="line">        <span class="hljs-string">"Hello"</span>    -&gt; <span class="hljs-string">"Greeting"</span></span><br><span class="line">        <span class="hljs-keyword">is</span> <span class="hljs-built_in">Long</span>    -&gt; <span class="hljs-string">"Long"</span></span><br><span class="line">        !<span class="hljs-keyword">is</span> String -&gt; <span class="hljs-string">"Not a string"</span></span><br><span class="line">        <span class="hljs-keyword">else</span>       -&gt; <span class="hljs-string">"Unknown"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(describe(<span class="hljs-number">1</span>))</span><br><span class="line">    println(describe(<span class="hljs-string">"Hello"</span>))</span><br><span class="line">    println(describe(<span class="hljs-number">1000</span>L))</span><br><span class="line">    println(describe(<span class="hljs-number">2</span>))</span><br><span class="line">    println(describe(<span class="hljs-string">"other"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见 <a href="control-flow.html#When-表达式">when 表达式</a>。</p>
+<h4 id="使用区间（range）"><a href="#使用区间（range）" class="headerlink" title="使用区间（range）"></a>使用区间（range）</h4><p>使用 <code>in</code> 运算符来检测某个数字是否在指定区间内：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> x = <span class="hljs-number">10</span></span><br><span class="line">    <span class="hljs-keyword">val</span> y = <span class="hljs-number">9</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (x <span class="hljs-keyword">in</span> <span class="hljs-number">1.</span>.y+<span class="hljs-number">1</span>) &#123;</span><br><span class="line">        println(<span class="hljs-string">"fits in range"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>检测某个数字是否在指定区间外:</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-number">-1</span> !<span class="hljs-keyword">in</span> <span class="hljs-number">0.</span>.list.lastIndex) &#123;</span><br><span class="line">        println(<span class="hljs-string">"-1 is out of range"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">if</span> (list.size !<span class="hljs-keyword">in</span> list.indices) &#123;</span><br><span class="line">        println(<span class="hljs-string">"list size is out of valid list indices range too"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>区间迭代:</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (x <span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.5</span>) &#123;</span><br><span class="line">        print(x)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或数列迭代：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (x <span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.10</span> step <span class="hljs-number">2</span>) &#123;</span><br><span class="line">        print(x)</span><br><span class="line">    &#125;</span><br><span class="line">    println()</span><br><span class="line">    <span class="hljs-keyword">for</span> (x <span class="hljs-keyword">in</span> <span class="hljs-number">9</span> downTo <span class="hljs-number">0</span> step <span class="hljs-number">3</span>) &#123;</span><br><span class="line">        print(x)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="ranges.html">区间</a>。</p>
+<h4 id="使用集合"><a href="#使用集合" class="headerlink" title="使用集合"></a>使用集合</h4><p>对集合进行迭代:</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> items = listOf(<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"kiwifruit"</span>)</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (item <span class="hljs-keyword">in</span> items) &#123;</span><br><span class="line">        println(item)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>in</code> 运算符来判断集合内是否包含某实例：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> items = setOf(<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"kiwifruit"</span>)</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">when</span> &#123;</span><br><span class="line">        <span class="hljs-string">"orange"</span> <span class="hljs-keyword">in</span> items -&gt; println(<span class="hljs-string">"juicy"</span>)</span><br><span class="line">        <span class="hljs-string">"apple"</span> <span class="hljs-keyword">in</span> items -&gt; println(<span class="hljs-string">"apple is fine too"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 lambda 表达式来过滤（filter）和映射（map）集合：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> fruits = listOf(<span class="hljs-string">"banana"</span>, <span class="hljs-string">"avocado"</span>, <span class="hljs-string">"apple"</span>, <span class="hljs-string">"kiwifruit"</span>)</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    fruits</span><br><span class="line">        .filter &#123; it.startsWith(<span class="hljs-string">"a"</span>) &#125;</span><br><span class="line">        .sortedBy &#123; it &#125;</span><br><span class="line">        .map &#123; it.toUpperCase() &#125;</span><br><span class="line">        .forEach &#123; println(it) &#125;</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="lambdas.html">高阶函数及 Lambda 表达式</a>。</p>
+<h4 id="创建基本类及其实例："><a href="#创建基本类及其实例：" class="headerlink" title="创建基本类及其实例："></a>创建基本类及其实例：</h4><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="hljs-comment">//sampleStart</span></span><br><span class="line">    <span class="hljs-keyword">val</span> rectangle = Rectangle(<span class="hljs-number">5.0</span>, <span class="hljs-number">2.0</span>) <span class="hljs-comment">// 不需要“new”关键字</span></span><br><span class="line">    <span class="hljs-keyword">val</span> triangle = Triangle(<span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>)</span><br><span class="line"><span class="hljs-comment">//sampleEnd</span></span><br><span class="line">    println(<span class="hljs-string">"Area of rectangle is <span class="hljs-subst">$&#123;rectangle.calculateArea()&#125;</span>, its perimeter is <span class="hljs-subst">$&#123;rectangle.perimeter&#125;</span>"</span>)</span><br><span class="line">    println(<span class="hljs-string">"Area of triangle is <span class="hljs-subst">$&#123;triangle.calculateArea()&#125;</span>, its perimeter is <span class="hljs-subst">$&#123;triangle.perimeter&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span></span>(<span class="hljs-keyword">val</span> sides: List&lt;<span class="hljs-built_in">Double</span>&gt;) &#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> perimeter: <span class="hljs-built_in">Double</span> <span class="hljs-keyword">get</span>() = sides.sum()</span><br><span class="line">    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">calculateArea</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Double</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RectangleProperties</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">val</span> isSquare: <span class="hljs-built_in">Boolean</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span></span>(</span><br><span class="line">    <span class="hljs-keyword">var</span> height: <span class="hljs-built_in">Double</span>,</span><br><span class="line">    <span class="hljs-keyword">var</span> length: <span class="hljs-built_in">Double</span></span><br><span class="line">) : Shape(listOf(height, length, height, length)), RectangleProperties &#123;</span><br><span class="line">    <span class="hljs-keyword">override</span> <span class="hljs-keyword">val</span> isSquare: <span class="hljs-built_in">Boolean</span> <span class="hljs-keyword">get</span>() = length == height</span><br><span class="line">    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">calculateArea</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Double</span> = height * length</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span></span>(</span><br><span class="line">    <span class="hljs-keyword">var</span> sideA: <span class="hljs-built_in">Double</span>,</span><br><span class="line">    <span class="hljs-keyword">var</span> sideB: <span class="hljs-built_in">Double</span>,</span><br><span class="line">    <span class="hljs-keyword">var</span> sideC: <span class="hljs-built_in">Double</span></span><br><span class="line">) : Shape(listOf(sideA, sideB, sideC)) &#123;</span><br><span class="line">    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">calculateArea</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Double</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">val</span> s = perimeter / <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">return</span> Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参见<a href="classes.html">类</a>以及<a href="object-declarations.html">对象与实例</a>。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Kotlin/">Kotlin</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c18aad4678d8555"></script>
+
+        
+    </div>
+</div>
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/kotlin/reference/idioms.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">习惯用法</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/kotlin/reference/whatsnew1.2.html">
+                <span class="level-item">Kotlin 1.2 的新特性</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
+        app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
+        placeholder: '留下你想说的话吧 (๑•ᴗ•๑)'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="oushiun">
+                    
+                    <p class="is-size-4 is-block">
+                        oushiun
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer &amp; PM
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Hefei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        75
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        20
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/oushiun">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/oushiun">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Paypal" href="https://www.paypal.me/oushiun">
+                
+                <i class="fab fa-paypal"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Steam" href="https://steamcommunity.com/profiles/76561198218709653">
+                
+                <i class="fab fa-steam"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/ppoffice</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/其他/">
+            <span class="level-start">
+                <span class="level-item">其他</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/前端/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">9</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/前端/Css3/">
+            <span class="level-start">
+                <span class="level-item">Css3</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/前端/JavaScript/">
+            <span class="level-start">
+                <span class="level-item">JavaScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/后端/">
+            <span class="level-start">
+                <span class="level-item">后端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">61</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/后端/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">61</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/工具/">
+            <span class="level-start">
+                <span class="level-item">工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/软件/">
+            <span class="level-start">
+                <span class="level-item">软件</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 13.33px;">CentOS</a> <a href="/tags/ES6/" style="font-size: 16.67px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/规范/" style="font-size: 10px;">规范</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/default-rest-spread.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-20T03:02:29.000Z">2018-06-20</time></div>
+                    <a href="/es6/default-rest-spread.html" class="has-link-black-ter is-size-6">默认参数、不定参数、扩展运算符</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/destructuring.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-19T08:07:48.000Z">2018-06-19</time></div>
+                    <a href="/es6/destructuring.html" class="has-link-black-ter is-size-6">解构</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/template-strings.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-14T02:38:35.000Z">2018-06-14</time></div>
+                    <a href="/es6/template-strings.html" class="has-link-black-ter is-size-6">模板字符串</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/css3/css-coding-standard.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-13T11:51:56.000Z">2018-06-13</time></div>
+                    <a href="/css3/css-coding-standard.html" class="has-link-black-ter is-size-6">CSS 书写规范</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/Css3/">Css3</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/enhanced-object-literals.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
+                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">67</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/BBR/">
+                        <span class="level-start">
+                            <span class="level-item">BBR</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Box-Model/">
+                        <span class="level-start">
+                            <span class="level-item">Box Model</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/CentOS/">
+                        <span class="level-start">
+                            <span class="level-item">CentOS</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/ES6/">
+                        <span class="level-start">
+                            <span class="level-item">ES6</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">7</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Hexo/">
+                        <span class="level-start">
+                            <span class="level-item">Hexo</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/JavaScript/">
+                        <span class="level-start">
+                            <span class="level-item">JavaScript</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Kotlin/">
+                        <span class="level-start">
+                            <span class="level-item">Kotlin</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">61</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Markdown/">
+                        <span class="level-start">
+                            <span class="level-item">Markdown</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/jetbrains/">
+                        <span class="level-start">
+                            <span class="level-item">jetbrains</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/shadowsocks/">
+                        <span class="level-start">
+                            <span class="level-item">shadowsocks</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/规范/">
+                        <span class="level-start">
+                            <span class="level-item">规范</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/default-rest-spread.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-20T03:02:29.000Z">2018-06-20</time></div>
+                    <a href="/es6/default-rest-spread.html" class="has-link-black-ter is-size-6">默认参数、不定参数、扩展运算符</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/destructuring.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-19T08:07:48.000Z">2018-06-19</time></div>
+                    <a href="/es6/destructuring.html" class="has-link-black-ter is-size-6">解构</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/template-strings.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-14T02:38:35.000Z">2018-06-14</time></div>
+                    <a href="/es6/template-strings.html" class="has-link-black-ter is-size-6">模板字符串</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/css3/css-coding-standard.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-13T11:51:56.000Z">2018-06-13</time></div>
+                    <a href="/css3/css-coding-standard.html" class="has-link-black-ter is-size-6">CSS 书写规范</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/Css3/">Css3</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/es6/enhanced-object-literals.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
+                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">67</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/BBR/">
+                        <span class="level-start">
+                            <span class="level-item">BBR</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Box-Model/">
+                        <span class="level-start">
+                            <span class="level-item">Box Model</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/CentOS/">
+                        <span class="level-start">
+                            <span class="level-item">CentOS</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/ES6/">
+                        <span class="level-start">
+                            <span class="level-item">ES6</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">7</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Hexo/">
+                        <span class="level-start">
+                            <span class="level-item">Hexo</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/JavaScript/">
+                        <span class="level-start">
+                            <span class="level-item">JavaScript</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Kotlin/">
+                        <span class="level-start">
+                            <span class="level-item">Kotlin</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">61</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Markdown/">
+                        <span class="level-start">
+                            <span class="level-item">Markdown</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/jetbrains/">
+                        <span class="level-start">
+                            <span class="level-item">jetbrains</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/shadowsocks/">
+                        <span class="level-start">
+                            <span class="level-item">shadowsocks</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/规范/">
+                        <span class="level-start">
+                            <span class="level-item">规范</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="基本语法" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 oushiun&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
             <div class="ins-section-container"></div>
         </div>
     </div>
 </div>
 <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
 </script>
-<script src="/js/insight.js"></script>
-
-</div>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/.">Home</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
-                
-                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">About</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-    </div>
-
-                </td>
-            </tr>
-        </table>
-    </div>
-</header>
-
-        <div class="outer">
-            
-                
-
-<aside id="profile" class="profile-fixed">
-    <div class="inner profile-inner">
-        <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.jpg" />
-            <h2 id="name">oushiun</h2>
-            <h3 id="title">Web Developer &amp; PM</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>Hefei, China</span>
-            <a id="follow" target="_blank" href="https://github.com/oushiun">FOLLOW</a>
-        </div>
-        <div class="article-info profile-block">
-            <div class="article-info-block">
-                75
-                <span>posts</span>
-            </div>
-            <div class="article-info-block">
-                11
-                <span>tags</span>
-            </div>
-        </div>
-        
-        <div class="profile-block social-links">
-            <table>
-                <tr>
-                    
-                    
-                    <td>
-                        <a href="https://github.com/oushiun" target="_blank" title="github" class=tooltip>
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="https://steamcommunity.com/profiles/76561198218709653" target="_blank" title="steam" class=tooltip>
-                            <i class="fa fa-steam"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="https://www.paypal.me/oushiun" target="_blank" title="paypal" class=tooltip>
-                            <i class="fa fa-paypal"></i>
-                        </a>
-                    </td>
-                    
-                </tr>
-            </table>
-        </div>
-        
-    </div>
-</aside>
-
-            
-            <section id="main"><article id="post-kotlin/reference/basic-syntax" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<img src="https://static.oushiun.com/blog/banner/Kotlin.png" class="article-banner" />
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
     
-        <h1 class="article-title" itemprop="name">
-            基本语法
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/kotlin/reference/basic-syntax.html">
-            <time datetime="2018-05-15T04:29:00.000Z" itemprop="datePublished">2018-05-15</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/后端/">后端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/">Kotlin</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/">参考</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h4 id="定义包"><a href="#定义包" class="headerlink" title="定义包"></a>定义包</h4><p>包的声明应处于源文件顶部：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> my.demo</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*</span><br><span class="line"></span><br><span class="line"><span class="comment">// ……</span></span><br></pre></td></tr></table></figure>
-<p>目录与包的结构无需匹配：源代码可以在文件系统的任意位置。</p>
-<a id="more"></a>
-<p>参见<a href="packages.html">包</a>。</p>
-<h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><p>带有两个 <code>Int</code> 参数、返回 <code>Int</code> 的函数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    print(<span class="string">"sum of 3 and 5 is "</span>)</span><br><span class="line">    println(sum(<span class="number">3</span>, <span class="number">5</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>将表达式作为函数体、返回值类型自动推断的函数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span> = a + b</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"sum of 19 and 23 is <span class="subst">$&#123;sum(<span class="number">19</span>, <span class="number">23</span>)&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>函数返回无意义的值：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printSum</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Unit</span> &#123;</span><br><span class="line">    println(<span class="string">"sum of <span class="variable">$a</span> and <span class="variable">$b</span> is <span class="subst">$&#123;a + b&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printSum(<span class="number">-1</span>, <span class="number">8</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>Unit</code> 返回类型可以省略：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printSum</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"sum of <span class="variable">$a</span> and <span class="variable">$b</span> is <span class="subst">$&#123;a + b&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printSum(<span class="number">-1</span>, <span class="number">8</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="functions.html">函数</a>。</p>
-<h4 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h4><p>一次赋值（只读）的局部变量:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> a: <span class="built_in">Int</span> = <span class="number">1</span>  <span class="comment">// 立即赋值</span></span><br><span class="line">    <span class="keyword">val</span> b = <span class="number">2</span>   <span class="comment">// 自动推断出 `Int` 类型</span></span><br><span class="line">    <span class="keyword">val</span> c: <span class="built_in">Int</span>  <span class="comment">// 如果没有初始值类型不能省略</span></span><br><span class="line">    c = <span class="number">3</span>       <span class="comment">// 明确赋值</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"a = <span class="variable">$a</span>, b = <span class="variable">$b</span>, c = <span class="variable">$c</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可变变量：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">5</span> <span class="comment">// 自动推断出 `Int` 类型</span></span><br><span class="line">    x += <span class="number">1</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"x = <span class="variable">$x</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>顶层变量：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="keyword">val</span> PI = <span class="number">3.14</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">incrementX</span><span class="params">()</span></span> &#123;</span><br><span class="line">    x += <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"x = <span class="variable">$x</span>; PI = <span class="variable">$PI</span>"</span>)</span><br><span class="line">    incrementX()</span><br><span class="line">    println(<span class="string">"incrementX()"</span>)</span><br><span class="line">    println(<span class="string">"x = <span class="variable">$x</span>; PI = <span class="variable">$PI</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="properties.html">属性和字段</a>。</p>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>正如 Java 和 JavaScript，Kotlin 支持行注释及块注释。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是一个行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 这是一个多行的</span></span><br><span class="line"><span class="comment">   块注释。 */</span></span><br></pre></td></tr></table></figure>
-<p>与 Java 不同的是，Kotlin 的块注释可以嵌套。</p>
-<p>参见<a href="kotlin-doc.html">编写 Kotlin 代码文档</a> 查看关于文档注释语法的信息。</p>
-<h4 id="使用字符串模板"><a href="#使用字符串模板" class="headerlink" title="使用字符串模板"></a>使用字符串模板</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">    <span class="comment">// 模板中的简单名称：</span></span><br><span class="line">    <span class="keyword">val</span> s1 = <span class="string">"a is <span class="variable">$a</span>"</span></span><br><span class="line"></span><br><span class="line">    a = <span class="number">2</span></span><br><span class="line">    <span class="comment">// 模板中的任意表达式：</span></span><br><span class="line">    <span class="keyword">val</span> s2 = <span class="string">"<span class="subst">$&#123;s1.replace("is", "was")&#125;</span>, but now is <span class="variable">$a</span>"</span></span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    println(s2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="basic-types.html#字符串模板">字符串模板</a>。</p>
-<h4 id="使用条件表达式"><a href="#使用条件表达式" class="headerlink" title="使用条件表达式"></a>使用条件表达式</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">maxOf</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"max of 0 and 42 is <span class="subst">$&#123;maxOf(<span class="number">0</span>, <span class="number">42</span>)&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 <code>if</code> 作为表达式:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">maxOf</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span> = <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"max of 0 and 42 is <span class="subst">$&#123;maxOf(<span class="number">0</span>, <span class="number">42</span>)&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见 <a href="control-flow.html#If-表达式"><em>if</em> 表达式</a>。</p>
-<h4 id="使用可空值及-null-检测"><a href="#使用可空值及-null-检测" class="headerlink" title="使用可空值及 null 检测"></a>使用可空值及 <code>null</code> 检测</h4><p>当某个变量的值可以为 <code>null</code> 的时候，必须在声明处的类型后添加 <code>?</code> 来标识该引用可为空。</p>
-<p>如果 <code>str</code> 的内容不是数字返回 <code>null</code>：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">parseInt</span><span class="params">(str: <span class="type">String</span>)</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用返回可空值的函数:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">parseInt</span><span class="params">(str: <span class="type">String</span>)</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">    <span class="keyword">return</span> str.toIntOrNull()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printProduct</span><span class="params">(arg1: <span class="type">String</span>, arg2: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> x = parseInt(arg1)</span><br><span class="line">    <span class="keyword">val</span> y = parseInt(arg2)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 直接使用 `x * y` 会导致编译错误，因为他们可能为 null</span></span><br><span class="line">    <span class="keyword">if</span> (x != <span class="literal">null</span> &amp;&amp; y != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 在空检测后，x 和 y 会自动转换为非空值（non-nullable）</span></span><br><span class="line">        println(x * y)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        println(<span class="string">"either '<span class="variable">$arg1</span>' or '<span class="variable">$arg2</span>' is not a number"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printProduct(<span class="string">"6"</span>, <span class="string">"7"</span>)</span><br><span class="line">    printProduct(<span class="string">"a"</span>, <span class="string">"7"</span>)</span><br><span class="line">    printProduct(<span class="string">"a"</span>, <span class="string">"b"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">parseInt</span><span class="params">(str: <span class="type">String</span>)</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">    <span class="keyword">return</span> str.toIntOrNull()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printProduct</span><span class="params">(arg1: <span class="type">String</span>, arg2: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> x = parseInt(arg1)</span><br><span class="line">    <span class="keyword">val</span> y = parseInt(arg2)</span><br><span class="line"></span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="literal">null</span>) &#123;</span><br><span class="line">        println(<span class="string">"Wrong number format in arg1: '<span class="variable">$arg1</span>'"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="literal">null</span>) &#123;</span><br><span class="line">        println(<span class="string">"Wrong number format in arg2: '<span class="variable">$arg2</span>'"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在空检测后，x 和 y 会自动转换为非空值</span></span><br><span class="line">    println(x * y)</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    printProduct(<span class="string">"6"</span>, <span class="string">"7"</span>)</span><br><span class="line">    printProduct(<span class="string">"a"</span>, <span class="string">"7"</span>)</span><br><span class="line">    printProduct(<span class="string">"99"</span>, <span class="string">"b"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="null-safety.html">空安全</a>。</p>
-<h4 id="使用类型检测及自动类型转换"><a href="#使用类型检测及自动类型转换" class="headerlink" title="使用类型检测及自动类型转换"></a>使用类型检测及自动类型转换</h4><p><code>is</code> 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getStringLength</span><span class="params">(obj: <span class="type">Any</span>)</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">is</span> String) &#123;</span><br><span class="line">        <span class="comment">// `obj` 在该条件分支内自动转换成 `String`</span></span><br><span class="line">        <span class="keyword">return</span> obj.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在离开类型检测分支后，`obj` 仍然是 `Any` 类型</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printLength</span><span class="params">(obj: <span class="type">Any</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"'<span class="variable">$obj</span>' string length is <span class="subst">$&#123;getStringLength(obj) ?: "... err, not a string"&#125;</span> "</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    printLength(<span class="string">"Incomprehensibilities"</span>)</span><br><span class="line">    printLength(<span class="number">1000</span>)</span><br><span class="line">    printLength(listOf(Any()))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getStringLength</span><span class="params">(obj: <span class="type">Any</span>)</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj !<span class="keyword">is</span> String) <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// `obj` 在这一分支自动转换为 `String`</span></span><br><span class="line">    <span class="keyword">return</span> obj.length</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printLength</span><span class="params">(obj: <span class="type">Any</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"'<span class="variable">$obj</span>' string length is <span class="subst">$&#123;getStringLength(obj) ?: "... err, not a string"&#125;</span> "</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    printLength(<span class="string">"Incomprehensibilities"</span>)</span><br><span class="line">    printLength(<span class="number">1000</span>)</span><br><span class="line">    printLength(listOf(Any()))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>甚至</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getStringLength</span><span class="params">(obj: <span class="type">Any</span>)</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">    <span class="comment">// `obj` 在 `&amp;&amp;` 右边自动转换成 `String` 类型</span></span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">is</span> String &amp;&amp; obj.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> obj.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printLength</span><span class="params">(obj: <span class="type">Any</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"'<span class="variable">$obj</span>' string length is <span class="subst">$&#123;getStringLength(obj) ?: "... err, is empty or not a string at all"&#125;</span> "</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    printLength(<span class="string">"Incomprehensibilities"</span>)</span><br><span class="line">    printLength(<span class="string">""</span>)</span><br><span class="line">    printLength(<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="classes.html">类</a> 和 <a href="typecasts.html">类型转换</a>。</p>
-<h4 id="使用-for-循环"><a href="#使用-for-循环" class="headerlink" title="使用 for 循环"></a>使用 <code>for</code> 循环</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> items = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"kiwifruit"</span>)</span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> items) &#123;</span><br><span class="line">        println(item)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> items = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"kiwifruit"</span>)</span><br><span class="line">    <span class="keyword">for</span> (index <span class="keyword">in</span> items.indices) &#123;</span><br><span class="line">        println(<span class="string">"item at <span class="variable">$index</span> is <span class="subst">$&#123;items[index]&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见 <a href="control-flow.html#For-循环">for 循环</a>。</p>
-<h4 id="使用-while-循环"><a href="#使用-while-循环" class="headerlink" title="使用 while 循环"></a>使用 <code>while</code> 循环</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> items = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"kiwifruit"</span>)</span><br><span class="line">    <span class="keyword">var</span> index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (index &lt; items.size) &#123;</span><br><span class="line">        println(<span class="string">"item at <span class="variable">$index</span> is <span class="subst">$&#123;items[index]&#125;</span>"</span>)</span><br><span class="line">        index++</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见 <a href="control-flow.html#While-循环">while 循环</a>。</p>
-<h4 id="使用-when-表达式"><a href="#使用-when-表达式" class="headerlink" title="使用 when 表达式"></a>使用 <code>when</code> 表达式</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">describe</span><span class="params">(obj: <span class="type">Any</span>)</span></span>: String =</span><br><span class="line">    <span class="keyword">when</span> (obj) &#123;</span><br><span class="line">        <span class="number">1</span>          -&gt; <span class="string">"One"</span></span><br><span class="line">        <span class="string">"Hello"</span>    -&gt; <span class="string">"Greeting"</span></span><br><span class="line">        <span class="keyword">is</span> <span class="built_in">Long</span>    -&gt; <span class="string">"Long"</span></span><br><span class="line">        !<span class="keyword">is</span> String -&gt; <span class="string">"Not a string"</span></span><br><span class="line">        <span class="keyword">else</span>       -&gt; <span class="string">"Unknown"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(describe(<span class="number">1</span>))</span><br><span class="line">    println(describe(<span class="string">"Hello"</span>))</span><br><span class="line">    println(describe(<span class="number">1000</span>L))</span><br><span class="line">    println(describe(<span class="number">2</span>))</span><br><span class="line">    println(describe(<span class="string">"other"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见 <a href="control-flow.html#When-表达式">when 表达式</a>。</p>
-<h4 id="使用区间（range）"><a href="#使用区间（range）" class="headerlink" title="使用区间（range）"></a>使用区间（range）</h4><p>使用 <code>in</code> 运算符来检测某个数字是否在指定区间内：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> x = <span class="number">10</span></span><br><span class="line">    <span class="keyword">val</span> y = <span class="number">9</span></span><br><span class="line">    <span class="keyword">if</span> (x <span class="keyword">in</span> <span class="number">1.</span>.y+<span class="number">1</span>) &#123;</span><br><span class="line">        println(<span class="string">"fits in range"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>检测某个数字是否在指定区间外:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> list = listOf(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">-1</span> !<span class="keyword">in</span> <span class="number">0.</span>.list.lastIndex) &#123;</span><br><span class="line">        println(<span class="string">"-1 is out of range"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (list.size !<span class="keyword">in</span> list.indices) &#123;</span><br><span class="line">        println(<span class="string">"list size is out of valid list indices range too"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>区间迭代:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">for</span> (x <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span>) &#123;</span><br><span class="line">        print(x)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或数列迭代：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">for</span> (x <span class="keyword">in</span> <span class="number">1.</span><span class="number">.10</span> step <span class="number">2</span>) &#123;</span><br><span class="line">        print(x)</span><br><span class="line">    &#125;</span><br><span class="line">    println()</span><br><span class="line">    <span class="keyword">for</span> (x <span class="keyword">in</span> <span class="number">9</span> downTo <span class="number">0</span> step <span class="number">3</span>) &#123;</span><br><span class="line">        print(x)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="ranges.html">区间</a>。</p>
-<h4 id="使用集合"><a href="#使用集合" class="headerlink" title="使用集合"></a>使用集合</h4><p>对集合进行迭代:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> items = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"kiwifruit"</span>)</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> items) &#123;</span><br><span class="line">        println(item)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 <code>in</code> 运算符来判断集合内是否包含某实例：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> items = setOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"kiwifruit"</span>)</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">when</span> &#123;</span><br><span class="line">        <span class="string">"orange"</span> <span class="keyword">in</span> items -&gt; println(<span class="string">"juicy"</span>)</span><br><span class="line">        <span class="string">"apple"</span> <span class="keyword">in</span> items -&gt; println(<span class="string">"apple is fine too"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 lambda 表达式来过滤（filter）和映射（map）集合：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> fruits = listOf(<span class="string">"banana"</span>, <span class="string">"avocado"</span>, <span class="string">"apple"</span>, <span class="string">"kiwifruit"</span>)</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    fruits</span><br><span class="line">        .filter &#123; it.startsWith(<span class="string">"a"</span>) &#125;</span><br><span class="line">        .sortedBy &#123; it &#125;</span><br><span class="line">        .map &#123; it.toUpperCase() &#125;</span><br><span class="line">        .forEach &#123; println(it) &#125;</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="lambdas.html">高阶函数及 Lambda 表达式</a>。</p>
-<h4 id="创建基本类及其实例："><a href="#创建基本类及其实例：" class="headerlink" title="创建基本类及其实例："></a>创建基本类及其实例：</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"><span class="comment">//sampleStart</span></span><br><span class="line">    <span class="keyword">val</span> rectangle = Rectangle(<span class="number">5.0</span>, <span class="number">2.0</span>) <span class="comment">// 不需要“new”关键字</span></span><br><span class="line">    <span class="keyword">val</span> triangle = Triangle(<span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>)</span><br><span class="line"><span class="comment">//sampleEnd</span></span><br><span class="line">    println(<span class="string">"Area of rectangle is <span class="subst">$&#123;rectangle.calculateArea()&#125;</span>, its perimeter is <span class="subst">$&#123;rectangle.perimeter&#125;</span>"</span>)</span><br><span class="line">    println(<span class="string">"Area of triangle is <span class="subst">$&#123;triangle.calculateArea()&#125;</span>, its perimeter is <span class="subst">$&#123;triangle.perimeter&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span>(<span class="keyword">val</span> sides: List&lt;<span class="built_in">Double</span>&gt;) &#123;</span><br><span class="line">    <span class="keyword">val</span> perimeter: <span class="built_in">Double</span> <span class="keyword">get</span>() = sides.sum()</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">calculateArea</span><span class="params">()</span></span>: <span class="built_in">Double</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">RectangleProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> isSquare: <span class="built_in">Boolean</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span></span>(</span><br><span class="line">    <span class="keyword">var</span> height: <span class="built_in">Double</span>,</span><br><span class="line">    <span class="keyword">var</span> length: <span class="built_in">Double</span></span><br><span class="line">) : Shape(listOf(height, length, height, length)), RectangleProperties &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> isSquare: <span class="built_in">Boolean</span> <span class="keyword">get</span>() = length == height</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">calculateArea</span><span class="params">()</span></span>: <span class="built_in">Double</span> = height * length</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Triangle</span></span>(</span><br><span class="line">    <span class="keyword">var</span> sideA: <span class="built_in">Double</span>,</span><br><span class="line">    <span class="keyword">var</span> sideB: <span class="built_in">Double</span>,</span><br><span class="line">    <span class="keyword">var</span> sideC: <span class="built_in">Double</span></span><br><span class="line">) : Shape(listOf(sideA, sideB, sideC)) &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">calculateArea</span><span class="params">()</span></span>: <span class="built_in">Double</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> s = perimeter / <span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参见<a href="classes.html">类</a>以及<a href="object-declarations.html">对象与实例</a>。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-    <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
-    <span class="a2a_divider"></span>
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_google_plus"></a>
-    <a class="a2a_button_pinterest"></a>
-    <a class="a2a_button_tumblr"></a>
-</div>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-<style>
-    .a2a_menu {
-        border-radius: 4px;
-    }
-    .a2a_menu a {
-        margin: 2px 0;
-        font-size: 14px;
-        line-height: 16px;
-        border-radius: 4px;
-        color: inherit !important;
-        font-family: 'Microsoft Yahei';
-    }
-    #a2apage_dropdown {
-        margin: 10px 0;
-    }
-    .a2a_mini_services {
-        padding: 10px;
-    }
-    a.a2a_i,
-    i.a2a_i {
-        width: 122px;
-        line-height: 16px;
-    }
-    a.a2a_i .a2a_svg,
-    a.a2a_more .a2a_svg {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: top;
-        background-size: 16px;
-    }
-    a.a2a_i {
-        border: none !important;
-    }
-    a.a2a_menu_show_more_less {
-        margin: 0;
-        padding: 10px 0;
-        line-height: 16px;
-    }
-    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-    .a2a_mini_services{*+height:1%;}
-</style>
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/kotlin/reference/idioms.html" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
-            <div class="article-nav-title">
-                
-                    习惯用法
-                
-            </div>
-        </a>
-    
-    
-        <a href="/kotlin/reference/whatsnew1.2.html" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">Kotlin 1.2 的新特性</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    
-        <section id="comments">
-    <div id="valine-thread"></div>
-</section>
-    
-
-</section>
-            
-                
-<aside id="sidebar">
-   
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">recent</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/default-rest-spread.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/default-rest-spread.jpg)" alt="默认参数、不定参数、扩展运算符" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/default-rest-spread.html" class="title">默认参数、不定参数、扩展运算符</a></p>
-                            <p class="item-date"><time datetime="2018-06-20T03:02:29.000Z" itemprop="datePublished">2018-06-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/destructuring.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/destructuring.jpg)" alt="解构" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/destructuring.html" class="title">解构</a></p>
-                            <p class="item-date"><time datetime="2018-06-19T08:07:48.000Z" itemprop="datePublished">2018-06-19</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/template-strings.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/es6.jpeg)" alt="模板字符串" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/template-strings.html" class="title">模板字符串</a></p>
-                            <p class="item-date"><time datetime="2018-06-14T02:38:35.000Z" itemprop="datePublished">2018-06-14</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/css3/css-coding-standard.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/css-coding-standard.jpg)" alt="CSS 书写规范" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/Css3/">Css3</a></p>
-                            <p class="item-title"><a href="/css3/css-coding-standard.html" class="title">CSS 书写规范</a></p>
-                            <p class="item-date"><time datetime="2018-06-13T11:51:56.000Z" itemprop="datePublished">2018-06-13</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/es6/enhanced-object-literals.html" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg)" alt="增强的对象文本" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/es6/enhanced-object-literals.html" class="title">增强的对象文本</a></p>
-                            <p class="item-date"><time datetime="2018-06-12T02:28:54.000Z" itemprop="datePublished">2018-06-12</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/Css3/">Css3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/JavaScript/">JavaScript</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/JavaScript/ECMAScript-6/">ECMAScript 6</a><span class="category-list-count">7</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/">Kotlin</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/">参考</a><span class="category-list-count">61</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Getting-Started/">Getting Started</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/Java-互操作/">Java 互操作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/JavaScript/">JavaScript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/其他/">其他</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/函数/">函数</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/参考/">参考</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/基础/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/工具/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/概述/">概述</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/Kotlin/参考/类与对象/">类与对象</a><span class="category-list-count">13</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">67</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">tags</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BBR/">BBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Box-Model/">Box Model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/">Kotlin</a><span class="tag-list-count">61</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jetbrains/">jetbrains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/规范/">规范</a><span class="tag-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">tag cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/BBR/" style="font-size: 10px;">BBR</a> <a href="/tags/Box-Model/" style="font-size: 10px;">Box Model</a> <a href="/tags/CentOS/" style="font-size: 13.33px;">CentOS</a> <a href="/tags/ES6/" style="font-size: 16.67px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 20px;">Kotlin</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/jetbrains/" style="font-size: 10px;">jetbrains</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/规范/" style="font-size: 10px;">规范</a>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-    
-    <div id="toTop" class="fa fa-angle-up"></div>
-</aside>
-
-            
-        </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; 2018 oushiun<br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
-        </div>
-    </div>
-</footer>
-        
-    
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-    <script>
-        new Valine({
-            el: '#valine-thread' ,
-            lang:'en',
-            avatar:'identicon',
-            notify:false,
-            verify:false,
-            app_id: '9Emj4MVh8yl2FtTqbIkFQhJL-gzGzoHsz',
-            app_key: 'w9XrTYkAAeSp1xQk9QvtpSSz',
-            placeholder: ''
-        });
-    </script>
-
-
-
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
-    </div>
 </body>
 </html>
