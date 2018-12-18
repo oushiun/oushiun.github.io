@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="兼容性词汇表兼容性意味着回答这个问题：对于给定的两个版本的 Kotlin（例如，1.2 和 1.1.5），为一个版本编写的代码可以与另一个版本一起使用吗？下面的列表解释了不同版本对的兼容模式。请注意，如果版本号较小（即使发布时间晚于版本号较大的版本）那么版本较旧。对于“旧版本”我们使用 OV，对于“新版本”使用 NV。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-30T08:14:31.596Z">
+<meta property="og:updated_time" content="2018-12-18T10:21:44.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兼容性">
 <meta name="twitter:description" content="兼容性词汇表兼容性意味着回答这个问题：对于给定的两个版本的 Kotlin（例如，1.2 和 1.1.5），为一个版本编写的代码可以与另一个版本一起使用吗？下面的列表解释了不同版本对的兼容模式。请注意，如果版本号较小（即使发布时间晚于版本号较大的版本）那么版本较旧。对于“旧版本”我们使用 OV，对于“新版本”使用 NV。">
@@ -144,6 +144,12 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="兼容性">
+        </span>
+    </div>
     
     <div class="card-content article ">
         
@@ -419,16 +425,16 @@
 </ul>
 <h3 id="二进制兼容性警告"><a href="#二进制兼容性警告" class="headerlink" title="二进制兼容性警告"></a>二进制兼容性警告</h3><p>如果使用 NV Kotlin 编译器并在 classpath 中配有 OV 标准库或 OV 反射库，那么可能是项目配置错误的迹象。<br>为了防止编译期或运行时出现意外问题，我们建议要么将依赖关系更新到 NV，要么明确指定 API 版本/语言版本参数。<br>否则编译器会检测到某些东西可能出错，并报告警告。</p>
 <p>例如，如果 OV = 1.0 且 NV = 1.1，你可能观察到以下警告之一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Runtime JAR files in the classpath have the version 1.0, which is older than the API version 1.1. </span><br><span class="line">Consider using the runtime of version 1.1, or pass &apos;-api-version 1.0&apos; explicitly to restrict the </span><br><span class="line">available APIs to the runtime of version 1.0.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Runtime JAR files in the classpath have the version 1.0, which is older than the API version 1.1. </span><br><span class="line">Consider using the runtime of version 1.1, or pass &apos;-api-version 1.0&apos; explicitly to restrict the </span><br><span class="line">available APIs to the runtime of version 1.0.</span><br></pre></td></tr></table></figure>
 <p>这意味着你针对版本 1.0 的标准库或反射库使用 Kotlin 编译器 1.1。这可以通过不同的方式处理：</p>
 <ul>
 <li>如果你打算使用 1.1 标准库中的 API 或者依赖于这些 API 的语言特性，那么应将依赖关系升级到版本 1.1。</li>
 <li>如果你想保持你的代码与 1.0 标准库兼容，你可以传参 <code>-api-version 1.0</code>。</li>
 <li>如果你刚刚升级到 kotlin 1.1，但不能使用新的语言功能（例如，因为你的一些队友可能没有升级），你可以传参 <code>-language-version 1.0</code>，这会限制所有的 API 和语言功能到 1.0。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Runtime JAR files in the classpath should have the same version. These files were found in the classpath:</span><br><span class="line">    kotlin-reflect.jar (version 1.0)</span><br><span class="line">    kotlin-stdlib.jar (version 1.1)</span><br><span class="line">Consider providing an explicit dependency on kotlin-reflect 1.1 to prevent strange errors</span><br><span class="line">Some runtime JAR files in the classpath have an incompatible version. Consider removing them from the classpath</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Runtime JAR files in the classpath should have the same version. These files were found in the classpath:</span><br><span class="line">    kotlin-reflect.jar (version 1.0)</span><br><span class="line">    kotlin-stdlib.jar (version 1.1)</span><br><span class="line">Consider providing an explicit dependency on kotlin-reflect 1.1 to prevent strange errors</span><br><span class="line">Some runtime JAR files in the classpath have an incompatible version. Consider removing them from the classpath</span><br></pre></td></tr></table></figure>
 <p>这意味着你对不同版本的库有依赖性，例如 1.1 标准库和 1.0 反射库。为了防止在运行时出现微妙的错误，我们建议你使用所有 Kotlin 库的相同版本。在本例中，请考虑对 1.1 反射库添加显式依赖关系。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Some JAR files in the classpath have the Kotlin Runtime library bundled into them. </span><br><span class="line">This may cause difficult to debug problems if there&apos;s a different version of the Kotlin Runtime library in the classpath. </span><br><span class="line">Consider removing these libraries from the classpath</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Some JAR files in the classpath have the Kotlin Runtime library bundled into them. </span><br><span class="line">This may cause difficult to debug problems if there&apos;s a different version of the Kotlin Runtime library in the classpath. </span><br><span class="line">Consider removing these libraries from the classpath</span><br></pre></td></tr></table></figure>
 <p>这意味着在 classpath 中有一个库，它不是作为 Gradle/Maven 依赖项而依赖 Kotlin 标准库，而是与它分布在同一个构件中（即是<em>被捆绑的</em>）。这样的库可能会导致问题，因为标准构建工具不认为它是 Kotlin 标准库的实例，因此它不受依赖版本解析机制的限制，你可以在 classpath 找到同一个库的多个版本。请考虑联系这样的库的作者，并提出使用 Gradle/Maven 依赖取代的建议。</p>
 
         </div>
@@ -747,7 +753,7 @@
             
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
                 </p>
             </a>
             
@@ -766,7 +772,7 @@
             
             <a href="/es6/destructuring.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/destructuring.jpg" alt="解构">
                 </p>
             </a>
             
@@ -785,7 +791,7 @@
             
             <a href="/es6/template-strings.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/es6.jpeg" alt="模板字符串">
                 </p>
             </a>
             
@@ -804,7 +810,7 @@
             
             <a href="/css3/css-coding-standard.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" alt="CSS 书写规范">
                 </p>
             </a>
             
@@ -823,7 +829,7 @@
             
             <a href="/es6/enhanced-object-literals.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
                 </p>
             </a>
             
@@ -1033,7 +1039,7 @@
             
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
                 </p>
             </a>
             
@@ -1052,7 +1058,7 @@
             
             <a href="/es6/destructuring.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/destructuring.jpg" alt="解构">
                 </p>
             </a>
             
@@ -1071,7 +1077,7 @@
             
             <a href="/es6/template-strings.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/es6.jpeg" alt="模板字符串">
                 </p>
             </a>
             
@@ -1090,7 +1096,7 @@
             
             <a href="/css3/css-coding-standard.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" alt="CSS 书写规范">
                 </p>
             </a>
             
@@ -1109,7 +1115,7 @@
             
             <a href="/es6/enhanced-object-literals.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
                 </p>
             </a>
             

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。 重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-30T07:26:20.551Z">
+<meta property="og:updated_time" content="2018-12-18T10:21:44.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作符重载">
 <meta name="twitter:description" content="Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如 + 或 *）和固定的优先级。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的成员函数或扩展函数。 重载操作符的函数需要用 operator 修饰符标记。 另外，我们描述为不同操作符规范操作符重载的约定。">
@@ -145,6 +145,12 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="操作符重载">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -206,7 +212,7 @@
 </ul>
 <p><em>注意</em> 这些操作以及所有其他操作都针对<a href="basic-types.html">基本类型</a>做了优化，不会为它们引入函数调用的开销。</p>
 <p>以下是如何重载一元减运算符的示例：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>, <span class="keyword">val</span> y: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Point.<span class="title">unaryMinus</span><span class="params">()</span></span> = Point(-x, -y)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> point = Point(<span class="number">10</span>, <span class="number">20</span>)</span><br><span class="line">println(-point)  <span class="comment">// 输出“(-10, -20)”</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span></span>(<span class="hljs-keyword">val</span> x: <span class="hljs-built_in">Int</span>, <span class="hljs-keyword">val</span> y: <span class="hljs-built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> Point.<span class="hljs-title">unaryMinus</span><span class="hljs-params">()</span></span> = Point(-x, -y)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">val</span> point = Point(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>)</span><br><span class="line">println(-point)  <span class="hljs-comment">// 输出“(-10, -20)”</span></span><br></pre></td></tr></table></figure>
 <h3 id="递增与递减"><a href="#递增与递减" class="headerlink" title="递增与递减"></a>递增与递减</h3><table>
 <thead>
 <tr>
@@ -281,7 +287,7 @@
 <p>对于此表中的操作，编译器只是解析成<em>翻译为</em>列中的表达式。</p>
 <p>请注意，自 Kotlin 1.1 起支持 <code>rem</code> 运算符。Kotlin 1.0 使用 <code>mod</code> 运算符，它在 Kotlin 1.1 中被弃用。</p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>下面是一个从给定值起始的 Counter 类的示例，它可以使用重载的 <code>+</code> 运算符来增加计数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Counter</span></span>(<span class="keyword">val</span> dayIndex: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(increment: <span class="type">Int</span>)</span></span>: Counter &#123;</span><br><span class="line">        <span class="keyword">return</span> Counter(dayIndex + increment)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span></span>(<span class="hljs-keyword">val</span> dayIndex: <span class="hljs-built_in">Int</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">plus</span><span class="hljs-params">(increment: <span class="hljs-type">Int</span>)</span></span>: Counter &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> Counter(dayIndex + increment)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="“In”操作符"><a href="#“In”操作符" class="headerlink" title="“In”操作符"></a>“In”操作符</h3><table>
 <thead>
 <tr>
@@ -770,7 +776,7 @@
             
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
                 </p>
             </a>
             
@@ -789,7 +795,7 @@
             
             <a href="/es6/destructuring.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/destructuring.jpg" alt="解构">
                 </p>
             </a>
             
@@ -808,7 +814,7 @@
             
             <a href="/es6/template-strings.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/es6.jpeg" alt="模板字符串">
                 </p>
             </a>
             
@@ -827,7 +833,7 @@
             
             <a href="/css3/css-coding-standard.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" alt="CSS 书写规范">
                 </p>
             </a>
             
@@ -846,7 +852,7 @@
             
             <a href="/es6/enhanced-object-literals.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
                 </p>
             </a>
             
@@ -1056,7 +1062,7 @@
             
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
                 </p>
             </a>
             
@@ -1075,7 +1081,7 @@
             
             <a href="/es6/destructuring.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/destructuring.jpg" alt="解构">
                 </p>
             </a>
             
@@ -1094,7 +1100,7 @@
             
             <a href="/es6/template-strings.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/es6.jpeg" alt="模板字符串">
                 </p>
             </a>
             
@@ -1113,7 +1119,7 @@
             
             <a href="/css3/css-coding-standard.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" alt="CSS 书写规范">
                 </p>
             </a>
             
@@ -1132,7 +1138,7 @@
             
             <a href="/es6/enhanced-object-literals.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
                 </p>
             </a>
             

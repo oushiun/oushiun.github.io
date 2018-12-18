@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://static.oushiun.com/blog/img/desk.jpg">
 <meta property="og:image" content="https://static.oushiun.com/blog/img/desk.jpg">
 <meta property="og:image" content="https://static.oushiun.com/blog/img/desk.jpg">
-<meta property="og:updated_time" content="2018-05-15T09:34:12.176Z">
+<meta property="og:updated_time" content="2018-12-18T10:21:44.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown">
 <meta name="twitter:description" content="A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).">
@@ -148,6 +148,12 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/markdown.png" alt="Markdown">
+        </span>
+    </div>
     
     <div class="card-content article ">
         
@@ -423,15 +429,15 @@ id sem consectetuer libero luctus adipiscing.
 &lt;/div&gt;
 </code></pre><hr>
 <p>Following sections Fenced Code Blocks and Syntax Highlighting are extensions, you can use the other way to write the code block.</p>
-<h4 id="Fenced-Code-Blocks"><a href="#Fenced-Code-Blocks" class="headerlink" title="Fenced Code Blocks"></a>Fenced Code Blocks</h4><p>Just wrap your code in <figure class="highlight plain"><figcaption><span>``` ```` (as shown below) and you won't need to indent it by four spaces.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Code:</span><br><span class="line"></span><br><span class="line">    Here&apos;s an example:</span><br></pre></td></tr></table></figure></p>
+<h4 id="Fenced-Code-Blocks"><a href="#Fenced-Code-Blocks" class="headerlink" title="Fenced Code Blocks"></a>Fenced Code Blocks</h4><p>Just wrap your code in <figure class="highlight plain hljs"><figcaption><span>``` ```` (as shown below) and you won't need to indent it by four spaces.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Code:</span><br><span class="line"></span><br><span class="line">    Here&apos;s an example:</span><br></pre></td></tr></table></figure></p>
 <pre><code>function test() {
   console.log(&quot;notice the blank line before this function?&quot;);
 }
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Preview:</span><br><span class="line">***</span><br><span class="line">Here&apos;s an example:</span><br></pre></td></tr></table></figure>
-</code></pre><p>function test() {<br>  console.log(“notice the blank line before this function?”);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">#### Syntax Highlighting</span><br><span class="line">In your fenced block, add an optional language identifier and we&apos;ll run it through syntax highlighting ([Support Languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)).</span><br><span class="line"></span><br><span class="line">Code:</span><br><span class="line"></span><br><span class="line">    ```ruby</span><br><span class="line">    require &apos;redcarpet&apos;</span><br><span class="line">    markdown = Redcarpet.new(&quot;Hello World!&quot;)</span><br><span class="line">    puts markdown.to_html</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Preview:</span><br><span class="line">***</span><br><span class="line">Here&apos;s an example:</span><br></pre></td></tr></table></figure>
+</code></pre><p>function test() {<br>  console.log(“notice the blank line before this function?”);<br>}<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">#### Syntax Highlighting</span><br><span class="line">In your fenced block, add an optional language identifier and we&apos;ll run it through syntax highlighting ([Support Languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)).</span><br><span class="line"></span><br><span class="line">Code:</span><br><span class="line"></span><br><span class="line">    ```ruby</span><br><span class="line">    require &apos;redcarpet&apos;</span><br><span class="line">    markdown = Redcarpet.new(&quot;Hello World!&quot;)</span><br><span class="line">    puts markdown.to_html</span><br></pre></td></tr></table></figure></p>
 <p>Preview:</p>
 <hr>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'redcarpet'</span></span><br><span class="line">markdown = Redcarpet.new(<span class="string">"Hello World!"</span>)</span><br><span class="line">puts markdown.to_html</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">require</span> <span class="hljs-string">'redcarpet'</span></span><br><span class="line">markdown = Redcarpet.new(<span class="hljs-string">"Hello World!"</span>)</span><br><span class="line">puts markdown.to_html</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="Horizontal-Rules"><a href="#Horizontal-Rules" class="headerlink" title="Horizontal Rules"></a>Horizontal Rules</h3><p>HTML Tag: <code>&lt;hr /&gt;</code><br>Places <strong>three or more hyphens (-), asterisks (*), or underscores (_)</strong> on a line by themselves. You may use spaces between the hyphens or asterisks.</p>
 <p>Code:</p>
@@ -454,7 +460,7 @@ ___
 <p>It’s an extension.</p>
 <p>Separates column by <strong>pipe (|)</strong> and header by <strong>dashes (-)</strong>, and uses <strong>colon (:)</strong> for alignment.</p>
 <p>The outer <strong>pipes (|)</strong> and alignment are optional. There are <strong>3 delimiters</strong> each cell at least for separating header.</p>
-<p>Code:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">| Left   | Center   | Right   |</span><br><span class="line">| :----- | :------: | ------: |</span><br><span class="line">| aaa    | bbb      | ccc     |</span><br><span class="line">| ddd    | eee      | fff     |</span><br><span class="line"></span><br><span class="line"> | | A     | B   |   |</span><br><span class="line"> |  | ---  |  --- | |</span><br><span class="line"> |  | 123  |  456 | |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A |B</span><br><span class="line">--|--</span><br><span class="line">12|45</span><br></pre></td></tr></table></figure></p>
+<p>Code:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">| Left   | Center   | Right   |</span><br><span class="line">| :----- | :------: | ------: |</span><br><span class="line">| aaa    | bbb      | ccc     |</span><br><span class="line">| ddd    | eee      | fff     |</span><br><span class="line"></span><br><span class="line"> | | A     | B   |   |</span><br><span class="line"> |  | ---  |  --- | |</span><br><span class="line"> |  | 123  |  456 | |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A |B</span><br><span class="line">--|--</span><br><span class="line">12|45</span><br></pre></td></tr></table></figure></p>
 <p>Preview:</p>
 <hr>
 <table>
@@ -639,7 +645,7 @@ A backtick-delimited string in a code span: `` `foo` ``
 <h3 id="Strikethrough"><a href="#Strikethrough" class="headerlink" title="Strikethrough"></a>Strikethrough</h3><p>HTML Tag: <code>&lt;del&gt;</code></p>
 <p>It’s an extension.</p>
 <p>GFM adds syntax to strikethrough text.</p>
-<p>Code:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~Mistaken text.~~</span><br></pre></td></tr></table></figure></p>
+<p>Code:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~Mistaken text.~~</span><br></pre></td></tr></table></figure></p>
 <p>Preview:</p>
 <hr>
 <p><del>Mistaken text.</del></p>
@@ -652,10 +658,10 @@ A backtick-delimited string in a code span: `` `foo` ``
 </code></pre><p>Preview:</p>
 <hr>
 <p><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a></p>
-<p><a href="mailto:&#x61;&#100;&#x64;&#x72;&#101;&#x73;&#115;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x61;&#100;&#x64;&#x72;&#101;&#x73;&#115;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#x61;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#x40;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#101;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x61;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#x40;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#101;&#46;&#99;&#111;&#x6d;</a></p>
 <hr>
 <p>GFM will autolink standard URLs.</p>
-<p>Code:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/emn178/markdown</span><br></pre></td></tr></table></figure></p>
+<p>Code:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/emn178/markdown</span><br></pre></td></tr></table></figure></p>
 <p>Preview:</p>
 <hr>
 <p><a href="https://github.com/emn178/markdown" target="_blank" rel="noopener">https://github.com/emn178/markdown</a></p>
@@ -1029,7 +1035,7 @@ This is another regular paragraph.
             
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
                 </p>
             </a>
             
@@ -1048,7 +1054,7 @@ This is another regular paragraph.
             
             <a href="/es6/destructuring.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/destructuring.jpg" alt="解构">
                 </p>
             </a>
             
@@ -1067,7 +1073,7 @@ This is another regular paragraph.
             
             <a href="/es6/template-strings.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/es6.jpeg" alt="模板字符串">
                 </p>
             </a>
             
@@ -1086,7 +1092,7 @@ This is another regular paragraph.
             
             <a href="/css3/css-coding-standard.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" alt="CSS 书写规范">
                 </p>
             </a>
             
@@ -1105,7 +1111,7 @@ This is another regular paragraph.
             
             <a href="/es6/enhanced-object-literals.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
                 </p>
             </a>
             
@@ -1315,7 +1321,7 @@ This is another regular paragraph.
             
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="默认参数、不定参数、扩展运算符">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
                 </p>
             </a>
             
@@ -1334,7 +1340,7 @@ This is another regular paragraph.
             
             <a href="/es6/destructuring.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="解构">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/destructuring.jpg" alt="解构">
                 </p>
             </a>
             
@@ -1353,7 +1359,7 @@ This is another regular paragraph.
             
             <a href="/es6/template-strings.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板字符串">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/es6.jpeg" alt="模板字符串">
                 </p>
             </a>
             
@@ -1372,7 +1378,7 @@ This is another regular paragraph.
             
             <a href="/css3/css-coding-standard.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSS 书写规范">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/css-coding-standard.jpg" alt="CSS 书写规范">
                 </p>
             </a>
             
@@ -1391,7 +1397,7 @@ This is another regular paragraph.
             
             <a href="/es6/enhanced-object-literals.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="增强的对象文本">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
                 </p>
             </a>
             
