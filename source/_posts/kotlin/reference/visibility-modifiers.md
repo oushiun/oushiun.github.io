@@ -22,7 +22,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 函数、属性和类、对象和接口可以在顶层声明，即直接在包内：
 
-```kotlin
+``` kotlin
 // 文件名：example.kt
 package foo
 
@@ -39,7 +39,7 @@ class Bar {}
 
 例如:
 
-```kotlin
+``` kotlin
 // 文件名：example.kt
 package foo
 
@@ -66,7 +66,7 @@ internal val baz = 6    // 相同模块内可见
 
 例子:
 
-```kotlin
+``` kotlin
 open class Outer {
     private val a = 1
     protected open val b = 2
@@ -97,7 +97,7 @@ class Unrelated(o: Outer) {
 
 要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个显式 _constructor_ 关键字）：
 
-```kotlin
+``` kotlin
 class C private constructor(a: Int) { …… }
 ```
 

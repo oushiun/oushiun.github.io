@@ -50,7 +50,7 @@ Kotlin 多平台项目允许你将相同的代码编译到多个目标平台。�
 
 以下示例演示了一个使用 Kotlin 1.2 的公共模块的完整的 `build.gradle` 文件：
 
-```groovy
+``` groovy
 buildscript {
     ext.kotlin_version = '{{ site.data.releases.latest.version }}'
 
@@ -76,7 +76,7 @@ dependencies {
 
 而下述示例展示了一个用于 JVM 平台模块的完整的 `build.gradle`。请特别注意其 `dependencies` 块中的 `expectedBy` 行：
 
-```groovy
+``` groovy
 buildscript {
     ext.kotlin_version = '{{ site.data.releases.latest.version }}'
 
@@ -109,7 +109,7 @@ Kotlin 多平台代码的关键潜能之一就是公共代码依赖平台相关�
 
 作为替代方案，Kotlin 提供了一种 _预期与实际声明_ 机制。通过这种机制，公共模块中可定义 _预期声明_，而平台模块中可提供与预期声明相对应的 _实际声明_。为了解其工作原理，我们先看一个示例。这段代码是公共模块的一部分：
 
-```kotlin
+``` kotlin
 package org.jetbrains.foo
 
 expect class Foo(bar: String) {
@@ -123,7 +123,7 @@ fun main(args: Array<String>) {
 
 而这是相应的 JVM 模块：
 
-```kotlin
+``` kotlin
 package org.jetbrains.foo
 
 actual class Foo actual constructor(val bar: String) {
@@ -142,7 +142,7 @@ actual class Foo actual constructor(val bar: String) {
 
 请注意，预期声明并不仅限于接口与接口成员。在本例中，预期的类有一个构造函数，可以直接在公共代码中创建该类。也可以将 `expect` 修饰符应用于其他声明，包括顶层声明与注解：
 
-```kotlin
+``` kotlin
 // 公共
 expect fun formatString(source: String, vararg args: Any): String
 
@@ -160,7 +160,7 @@ IDE 提供了帮你创建所缺实际声明的工具。
 
 如果你有一个平台相关的库，并希望在公共模块中使用，同时为另一平台提供自己的实现，那么你可以提供一个已有类的类型别名作为实际声明：
 
-```kotlin
+``` kotlin
 expect class AtomicRef<V>(value: V) {
   fun get(): V
   fun set(value: V)

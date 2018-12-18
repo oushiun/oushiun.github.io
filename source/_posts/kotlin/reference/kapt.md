@@ -26,13 +26,13 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 应用 `kotlin-kapt` Gradle 插件：
 
-```groovy
+``` groovy
 apply plugin: 'kotlin-kapt'
 ```
 
 或者，你可以使用插件 DSL 应用它：
 
-```groovy
+``` groovy
 plugins {
     id "org.jetbrains.kotlin.kapt" version "{{ site.data.releases.latest.version }}"
 }
@@ -40,7 +40,7 @@ plugins {
 
 然后在 `dependencies` 块中使用 `kapt` 配置添加相应的依赖项：
 
-```groovy
+``` groovy
 dependencies {
     kapt 'groupId:artifactId:版本'
 }
@@ -54,7 +54,7 @@ dependencies {
 
 使用 `arguments {}` 块将参数传给注解处理器：
 
-```groovy
+``` groovy
 kapt {
     arguments {
         arg("key", "value")
@@ -66,7 +66,7 @@ kapt {
 
 Kapt 使用 Java 编译器来运行注解处理器。以下是将任意选项传给 javac 的方式：
 
-```groovy
+``` groovy
 kapt {
     javacOptions {
         // 增加注解处理器的最大错误次数
@@ -80,7 +80,7 @@ kapt {
 
 一些注解处理器（如 `AutoFactory`）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 `NonExistentClass`，但你可以更改此行为。将额外标志添加到 `build.gradle` 文件以启用在存根（stub）中推断出的错误类型：
 
-```groovy
+``` groovy
 kapt {
     correctErrorTypes = true
 }
@@ -90,7 +90,7 @@ kapt {
 
 在 `compile` 之前在 kotlin-maven-plugin 中添加 `kapt` 目标的执行：
 
-```xml
+``` xml
 <execution>
     <id>kapt</id>
     <goals>
@@ -123,7 +123,7 @@ Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。
 
 可以使用 kotlinc 选项 `Xplugin` 提供该 JAR 文件的路径来附加该插件：
 
-```bash
+``` bash
 -Xplugin=$KOTLIN_HOME/lib/kotlin-annotation-processing.jar
 ```
 
@@ -148,7 +148,7 @@ Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。
 
 一个示例：
 
-```bash
+``` bash
 -P plugin:org.jetbrains.kotlin.kapt3:sources=build/kapt/sources
 -P plugin:org.jetbrains.kotlin.kapt3:classes=build/kapt/classes
 -P plugin:org.jetbrains.kotlin.kapt3:stubs=build/kapt/stubs
@@ -171,7 +171,7 @@ Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入`processing
 
 `apoptions` 与 `javacArguments` 命令行选项接受选项编码映射。这是自己编码选项的方式：
 
-```kotlin
+``` kotlin
 fun encodeList(options: Map<String, String>): String {
     val os = ByteArrayOutputStream()
     val oos = ObjectOutputStream(os)

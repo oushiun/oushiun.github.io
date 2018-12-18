@@ -19,7 +19,7 @@ banner: https://static.oushiun.com/blog/banner/arrows.jpg
 
 箭头函数的产生，主要由两个目的：更简洁的语法和与父作用域共享关键字 _this_。
 
-```javascript
+``` javascript
 var f = v => v
 
 // 等同于
@@ -30,7 +30,7 @@ var f = function(v) {
 
 如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。
 
-```javascript
+``` javascript
 var f = () => 5
 // 等同于
 var f = function() {
@@ -46,7 +46,7 @@ var sum = function(num1, num2) {
 
 如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用 _return_ 语句返回。
 
-```javascript
+``` javascript
 var sum = (num1, num2) => {
     return num1 + num2
 }
@@ -54,7 +54,7 @@ var sum = (num1, num2) => {
 
 由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错。
 
-```javascript
+``` javascript
 // 报错
 let getTempItem = id => { id: id, name: 'Temp' }
 
@@ -64,7 +64,7 @@ let getTempItem = id => ({ id: id, name: 'Temp' })
 
 下面是一种特殊情况，虽然可以运行，但会得到错误的结果。
 
-```javascript
+``` javascript
 let foo = () => {
     a: 1
 }
@@ -75,13 +75,13 @@ foo() // undefined
 
 如果箭头函数只有一行语句，且不需要返回值，可以采用下面的写法，就不用写大括号了。
 
-```javascript
+``` javascript
 let fn = () => void doesNotReturn()
 ```
 
 箭头函数可以与变量解构结合使用。
 
-```javascript
+``` javascript
 const full = ({ first, last }) => first + ' ' + last
 
 // 等同于
@@ -92,7 +92,7 @@ function full(person) {
 
 箭头函数使得表达更加简洁。
 
-```javascript
+``` javascript
 const isEven = n => n % 2 == 0
 const square = n => n * n
 ```
@@ -101,7 +101,7 @@ const square = n => n * n
 
 箭头函数的一个用处是简化回调函数。
 
-```javascript
+``` javascript
 var list = [1, 2, 3]
 
 // 正常函数写法
@@ -113,7 +113,7 @@ list.map(function(x) {
 list.map(x => x * x)
 ```
 
-```javascript
+``` javascript
 // 正常函数写法
 var result = values.sort(function(a, b) {
     return a - b
@@ -125,7 +125,7 @@ var result = values.sort((a, b) => a - b)
 
 下面是 _rest_ 参数与箭头函数结合的例子。
 
-```javascript
+``` javascript
 const numbers = (...nums) => nums
 
 numbers(1, 2, 3, 4, 5)
@@ -141,7 +141,7 @@ headAndTail(1, 2, 3, 4, 5)
 
 this 指向的固定化，并不是因为箭头函数内部有绑定 this 的机制，实际原因是箭头函数根本没有自己的 this，导致内部的 this 就是外层代码块的 this。正是因为它没有 this，所以也就不能用作构造函数。
 
-```javascript
+``` javascript
 // ES6
 function foo() {
     setTimeout(() => {

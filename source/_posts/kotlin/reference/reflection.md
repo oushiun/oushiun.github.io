@@ -24,7 +24,7 @@ Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即�
 
 最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对静态已知的 Kotlin 类的引用，可以使用 _类字面值_ 语法：
 
-```kotlin
+``` kotlin
 val c = MyClass::class
 ```
 
@@ -36,7 +36,7 @@ val c = MyClass::class
 
 通过使用对象作为接收者，可以用相同的 `::class` 语法获取指定对象的类的引用：
 
-```kotlin
+``` kotlin
 val widget: Widget = ……
 assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 ```
@@ -53,13 +53,13 @@ assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 
 当我们有一个命名函数声明如下：
 
-```kotlin
+``` kotlin
 fun isOdd(x: Int) = x % 2 != 0
 ```
 
 我们可以很容易地直接调用它（`isOdd(5)`），但是我们也可以将其作为一个函数类型的值，例如将其传给另一个函数。为此，我们使用 `::` 操作符：
 
-```kotlin
+``` kotlin
 fun isOdd(x: Int) = x % 2 != 0
 
 fun main(args: Array<String>) {
@@ -76,7 +76,7 @@ fun main(args: Array<String>) {
 
 当上下文中已知函数期望的类型时，`::` 可以用于重载函数。例如：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     fun isOdd(x: Int) = x % 2 != 0
@@ -90,7 +90,7 @@ fun main(args: Array<String>) {
 
 或者，你可以通过将方法引用存储在具有显式指定类型的变量中来提供必要的上下文：
 
-```kotlin
+``` kotlin
 val predicate: (String) -> Boolean = ::isOdd   // 引用到 isOdd(x: String)
 ```
 
@@ -98,7 +98,7 @@ val predicate: (String) -> Boolean = ::isOdd   // 引用到 isOdd(x: String)
 
 请注意，即使以扩展函数的引用初始化一个变量，其推断出的函数类型也会没有接收者（它会有一个接受接收者对象的额外参数）。如需改为带有接收者的函数类型，请明确指定其类型：
 
-```kotlin
+``` kotlin
 val isEmptyStringList: List<String>.() -> Boolean = List::isEmpty
 ```
 
@@ -106,7 +106,7 @@ val isEmptyStringList: List<String>.() -> Boolean = List::isEmpty
 
 考虑以下函数：
 
-```kotlin
+``` kotlin
 fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
     return { x -> f(g(x)) }
 }
@@ -114,7 +114,7 @@ fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
 
 它返回一个传给它的两个函数的组合：`compose(f, g) = f(g(*))`。现在，你可以将其应用于可调用引用：
 
-```kotlin
+``` kotlin
 fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
     return { x -> f(g(x)) }
 }
@@ -137,7 +137,7 @@ fun main(args: Array<String>) {
 
 要把属性作为 Kotlin 中 的一等对象来访问，我们也可以使用 `::` 运算符：
 
-```kotlin
+``` kotlin
 val x = 1
 
 fun main(args: Array<String>) {
@@ -150,7 +150,7 @@ fun main(args: Array<String>) {
 
 对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，该类型有一个 `set()` 方法。
 
-```kotlin
+``` kotlin
 var y = 1
 
 fun main(args: Array<String>) {
@@ -161,7 +161,7 @@ fun main(args: Array<String>) {
 
 属性引用可以用在不需要参数的函数处：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val strs = listOf("a", "bc", "def")
@@ -172,7 +172,7 @@ fun main(args: Array<String>) {
 
 要访问属于类的成员的属性，我们这样限定它：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     class A(val p: Int)
@@ -184,7 +184,7 @@ fun main(args: Array<String>) {
 
 对于扩展属性：
 
-```kotlin
+``` kotlin
 val String.lastChar: Char
     get() = this[length - 1]
 
@@ -197,7 +197,7 @@ fun main(args: Array<String>) {
 
 在 Java 平台上，标准库包含反射类的扩展，它提供了与 Java 反射对象之间映射（参见 `kotlin.reflect.jvm` 包）。例如，要查找一个用作 Kotlin 属性 getter 的 幕后字段或 Java 方法，可以这样写：
 
-```kotlin
+``` kotlin
 import kotlin.reflect.jvm.*
 
 class A(val p: Int)
@@ -210,7 +210,7 @@ fun main(args: Array<String>) {
 
 要获得对应于 Java 类的 Kotlin 类，请使用 `.kotlin` 扩展属性：
 
-```kotlin
+``` kotlin
 fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 ```
 
@@ -218,7 +218,7 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 
 构造函数可以像方法和属性那样引用。他们可以用于期待这样的函数类型对象的任何地方：它与该构造函数接受相同参数并且返回相应类型的对象。通过使用 `::` 操作符并添加类名来引用构造函数。考虑下面的函数，它期待一个无参并返回 `Foo` 类型的函数参数：
 
-```kotlin
+``` kotlin
 class Foo
 
 fun function(factory: () -> Foo) {
@@ -228,7 +228,7 @@ fun function(factory: () -> Foo) {
 
 使用 `::Foo`，类 Foo 的零参数构造函数，我们可以这样简单地调用它：
 
-```kotlin
+``` kotlin
 function(::Foo)
 ```
 
@@ -238,7 +238,7 @@ function(::Foo)
 
 你可以引用特定对象的实例方法：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val numberRegex = "\\d+".toRegex()
@@ -252,7 +252,7 @@ fun main(args: Array<String>) {
 
 取代直接调用方法 `matches` 的是我们存储其引用。这样的引用会绑定到其接收者上。它可以直接调用（如上例所示）或者用于任何期待一个函数类型表达式的时候：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val strings = listOf("abc", "124", "a70")
@@ -263,7 +263,7 @@ fun main(args: Array<String>) {
 
 比较绑定的类型和相应的未绑定类型的引用。绑定的可调用引用有其接收者“附加”到其上，因此接收者的类型不再是参数：
 
-```kotlin
+``` kotlin
 val isNumber: (CharSequence) -> Boolean = numberRegex::matches
 
 val matches: (Regex, CharSequence) -> Boolean = Regex::matches
@@ -271,7 +271,7 @@ val matches: (Regex, CharSequence) -> Boolean = Regex::matches
 
 属性引用也可以绑定：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val prop = "abc"::length
@@ -286,7 +286,7 @@ fun main(args: Array<String>) {
 
 [_inner_ 类](nested-classes.html#内部类)的构造函数的绑定的可调用引用可通过提供外部类的实例来获得：
 
-```kotlin
+``` kotlin
 class Outer {
     inner class Inner
 }

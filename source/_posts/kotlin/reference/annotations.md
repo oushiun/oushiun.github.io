@@ -16,7 +16,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 注解是将元数据附加到代码的方法。要声明注解，请将 `annotation` 修饰符放在类的前面：
 
-```kotlin
+``` kotlin
 annotation class Fancy
 ```
 
@@ -27,7 +27,7 @@ annotation class Fancy
 *   [`@Repeatable`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html) 允许在单个元素上多次使用相同的该注解；
 *   [`@MustBeDocumented`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html) 指定该注解是公有 API 的一部分，并且应该包含在生成的 API 文档中显示的类或方法的签名中。
 
-```kotlin
+``` kotlin
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION,
         AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.EXPRESSION)
 @Retention(AnnotationRetention.SOURCE)
@@ -39,7 +39,7 @@ annotation class Fancy
 
 ### 用法
 
-```kotlin
+``` kotlin
 @Fancy class Foo {
     @Fancy fun baz(@Fancy foo: Int): Int {
         return (@Fancy 1)
@@ -49,7 +49,7 @@ annotation class Fancy
 
 如果需要对类的主构造函数进行标注，则需要在构造函数声明中添加 `constructor` 关键字，并将注解添加到其前面：
 
-```kotlin
+``` kotlin
 class Foo @Inject constructor(dependency: MyDependency) {
     // ……
 }
@@ -57,7 +57,7 @@ class Foo @Inject constructor(dependency: MyDependency) {
 
 你也可以标注属性访问器：
 
-```kotlin
+``` kotlin
 class Foo {
     var x: MyDependency? = null
         @Inject set
@@ -68,7 +68,7 @@ class Foo {
 
 注解可以有接受参数的构造函数。
 
-```kotlin
+``` kotlin
 annotation class Special(val why: String)
 
 @Special("example") class Foo {}
@@ -87,7 +87,7 @@ annotation class Special(val why: String)
 
 如果注解用作另一个注解的参数，则其名称不以 @ 字符为前缀：
 
-```kotlin
+``` kotlin
 annotation class ReplaceWith(val expression: String)
 
 annotation class Deprecated(
@@ -99,7 +99,7 @@ annotation class Deprecated(
 
 如果需要将一个类指定为注解的参数，请使用 Kotlin 类（[KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)）。Kotlin 编译器会自动将其转换为 Java 类，以便 Java 代码能够正常看到该注解和参数。
 
-```kotlin
+``` kotlin
 import kotlin.reflect.KClass
 
 annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any>)
@@ -111,7 +111,7 @@ annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any>)
 
 注解也可以用于 lambda 表达式。它们会被应用于生成 lambda 表达式体的 `invoke()` 方法上。这对于像 [Quasar](http://www.paralleluniverse.co/quasar/) 这样的框架很有用，该框架使用注解进行并发控制。
 
-```kotlin
+``` kotlin
 annotation class Suspendable
 
 val f = @Suspendable { Fiber.sleep(10) }
@@ -121,7 +121,7 @@ val f = @Suspendable { Fiber.sleep(10) }
 
 当对属性或主构造函数参数进行标注时，从相应的 Kotlin 元素生成的 Java 元素会有多个，因此在生成的 Java 字节码中该注解有多个可能位置。如果要指定精确地指定应该如何生成该注解，请使用以下语法：
 
-```kotlin
+``` kotlin
 class Example(@field:Ann val foo,    // 标注 Java 字段
               @get:Ann val bar,      // 标注 Java getter
               @param:Ann val quux)   // 标注 Java 构造函数参数
@@ -129,7 +129,7 @@ class Example(@field:Ann val foo,    // 标注 Java 字段
 
 可以使用相同的语法来标注整个文件。 要做到这一点，把带有目标 `file` 的注解放在文件的顶层、package 指令之前或者在所有导入之前（如果文件在默认包中的话）：
 
-```kotlin
+``` kotlin
 @file:JvmName("Foo")
 
 package org.jetbrains.demo
@@ -137,7 +137,7 @@ package org.jetbrains.demo
 
 如果你对同一目标有多个注解，那么可以这样来避免目标重复——在目标后面添加方括号并将所有注解放在方括号内：
 
-```kotlin
+``` kotlin
 class Example {
      @set:[Inject VisibleForTesting]
      var collaborator: Collaborator
@@ -158,7 +158,7 @@ class Example {
 
 要标注扩展函数的接收者参数，请使用以下语法：
 
-```kotlin
+``` kotlin
 fun @receiver:Fancy String.myExtension() { }
 ```
 
@@ -172,7 +172,7 @@ fun @receiver:Fancy String.myExtension() { }
 
 Java 注解与 Kotlin 100% 兼容：
 
-```kotlin
+``` kotlin
 import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Rule
@@ -199,7 +199,7 @@ public @interface Ann {
 }
 ```
 
-```kotlin
+``` kotlin
 // Kotlin
 @Ann(intValue = 1, stringValue = "abc") class C
 ```
@@ -213,7 +213,7 @@ public @interface AnnWithValue {
 }
 ```
 
-```kotlin
+``` kotlin
 // Kotlin
 @AnnWithValue("abc") class C
 ```
@@ -229,7 +229,7 @@ public @interface AnnWithArrayValue {
 }
 ```
 
-```kotlin
+``` kotlin
 // Kotlin
 @AnnWithArrayValue("abc", "foo", "bar") class C
 ```
@@ -243,7 +243,7 @@ public @interface AnnWithArrayMethod {
 }
 ```
 
-```kotlin
+``` kotlin
 // Kotlin 1.2+：
 @AnnWithArrayMethod(names = ["abc", "foo", "bar"])
 class C
@@ -264,7 +264,7 @@ public @interface Ann {
 }
 ```
 
-```kotlin
+``` kotlin
 // Kotlin
 fun foo(ann: Ann) {
     val i = ann.value

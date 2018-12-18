@@ -14,7 +14,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 枚举类的最基本的用法是实现类型安全的枚举：
 
-```kotlin
+``` kotlin
 enum class Direction {
     NORTH, SOUTH, WEST, EAST
 }
@@ -28,7 +28,7 @@ enum class Direction {
 
 因为每一个枚举都是枚举类的实例，所以他们可以是这样初始化过的：
 
-```kotlin
+``` kotlin
 enum class Color(val rgb: Int) {
         RED(0xFF0000),
         GREEN(0x00FF00),
@@ -40,7 +40,7 @@ enum class Color(val rgb: Int) {
 
 枚举常量也可以声明自己的匿名类：
 
-```kotlin
+``` kotlin
 enum class ProtocolState {
     WAITING {
         override fun signal() = TALKING
@@ -62,7 +62,7 @@ enum class ProtocolState {
 
 就像在 Java 中一样，Kotlin 中的枚举类也有合成方法允许列出定义的枚举常量以及通过名称获取枚举常量。这些方法的签名如下（假设枚举类的名称是 `EnumClass`）：
 
-```kotlin
+``` kotlin
 EnumClass.valueOf(value: String): EnumClass
 EnumClass.values(): Array<EnumClass>
 ```
@@ -71,7 +71,7 @@ EnumClass.values(): Array<EnumClass>
 
 自 Kotlin 1.1 起，可以使用 `enumValues<T>()` 和 `enumValueOf<T>()` 函数以泛型的方式访问枚举类中的常量：
 
-```kotlin
+``` kotlin
 enum class RGB { RED, GREEN, BLUE }
 
 inline fun <reified T : Enum<T>> printAllValues() {
@@ -83,7 +83,7 @@ printAllValues<RGB>() // 输出 RED, GREEN, BLUE
 
 每个枚举常量都具有在枚举类声明中获取其名称和位置的属性：
 
-```kotlin
+``` kotlin
 val name: String
 val ordinal: Int
 ```

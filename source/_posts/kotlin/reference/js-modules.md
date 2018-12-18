@@ -35,7 +35,7 @@ Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模�
 
 要选择通过 Maven 编译时的模块系统，你应该设置 `moduleKind` 配置属性，即你的 `pom.xml` 应该看起来像这样：
 
-```xml
+``` xml
 <plugin>
     <artifactId>kotlin-maven-plugin</artifactId>
     <groupId>org.jetbrains.kotlin</groupId>
@@ -62,7 +62,7 @@ Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模�
 
 要选择通过 Gradle 编译时的模块系统，你应该设置 `moduleKind` 属性，即
 
-```groovy
+``` groovy
 compileKotlin2Js.kotlinOptions.moduleKind = "commonjs"
 ```
 
@@ -73,7 +73,7 @@ compileKotlin2Js.kotlinOptions.moduleKind = "commonjs"
 要告诉 Kotlin 一个 `external` 类、 包、 函数或者属性是一个 JavaScript 模块，你可以使用 `@JsModule`
 注解。考虑你有以下 CommonJS 模块叫“hello”：
 
-```javascript
+``` javascript
 module.exports.sayHello = function(name) {
     alert('Hello, ' + name)
 }
@@ -81,7 +81,7 @@ module.exports.sayHello = function(name) {
 
 你应该在 Kotlin 中这样声明：
 
-```kotlin
+``` kotlin
 @JsModule("hello")
 external fun sayHello(name: String)
 ```
@@ -90,7 +90,7 @@ external fun sayHello(name: String)
 
 一些 JavaScript 库导出包（命名空间）而不是函数和类。从 JavaScript 角度讲 它是一个具有一些成员的对象，这些成员*是*类、函数和属性。将这些包作为 Kotlin 对象导入通常看起来不自然。编译器允许使用以下助记符将导入的 JavaScript 包映射到 Kotlin 包：
 
-```kotlin
+``` kotlin
 @file:JsModule("extModule")
 package ext.jspackage.name
 
@@ -101,7 +101,7 @@ external class C
 
 其中相应的 JavaScript 模块的声明如下：
 
-```javascript
+``` javascript
 module.exports = {
     foo: {
         /* 此处一些代码 */
@@ -114,7 +114,7 @@ module.exports = {
 
 重要提示：标有 `@file:JsModule` 注解的文件无法声明非外部成员。下面的示例会产生编译期错误：
 
-```kotlin
+``` kotlin
 @file:JsModule("extModule")
 package ext.jspackage.name
 
@@ -130,7 +130,7 @@ Kotlin 也支持这种场景，尽管你必须为每个导入的包声明一个�
 
 例如，让我们的示例更复杂一些：
 
-```javascript
+``` javascript
 module.exports = {
     mylib: {
         pkg1: {
@@ -152,7 +152,7 @@ module.exports = {
 
 要在 Kotlin 中导入该模块，你必须编写两个 Kotlin 源文件：
 
-```kotlin
+``` kotlin
 @file:JsModule("extModule")
 @file:JsQualifier("mylib.pkg1")
 package extlib.pkg1
@@ -164,7 +164,7 @@ external fun bar()
 
 以及
 
-```kotlin
+``` kotlin
 @file:JsModule("extModule")
 @file:JsQualifier("mylib.pkg2")
 package extlib.pkg2
@@ -176,7 +176,7 @@ external fun baz()
 
 当一个声明具有 `@JsModule`、当你并不把它编译到一个 JavaScript 模块时，你不能在 Kotlin 代码中使用它。通常，开发人员将他们的库既作为 JavaScript 模块也作为可下载的`.js` 文件分发，你可以将这些文件复制到项目的静态资源，并通过 `<script>` 元素包含。 要告诉 Kotlin，可以在非模块环境中使用一个 `@JsModule` 声明，你应该放置 `@JsNonModule` 声明。例如，给定 JavaScript 代码：
 
-```javascript
+``` javascript
 function topLevelSayHello(name) {
     alert('Hello, ' + name)
 }
@@ -187,7 +187,7 @@ if (module && module.exports) {
 
 可以这样描述：
 
-```kotlin
+``` kotlin
 @JsModule("hello")
 @JsNonModule
 @JsName("topLevelSayHello")

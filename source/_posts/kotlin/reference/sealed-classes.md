@@ -18,7 +18,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 <!-- more -->
 
-```kotlin
+``` kotlin
 sealed class Expr
 data class Const(val number: Double) : Expr()
 data class Sum(val e1: Expr, val e2: Expr) : Expr()
@@ -35,7 +35,7 @@ object NotANumber : Expr()
 
 使用密封类的关键好处在于使用 [when 表达式](control-flow.html#When-表达式) 的时候，如果能够验证语句覆盖了所有情况，就不需要为该语句再添加一个 `else` 子句了。当然，这只有当你用 `when` 作为表达式（使用结果）而不是作为语句时才有用。
 
-```kotlin
+``` kotlin
 fun eval(expr: Expr): Double = when(expr) {
     is Const -> expr.number
     is Sum -> eval(expr.e1) + eval(expr.e2)

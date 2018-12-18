@@ -77,7 +77,7 @@ id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可
 
 ### 常用的 CSS 命名规则
 
-```css
+``` css
 头：header
 内容：content/container
 尾：footer
@@ -118,7 +118,7 @@ id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可
 
 ### 注释的写法
 
-```css
+``` css
 /* Header */
 内容区
 /* End Header */
@@ -128,7 +128,7 @@ id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可
 
 #### 页面结构
 
-```css
+``` css
 容器: container
 页头：header
 内容：content/container
@@ -143,7 +143,7 @@ id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可
 
 #### 导航
 
-```css
+``` css
 导航：nav
 主导航：mainnav
 子导航：subnav
@@ -159,7 +159,7 @@ id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可
 
 #### 功能
 
-```css
+``` css
 标志：logo
 广告：banner
 登陆：login
@@ -199,7 +199,7 @@ id 在 JS 是唯一的，不能多次使用，而使用 class 类选择器却可
 
 #### CSS 样式表文件命名
 
-```css
+``` css
 主要的 master.css
 模块 module.css
 基本共用 base.css

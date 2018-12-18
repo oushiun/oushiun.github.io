@@ -24,7 +24,7 @@ Kotlin 函数都是[_头等的_](https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%8
 
 一个不错的示例是集合的[函数式风格的 *fold*](https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29)，它接受一个初始累积值与一个接合函数，并通过将当前累积值与每个集合元素连续接合起来代入累积值来构建返回值：
 
-```kotlin
+``` kotlin
 fun <T, R> Collection<T>.fold(
     initial: R,
     combine: (acc: R, nextElement: T) -> R
@@ -41,7 +41,7 @@ fun <T, R> Collection<T>.fold(
 
 为了调用 `fold`，需要传给它一个[函数类型的实例](#函数类型实例化)作为参数，而在高阶函数调用处，（[下文详述的](#Lambda-表达式与匿名函数)）lambda 表达式广泛用于此目的。
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val items = listOf(1, 2, 3, 4, 5)
@@ -93,7 +93,7 @@ Kotlin 使用类似 `(Int) -> String` 的一系列函数类型来处理函数的
 
 还可以通过使用[类型别名](type-aliases.html)给函数类型起一个别称：
 
-```kotlin
+``` kotlin
 typealias ClickHandler = (Button, ClickEvent) -> Unit
 ```
 
@@ -110,7 +110,7 @@ typealias ClickHandler = (Button, ClickEvent) -> Unit
     *   [构造函数](reflection.html#构造函数引用)：`::Regex` 这包括指向特定实例成员的[绑定的可调用引用](reflection.html#绑定的函数与属性引用（自-1-1-起）)：`foo::toString`。
 *   使用实现函数类型接口的自定义类的实例：
 
-    ```kotlin
+    ``` kotlin
     class IntTransformer: (Int) -> Int {
         override operator fun invoke(x: Int): Int = TODO()
     }
@@ -120,13 +120,13 @@ typealias ClickHandler = (Button, ClickEvent) -> Unit
 
 如果有足够信息，编译器可以推断变量的函数类型：
 
-```kotlin
+``` kotlin
 val a = { i: Int -> i + 1 } // 推断出的类型是 (Int) -> Int
 ```
 
 带与不带接收者的函数类型*非字面*值可以互换，其中接收者可以替代第一个参数，反之亦然。例如，`(A, B) -> C` 类型的值可以传给或赋值给期待 `A.(B) -> C` 的地方，反之亦然：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val repeat: String.(Int) -> String = { times -> repeat(times) }
@@ -152,7 +152,7 @@ fun main(args: Array<String>) {
 
 例如：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val stringPlus: (String, String) -> String = String::plus
@@ -176,13 +176,13 @@ fun main(args: Array<String>) {
 
 lambda 表达式与匿名函数是“函数字面值”，即未声明的函数，但立即做为表达式传递。考虑下面的例子：
 
-```kotlin
+``` kotlin
 max(strings, { a, b -> a.length < b.length })
 ```
 
 函数 `max` 是一个高阶函数，它接受一个函数作为第二个参数。其第二个参数是一个表达式，它本身是一个函数，即函数字面值，它等价于以下命名函数：
 
-```kotlin
+``` kotlin
 fun compare(a: String, b: String): Boolean = a.length < b.length
 ```
 
@@ -190,7 +190,7 @@ fun compare(a: String, b: String): Boolean = a.length < b.length
 
 Lambda 表达式的完整语法形式如下：
 
-```kotlin
+``` kotlin
 val sum = { x: Int, y: Int -> x + y }
 ```
 
@@ -198,7 +198,7 @@ lambda 表达式总是括在花括号中，完整语法形式的参数声明放�
 
 如果我们把所有可选标注都留下，看起来如下：
 
-```kotlin
+``` kotlin
 val sum: (Int, Int) -> Int = { x, y -> x + y }
 ```
 
@@ -206,13 +206,13 @@ val sum: (Int, Int) -> Int = { x, y -> x + y }
 
 在 Kotlin 中有一个约定：如果函数的最后一个参数接受函数，那么作为相应参数传入的 lambda 表达式可以放在圆括号之外：
 
-```kotlin
+``` kotlin
 val product = items.fold(1) { acc, e -> acc * e }
 ```
 
 如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略：
 
-```kotlin
+``` kotlin
 run { println("...") }
 ```
 
@@ -222,7 +222,7 @@ run { println("...") }
 
 如果编译器自己可以识别出签名，也可以不用声明唯一的参数并忽略 `->`。该参数会隐式声明为 `it`：
 
-```kotlin
+``` kotlin
 ints.filter { it > 0 } // 这个字面值是“(it: Int) -> Boolean”类型的
 ```
 
@@ -232,7 +232,7 @@ ints.filter { it > 0 } // 这个字面值是“(it: Int) -> Boolean”类型的
 
 因此，以下两个片段是等价的：
 
-```kotlin
+``` kotlin
 ints.filter {
     val shouldFilter = it > 0
     shouldFilter
@@ -246,7 +246,7 @@ ints.filter {
 
 这一约定连同[在圆括号外传递 lambda 表达式](#将-lambda-表达式传给最后一个参数)一起支持 [LINQ-风格](http://msdn.microsoft.com/en-us/library/bb308959.aspx) 的代码：
 
-```kotlin
+``` kotlin
 strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 ```
 
@@ -254,7 +254,7 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 
 如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：
 
-```kotlin
+``` kotlin
 map.forEach { _, value -> println("$value!") }
 ```
 
@@ -266,13 +266,13 @@ map.forEach { _, value -> println("$value!") }
 
 上面提供的 lambda 表达式语法缺少的一个东西是指定函数的返回类型的能力。在大多数情况下，这是不必要的。因为返回类型可以自动推断出来。然而，如果确实需要显式指定，可以使用另一种语法： _匿名函数_ 。
 
-```kotlin
+``` kotlin
 fun(x: Int, y: Int): Int = x + y
 ```
 
 匿名函数看起来非常像一个常规函数声明，除了其名称省略了。其函数体可以是表达式（如上所示）或代码块：
 
-```kotlin
+``` kotlin
 fun(x: Int, y: Int): Int {
     return x + y
 }
@@ -280,7 +280,7 @@ fun(x: Int, y: Int): Int {
 
 参数和返回类型的指定方式与常规函数相同，除了能够从上下文推断出的参数类型可以省略：
 
-```kotlin
+``` kotlin
 ints.filter(fun(item) = item > 0)
 ```
 
@@ -294,7 +294,7 @@ Lambda 表达式与匿名函数之间的另一个区别是[非局部返回](inli
 
 Lambda 表达式或者匿名函数（以及[局部函数](functions.html#局部函数)和[对象表达式](object-declarations.html#对象表达式)）可以访问其 _闭包_ ，即在外部作用域中声明的变量。 与 Java 不同的是可以修改闭包中捕获的变量：
 
-```kotlin
+``` kotlin
 var sum = 0
 ints.filter { it > 0 }.forEach {
     sum += it
@@ -315,20 +315,20 @@ print(sum)
 
 这里有一个带有接收者的函数字面值及其类型的示例，其中在接收者对象上调用了 `plus` ：
 
-```kotlin
+``` kotlin
 val sum: Int.(Int) -> Int = { other -> plus(other) }
 ```
 
 匿名函数语法允许你直接指定函数字面值的接收者类型。如果你需要使用带接收者的函数类型声明一个变量，并在之后使用它，这将非常有用。
 
-```kotlin
+``` kotlin
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
 当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
 One of the most important examples of their usage is [type-safe builders](type-safe-builders.html):
 
-```kotlin
+``` kotlin
 class HTML {
     fun body() { …… }
 }

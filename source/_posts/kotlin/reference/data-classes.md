@@ -14,7 +14,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从数据机械推导而来的。在 Kotlin 中，这叫做 _数据类_ 并标记为 `data`：
 
-```kotlin
+``` kotlin
 data class User(val name: String, val age: Int)
 ```
 
@@ -45,7 +45,7 @@ data class User(val name: String, val age: Int)
 
 在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。（参见[构造函数](classes.html#构造函数)）。
 
-```kotlin
+``` kotlin
 data class User(val name: String = "", val age: Int = 0)
 ```
 
@@ -53,7 +53,7 @@ data class User(val name: String = "", val age: Int = 0)
 
 请注意，对于那些自动生成的函数，编译器只使用在主构造函数内部定义的属性。如需在生成的实现中排出一个属性，请将其声明在类体中：
 
-```kotlin
+``` kotlin
 data class Person(val name: String) {
     var age: Int = 0
 }
@@ -61,7 +61,7 @@ data class Person(val name: String) {
 
 在 `toString()`、 `equals()`、 `hashCode()` 以及 `copy()` 的实现中只会用到 `name` 属性，并且只有一个 component 函数 `component1()`。虽然两个 `Person` 对象可以有不同的年龄，但它们会视为相等。
 
-```kotlin
+``` kotlin
 data class Person(val name: String) {
     var age: Int = 0
 }
@@ -86,13 +86,13 @@ fun main(args: Array<String>) {
 在很多情况下，我们需要复制一个对象改变它的一些属性，但其余部分保持不变。
 `copy()` 函数就是为此而生成。对于上文的 `User` 类，其实现会类似下面这样：
 
-```kotlin
+``` kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)
 ```
 
 这让我们可以写：
 
-```kotlin
+``` kotlin
 val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
@@ -101,7 +101,7 @@ val olderJack = jack.copy(age = 2)
 
 为数据类生成的 _Component 函数_ 使它们可在[解构声明](multi-declarations.html)中使用：
 
-```kotlin
+``` kotlin
 val jane = User("Jane", 35)
 val (name, age) = jane
 println("$name, $age years of age") // 输出 "Jane, 35 years of age"

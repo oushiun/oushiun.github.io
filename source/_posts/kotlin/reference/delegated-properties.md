@@ -22,7 +22,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 为了涵盖这些（以及其他）情况，Kotlin 支持 _委托属性_:
 
-```kotlin
+``` kotlin
 class Example {
     var p: String by Delegate()
 }
@@ -30,7 +30,7 @@ class Example {
 
 语法是： `val/var <属性名>: <类型> by <表达式>`。在 `by` 后面的表达式是该 _委托_，因为属性对应的 `get()`（和 `set()`）会被委托给它的 `getValue()` 和 `setValue()` 方法。属性的委托不必实现任何的接口，但是需要提供一个 `getValue()` 函数（和 `setValue()`——对于 `var` 属性）。例如:
 
-```kotlin
+``` kotlin
 class Delegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
         return "$thisRef, thank you for delegating '${property.name}' to me!"
@@ -45,7 +45,7 @@ class Delegate {
 当我们从委托到一个 `Delegate` 实例的 `p` 读取时，将调用 `Delegate` 中的 `getValue()` 函数，所以它第一个参数是读出 `p` 的对象、第二个参数保存了对 `p` 自身的描述
 （例如你可以取它的名字)。 例如:
 
-```kotlin
+``` kotlin
 val e = Example()
 println(e.p)
 ```
@@ -58,7 +58,7 @@ Example@33a17727, thank you for delegating ‘p’ to me!
 
 类似地，当我们给 `p` 赋值时，将调用 `setValue()` 函数。前两个参数相同，第三个参数保存将要被赋予的值：
 
-```kotlin
+``` kotlin
 e.p = "NEW"
 ```
 
@@ -80,7 +80,7 @@ Kotlin 标准库为几种有用的委托提供了工厂方法。
 
 [`lazy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html) 是接受一个 lambda 并返回一个 `Lazy <T>` 实例的函数，返回的实例可以作为实现延迟属性的委托：第一次调用 `get()` 会执行已传递给 `lazy()` 的 lambda 表达式并记录结果，后续调用 `get()` 只是返回记录的结果。
 
-```kotlin
+``` kotlin
 val lazyValue: String by lazy {
     println("computed!")
     "Hello"
@@ -106,7 +106,7 @@ Hello
 
 [`Delegates.observable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html) 接受两个参数：初始值和修改时处理程序（handler）。每当我们给属性赋值时会调用该处理程序（在赋值*后*执行）。它有三个参数：被赋值的属性、旧值和新值：
 
-```kotlin
+``` kotlin
 import kotlin.properties.Delegates
 
 class User {
@@ -136,7 +136,7 @@ first -> second
 
 一个常见的用例是在一个映射（map）里存储属性的值。这经常出现在像解析 JSON 或者做其他“动态”事情的应用中。在这种情况下，你可以使用映射实例自身作为委托来实现委托属性。
 
-```kotlin
+``` kotlin
 class User(val map: Map<String, Any?>) {
     val name: String by map
     val age: Int     by map
@@ -145,7 +145,7 @@ class User(val map: Map<String, Any?>) {
 
 在这个例子中，构造函数接受一个映射参数：
 
-```kotlin
+``` kotlin
 val user = User(mapOf(
     "name" to "John Doe",
     "age"  to 25
@@ -154,14 +154,14 @@ val user = User(mapOf(
 
 委托属性会从这个映射中取值（通过字符串键——属性的名称）：
 
-```kotlin
+``` kotlin
 println(user.name) // Prints "John Doe"
 println(user.age)  // Prints 25
 ```
 
 这也适用于 `var` 属性，如果把只读的 `Map` 换成 `MutableMap` 的话：
 
-```kotlin
+``` kotlin
 class MutableUser(val map: MutableMap<String, Any?>) {
     var name: String by map
     var age: Int     by map
@@ -172,7 +172,7 @@ class MutableUser(val map: MutableMap<String, Any?>) {
 
 你可以将局部变量声明为委托属性。例如，你可以使一个局部变量惰性初始化：
 
-```kotlin
+``` kotlin
 fun example(computeFoo: () -> Foo) {
     val memoizedFoo by lazy(computeFoo)
 
@@ -205,7 +205,7 @@ fun example(computeFoo: () -> Foo) {
 
 委托类可以实现包含所需 `operator` 方法的 `ReadOnlyProperty` 或 `ReadWriteProperty` 接口之一。这俩接口是在 Kotlin 标准库中声明的：
 
-```kotlin
+``` kotlin
 interface ReadOnlyProperty<in R, out T> {
     operator fun getValue(thisRef: R, property: KProperty<*>): T
 }
@@ -220,7 +220,7 @@ interface ReadWriteProperty<in R, T> {
 
 在每个委托属性的实现的背后，Kotlin 编译器都会生成辅助属性并委托给它。例如，对于属性 `prop`，生成隐藏属性 `prop$delegate`，而访问器的代码只是简单地委托给这个附加属性：
 
-```kotlin
+``` kotlin
 class C {
     var prop: Type by MyDelegate()
 }
@@ -246,7 +246,7 @@ Kotlin 编译器在参数中提供了关于 `prop` 的所有必要信息：第�
 
 例如，如果要在绑定之前检查属性名称，可以这样写：
 
-```kotlin
+``` kotlin
 class ResourceDelegate<T> : ReadOnlyProperty<MyUI, T> {
     override fun getValue(thisRef: MyUI, property: KProperty<*>): T { ... }
 }
@@ -281,7 +281,7 @@ class MyUI {
 
 如果没有这种拦截属性与其委托之间的绑定的能力，为了实现相同的功能，你必须显式传递属性名，这不是很方便：
 
-```kotlin
+``` kotlin
 // 检查属性名称而不使用“provideDelegate”功能
 class MyUI {
     val image by bindResource(ResourceID.image_id, "image")
@@ -299,7 +299,7 @@ fun <T> MyUI.bindResource(
 
 在生成的代码中，会调用 `provideDelegate` 方法来初始化辅助的 `prop$delegate` 属性。比较对于属性声明 `val prop: Type by MyDelegate()` 生成的代码与[上面](delegated-properties.html#翻译规则)（当 `provideDelegate` 方法不存在时）生成的代码：
 
-```kotlin
+``` kotlin
 class C {
     var prop: Type by MyDelegate()
 }

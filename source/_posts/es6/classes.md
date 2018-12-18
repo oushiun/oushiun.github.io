@@ -17,7 +17,7 @@ ECMAScript 6 引入的 JavaScript 类（class）是 JavaScript 现有的原型�
 
 javascript 传统做法是当生成一个对象实例，需要定义构造函数，然后通过 new 的方式完成。
 
-```javascript
+``` javascript
 function StdInfo() {
     this.name = 'job'
     this.age = 30
@@ -38,7 +38,7 @@ javacript 中只有对象，没有类。它是是基于原型的语言，原型�
 
 到了 ES6 添加了类，作为对象的模板。通过 class 来定义一个类：
 
-```javascript
+``` javascript
 // 定义类
 class StdInfo {
     constructor() {
@@ -59,7 +59,7 @@ var p = new StdInfo()
 
 定义的类只是语法糖，目的是让我们用更简洁明了的语法创建对象及处理相关的继承。
 
-```javascript
+``` javascript
 // 定义类
 class StdInfo {
     //...
@@ -77,7 +77,7 @@ console.log(StdInfo === StdInfo.prototype.constructor) //true
 
 类声明是定义类的一种方式，使用关键字 class，后面跟上类名，然后就是一对大括号。把这一类需要定义的方法放在大括号中。
 
-```javascript
+``` javascript
 // 定义类，可以省略constructor
 class StdInfo {
     getNames() {
@@ -116,7 +116,7 @@ _constructor_ 中的 `this` 指向新创建的实例对象，利用 `this` 往�
 
 定义类 _class_ 后面有类名：
 
-```javascript
+``` javascript
 const People = class StdInfo {
     constructor() {
         console.log(StdInfo) //可以打印出值，是一个函数
@@ -129,7 +129,7 @@ new StdInfo() //报错，StdInfo is not defined；
 
 定义类 class 后面没有类名：
 
-```javascript
+``` javascript
 const People = class {
     constructor() {}
 }
@@ -139,7 +139,7 @@ new People()
 
 立即执行的类：
 
-```javascript
+``` javascript
 const p = new class {
     constructor(name, age) {
         console.log(name, age)
@@ -153,7 +153,7 @@ const p = new class {
 
 定义类不存在变量提升，只能先定义类后使用，跟函数声明有区别的。
 
-```javascript
+``` javascript
 //-----函数声明-------
 // 定义前可以先使用，因为函数声明提升的缘故，调用合法。
 func()
@@ -168,7 +168,7 @@ class StdInfo {}
 
 使用 `extends` 关键字实现类之间的继承。这比在 ES5 中使用继承要方便很多。
 
-```javascript
+``` javascript
 // 定义类父类
 class Parent {
     constructor(name, age) {
@@ -197,7 +197,7 @@ c.speakSometing() // I can speek chinese
 
 如果子类中有 _constructor_ 构造函数，则必须使用调用 `super`。
 
-```javascript
+``` javascript
 // 定义类父类
 class Parent {
     constructor(name, age) {

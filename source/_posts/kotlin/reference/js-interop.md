@@ -20,7 +20,7 @@ Kotlin 已被设计为能够与 Java 平台轻松互操作。它将 Java 类视�
 
 你可以使用 [js("……")](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html) 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。例如：
 
-```kotlin
+``` kotlin
 fun jsTypeOf(o: Any): String {
     return js("typeof o")
 }
@@ -28,7 +28,7 @@ fun jsTypeOf(o: Any): String {
 
 `js` 的参数必须是字符串常量。因此，以下代码是不正确的：
 
-```kotlin
+``` kotlin
 fun jsTypeOf(o: Any): String {
     return js(getTypeof() + " o") // 此处报错
 }
@@ -39,7 +39,7 @@ fun getTypeof() = "typeof"
 
 要告诉 Kotlin 某个声明是用纯 JavaScript 编写的，你应该用 `external` 修饰符来标记它。当编译器看到这样的声明时，它假定相应类、函数或属性的实现由开发人员提供，因此不会尝试从声明中生成任何 JavaScript 代码。这意味着你应该省略 `external` 声明内容的代码体。例如：
 
-```kotlin
+``` kotlin
 external fun alert(message: Any?): Unit
 
 external class Node {
@@ -63,7 +63,7 @@ external val window: Window
 
 在 JavaScript 中，你可以在原型或者类本身上定义成员。即：
 
-```javascript
+``` javascript
 function MyClass() {}
 MyClass.sharedMember = function() {
     /* 实现 */
@@ -75,7 +75,7 @@ MyClass.prototype.ownMember = function() {
 
 Kotlin 中没有这样的语法。然而，在 Kotlin 中我们有伴生（`companion`）对象。Kotlin 以特殊的方式处理 `external` 类的伴生对象：替代期待一个对象的是，它假定伴生对象的成员就是该类自身的成员。要描述来自上例中的 `MyClass`，你可以这样写：
 
-```kotlin
+``` kotlin
 external class MyClass {
     companion object {
         fun sharedMember()
@@ -90,7 +90,7 @@ external class MyClass {
 一个外部函数可以有可选参数。
 JavaScript 实现实际上如何计算这些参数的默认值，是 Kotlin 所不知道的，因此在 Kotlin 中不可能使用通常的语法声明这些参数。你应该使用以下语法：
 
-```kotlin
+``` kotlin
 external fun myFunWithOptionalArgs(x: Int,
     y: String = definedExternally,
     z: Long = definedExternally)
@@ -102,7 +102,7 @@ external fun myFunWithOptionalArgs(x: Int,
 
 你可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 `external` 类并用非 `external` 类扩展它。例如：
 
-```kotlin
+``` kotlin
 external open class HTMLElement : Element() {
     /* 成员 */
 }
@@ -125,7 +125,7 @@ class CustomElement : HTMLElement() {
 
 JavaScript 没有接口的概念。当函数期望其参数支持 `foo` 和 `bar` 方法时，只需传递实际具有这些方法的对象。对于静态类型的 Kotlin，你可以使用接口来表达这点，例如：
 
-```kotlin
+``` kotlin
 external interface HasFooAndBar {
     fun foo()
 
@@ -137,7 +137,7 @@ external fun myFunction(p: HasFooAndBar)
 
 外部接口的另一个使用场景是描述设置对象。例如：
 
-```kotlin
+``` kotlin
 external interface JQueryAjaxSettings {
     var async: Boolean
 

@@ -18,13 +18,13 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 但是在许多情况下通过内联化 lambda 表达式可以消除这类的开销。下述函数是这种情况的很好的例子。即 `lock()` 函数可以很容易地在调用处内联。考虑下面的情况：
 
-```kotlin
+``` kotlin
 lock(l) { foo() }
 ```
 
 编译器没有为参数创建一个函数对象并生成一个调用。取而代之，编译器可以生成以下代码：
 
-```kotlin
+``` kotlin
 l.lock()
 try {
     foo()
@@ -38,7 +38,7 @@ finally {
 
 为了让编译器这么做，我们需要使用 `inline` 修饰符标记 `lock()` 函数：
 
-```kotlin
+``` kotlin
 inline fun <T> lock(lock: Lock, body: () -> T): T {
     // ……
 }
@@ -52,7 +52,7 @@ inline fun <T> lock(lock: Lock, body: () -> T): T {
 
 如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 `noinline` 修饰符标记一些函数参数：
 
-```kotlin
+``` kotlin
 inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
     // ……
 }
@@ -66,7 +66,7 @@ inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
 
 在 Kotlin 中，我们可以只使用一个正常的、非限定的 `return` 来退出一个命名或匿名函数。这意味着要退出一个 lambda 表达式，我们必须使用一个[标签](returns.html#标签处返回)，并且在 lambda 表达式内部禁止使用裸 `return`，因为 lambda 表达式不能使包含它的函数返回：
 
-```kotlin
+``` kotlin
 fun foo() {
     ordinaryFunction {
         return // 错误：不能使 `foo` 在此处返回
@@ -76,7 +76,7 @@ fun foo() {
 
 但是如果 lambda 表达式传给的函数是内联的，该 return 也可以内联，所以它是允许的：
 
-```kotlin
+``` kotlin
 fun foo() {
     inlineFunction {
         return // OK：该 lambda 表达式是内联的
@@ -86,7 +86,7 @@ fun foo() {
 
 这种返回（位于 lambda 表达式中，但退出包含它的函数）称为*非局部*返回。 我们习惯了在循环中用这种结构，其内联函数通常包含：
 
-```kotlin
+``` kotlin
 fun hasZeros(ints: List<Int>): Boolean {
     ints.forEach {
         if (it == 0) return true // 从 hasZeros 返回
@@ -97,7 +97,7 @@ fun hasZeros(ints: List<Int>): Boolean {
 
 请注意，一些内联函数可能调用传给它们的不是直接来自函数体、而是来自另一个执行上下文的 lambda 表达式参数，例如来自局部对象或嵌套函数。在这种情况下，该 lambda 表达式中也不允许非局部控制流。为了标识这种情况，该 lambda 表达式参数需要用 `crossinline` 修饰符标记:
 
-```kotlin
+``` kotlin
 inline fun f(crossinline body: () -> Unit) {
     val f = object: Runnable {
         override fun run() = body()
@@ -112,7 +112,7 @@ inline fun f(crossinline body: () -> Unit) {
 
 有时候我们需要访问一个作为参数传给我们的一个类型：
 
-```kotlin
+``` kotlin
 fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
     var p = parent
     while (p != null && !clazz.isInstance(p)) {
@@ -125,19 +125,19 @@ fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
 
 在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。这都没有问题，但是调用处不是很优雅：
 
-```kotlin
+``` kotlin
 treeNode.findParentOfType(MyTreeNode::class.java)
 ```
 
 我们真正想要的只是传一个类型给该函数，即像这样调用它：
 
-```kotlin
+``` kotlin
 treeNode.findParentOfType<MyTreeNode>()
 ```
 
 为能够这么做，内联函数支持*具体化的类型参数*，于是我们可以这样写：
 
-```kotlin
+``` kotlin
 inline fun <reified T> TreeNode.findParentOfType(): T? {
     var p = parent
     while (p != null && p !is T) {
@@ -151,7 +151,7 @@ inline fun <reified T> TreeNode.findParentOfType(): T? {
 
 虽然在许多情况下可能不需要反射，但我们仍然可以对一个具体化的类型参数使用它：
 
-```kotlin
+``` kotlin
 inline fun <reified T> membersOf() = T::class.members
 
 fun main(s: Array<String>) {
@@ -167,7 +167,7 @@ fun main(s: Array<String>) {
 
 `inline` 修饰符可用于没有幕后字段的属性的访问器。你可以标注独立的属性访问器：
 
-```kotlin
+``` kotlin
 val foo: Foo
     inline get() = Foo()
 
@@ -178,7 +178,7 @@ var bar: Bar
 
 你也可以标注整个属性，将它的两个访问器都标记为内联：
 
-```kotlin
+``` kotlin
 inline var bar: Bar
     get() = ……
     set(v) { …… }

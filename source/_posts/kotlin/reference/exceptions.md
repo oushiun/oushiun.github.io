@@ -20,13 +20,13 @@ Kotlin 中所有异常类都是 `Throwable` 类的子孙类。每个异常都有
 
 使用 `throw` 表达式来抛出异常：
 
-```kotlin
+``` kotlin
 throw MyException("Hi There!")
 ```
 
 使用 `try` 表达式来捕获异常：
 
-```kotlin
+``` kotlin
 try {
     // 一些代码
 }
@@ -44,7 +44,7 @@ finally {
 
 `try` 是一个表达式，即它可以有一个返回值：
 
-```kotlin
+``` kotlin
 val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 ```
 
@@ -63,7 +63,7 @@ Appendable append(CharSequence csq) throws IOException;
 
 这个签名是什么意思？ 它是说，每次我追加一个字符串到一些东西（一个 `StringBuilder`、某种日志、一个控制台等）上时我就必须捕获那些 `IOException`。 为什么？因为它可能正在执行 IO 操作（`Writer` 也实现了 `Appendable`）…… 所以它导致这种代码随处可见的出现：
 
-```kotlin
+``` kotlin
 try {
     log.append(message)
 }
@@ -87,13 +87,13 @@ Bruce Eckel 在[《Java 是否需要受检的异常？》（Does Java need Check
 
 在 Kotlin 中 `throw` 是表达式，所以你可以使用它（比如）作为 Elvis 表达式的一部分：
 
-```kotlin
+``` kotlin
 val s = person.name ?: throw IllegalArgumentException("Name required")
 ```
 
 `throw` 表达式的类型是特殊类型 `Nothing`。该类型没有值，而是用于标记永远不能达到的代码位置。在你自己的代码中，你可以使用 `Nothing` 来标记一个永远不会返回的函数：
 
-```kotlin
+``` kotlin
 fun fail(message: String): Nothing {
     throw IllegalArgumentException(message)
 }
@@ -101,7 +101,7 @@ fun fail(message: String): Nothing {
 
 当你调用该函数时，编译器会知道执行不会超出该调用：
 
-```kotlin
+``` kotlin
 val s = person.name ?: fail("Name required")
 println(s)     // 在此已知“s”已初始化
 ```
@@ -109,7 +109,7 @@ println(s)     // 在此已知“s”已初始化
 可能会遇到这个类型的另一种情况是类型推断。这个类型的可空变体
 `Nothing?` 有一个可能的值是 `null`。如果用 `null` 来初始化一个要推断类型的值，而又没有其他信息可用于确定更具体的类型时，编译器会推断出 `Nothing?` 类型：
 
-```kotlin
+``` kotlin
 val x = null           // “x”具有类型 `Nothing?`
 val l = listOf(null)   // “l”具有类型 `List<Nothing?>
 ```

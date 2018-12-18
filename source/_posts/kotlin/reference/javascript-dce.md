@@ -27,7 +27,7 @@ DCE 工具目前对 Gradle 可用。
 
 要激活 DCE 工具，请将以下这行添加到 `build.gradle` 中：
 
-```groovy
+``` groovy
 apply plugin: 'kotlin-dce-js'
 ```
 
@@ -41,7 +41,7 @@ apply plugin: 'kotlin-dce-js'
 
 有时你直接在 JavaScript 中使用一个 Kotlin 声明，而被 DCE 给去除掉了。你可能想保留这个声明。 为此，你可以在 `build.gradle` 中使用以下语法：
 
-```groovy
+``` groovy
 runDceKotlinJs.keep "declarationToKeep"[, "declarationToKeep", ...]
 ```
 
@@ -53,7 +53,7 @@ moduleName.dot.separated.package.name.declarationName
 
 例如，考虑一个模块命名为 `kotlin-js-example`，它在 `org.jetbrains.kotlin.examples` 包中包含一个名为 `toKeep` 的函数。使用以下这行：
 
-```groovy
+``` groovy
 runDceKotlinJs.keep "kotlin-js-example_main.org.jetbrains.kotlin.examples.toKeep"
 ```
 
@@ -65,7 +65,7 @@ runDceKotlinJs.keep "kotlin-js-example_main.org.jetbrains.kotlin.examples.toKeep
 
 例如，如需根据自定义条件禁用 `main` 源集的 DCE 并且总是禁用 `test` 代码的 DCE，请将下述几行添加到构建脚本中：
 
-```groovy
+``` groovy
 runDceKotlinJs.dceOptions.devMode = isDevMode
 runDceTestKotlinJs.dceOptions.devMode = true
 ```

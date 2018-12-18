@@ -20,7 +20,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 示例：
 
-```kotlin
+``` kotlin
 class A
 class B
 class C

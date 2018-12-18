@@ -20,7 +20,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 将 Kotlin OSGi 包引入到 Maven 项目中：
 
-```xml
+``` xml
    <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -32,7 +32,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 从外部库中排除标准库（注意“星排除”只在 Maven 3 中有效）：
 
-```xml
+``` xml
         <dependency>
             <groupId>some.group.id</groupId>
             <artifactId>some.library</artifactId>
@@ -51,13 +51,13 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 将 `kotlin-osgi-bundle` 引入到 gradle 项目中：
 
-```groovy
+``` groovy
 compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
 ```
 
 要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法：
 
-```groovy
+``` groovy
 dependencies {
  compile (
    [group: 'some.group.id', name: 'some.library', version: 'someversion'],

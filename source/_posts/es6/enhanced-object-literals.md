@@ -19,7 +19,7 @@ banner: https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg
 
 用法：`{ method() {…} }`
 
-```javascript
+``` javascript
 const obj = {
     // Before
     foo: function() {
@@ -37,7 +37,7 @@ const obj = {
 
 开发者允许直接向一个对象字面量注入 _proto_，使其**直接成为指定类的一个实例**，而无须另外创建一个类来实现继承。
 
-```javascript
+``` javascript
 import { EventEmitter } from 'events'
 
 const machine = {
@@ -63,7 +63,7 @@ machine.method(/* …. */)
 
 ES6 引入的新语法允许我们直接使用一个表达式来表达一个属性名用法：`{ [statement]: value }`
 
-```javascript
+``` javascript
 const prefix = 'ES6'
 
 const obj = {
@@ -75,7 +75,7 @@ const obj = {
 
 有时候我们需要将一些已经被定义的变量(或常量)作为其他对象字面量的属性值进行返回或传入操作，而大多数情况下这些变量名和属性名都是相同的，我们可以对属性名定义进行省略。
 
-```javascript
+``` javascript
 const foo = 123
 const bar = () => foo
 

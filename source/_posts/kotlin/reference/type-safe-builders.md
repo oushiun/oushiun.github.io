@@ -26,7 +26,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 考虑下面的代码：
 
-```kotlin
+``` kotlin
 import com.example.html.* // 参见下文声明
 
 fun result(args: Array<String>) =
@@ -68,7 +68,7 @@ fun result(args: Array<String>) =
 
 现在，让我们回想下为什么我们可以在代码中这样写：
 
-```kotlin
+``` kotlin
 html {
  // ……
 }
@@ -76,7 +76,7 @@ html {
 
 `html` 实际上是一个函数调用，它接受一个 [lambda 表达式](lambdas.html) 作为参数。该函数定义如下：
 
-```kotlin
+``` kotlin
 fun html(init: HTML.() -> Unit): HTML {
     val html = HTML()
     html.init()
@@ -86,7 +86,7 @@ fun html(init: HTML.() -> Unit): HTML {
 
 这个函数接受一个名为 `init` 的参数，该参数本身就是一个函数。该函数的类型是 `HTML.() -> Unit`，它是一个 _带接收者的函数类型_ 。这意味着我们需要向函数传递一个 HTML 类型的实例（ _接收者_ ），并且我们可以在函数内部调用该实例的成员。该接收者可以通过 `this` 关键字访问：
 
-```kotlin
+``` kotlin
 html {
     this.head { /* …… */ }
     this.body { /* …… */ }
@@ -97,7 +97,7 @@ html {
 
 现在，像往常一样，`this` 可以省略掉了，我们得到的东西看起来已经非常像一个构建器了：
 
-```kotlin
+``` kotlin
 html {
     head { /* …… */ }
     body { /* …… */ }
@@ -108,7 +108,7 @@ html {
 
 `HTML` 类中的 `head` 和 `body` 函数的定义与 `html` 类似。唯一的区别是，它们将构建的实例添加到包含 `HTML` 实例的 `children` 集合中：
 
-```kotlin
+``` kotlin
 fun head(init: Head.() -> Unit) : Head {
     val head = Head()
     head.init()
@@ -126,7 +126,7 @@ fun body(init: Body.() -> Unit) : Body {
 
 实际上这两个函数做同样的事情，所以我们可以有一个泛型版本，`initTag`：
 
-```kotlin
+``` kotlin
 protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
     tag.init()
     children.add(tag)
@@ -136,7 +136,7 @@ protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
 
 所以，现在我们的函数很简单：
 
-```kotlin
+``` kotlin
 fun head(init: Head.() -> Unit) = initTag(Head(), init)
 
 fun body(init: Body.() -> Unit) = initTag(Body(), init)
@@ -146,7 +146,7 @@ fun body(init: Body.() -> Unit) = initTag(Body(), init)
 
 这里要讨论的另一件事是如何向标签体中添加文本。在上例中我们这样写到：
 
-```kotlin
+``` kotlin
 html {
     head {
         title {+"XML encoding with Kotlin"}
@@ -157,7 +157,7 @@ html {
 
 所以基本上，我们只是把一个字符串放进一个标签体内部，但在它前面有一个小的 `+`，所以它是一个函数调用，调用一个前缀 `unaryPlus()` 操作。该操作实际上是由一个扩展函数 `unaryPlus()` 定义的，该函数是 `TagWithText` 抽象类（`Title` 的父类）的成员：
 
-```kotlin
+``` kotlin
 operator fun String.unaryPlus() {
     children.add(TextElement(this))
 }
@@ -171,7 +171,7 @@ operator fun String.unaryPlus() {
 
 使用 DSL 时，可能会遇到上下文中可以调用太多函数的问题。我们可以调用 lambda 表达式内部每个可用的隐式接收者的方法，因此得到一个不一致的结果，就像在另一个 `head` 内部的 `head` 标记那样：
 
-```kotlin
+``` kotlin
 html {
     head {
         head {} // 应该禁止
@@ -186,7 +186,7 @@ html {
 
 为了使编译器开始控制标记，我们只是必须用相同的标记注解来标注在 DSL 中使用的所有接收者的类型。例如，对于 HTML 构建器，我们声明一个注解 `@HTMLTagMarker`：
 
-```kotlin
+``` kotlin
 @DslMarker
 annotation class HtmlTagMarker
 ```
@@ -195,7 +195,7 @@ annotation class HtmlTagMarker
 
 在我们的 DSL 中，所有标签类都扩展了相同的超类 `Tag`。只需使用 `@HtmlTagMarker` 来标注超类就足够了，之后，Kotlin 编译器会将所有继承的类视为已标注：
 
-```kotlin
+``` kotlin
 @HtmlTagMarker
 abstract class Tag(val name: String) { …… }
 ```
@@ -209,7 +209,7 @@ class Head() : Tag("head") { …… }
 
 在添加了这个注解之后，Kotlin 编译器就知道哪些隐式接收者是同一个 DSL 的一部分，并且只允许调用最近层的接收者的成员：
 
-```kotlin
+``` kotlin
 html {
     head {
         head { } // 错误：外部接收者的成员
@@ -220,7 +220,7 @@ html {
 
 请注意，仍然可以调用外部接收者的成员，但是要做到这一点，你必须明确指定这个接收者：
 
-```kotlin
+``` kotlin
 html {
     head {
         this@html.head { } // 可能
@@ -235,7 +235,7 @@ html {
 
 请注意，`@DslMarker` 注解在 Kotlin 1.1 起才可用。
 
-```kotlin
+``` kotlin
 package com.example.html
 
 interface Element {

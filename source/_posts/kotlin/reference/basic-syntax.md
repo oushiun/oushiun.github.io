@@ -16,7 +16,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 包的声明应处于源文件顶部：
 
-```kotlin
+``` kotlin
 package my.demo
 
 import java.util.*
@@ -34,7 +34,7 @@ import java.util.*
 
 带有两个 `Int` 参数、返回 `Int` 的函数：
 
-```kotlin
+``` kotlin
 //sampleStart
 fun sum(a: Int, b: Int): Int {
     return a + b
@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
 
 将表达式作为函数体、返回值类型自动推断的函数：
 
-```kotlin
+``` kotlin
 //sampleStart
 fun sum(a: Int, b: Int) = a + b
 //sampleEnd
@@ -61,7 +61,7 @@ fun main(args: Array<String>) {
 
 函数返回无意义的值：
 
-```kotlin
+``` kotlin
 //sampleStart
 fun printSum(a: Int, b: Int): Unit {
     println("sum of $a and $b is ${a + b}")
@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
 
 `Unit` 返回类型可以省略：
 
-```kotlin
+``` kotlin
 //sampleStart
 fun printSum(a: Int, b: Int) {
     println("sum of $a and $b is ${a + b}")
@@ -93,7 +93,7 @@ fun main(args: Array<String>) {
 
 一次赋值（只读）的局部变量:
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val a: Int = 1  // 立即赋值
@@ -107,7 +107,7 @@ fun main(args: Array<String>) {
 
 可变变量：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     var x = 5 // 自动推断出 `Int` 类型
@@ -119,7 +119,7 @@ fun main(args: Array<String>) {
 
 顶层变量：
 
-```kotlin
+``` kotlin
 //sampleStart
 val PI = 3.14
 var x = 0
@@ -143,7 +143,7 @@ fun main(args: Array<String>) {
 
 正如 Java 和 JavaScript，Kotlin 支持行注释及块注释。
 
-```kotlin
+``` kotlin
 // 这是一个行注释
 
 /* 这是一个多行的
@@ -156,7 +156,7 @@ fun main(args: Array<String>) {
 
 #### 使用字符串模板
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     var a = 1
@@ -175,7 +175,7 @@ fun main(args: Array<String>) {
 
 #### 使用条件表达式
 
-```kotlin
+``` kotlin
 //sampleStart
 fun maxOf(a: Int, b: Int): Int {
     if (a > b) {
@@ -193,7 +193,7 @@ fun main(args: Array<String>) {
 
 使用 `if` 作为表达式:
 
-```kotlin
+``` kotlin
 //sampleStart
 fun maxOf(a: Int, b: Int) = if (a > b) a else b
 //sampleEnd
@@ -211,7 +211,7 @@ fun main(args: Array<String>) {
 
 如果 `str` 的内容不是数字返回 `null`：
 
-```kotlin
+``` kotlin
 fun parseInt(str: String): Int? {
     // ……
 }
@@ -219,7 +219,7 @@ fun parseInt(str: String): Int? {
 
 使用返回可空值的函数:
 
-```kotlin
+``` kotlin
 fun parseInt(str: String): Int? {
     return str.toIntOrNull()
 }
@@ -250,7 +250,7 @@ fun main(args: Array<String>) {
 
 或者
 
-```kotlin
+``` kotlin
 fun parseInt(str: String): Int? {
     return str.toIntOrNull()
 }
@@ -288,7 +288,7 @@ fun main(args: Array<String>) {
 
 `is` 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：
 
-```kotlin
+``` kotlin
 //sampleStart
 fun getStringLength(obj: Any): Int? {
     if (obj is String) {
@@ -314,7 +314,7 @@ fun main(args: Array<String>) {
 
 或者
 
-```kotlin
+``` kotlin
 //sampleStart
 fun getStringLength(obj: Any): Int? {
     if (obj !is String) return null
@@ -337,7 +337,7 @@ fun main(args: Array<String>) {
 
 甚至
 
-```kotlin
+``` kotlin
 //sampleStart
 fun getStringLength(obj: Any): Int? {
     // `obj` 在 `&&` 右边自动转换成 `String` 类型
@@ -364,7 +364,7 @@ fun main(args: Array<String>) {
 
 #### 使用 `for` 循环
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val items = listOf("apple", "banana", "kiwifruit")
@@ -377,7 +377,7 @@ fun main(args: Array<String>) {
 
 或者
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val items = listOf("apple", "banana", "kiwifruit")
@@ -392,7 +392,7 @@ fun main(args: Array<String>) {
 
 #### 使用 `while` 循环
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val items = listOf("apple", "banana", "kiwifruit")
@@ -409,7 +409,7 @@ fun main(args: Array<String>) {
 
 #### 使用 `when` 表达式
 
-```kotlin
+``` kotlin
 //sampleStart
 fun describe(obj: Any): String =
     when (obj) {
@@ -436,7 +436,7 @@ fun main(args: Array<String>) {
 
 使用 `in` 运算符来检测某个数字是否在指定区间内：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val x = 10
@@ -450,7 +450,7 @@ fun main(args: Array<String>) {
 
 检测某个数字是否在指定区间外:
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val list = listOf("a", "b", "c")
@@ -467,7 +467,7 @@ fun main(args: Array<String>) {
 
 区间迭代:
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     for (x in 1..5) {
@@ -479,7 +479,7 @@ fun main(args: Array<String>) {
 
 或数列迭代：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     for (x in 1..10 step 2) {
@@ -499,7 +499,7 @@ fun main(args: Array<String>) {
 
 对集合进行迭代:
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     val items = listOf("apple", "banana", "kiwifruit")
 //sampleStart
@@ -512,7 +512,7 @@ fun main(args: Array<String>) {
 
 使用 `in` 运算符来判断集合内是否包含某实例：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     val items = setOf("apple", "banana", "kiwifruit")
 //sampleStart
@@ -526,7 +526,7 @@ fun main(args: Array<String>) {
 
 使用 lambda 表达式来过滤（filter）和映射（map）集合：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     val fruits = listOf("banana", "avocado", "apple", "kiwifruit")
 //sampleStart
@@ -543,7 +543,7 @@ fun main(args: Array<String>) {
 
 #### 创建基本类及其实例：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
     val rectangle = Rectangle(5.0, 2.0) // 不需要“new”关键字

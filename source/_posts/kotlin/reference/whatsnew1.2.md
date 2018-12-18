@@ -28,7 +28,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 在公共代码中：
 
-```kotlin
+``` kotlin
 // 预期平台相关 API:
 expect fun hello(world: String): String
 
@@ -46,7 +46,7 @@ expect class URL(spec: String) {
 
 在 JVM 平台代码中：
 
-```kotlin
+``` kotlin
 actual fun hello(world: String): String =
     "Hello, $world, on the JVM platform!"
 
@@ -62,7 +62,7 @@ actual typealias URL = java.net.URL
 
 自 Kotlin 1.2 起，注解的数组参数可以通过新的数组字面值语法传入，而无需使用 `arrayOf` 函数：
 
-```kotlin
+``` kotlin
 @CacheConfig(cacheNames = ["books", "default"])
 public class BookRepositoryImpl {
     // ……
@@ -75,7 +75,7 @@ public class BookRepositoryImpl {
 
 `lateinit` 修饰符现在可以用于顶层属性与局部变量了。例如，后者可用于当一个 lambda 表达式作为构造函数参数传给一个对象时，引用另一个必须稍后定义的对象：
 
-```kotlin
+``` kotlin
 class Node<T>(val value: T, val next: () -> Node<T>)
 
 fun main(args: Array<String>) {
@@ -98,7 +98,7 @@ fun main(args: Array<String>) {
 
 现在可以通过属性引用的 `isInitialized` 来检测该 lateinit var 是否已初始化：
 
-```kotlin
+``` kotlin
 class Foo {
     lateinit var lateinitVar: String
 
@@ -120,7 +120,7 @@ fun main(args: Array<String>) {
 
 内联函数现在允许其内联函式数参数具有默认值：
 
-```kotlin
+``` kotlin
 //sampleStart
 inline fun <E> Iterable<E>.strings(transform: (E) -> String = { it.toString() }) =
     map { transform(it) }
@@ -141,7 +141,7 @@ Kotlin 编译器现在可将类型转换信息用于类型推断。如果你调�
 
 这对于 Android 开发者来说尤为重要，因为编译器现在可以正确分析 Android API 级别 26 中的泛型 `findViewById` 调用：
 
-```kotlin
+``` kotlin
 val button = findViewById(R.id.button) as Button
 ```
 
@@ -149,7 +149,7 @@ val button = findViewById(R.id.button) as Button
 
 当一个变量有安全调用表达式与空检测赋值时，其智能转换现在也可以应用于安全调用接收者：
 
-```kotlin
+``` kotlin
 fun countFirst(s: Any): Int {
     //sampleStart
     val firstChar = (s as? CharSequence)?.firstOrNull()
@@ -177,7 +177,7 @@ fun main(args: Array<String>) {
 
 智能转换现在也允许用于在 lambda 表达式中局部变量，只要这些局部变量仅在 lambda 表达式之前修改即可：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     val flag = args.size == 0
 
@@ -218,7 +218,7 @@ Kotlin 以前将 `try` 块中的赋值语句用于块后的智能转换，这可
 
 为了与注解中的数组字面值保持一致，向一个命名参数形式的 vararg 参数传入单个项目的用法（`foo(items = i)`）已被弃用。请使用伸展操作符连同相应的数组工厂函数：
 
-```kotlin
+``` kotlin
 foo(items = *intArrayOf(1))
 ```
 
@@ -246,7 +246,7 @@ Kotlin 标准库现在完全兼容 Java 9 的模块系统，它禁止拆分包�
 
 用于 `Iterable<T>`、 `Sequence<T>` 与 `CharSequence` 的新的扩展覆盖了这些应用场景：缓存或批处理（`chunked`）、 滑动窗口与计算滑动均值（`windowed`）以及处理成对的后续条目（`zipWithNext`）：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val items = (1..9).map { it * it }
@@ -272,7 +272,7 @@ fun main(args: Array<String>) {
 
 添加了一些用于操作列表的扩展函数：`MutableList` 的 `fill`、`replaceAll` 与 `shuffle`，以及只读 `List` 的 `shuffled`：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     //sampleStart
     val items = (1..5).toMutableList()
@@ -383,7 +383,7 @@ Kotlin 1.2 引入了一些使用 `BigInteger` 与 `BigDecimal` 运算以及由�
 
 编译器现在提供一个将所有警告视为错误的选项。可在命令行中使用 `-Werror`，或者在 Gradle 中使用以下代码片段：
 
-```groovy
+``` groovy
 compileKotlin {
     kotlinOptions.allWarningsAsErrors = true
 }

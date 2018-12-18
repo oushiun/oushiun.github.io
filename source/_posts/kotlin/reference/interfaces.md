@@ -18,7 +18,7 @@ Kotlin 的接口与 Java 8 类似，既包含抽象方法的声明，也包含�
 
 使用关键字 `interface` 来定义接口
 
-```kotlin
+``` kotlin
 interface MyInterface {
     fun bar()
     fun foo() {
@@ -31,7 +31,7 @@ interface MyInterface {
 
 一个类或者对象可以实现一个或多个接口。
 
-```kotlin
+``` kotlin
 class Child : MyInterface {
     override fun bar() {
         // 方法体
@@ -43,7 +43,7 @@ class Child : MyInterface {
 
 你可以在接口中定义属性。在接口中声明的属性要么是抽象的，要么提供访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此接口中声明的访问器不能引用它们。
 
-```kotlin
+``` kotlin
 interface MyInterface {
     val prop: Int // 抽象的
 
@@ -64,7 +64,7 @@ class Child : MyInterface {
 
 实现多个接口时，可能会遇到同一方法继承多个实现的问题。例如
 
-```kotlin
+``` kotlin
 interface A {
     fun foo() { print("A") }
     fun bar()

@@ -19,25 +19,25 @@ banner: https://static.oushiun.com/blog/banner/jetbrains.png
 
 1.  检查是否安装了 vsftpd
 
-```bash
+``` bash
 rpm -qa |grep vsftpd
 ```
 
 3.  Linux 系统：CentOS 7 x86_64
 
-```bash
+``` bash
 cat /etc/os-release
 ```
 
 2.  通过 yum 来安装 vsftpd
 
-```bash
+``` bash
 yum -y install vsftpd
 ```
 
 3.  设置为开机启动
 
-```bash
+``` bash
 systemctl enable vsftpd
 
 systemctl start vsftpd #启动vsftpd命令
@@ -48,7 +48,7 @@ systemctl restart vsftpd #重启vsftpd命令
 
 4.  修改配置文件
 
-```bash
+``` bash
 vi /etc/vsftpd/vsftpd.conf
 ```
 
@@ -59,11 +59,11 @@ vi /etc/vsftpd/vsftpd.conf
 
 2.  开放 21 端口
 
-```bash
+``` bash
 firewall-cmd --zone=public --add-port=21/tcp --permanent
 ```
 
-```bash
+``` bash
 yum install firewalld #安装firewalld 防火墙
 
 systemctl start firewalld #开启防火墙
@@ -82,7 +82,7 @@ firewall-cmd --complete-reload #更新规则，重启服务
 
 解压到 某个目录下(任意即可), IntelliJIDEALicenseServer 目录下涵盖了很多平台(mac linux windows)。当前服务器是 x86_64 GNU/Linux，so 给 IntelliJIDEALicenseServer_linux_amd64 赋可执行权限
 
-```bash
+``` bash
 chmod +x IntelliJIDEALicenseServer_linux_amd64
 ```
 
@@ -90,14 +90,14 @@ chmod +x IntelliJIDEALicenseServer_linux_amd64
 
 1.  通过 yum 安装 Nginx
 
-```bash
+``` bash
 yum install epel-release
 yum install nginx
 ```
 
 常用命令
 
-```bash
+``` bash
 systemctl start nginx
 systemctl enable nginx
 systemctl status nginx
@@ -105,7 +105,7 @@ systemctl status nginx
 
 2.  配置防火墙
 
-```bash
+``` bash
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
@@ -116,7 +116,7 @@ firewall-cmd --reload
 
 4.  修改 Nginx 配置文件
 
-```bash
+``` bash
 #vi /usr/local/nginx/conf/nginx.conf
 server {
     listen 80;
@@ -140,7 +140,7 @@ server {
 
 5.  systemd 设置
 
-```bash
+``` bash
 # vim /etc/systemd/system/intellij.service
 [Unit]
 Description= IntelliJIDEALicenseServe Service
@@ -161,7 +161,7 @@ WantedBy=default.target
 
 6.  IntelliJIDEALicenseServer 帮助
 
-```bash
+``` bash
 ./IntelliJIDEALicenseServer_linux_amd64 -h
 -l string 绑定的host，基本默认
        bind on host (default "0.0.0.0")

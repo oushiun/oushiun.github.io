@@ -140,13 +140,13 @@ Set<@NotNull String> toSet(@NotNull Collection<@NotNull String> elements) { ... 
 
 It leads to the following signature seen in Kotlin:
 
-```kotlin
+``` kotlin
 fun toSet(elements: (Mutable)Collection<String>) : (Mutable)Set<String> { ... }
 ```
 
 Note the `@NotNull` annotations on `String` type arguments. Without them, we get platform types in the type arguments:
 
-```kotlin
+``` kotlin
 fun toSet(elements: (Mutable)Collection<String!>) : (Mutable)Set<String!> { ... }
 ```
 
@@ -497,7 +497,7 @@ fun render(list: List<*>, to: Appendable) {
 因此，类型 `Any` 的引用不提供这两个方法。
 如果你真的需要调用它们的话，你可以将其转换为 `java.lang.Object`：
 
-```kotlin
+``` kotlin
 (foo as java.lang.Object).wait()
 ```
 
@@ -519,7 +519,7 @@ val fooClass = foo.javaClass
 
 要覆盖 `clone()`，需要继承 `kotlin.Cloneable`：
 
-```kotlin
+``` kotlin
 
 class Example : Cloneable {
     override fun clone(): Any { …… }
@@ -532,7 +532,7 @@ class Example : Cloneable {
 
 要覆盖 `finalize()`，所有你需要做的就是简单地声明它，而不需要 *override*{:.keyword} 关键字：
 
-```kotlin
+``` kotlin
 class C {
     protected fun finalize() {
         // 终止化逻辑

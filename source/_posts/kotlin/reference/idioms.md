@@ -18,7 +18,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 ### 创建 DTOs（POJOs/POCOs）
 
-```kotlin
+``` kotlin
 data class Customer(val name: String, val email: String)
 ```
 
@@ -33,31 +33,31 @@ data class Customer(val name: String, val email: String)
 
 ### 函数的默认参数
 
-```kotlin
+``` kotlin
 fun foo(a: Int = 0, b: String = "") { …… }
 ```
 
 ### 过滤 list
 
-```kotlin
+``` kotlin
 val positives = list.filter { x -> x > 0 }
 ```
 
 或者可以更短:
 
-```kotlin
+``` kotlin
 val positives = list.filter { it > 0 }
 ```
 
 ### String 内插
 
-```kotlin
+``` kotlin
 println("Name $name")
 ```
 
 ### 类型判断
 
-```kotlin
+``` kotlin
 when (x) {
     is Foo //-> ……
     is Bar //-> ……
@@ -67,7 +67,7 @@ when (x) {
 
 ### 遍历 map/pair 型 list
 
-```kotlin
+``` kotlin
 for ((k, v) in map) {
     println("$k -> $v")
 }
@@ -77,7 +77,7 @@ for ((k, v) in map) {
 
 ### 使用区间
 
-```kotlin
+``` kotlin
 for (i in 1..100) { …… }  // 闭区间：包含 100
 for (i in 1 until 100) { …… } // 半开区间：不包含 100
 for (x in 2..10 step 2) { …… }
@@ -87,26 +87,26 @@ if (x in 1..10) { …… }
 
 ### 只读 list
 
-```kotlin
+``` kotlin
 val list = listOf("a", "b", "c")
 ```
 
 ### 只读 map
 
-```kotlin
+``` kotlin
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 ```
 
 ### 访问 map
 
-```kotlin
+``` kotlin
 println(map["key"])
 map["key"] = value
 ```
 
 ### 延迟属性
 
-```kotlin
+``` kotlin
 val p: String by lazy {
     // 计算该字符串
 }
@@ -114,7 +114,7 @@ val p: String by lazy {
 
 ### 扩展函数
 
-```kotlin
+``` kotlin
 fun String.spaceToCamelCase() { …… }
 
 "Convert this to camelcase".spaceToCamelCase()
@@ -122,7 +122,7 @@ fun String.spaceToCamelCase() { …… }
 
 ### 创建单例
 
-```kotlin
+``` kotlin
 object Resource {
     val name = "Name"
 }
@@ -130,7 +130,7 @@ object Resource {
 
 ### If not null 缩写
 
-```kotlin
+``` kotlin
 val files = File("Test").listFiles()
 
 println(files?.size)
@@ -138,7 +138,7 @@ println(files?.size)
 
 ### If not null and else 缩写
 
-```kotlin
+``` kotlin
 val files = File("Test").listFiles()
 
 println(files?.size ?: "empty")
@@ -146,21 +146,21 @@ println(files?.size ?: "empty")
 
 ### if null 执行一个语句
 
-```kotlin
+``` kotlin
 val values = ……
 val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
 ### 在可能会空的集合中取第一元素
 
-```kotlin
+``` kotlin
 val emails = ... // 可能会是空集合
 val mainEmail = emails.firstOrNull() ?: ""
 ```
 
 ### if not null 执行代码
 
-```kotlin
+``` kotlin
 val value = ……
 
 value?.let {
@@ -170,7 +170,7 @@ value?.let {
 
 ### 映射可空值（如果非空的话）
 
-```kotlin
+``` kotlin
 val value = ……
 
 val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
@@ -178,7 +178,7 @@ val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
 
 ### 返回 when 表达式
 
-```kotlin
+``` kotlin
 fun transform(color: String): Int {
     return when (color) {
         "Red" -> 0
@@ -191,7 +191,7 @@ fun transform(color: String): Int {
 
 ### “try/catch”表达式
 
-```kotlin
+``` kotlin
 fun test() {
     val result = try {
         count()
@@ -205,7 +205,7 @@ fun test() {
 
 ### “if”表达式
 
-```kotlin
+``` kotlin
 fun foo(param: Int) {
     val result = if (param == 1) {
         "one"
@@ -219,7 +219,7 @@ fun foo(param: Int) {
 
 ### 返回类型为 `Unit` 的方法的 Builder 风格用法
 
-```kotlin
+``` kotlin
 fun arrayOfMinusOnes(size: Int): IntArray {
     return IntArray(size).apply { fill(-1) }
 }
@@ -227,13 +227,13 @@ fun arrayOfMinusOnes(size: Int): IntArray {
 
 ### 单表达式函数
 
-```kotlin
+``` kotlin
 fun theAnswer() = 42
 ```
 
 等价于
 
-```kotlin
+``` kotlin
 fun theAnswer(): Int {
     return 42
 }
@@ -241,7 +241,7 @@ fun theAnswer(): Int {
 
 单表达式函数与其它惯用法一起使用能简化代码，例如和 `when` 表达式一起使用：
 
-```kotlin
+``` kotlin
 fun transform(color: String): Int = when (color) {
     "Red" -> 0
     "Green" -> 1
@@ -252,7 +252,7 @@ fun transform(color: String): Int = when (color) {
 
 ### 对一个对象实例调用多个方法 （`with`）
 
-```kotlin
+``` kotlin
 class Turtle {
     fun penDown()
     fun penUp()
@@ -273,7 +273,7 @@ with(myTurtle) { // 画一个 100 像素的正方形
 
 ### Java 7 的 try with resources
 
-```kotlin
+``` kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))
 stream.buffered().reader().use { reader ->
     println(reader.readText())
@@ -282,7 +282,7 @@ stream.buffered().reader().use { reader ->
 
 ### 对于需要泛型信息的泛型函数的适宜形式
 
-```kotlin
+``` kotlin
 //  public final class Gson {
 //     ……
 //     public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
@@ -293,7 +293,7 @@ inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(
 
 ### 使用可空布尔
 
-```kotlin
+``` kotlin
 val b: Boolean? = ……
 if (b == true) {
     ……

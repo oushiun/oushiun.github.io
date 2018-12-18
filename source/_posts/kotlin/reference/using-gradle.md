@@ -48,7 +48,7 @@ apply plugin: "kotlin"
 
 或者，从 Kotlin 1.1.1 起，可以使用 [Gradle 插件 DSL](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block) 来应用该插件：
 
-```groovy
+``` groovy
 plugins {
     id "org.jetbrains.kotlin.jvm" version "{{ site.data.releases.latest.version }}"
 }
@@ -57,7 +57,7 @@ plugins {
 
 对于 Gradle Kotlin DSL，请按以下方式应用插件：
 
-```kotlin
+``` kotlin
 plugins {
     kotlin("jvm") version "{{ site.data.releases.latest.version }}"
 }

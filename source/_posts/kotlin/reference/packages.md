@@ -16,7 +16,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 源文件通常以包声明开头:
 
-```kotlin
+``` kotlin
 package foo.bar
 
 fun baz() {}
@@ -61,19 +61,19 @@ class Goo {}
 
 可以导入一个单独的名字，如.
 
-```kotlin
+``` kotlin
 import foo.Bar // 现在 Bar 可以不用限定符访问
 ```
 
 也可以导入一个作用域下的所有内容（包、类、对象等）:
 
-```kotlin
+``` kotlin
 import foo.* // “foo”中的一切都可访问
 ```
 
 如果出现名字冲突，可以使用 `as` 关键字在本地重命名冲突项来消歧义：
 
-```kotlin
+``` kotlin
 import foo.Bar // Bar 可访问
 import bar.Bar as bBar // bBar 代表“bar.Bar”
 ```

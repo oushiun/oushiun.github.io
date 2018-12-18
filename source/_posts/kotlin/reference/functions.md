@@ -16,7 +16,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 Kotlin 中的函数使用 `fun` 关键字声明：
 
-```kotlin
+``` kotlin
 fun double(x: Int): Int {
     return 2 * x
 }
@@ -28,13 +28,13 @@ fun double(x: Int): Int {
 
 调用函数使用传统的方法：
 
-```kotlin
+``` kotlin
 val result = double(2)
 ```
 
 调用成员函数使用点表示法：
 
-```kotlin
+``` kotlin
 Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
@@ -42,7 +42,7 @@ Sample().foo() // 创建类 Sample 实例并调用 foo
 
 函数参数使用 Pascal 表示法定义，即 _name_: _type_。参数用逗号隔开。每个参数必须有显式类型：
 
-```kotlin
+``` kotlin
 fun powerOf(number: Int, exponent: Int) {
 ……
 }
@@ -52,7 +52,7 @@ fun powerOf(number: Int, exponent: Int) {
 
 函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少重载数量：
 
-```kotlin
+``` kotlin
 fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
 ……
 }
@@ -62,7 +62,7 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
 
 覆盖方法总是使用与基类型方法相同的默认参数值。当覆盖一个带有默认参数值的方法时，必须从签名中省略默认参数值：
 
-```kotlin
+``` kotlin
 open class A {
     open fun foo(i: Int = 10) { …… }
 }
@@ -74,7 +74,7 @@ class B : A() {
 
 如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用[命名参数](#命名参数)调用该函数来使用：
 
-```kotlin
+``` kotlin
 fun foo(bar: Int = 0, baz: Int) { /* …… */ }
 
 foo(baz = 1) // 使用默认值 bar = 0
@@ -82,7 +82,7 @@ foo(baz = 1) // 使用默认值 bar = 0
 
 不过如果最后一个 [lambda 表达式](lambdas.html#Lambda-表达式与匿名函数)参数从括号外传给函数函数调用，那么允许默认参数不传值：
 
-```kotlin
+``` kotlin
 fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { /* …… */ }
 
 foo(1) { println("hello") } // 使用默认值 baz = 1
@@ -95,7 +95,7 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 
 给定以下函数：
 
-```kotlin
+``` kotlin
 fun reformat(str: String,
              normalizeCase: Boolean = true,
              upperCaseFirstLetter: Boolean = true,
@@ -107,19 +107,19 @@ fun reformat(str: String,
 
 我们可以使用默认参数来调用它：
 
-```kotlin
+``` kotlin
 reformat(str)
 ```
 
 然而，当使用非默认参数调用它时，该调用看起来就像：
 
-```kotlin
+``` kotlin
 reformat(str, true, true, false, '_')
 ```
 
 使用命名参数我们可以使代码更具有可读性：
 
-```kotlin
+``` kotlin
 reformat(str,
     normalizeCase = true,
     upperCaseFirstLetter = true,
@@ -130,7 +130,7 @@ reformat(str,
 
 并且如果我们不需要所有的参数：
 
-```kotlin
+``` kotlin
 reformat(str, wordSeparator = '_')
 ```
 
@@ -138,7 +138,7 @@ reformat(str, wordSeparator = '_')
 
 可以通过使用**星号**操作符将[可变数量参数（_vararg_）](#可变数量的参数（Varargs）) 以命名形式传入：
 
-```kotlin
+``` kotlin
 fun foo(vararg strings: String) { /* …… */ }
 
 foo(strings = *arrayOf("a", "b", "c"))
@@ -150,7 +150,7 @@ foo(strings = *arrayOf("a", "b", "c"))
 
 如果一个函数不返回任何有用的值，它的返回类型是 `Unit`。`Unit` 是一种只有一个值——`Unit` 的类型。这个值不需要显式返回：
 
-```kotlin
+``` kotlin
 fun printHello(name: String?): Unit {
     if (name != null)
         println("Hello ${name}")
@@ -162,7 +162,7 @@ fun printHello(name: String?): Unit {
 
 `Unit` 返回类型声明也是可选的。上面的代码等同于：
 
-```kotlin
+``` kotlin
 fun printHello(name: String?) {
     ……
 }
@@ -172,13 +172,13 @@ fun printHello(name: String?) {
 
 当函数返回单个表达式时，可以省略花括号并且在 **=** 符号之后指定代码体即可：
 
-```kotlin
+``` kotlin
 fun double(x: Int): Int = x * 2
 ```
 
 当返回值类型可由编译器推断时，显式声明返回类型是[可选](#显式返回类型)的：
 
-```kotlin
+``` kotlin
 fun double(x: Int) = x * 2
 ```
 
@@ -191,7 +191,7 @@ Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函�
 
 函数的参数（通常是最后一个）可以用 `vararg` 修饰符标记：
 
-```kotlin
+``` kotlin
 fun <T> asList(vararg ts: T): List<T> {
     val result = ArrayList<T>()
     for (t in ts) // ts is an Array
@@ -202,7 +202,7 @@ fun <T> asList(vararg ts: T): List<T> {
 
 允许将可变数量的参数传递给函数：
 
-```kotlin
+``` kotlin
 val list = asList(1, 2, 3)
 ```
 
@@ -212,7 +212,7 @@ val list = asList(1, 2, 3)
 
 当我们调用 `vararg`-函数时，我们可以一个接一个地传参，例如 `asList(1, 2, 3)`，或者，如果我们已经有一个数组并希望将其内容传给该函数，我们使用**伸展（spread）**操作符（在数组前面加 `*`）：
 
-```kotlin
+``` kotlin
 val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
 ```
@@ -225,7 +225,7 @@ val list = asList(-1, 0, *a, 4)
 *   它们必须只有一个参数；
 *   其参数不得[接受可变数量的参数](#可变数量的参数（Varargs）)且不能有[默认值](#默认参数)。
 
-```kotlin
+``` kotlin
 infix fun Int.shl(x: Int): Int {
     // ……
 }
@@ -252,7 +252,7 @@ infix fun Int.shl(x: Int): Int {
 
 请注意，中缀函数总是要求指定接收者与参数。当使用中缀表示法在当前接收者上调用方法时，需要显式使用 `this`；不能像常规方法调用那样省略。这是确保非模糊解析所必需的。
 
-```kotlin
+``` kotlin
 class MyStringCollection {
     infix fun add(s: String) { /* …… */ }
 
@@ -272,7 +272,7 @@ class MyStringCollection {
 
 Kotlin 支持局部函数，即一个函数在另一个函数内部：
 
-```kotlin
+``` kotlin
 fun dfs(graph: Graph) {
     fun dfs(current: Vertex, visited: Set<Vertex>) {
         if (!visited.add(current)) return
@@ -286,7 +286,7 @@ fun dfs(graph: Graph) {
 
 局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，_visited_ 可以是局部变量：
 
-```kotlin
+``` kotlin
 fun dfs(graph: Graph) {
     val visited = HashSet<Vertex>()
     fun dfs(current: Vertex) {
@@ -303,7 +303,7 @@ fun dfs(graph: Graph) {
 
 成员函数是在类或对象内部定义的函数：
 
-```kotlin
+``` kotlin
 class Sample() {
     fun foo() { print("Foo") }
 }
@@ -311,7 +311,7 @@ class Sample() {
 
 成员函数以点表示法调用：
 
-```kotlin
+``` kotlin
 Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
@@ -321,7 +321,7 @@ Sample().foo() // 创建类 Sample 实例并调用 foo
 
 函数可以有泛型参数，通过在函数名前使用尖括号指定：
 
-```kotlin
+``` kotlin
 fun <T> singletonList(item: T): List<T> {
     // ……
 }
@@ -345,14 +345,14 @@ fun <T> singletonList(item: T): List<T> {
 
 Kotlin 支持一种称为[尾递归](https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8)的函数式编程风格。这允许一些通常用循环写的算法改用递归函数来写，而无堆栈溢出的风险。当一个函数用 `tailrec` 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本：
 
-```kotlin
+``` kotlin
 tailrec fun findFixPoint(x: Double = 1.0): Double
         = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 ```
 
 这段代码计算余弦的不动点（fixpoint of cosine），这是一个数学常数。 它只是重复地从 1.0 开始调用 Math.cos，直到结果不再改变，产生 0.7390851332151607 的结果。最终代码相当于这种更传统风格的代码：
 
-```kotlin
+``` kotlin
 private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {

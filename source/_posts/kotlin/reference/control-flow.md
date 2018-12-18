@@ -18,7 +18,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 <!-- more -->
 
-```kotlin
+``` kotlin
 // 传统用法
 var max = a
 if (a < b) max = b
@@ -37,7 +37,7 @@ val max = if (a > b) a else b
 
 `if`的分支可以是代码块，最后的表达式作为该块的值：
 
-```kotlin
+``` kotlin
 val max = if (a > b) {
     print("Choose a")
     a
@@ -55,7 +55,7 @@ val max = if (a > b) {
 
 `when` 取代了类 C 语言的 switch 操作符。其最简单的形式如下：
 
-```kotlin
+``` kotlin
 when (x) {
     1 -> print("x == 1")
     2 -> print("x == 2")
@@ -72,7 +72,7 @@ when (x) {
 
 如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：
 
-```kotlin
+``` kotlin
 when (x) {
     0, 1 -> print("x == 0 or x == 1")
     else -> print("otherwise")
@@ -81,7 +81,7 @@ when (x) {
 
 我们可以用任意表达式（而不只是常量）作为分支条件
 
-```kotlin
+``` kotlin
 when (x) {
     parseInt(s) -> print("s encodes x")
     else -> print("s does not encode x")
@@ -90,7 +90,7 @@ when (x) {
 
 我们也可以检测一个值在（`in`）或者不在（`!in`）一个[区间](ranges.html)或者集合中：
 
-```kotlin
+``` kotlin
 when (x) {
     in 1..10 -> print("x is in the range")
     in validNumbers -> print("x is valid")
@@ -101,7 +101,7 @@ when (x) {
 
 另一种可能性是检测一个值是（`is`）或者不是（`!is`）一个特定类型的值。注意：由于[智能转换](typecasts.html#智能转换)，你可以访问该类型的方法和属性而无需任何额外的检测。
 
-```kotlin
+``` kotlin
 fun hasPrefix(x: Any) = when(x) {
     is String -> x.startsWith("prefix")
     else -> false
@@ -110,7 +110,7 @@ fun hasPrefix(x: Any) = when(x) {
 
 `when` 也可以用来取代 `if-else if`链。如果不提供参数，所有的分支条件都是简单的布尔表达式，而当一个分支的条件为真时则执行该分支：
 
-```kotlin
+``` kotlin
 when {
     x.isOdd() -> print("x is odd")
     x.isEven() -> print("x is even")
@@ -124,13 +124,13 @@ when {
 
 `for` 循环可以对任何提供迭代器（iterator）的对象进行遍历，这相当于像 C# 这样的语言中的 `foreach` 循环。语法如下：
 
-```kotlin
+``` kotlin
 for (item in collection) print(item)
 ```
 
 循环体可以是一个代码块。
 
-```kotlin
+``` kotlin
 for (item: Int in ints) {
     // ……
 }
@@ -193,7 +193,7 @@ for ((index, value) in array.withIndex()) {
 
 `while` 和 `do..while` 照常使用
 
-```kotlin
+``` kotlin
 while (x > 0) {
     x--
 }

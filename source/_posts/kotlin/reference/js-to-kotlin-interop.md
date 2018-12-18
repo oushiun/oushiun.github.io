@@ -20,19 +20,19 @@ Kotlin 编译器生成正常的 JavaScript 类，可以在 JavaScript 代码中�
 
 为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象。所以如果你把模块命名为 `myModule`，那么所有的声明都可以通过 `myModule` 对象在 JavaScript 中可用。例如：
 
-```kotlin
+``` kotlin
 fun foo() = "Hello"
 ```
 
 可以在 JavaScript 中这样调用：
 
-```javascript
+``` javascript
 alert(myModule.foo())
 ```
 
 这不适用于当你将 Kotlin 模块编译为 JavaScript 模块时（关于这点的详细信息请参见 [JavaScript 模块](js-modules.html)）。在这种情况下，不会有一个包装对象，而是将声明作为相应类型的 JavaScript 模块对外暴露。例如，对于 CommonJS 的场景，你应该写：
 
-```javascript
+``` javascript
 alert(require('myModule').foo())
 ```
 
@@ -40,7 +40,7 @@ alert(require('myModule').foo())
 
 Kotlin 将其包结构暴露给 JavaScript，因此除非你在根包中定义声明，否则必须在 JavaScript 中使用完整限定的名称。例如：
 
-```kotlin
+``` kotlin
 package my.qualified.packagename
 
 fun foo() = "Hello"
@@ -48,7 +48,7 @@ fun foo() = "Hello"
 
 可以在 JavaScript 中这样调用：
 
-```javascript
+``` javascript
 alert(myModule.my.qualified.packagename.foo())
 ```
 
@@ -56,7 +56,7 @@ alert(myModule.my.qualified.packagename.foo())
 
 在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性的名称。要控制生成的名称，可以使用 `@JsName` 注解：
 
-```kotlin
+``` kotlin
 // 模块“kjs”
 class Person(val name: String) {
     fun hello() {
@@ -72,7 +72,7 @@ class Person(val name: String) {
 
 现在，你可以通过以下方式在 JavaScript 中使用这个类：
 
-```javascript
+``` javascript
 var person = new kjs.Person('Dmitry') // 引用到模块“kjs”
 person.hello() // 输出“Hello Dmitry!”
 person.helloWithGreeting('Servus') // 输出“Servus Dmitry!”
@@ -84,7 +84,7 @@ person.helloWithGreeting('Servus') // 输出“Servus Dmitry!”
 
 `@JsName` 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。任何尝试将非标识符字符串传递给 `@JsName` 时，编译器都会报错。以下示例会产生编译期错误：
 
-```kotlin
+``` kotlin
 @JsName("new C()")   // 此处出错
 external fun newC()
 ```
@@ -95,7 +95,7 @@ external fun newC()
 *   `kotlin.Char` 映射到 JavaScript Number 来表示字符代码。
 *   Kotlin 在运行时无法区分数字类型（`kotlin.Long` 除外），即以下代码能够工作：
 
-    ```kotlin
+    ``` kotlin
     fun f() {
         val x: Int = 23
         val y: Any = x

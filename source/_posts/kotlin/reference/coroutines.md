@@ -34,7 +34,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 当我们调用标记有特殊修饰符 `suspend` 的函数时，会发生挂起：
 
-```kotlin
+``` kotlin
 suspend fun doSomething(foo: Foo): Bar {
     ……
 }
@@ -44,13 +44,13 @@ suspend fun doSomething(foo: Foo): Bar {
 
 事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 `async()` 函数（源自 [`kotlinx.coroutines`](#kotlincoroutines-中的生成器-api) 库）：
 
-```kotlin
+``` kotlin
 fun <T> async(block: suspend () -> T)
 ```
 
 这里的 `async()` 是一个普通函数（不是挂起函数），但是它的 `block` 参数具有一个带 `suspend` 修饰符的函数类型： `suspend () -> T`。所以，当我们将一个 lambda 表达式传给 `async()` 时，它会是*挂起 lambda 表达式*，于是我们可以从中调用挂起函数：
 
-```kotlin
+``` kotlin
 async {
     doSomething(foo)
     ……
@@ -61,7 +61,7 @@ async {
 
 继续该类比，`await()` 可以是一个挂起函数（因此也可以在一个 `async {}` 块中调用），该函数挂起一个协程，直到一些计算完成并返回其结果：
 
-```kotlin
+``` kotlin
 async {
     ……
     val result = computation.await()
@@ -73,7 +73,7 @@ async {
 
 请注意，挂起函数 `await()` 与 `doSomething()` 不能在没有内联到挂起函数体的函数字面值以及像 `main()` 这样的普通函数中调用：
 
-```kotlin
+``` kotlin
 fun main(args: Array<String>) {
     doSomething() // 错误：挂起函数从非协程上下文调用
 
@@ -92,7 +92,7 @@ fun main(args: Array<String>) {
 
 还要注意的是，挂起函数可以是虚拟的，当覆盖它们时，必须指定 `suspend` 修饰符：
 
-```kotlin
+``` kotlin
 interface Base {
     suspend fun foo()
 }
@@ -110,7 +110,7 @@ class Derived: Base {
 
 这在*少数*情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 [`buildSequence()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) 函数实现[下文](#kotlincoroutines-中的生成器-api)所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 `yield()` 或 `yieldAll()` 而不是任何其他函数。这就是为什么 [`SequenceBuilder`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) 用 `@RestrictsSuspension` 注解：
 
-```kotlin
+``` kotlin
 @RestrictsSuspension
 public abstract class SequenceBuilder<in T> {
     ……
@@ -171,7 +171,7 @@ public abstract class SequenceBuilder<in T> {
 
 这些包含在 `kotlin-stdlib` 中因为他们与序列相关。这些函数（我们可以仅限于这里的 `buildSequence()`）实现了 _生成器_ ，即提供一种廉价构建惰性序列的方法：
 
-```kotlin
+``` kotlin
 import kotlin.coroutines.experimental.*
 
 fun main(args: Array<String>) {
@@ -201,7 +201,7 @@ fun main(args: Array<String>) {
 
 为了演示这样一个序列的真正惰性，让我们在调用 `buildSequence()` 内部输出一些调试信息：
 
-```kotlin
+``` kotlin
 import kotlin.coroutines.experimental.*
 
 fun main(args: Array<String>) {
@@ -225,7 +225,7 @@ fun main(args: Array<String>) {
 
 为了一次产生值的集合（或序列），可以使用 `yieldAll()` 函数：
 
-```kotlin
+``` kotlin
 import kotlin.coroutines.experimental.*
 
 fun main(args: Array<String>) {
@@ -244,7 +244,7 @@ fun main(args: Array<String>) {
 
 可以通过为 `SequenceBuilder` 类写挂起扩展（带有[上文](#RestrictsSuspension-注解)描述的 `@RestrictsSuspension` 注解）来为 `buildSequence()` 添加自定义生产逻辑（custom yielding logic）：
 
-```kotlin
+``` kotlin
 import kotlin.coroutines.experimental.*
 
 //sampleStart

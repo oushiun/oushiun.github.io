@@ -16,7 +16,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 我们可以在运行时通过使用 `is` 操作符或其否定形式 `!is` 来检查对象是否符合给定类型：
 
-```kotlin
+``` kotlin
 if (obj is String) {
     print(obj.length)
 }
@@ -35,7 +35,7 @@ else {
 
 在许多情况下，不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪不可变值的 `is`-检查以及[显式转换](#“不安全的”转换操作符)，并在需要时自动插入（安全的）转换：
 
-```kotlin
+``` kotlin
 fun demo(x: Any) {
     if (x is String) {
         print(x.length) // x 自动转换为字符串
@@ -45,14 +45,14 @@ fun demo(x: Any) {
 
 编译器足够聪明，能够知道如果反向检查导致返回那么该转换是安全的：
 
-```kotlin
+``` kotlin
     if (x !is String) return
     print(x.length) // x 自动转换为字符串
 ```
 
 或者在 `&&` 和 `||` 的右侧：
 
-```kotlin
+``` kotlin
     // `||` 右侧的 x 自动转换为字符串
     if (x !is String || x.length == 0) return
 
@@ -64,7 +64,7 @@ fun demo(x: Any) {
 
 这些 _智能转换_ 用于 [_when_-表达式](control-flow.html#When-表达式) 和 [_while_-循环 ](control-flow.html#While-循环) 也一样：
 
-```kotlin
+``` kotlin
 when (x) {
     is Int -> print(x + 1)
     is String -> print(x.length + 1)
@@ -84,13 +84,13 @@ when (x) {
 通常，如果转换是不可能的，转换操作符会抛出一个异常。因此，我们称之为*不安全的*。
 Kotlin 中的不安全转换由中缀操作符 _as_（参见[operator precedence](http://kotlinlang.org/docs/reference/grammar.html#precedence)）完成：
 
-```kotlin
+``` kotlin
 val x: String = y as String
 ```
 
 请注意，_null_ 不能转换为 `String` 因该类型不是[可空的](null-safety.html)，即如果 `y` 为空，上面的代码会抛出一个异常。为了匹配 Java 转换语义，我们必须在转换右边有可空类型，就像：
 
-```kotlin
+``` kotlin
 val x: String? = y as String?
 ```
 
@@ -98,7 +98,7 @@ val x: String? = y as String?
 
 为了避免抛出异常，可以使用*安全*转换操作符 _as?_，它可以在失败时返回 _null_：
 
-```kotlin
+``` kotlin
 val x: String? = y as? String
 ```
 
@@ -110,7 +110,7 @@ Kotlin 在编译时确保涉及[泛型](generics.html)操作的类型安全性�
 
 为此，编译器会禁止由于类型擦除而无法执行的 _is_ 检测，例如 `ints is List<Int>` 或者 `list is T`（类型参数）。当然，你可以对一个实例检测[星投影的类型](generics.html#星投影)：
 
-```kotlin
+``` kotlin
 if (something is List<*>) {
     something.forEach { println(it) } // 这些项的类型都是 `Any?`
 }
@@ -118,7 +118,7 @@ if (something is List<*>) {
 
 类似地，当已经让一个实例的类型参数（在编译期）静态检测，就可以对涉及非泛型部分做 _is_ 检测或者类型转换。请注意，在这种情况下，会省略尖括号：
 
-```kotlin
+``` kotlin
 fun handleStrings(list: List<String>) {
     if (list is ArrayList) {
         // `list` 会智能转换为 `ArrayList<String>`
@@ -130,7 +130,7 @@ fun handleStrings(list: List<String>) {
 
 带有[具体化的类型参数](inline-functions.html#具体化的类型参数)的内联函数使其类型实参在每个调用处内联，这就能够对类型参数进行 `arg is T` 检测，但是如果 `arg` 自身是一个泛型实例，**其**类型参数还是会被擦除。例如：
 
-```kotlin
+``` kotlin
 //sampleStart
 inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
     if (first !is A || second !is B) return null
@@ -159,7 +159,7 @@ fun main(args: Array<String>) {
 
 即便如此，有时候我们有高级的程序逻辑来暗示类型安全。例如：
 
-```kotlin
+``` kotlin
 fun readDictionary(file: File): Map<String, *> = file.inputStream().use {
     TODO("Read a mapping of strings to arbitrary elements.")
 }
@@ -179,7 +179,7 @@ val intsDictionary: Map<String, Int> = readDictionary(intsFile) as Map<String, I
 
 可以通过在产生警告的语句或声明上用注解 `@Suppress("UNCHECKED_CAST")` [标注](annotations.html#注解)来禁止未受检类型转换警告：
 
-```kotlin
+``` kotlin
 inline fun <reified T> List<*>.asListOfType(): List<T>? =
     if (all { it is T })
         @Suppress("UNCHECKED_CAST")

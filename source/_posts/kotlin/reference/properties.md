@@ -16,7 +16,7 @@ banner: https://static.oushiun.com/blog/banner/Kotlin.png
 
 Kotlin 的类可以有属性。属性可以用关键字 `var` 声明为可变的，否则使用只读关键字 `val`。
 
-```kotlin
+``` kotlin
 class Address {
     var name: String = ……
     var street: String = ……
@@ -30,7 +30,7 @@ class Address {
 
 要使用一个属性，只要用名称引用它即可，就像 Java 中的字段：
 
-```kotlin
+``` kotlin
 fun copyAddress(address: Address): Address {
     val result = Address() // Kotlin 中没有“new”关键字
     result.name = address.name // 将调用访问器
@@ -44,7 +44,7 @@ fun copyAddress(address: Address): Address {
 
 声明一个属性的完整语法是
 
-```kotlin
+``` kotlin
 var <propertyName>[: <PropertyType>] [= <property_initializer>]
     [<getter>]
     [<setter>]
@@ -54,7 +54,7 @@ var <propertyName>[: <PropertyType>] [= <property_initializer>]
 
 例如:
 
-```kotlin
+``` kotlin
 var allByDefault: Int? // 错误：需要显式初始化器，隐含默认 getter 和 setter
 var initialized = 1 // 类型 Int、默认 getter 和 setter
 ```
@@ -63,21 +63,21 @@ var initialized = 1 // 类型 Int、默认 getter 和 setter
 1、只读属性的用 `val` 开始代替 `var` 
 2、只读属性不允许 setter
 
-```kotlin
+``` kotlin
 val simple: Int? // 类型 Int、默认 getter、必须在构造函数中初始化
 val inferredType = 1 // 类型 Int 、默认 getter
 ```
 
 我们可以编写自定义的访问器，非常像普通函数，刚好在属性声明内部。这里有一个自定义 getter 的例子:
 
-```kotlin
+``` kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
 
 一个自定义的 setter 的例子:
 
-```kotlin
+``` kotlin
 var stringRepresentation: String
     get() = this.toString()
     set(value) {
@@ -89,13 +89,13 @@ var stringRepresentation: String
 
 自 Kotlin 1.1 起，如果可以从 getter 推断出属性类型，则可以省略它：
 
-```kotlin
+``` kotlin
 val isEmpty get() = this.size == 0  // 具有类型 Boolean
 ```
 
 如果你需要改变一个访问器的可见性或者对其注解，但是不需要改变默认的实现，你可以定义访问器而不定义其实现:
 
-```kotlin
+``` kotlin
 var setterVisibility: String = "abc"
     private set // 此 setter 是私有的并且有默认实现
 
@@ -107,7 +107,7 @@ var setterWithAnnotation: Any? = null
 
 在 Kotlin 类中不能直接声明字段。然而，当一个属性需要一个幕后字段时，Kotlin 会自动提供。这个幕后字段可以使用`field`标识符在访问器中引用：
 
-```kotlin
+``` kotlin
 var counter = 0 // 注意：这个初始器直接为幕后字段赋值
     set(value) {
         if (value >= 0) field = value
@@ -120,7 +120,7 @@ var counter = 0 // 注意：这个初始器直接为幕后字段赋值
 
 例如，下面的情况下， 就没有幕后字段：
 
-```kotlin
+``` kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
@@ -129,7 +129,7 @@ val isEmpty: Boolean
 
 如果你的需求不符合这套“隐式的幕后字段”方案，那么总可以使用 _幕后属性（backing property）_：
 
-```kotlin
+``` kotlin
 private var _table: Map<String, Int>? = null
 public val table: Map<String, Int>
     get() {
@@ -152,7 +152,7 @@ public val table: Map<String, Int>
 
 这些属性可以用在注解中：
 
-```kotlin
+``` kotlin
 const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 
 @Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { …… }
@@ -164,7 +164,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 
 为处理这种情况，你可以用 `lateinit` 修饰符标记该属性：
 
-```kotlin
+``` kotlin
 public class MyTest {
     lateinit var subject: TestSubject
 
@@ -186,7 +186,7 @@ public class MyTest {
 
 要检测一个 `lateinit var` 是否已经初始化过，请在[该属性的引用](reflection.html#属性引用)上使用 `.isInitialized`：
 
-```kotlin
+``` kotlin
 if (foo::bar.isInitialized) {
     println(foo.bar)
 }

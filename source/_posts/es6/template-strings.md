@@ -19,7 +19,7 @@ banner: https://static.oushiun.com/blog/banner/es6.jpeg
 
 ### 用法
 
-```javascript
+``` javascript
 // 普通字符串
 `In JavaScript '\n' is a line-feed.`
 
@@ -35,13 +35,13 @@ var name = "Bob",
 
 上面代码中，模板字符串都是用反引号表示，如果在模板字符串中需要使用反引号，则前面需要用反斜杠转义。
 
-```javascript
+``` javascript
 var greeting = `\`Yo\` World!` // `Yo` World!
 ```
 
 如果使用模板字符串表示多行字符串，则所有的空格、缩进和换行都会被保留在输出中。
 
-```javascript
+``` javascript
 $('#list').html(`
 <ul>
   <li>first</li>
@@ -52,7 +52,7 @@ $('#list').html(`
 
 上面代码中，所有模板字符串的空格和换行都是被保留的，比如 `<ul>` 标签前面会有一个换行。如果想把行首和行尾的换行、空格等去掉，则使用 `trim` 方法即可。
 
-```javascript
+``` javascript
 $('#list').html(`
 <ul>
   <li>first</li>
@@ -63,7 +63,7 @@ $('#list').html(`
 
 模板字符串中嵌入变量，要将变量名写在 `${}` 之中。大括号内可以放入任意的 JavaScript 表达式，可以进行运算，以及引入对象属性。
 
-```javascript
+``` javascript
 var x = 1,
     y = 2
 
@@ -81,7 +81,7 @@ var obj = { x: 1, y: 2 }
 
 模板字符串之中还可以调用函数。
 
-```javascript
+``` javascript
 function func() {
     return 'Hello'
 }
@@ -93,7 +93,7 @@ function func() {
 如果大括号中的值不是字符串，则将按照一般的规则转换为字符串。如，若大括号中是一个对象，则将默认调用对象的 toString 方法，把对象转换为字符串。
 如果模板字符串中的变量没有声明，则会报错。
 
-```javascript
+``` javascript
 // 变量place没有声明
 var msg = `Hello, ${place}`
 // ReferenceError: place is not defined
@@ -101,7 +101,7 @@ var msg = `Hello, ${place}`
 
 模板字符串之间还可以进行嵌套。
 
-```javascript
+``` javascript
 var tmpl = addrs => `
     <table>
     ${addrs.map(addr => `
@@ -126,7 +126,7 @@ tmpl([{ first: 'a', last: 'b' }])
 
 如果需要引用模板字符串本身，在需要时执行，可以像下面这样写。
 
-```javascript
+``` javascript
 // 写法一
 var str = 'return ' + '`Hello ${name}!`'
 var func = new Function('name', str)
@@ -144,7 +144,7 @@ func('Amy') // "Hello Amy!"
 
 标签模板函数第一个参数是字符串模板的常量数组，后面的每一个参数为表达式的计算结果，函数名称可以任意指定。下面是一个例子：
 
-```javascript
+``` javascript
 var a = 5,
     b = 10
 
@@ -162,7 +162,7 @@ tag`Hello ${a + b} world ${a * b}`
 // Anything
 ```
 
-```javascript
+``` javascript
 alert`123`
 
 // 等同于
@@ -171,7 +171,7 @@ alert(123)
 
 标签模板其它是一种特殊的函数调用形式，“标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。
 
-```javascript
+``` javascript
 var a = 1,
     b = 2
 
@@ -182,7 +182,7 @@ tag`Helo ${a + b} world ${a * b}`
 
 函数 tag 依次会接收到多个参数。
 
-```javascript
+``` javascript
 function tag(stringArr, value1, value2) {
     // ...
 }
@@ -206,7 +206,7 @@ tag 函数所有参数的实际值如下：
 
 也就是说，tag 函数实际上是用下面的形式调用：
 
-```javascript
+``` javascript
 tag(['Hello ', ' world', ''], 3, 2)
 ```
 
@@ -214,7 +214,7 @@ tag(['Hello ', ' world', ''], 3, 2)
 
 String.raw 方法用来充当模板字符串的处理函数，返回一个除表达式和变量会被替换，其它都保持原样的字符串。
 
-```javascript
+``` javascript
 String.raw`Hi\n${2 + 3}!`
 // "Hi\n5!"
 
