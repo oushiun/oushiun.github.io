@@ -32,20 +32,20 @@ navbar:
     links:
         Download on GitHub:
             icon: fab fa-github
-            url: 'http://github.com/ppoffice/hexo-theme-icarus'
+            url: 'https://github.com/oushiun/oushiun.github.io'
 # Footer section link settings
 footer:
     # Links to be shown on the right of the footer section
     links:
-        Creative Commons:
-            icon: fab fa-creative-commons
-            url: 'https://creativecommons.org/'
-        Attribution 4.0 International:
-            icon: fab fa-creative-commons-by
-            url: 'https://creativecommons.org/licenses/by/4.0/'
-        Download on GitHub:
-            icon: fab fa-github
-            url: 'http://github.com/ppoffice/hexo-theme-icarus'
+        Cloud Servers:
+            icon: fab fa-cloudversify
+            url: 'https://www.vultr.com/?ref=7415455'
+        Intellij License Server:
+            icon: fas fa-server
+            url: 'http://idea.oushiun.com/'
+    #     Download on GitHub:
+    #         icon: fab fa-github
+    #         url: 'http://github.com/ppoffice/hexo-theme-icarus'
 # Article display settings
 article:
     # Code highlight theme
@@ -117,17 +117,14 @@ widgets:
     -
         type: toc
         position: left
-    -
-        type: links
-        position: left
-        links:
-            Hexo: 'https://hexo.io'
-            PPOffice: 'https://github.com/ppoffice'
+    # -
+    #     type: links
+    #     position: left
+    #     links:
+    #         Hexo: 'https://hexo.io'
+    #         PPOffice: 'https://github.com/ppoffice'
     -
         type: category
-        position: left
-    -
-        type: tagcloud
         position: left
     -
         type: recent_posts
@@ -136,8 +133,11 @@ widgets:
         type: archive
         position: right
     -
-        type: tag
+        type: tagcloud
         position: right
+    # -
+    #     type: tag
+    #     position: right
 # Other plugin settings
 plugins:
     # Enable page animations
