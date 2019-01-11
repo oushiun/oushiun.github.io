@@ -146,8 +146,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/kotlin/reference/sealed-classes.html" class="image is-7by1">
-            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="密封类">
+        <a href="/kotlin/reference/data-classes.html" class="image is-7by1">
+            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="数据类">
         </a>
     </div>
     
@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 510 words)
+                    6 minutes read (About 948 words)
                 </span>
                 
             </div>
@@ -173,19 +173,19 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/kotlin/reference/sealed-classes.html">密封类</a>
+                <a class="has-link-black-ter" href="/kotlin/reference/data-classes.html">数据类</a>
             
         </h1>
         <div class="content">
-            <p>密封类用来表示受限的类继承结构：当一个值为有限集中的类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集合也是受限的，但每个枚举常量只存在一个实例，而密封类的一个子类可以有可包含状态的多个实例。</p>
-<p>要声明一个密封类，需要在类名前面添加 <code>sealed</code> 修饰符。虽然密封类也可以有子类，但是所有子类都必须在与密封类自身相同的文件中声明。（在 Kotlin 1.1 之前，该规则更加严格：子类必须嵌套在密封类声明的内部）。</p>
+            <p>我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从数据机械推导而来的。在 Kotlin 中，这叫做 <em>数据类</em> 并标记为 <code>data</code>：</p>
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span></span>(<span class="hljs-keyword">val</span> name: String, <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>)</span><br></pre></td></tr></table></figure>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/kotlin/reference/sealed-classes.html#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/kotlin/reference/data-classes.html#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -193,6 +193,9 @@
         
     </div>
 </div>
+
+
+
 
 
 
@@ -252,6 +255,9 @@
 
 
 
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -306,6 +312,9 @@
 
 
 
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -355,6 +364,9 @@
         
     </div>
 </div>
+
+
+
 
 
 
@@ -415,6 +427,9 @@
 
 
 
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -467,6 +482,9 @@
         
     </div>
 </div>
+
+
+
 
 
 
@@ -531,6 +549,9 @@
 
 
 
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -580,6 +601,9 @@
         
     </div>
 </div>
+
+
+
 
 
 
@@ -642,6 +666,9 @@
 
 
 
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -697,6 +724,9 @@
 
 
 
+
+
+
     
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
@@ -737,7 +767,7 @@
         <nav class="level">
             <div class="level-item has-text-centered">
                 <div>
-                    <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="oushiun">
+                    <img class="image is-128x128 has-mb-6" src="https://static.oushiun.com/avatar.png" alt="oushiun">
                     
                     <p class="is-size-4 is-block">
                         oushiun
@@ -911,6 +941,7 @@
 </div>
     
     
+        <!-- <div class="column-right-shadow is-hidden-widescreen "> -->
         <div class="column-right-shadow is-hidden-widescreen ">
         
             
@@ -1069,6 +1100,7 @@
     
 </div>
 
+                <!--  -->
                 
 
 
@@ -1231,6 +1263,7 @@
     
 </div>
 
+                <!--  -->
             </div>
         </div>
     </section>
@@ -1244,7 +1277,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2018 oushiun&nbsp;
+                &copy; 2019 oushiun&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
                 </p>
