@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="使用高阶函数会带来一些运行时的效率损失：每一个函数都是一个对象，并且会捕获一个闭包。即那些在函数体内会访问到的变量。内存分配（对于函数对象和类）和虚拟调用会引入运行时间开销。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.258Z">
+<meta property="og:updated_time" content="2019-01-18T04:34:30.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内联函数">
 <meta name="twitter:description" content="使用高阶函数会带来一些运行时的效率损失：每一个函数都是一个对象，并且会捕获一个闭包。即那些在函数体内会访问到的变量。内存分配（对于函数对象和类）和虚拟调用会引入运行时间开销。">
@@ -129,6 +129,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -263,8 +267,8 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/kotlin/reference/lambdas.html">
-                <span class="level-item">高阶函数与 lambda 表达式</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/kotlin/reference/functions.html">
+                <span class="level-item">函数</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -335,7 +339,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -402,6 +406,37 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#禁用内联">
+        <span class="has-mr-6">1</span>
+        <span>禁用内联</span>
+        </a></li><li>
+        <a class="is-flex" href="#非局部返回">
+        <span class="has-mr-6">2</span>
+        <span>非局部返回</span>
+        </a></li><li>
+        <a class="is-flex" href="#具体化的类型参数">
+        <span class="has-mr-6">3</span>
+        <span>具体化的类型参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#内联属性（自-1-1-起）">
+        <span class="has-mr-6">4</span>
+        <span>内联属性（自 1.1 起）</span>
+        </a></li><li>
+        <a class="is-flex" href="#公有-API-内联函数的限制">
+        <span class="has-mr-6">5</span>
+        <span>公有 API 内联函数的限制</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -425,7 +460,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -441,7 +476,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -491,6 +526,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -568,25 +622,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -605,7 +640,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

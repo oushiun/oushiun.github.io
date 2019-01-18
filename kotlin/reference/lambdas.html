@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="Kotlin 函数都是头等的，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他高阶函数以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。 为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列函数类型来表示函数并提供一组特定的语言结构，例如 lambda 表达式。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.182Z">
+<meta property="og:updated_time" content="2019-01-18T04:34:30.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高阶函数与 lambda 表达式">
 <meta name="twitter:description" content="Kotlin 函数都是头等的，这意味着它们可以存储在变量与数据结构中、作为参数传递给其他高阶函数以及从其他高阶函数返回。可以像操作任何其他非函数值一样操作函数。 为促成这点，作为一门静态类型编程语言的 Kotlin 使用一系列函数类型来表示函数并提供一组特定的语言结构，例如 lambda 表达式。">
@@ -129,6 +129,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -310,16 +314,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/kotlin/reference/inline-functions.html">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/kotlin/reference/functions.html">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">内联函数</span>
+                <span class="level-item">函数</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/kotlin/reference/functions.html">
-                <span class="level-item">函数</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/kotlin/reference/delegated-properties.html">
+                <span class="level-item">委托属性</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -390,7 +394,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -457,6 +461,77 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#高阶函数">
+        <span class="has-mr-6">1</span>
+        <span>高阶函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#函数类型">
+        <span class="has-mr-6">2</span>
+        <span>函数类型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#函数类型实例化">
+        <span class="has-mr-6">2.1</span>
+        <span>函数类型实例化</span>
+        </a></li><li>
+        <a class="is-flex" href="#函数类型实例调用">
+        <span class="has-mr-6">2.2</span>
+        <span>函数类型实例调用</span>
+        </a></li><li>
+        <a class="is-flex" href="#内联函数">
+        <span class="has-mr-6">2.3</span>
+        <span>内联函数</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Lambda-表达式与匿名函数">
+        <span class="has-mr-6">3</span>
+        <span>Lambda 表达式与匿名函数</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Lambda-表达式语法">
+        <span class="has-mr-6">3.1</span>
+        <span>Lambda 表达式语法</span>
+        </a></li><li>
+        <a class="is-flex" href="#将-lambda-表达式传给最后一个参数">
+        <span class="has-mr-6">3.2</span>
+        <span>将 lambda 表达式传给最后一个参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#it：单个参数的隐式名称">
+        <span class="has-mr-6">3.3</span>
+        <span>it：单个参数的隐式名称</span>
+        </a></li><li>
+        <a class="is-flex" href="#从-lambda-表达式中返回一个值">
+        <span class="has-mr-6">3.4</span>
+        <span>从 lambda 表达式中返回一个值</span>
+        </a></li><li>
+        <a class="is-flex" href="#下划线用于未使用的变量（自-1-1-起）">
+        <span class="has-mr-6">3.5</span>
+        <span>下划线用于未使用的变量（自 1.1 起）</span>
+        </a></li><li>
+        <a class="is-flex" href="#在-lambda-表达式中解构（自-1-1-起）">
+        <span class="has-mr-6">3.6</span>
+        <span>在 lambda 表达式中解构（自 1.1 起）</span>
+        </a></li><li>
+        <a class="is-flex" href="#匿名函数">
+        <span class="has-mr-6">3.7</span>
+        <span>匿名函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#闭包">
+        <span class="has-mr-6">3.8</span>
+        <span>闭包</span>
+        </a></li><li>
+        <a class="is-flex" href="#带接收者的函数字面值">
+        <span class="has-mr-6">3.9</span>
+        <span>带接收者的函数字面值</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -480,7 +555,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -496,7 +571,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -546,6 +621,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -623,25 +717,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -660,7 +735,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

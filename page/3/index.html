@@ -146,6 +146,63 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/kotlin/reference/js-interop.html" class="image is-7by1">
+            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="Kotlin 中调用 JavaScript">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-22T03:26:14.000Z">2018-05-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/后端/">后端</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/">参考</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/JavaScript/">JavaScript</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1072 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/kotlin/reference/js-interop.html">Kotlin 中调用 JavaScript</a>
+            
+        </h1>
+        <div class="content">
+            <p>Kotlin 已被设计为能够与 Java 平台轻松互操作。它将 Java 类视为 Kotlin 类，并且 Java 也将 Kotlin 类视为 Java 类。但是，JavaScript 是一种动态类型语言，这意味着它不会在编译期检查类型。你可以通过<a href="dynamic-type.html">动态</a>类型在 Kotlin 中自由地与 JavaScript 交流，但是如果你想要 Kotlin 类型系统的全部威力，你可以为 JavaScript 库创建 Kotlin 头文件。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/kotlin/reference/js-interop.html#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/kotlin/reference/dynamic-type.html" class="image is-7by1">
             <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="动态类型">
         </a>
@@ -732,72 +789,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/kotlin/reference/annotations.html" class="image is-7by1">
-            <img class="thumbnail" src="https://static.oushiun.com/blog/banner/Kotlin.png" alt="注解">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-22T02:09:55.000Z">2018-05-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/后端/">后端</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/">参考</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Kotlin/参考/其他/">其他</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 minutes read (About 1498 words)
-                </span>
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/kotlin/reference/annotations.html">注解</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="注解声明"><a href="#注解声明" class="headerlink" title="注解声明"></a>注解声明</h2><p>注解是将元数据附加到代码的方法。要声明注解，请将 <code>annotation</code> 修饰符放在类的前面：</p>
-<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">annotation</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Fancy</span></span></span><br></pre></td></tr></table></figure>
-<p>注解的附加属性可以通过用元注解标注注解类来指定：</p>
-<ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html" target="_blank" rel="noopener"><code>@Target</code></a> 指定可以用该注解标注的元素的可能的类型（类、函数、属性、表达式等）；</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html" target="_blank" rel="noopener"><code>@Retention</code></a> 指定该注解是否存储在编译后的 class 文件中，以及它在运行时能否通过反射可见（默认都是 true）；</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html" target="_blank" rel="noopener"><code>@Repeatable</code></a> 允许在单个元素上多次使用相同的该注解；</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html" target="_blank" rel="noopener"><code>@MustBeDocumented</code></a> 指定该注解是公有 API 的一部分，并且应该包含在生成的 API 文档中显示的类或方法的签名中。</li>
-</ul>
-<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION,</span></span><br><span class="line"><span class="hljs-meta">        AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.EXPRESSION)</span></span><br><span class="line"><span class="hljs-meta">@Retention(AnnotationRetention.SOURCE)</span></span><br><span class="line"><span class="hljs-meta">@MustBeDocumented</span></span><br><span class="line"><span class="hljs-keyword">annotation</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Fancy</span></span></span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/kotlin/reference/annotations.html#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -866,7 +857,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -956,7 +947,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -972,7 +963,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -1025,6 +1016,25 @@
         
         <article class="media">
             
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
@@ -1099,25 +1109,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1136,7 +1127,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1189,6 +1180,25 @@
         
         <article class="media">
             
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/es6/default-rest-spread.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://static.oushiun.com/blog/banner/default-rest-spread.jpg" alt="默认参数、不定参数、扩展运算符">
@@ -1263,25 +1273,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1300,7 +1291,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

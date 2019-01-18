@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是可用选项的列表：  无模块（Plain）。不为任何模块系统编译。像往常一样，你可以在全局作用域中以其名称访问模块。默认使用此选项。 异步模块定义（AMD，Asynchronous Module Definition），它尤其为 require.js 库所使用。 CommonJS 约定，广泛用于 nod">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.087Z">
+<meta property="og:updated_time" content="2019-01-18T04:34:30.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 模块">
 <meta name="twitter:description" content="Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是可用选项的列表：  无模块（Plain）。不为任何模块系统编译。像往常一样，你可以在全局作用域中以其名称访问模块。默认使用此选项。 异步模块定义（AMD，Asynchronous Module Definition），它尤其为 require.js 库所使用。 CommonJS 约定，广泛用于 nod">
@@ -129,6 +129,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -326,7 +330,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -393,6 +397,53 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#选择目标模块系统">
+        <span class="has-mr-6">1</span>
+        <span>选择目标模块系统</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#在-IntelliJ-IDEA-中">
+        <span class="has-mr-6">1.1</span>
+        <span>在 IntelliJ IDEA 中</span>
+        </a></li><li>
+        <a class="is-flex" href="#在-Maven-中">
+        <span class="has-mr-6">1.2</span>
+        <span>在 Maven 中</span>
+        </a></li><li>
+        <a class="is-flex" href="#在-Gradle-中">
+        <span class="has-mr-6">1.3</span>
+        <span>在 Gradle 中</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#JsModule-注解">
+        <span class="has-mr-6">2</span>
+        <span>@JsModule 注解</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#将-JsModule-应用到包">
+        <span class="has-mr-6">2.1</span>
+        <span>将 @JsModule 应用到包</span>
+        </a></li><li>
+        <a class="is-flex" href="#导入更深的包层次结构">
+        <span class="has-mr-6">2.2</span>
+        <span>导入更深的包层次结构</span>
+        </a></li><li>
+        <a class="is-flex" href="#JsNonModule-注解">
+        <span class="has-mr-6">2.3</span>
+        <span>@JsNonModule 注解</span>
+        </a></li><li>
+        <a class="is-flex" href="#备注">
+        <span class="has-mr-6">2.4</span>
+        <span>备注</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -416,7 +467,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -432,7 +483,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -482,6 +533,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -559,25 +629,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -596,7 +647,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

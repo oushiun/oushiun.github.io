@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="一些在 Kotlin 中广泛使用的语法习惯，如果你有更喜欢的语法习惯或者风格，可以建一个 pull request 贡献！">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.183Z">
+<meta property="og:updated_time" content="2019-01-18T04:34:30.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="习惯用法">
 <meta name="twitter:description" content="一些在 Kotlin 中广泛使用的语法习惯，如果你有更喜欢的语法习惯或者风格，可以建一个 pull request 贡献！">
@@ -129,6 +129,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -333,7 +337,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -400,6 +404,129 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#创建-DTOs（POJOs-POCOs）">
+        <span class="has-mr-6">1</span>
+        <span>创建 DTOs（POJOs/POCOs）</span>
+        </a></li><li>
+        <a class="is-flex" href="#函数的默认参数">
+        <span class="has-mr-6">2</span>
+        <span>函数的默认参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#过滤-list">
+        <span class="has-mr-6">3</span>
+        <span>过滤 list</span>
+        </a></li><li>
+        <a class="is-flex" href="#String-内插">
+        <span class="has-mr-6">4</span>
+        <span>String 内插</span>
+        </a></li><li>
+        <a class="is-flex" href="#类型判断">
+        <span class="has-mr-6">5</span>
+        <span>类型判断</span>
+        </a></li><li>
+        <a class="is-flex" href="#遍历-map-pair-型-list">
+        <span class="has-mr-6">6</span>
+        <span>遍历 map/pair 型 list</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用区间">
+        <span class="has-mr-6">7</span>
+        <span>使用区间</span>
+        </a></li><li>
+        <a class="is-flex" href="#只读-list">
+        <span class="has-mr-6">8</span>
+        <span>只读 list</span>
+        </a></li><li>
+        <a class="is-flex" href="#只读-map">
+        <span class="has-mr-6">9</span>
+        <span>只读 map</span>
+        </a></li><li>
+        <a class="is-flex" href="#访问-map">
+        <span class="has-mr-6">10</span>
+        <span>访问 map</span>
+        </a></li><li>
+        <a class="is-flex" href="#延迟属性">
+        <span class="has-mr-6">11</span>
+        <span>延迟属性</span>
+        </a></li><li>
+        <a class="is-flex" href="#扩展函数">
+        <span class="has-mr-6">12</span>
+        <span>扩展函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建单例">
+        <span class="has-mr-6">13</span>
+        <span>创建单例</span>
+        </a></li><li>
+        <a class="is-flex" href="#If-not-null-缩写">
+        <span class="has-mr-6">14</span>
+        <span>If not null 缩写</span>
+        </a></li><li>
+        <a class="is-flex" href="#If-not-null-and-else-缩写">
+        <span class="has-mr-6">15</span>
+        <span>If not null and else 缩写</span>
+        </a></li><li>
+        <a class="is-flex" href="#if-null-执行一个语句">
+        <span class="has-mr-6">16</span>
+        <span>if null 执行一个语句</span>
+        </a></li><li>
+        <a class="is-flex" href="#在可能会空的集合中取第一元素">
+        <span class="has-mr-6">17</span>
+        <span>在可能会空的集合中取第一元素</span>
+        </a></li><li>
+        <a class="is-flex" href="#if-not-null-执行代码">
+        <span class="has-mr-6">18</span>
+        <span>if not null 执行代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#映射可空值（如果非空的话）">
+        <span class="has-mr-6">19</span>
+        <span>映射可空值（如果非空的话）</span>
+        </a></li><li>
+        <a class="is-flex" href="#返回-when-表达式">
+        <span class="has-mr-6">20</span>
+        <span>返回 when 表达式</span>
+        </a></li><li>
+        <a class="is-flex" href="#“try-catch”表达式">
+        <span class="has-mr-6">21</span>
+        <span>“try/catch”表达式</span>
+        </a></li><li>
+        <a class="is-flex" href="#“if”表达式">
+        <span class="has-mr-6">22</span>
+        <span>“if”表达式</span>
+        </a></li><li>
+        <a class="is-flex" href="#返回类型为-Unit-的方法的-Builder-风格用法">
+        <span class="has-mr-6">23</span>
+        <span>返回类型为 Unit 的方法的 Builder 风格用法</span>
+        </a></li><li>
+        <a class="is-flex" href="#单表达式函数">
+        <span class="has-mr-6">24</span>
+        <span>单表达式函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#对一个对象实例调用多个方法-（with）">
+        <span class="has-mr-6">25</span>
+        <span>对一个对象实例调用多个方法 （with）</span>
+        </a></li><li>
+        <a class="is-flex" href="#Java-7-的-try-with-resources">
+        <span class="has-mr-6">26</span>
+        <span>Java 7 的 try with resources</span>
+        </a></li><li>
+        <a class="is-flex" href="#对于需要泛型信息的泛型函数的适宜形式">
+        <span class="has-mr-6">27</span>
+        <span>对于需要泛型信息的泛型函数的适宜形式</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用可空布尔">
+        <span class="has-mr-6">28</span>
+        <span>使用可空布尔</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -423,7 +550,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -439,7 +566,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -489,6 +616,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -566,25 +712,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -603,7 +730,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

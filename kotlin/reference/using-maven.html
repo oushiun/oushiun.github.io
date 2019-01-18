@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="插件与版本kotlin-maven-plugin 用于编译 Kotlin 源代码与模块，目前只支持 Maven V3。 通过 kotlin.version 属性定义要使用的 Kotlin 版本： 123&amp;lt;properties&amp;gt;    &amp;lt;kotlin.version&amp;gt;&amp;#123;&amp;#123; site.data.releases.latest.version &amp;#125;&amp;#">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.095Z">
+<meta property="og:updated_time" content="2019-01-18T04:34:30.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Maven">
 <meta name="twitter:description" content="插件与版本kotlin-maven-plugin 用于编译 Kotlin 源代码与模块，目前只支持 Maven V3。 通过 kotlin.version 属性定义要使用的 Kotlin 版本： 123&amp;lt;properties&amp;gt;    &amp;lt;kotlin.version&amp;gt;&amp;#123;&amp;#123; site.data.releases.latest.version &amp;#125;&amp;#">
@@ -129,6 +129,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -469,7 +473,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -536,6 +540,85 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#插件与版本">
+        <span class="has-mr-6">1</span>
+        <span>插件与版本</span>
+        </a></li><li>
+        <a class="is-flex" href="#依赖">
+        <span class="has-mr-6">2</span>
+        <span>依赖</span>
+        </a></li><li>
+        <a class="is-flex" href="#编译只有-Kotlin-的源代码">
+        <span class="has-mr-6">3</span>
+        <span>编译只有 Kotlin 的源代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#同时编译-Kotlin-与-Java-源代码">
+        <span class="has-mr-6">4</span>
+        <span>同时编译 Kotlin 与 Java 源代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#增量编译">
+        <span class="has-mr-6">5</span>
+        <span>增量编译</span>
+        </a></li><li>
+        <a class="is-flex" href="#注解处理">
+        <span class="has-mr-6">6</span>
+        <span>注解处理</span>
+        </a></li><li>
+        <a class="is-flex" href="#协程支持">
+        <span class="has-mr-6">7</span>
+        <span>协程支持</span>
+        </a></li><li>
+        <a class="is-flex" href="#Jar-文件">
+        <span class="has-mr-6">8</span>
+        <span>Jar 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#独立的-Jar-文件">
+        <span class="has-mr-6">9</span>
+        <span>独立的 Jar 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#针对-JavaScript">
+        <span class="has-mr-6">10</span>
+        <span>针对 JavaScript</span>
+        </a></li><li>
+        <a class="is-flex" href="#指定编译器选项">
+        <span class="has-mr-6">11</span>
+        <span>指定编译器选项</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#JVM-和-JS-的公共属性">
+        <span class="has-mr-6">11.1</span>
+        <span>JVM 和 JS 的公共属性</span>
+        </a></li><li>
+        <a class="is-flex" href="#JVM-特有的属性">
+        <span class="has-mr-6">11.2</span>
+        <span>JVM 特有的属性</span>
+        </a></li><li>
+        <a class="is-flex" href="#JS-特有的属性">
+        <span class="has-mr-6">11.3</span>
+        <span>JS 特有的属性</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#生成文档">
+        <span class="has-mr-6">12</span>
+        <span>生成文档</span>
+        </a></li><li>
+        <a class="is-flex" href="#OSGi">
+        <span class="has-mr-6">13</span>
+        <span>OSGi</span>
+        </a></li><li>
+        <a class="is-flex" href="#示例">
+        <span class="has-mr-6">14</span>
+        <span>示例</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -559,7 +642,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -575,7 +658,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -625,6 +708,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -702,25 +804,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -739,7 +822,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

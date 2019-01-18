@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="oushiun">
 <meta property="og:description" content="Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.247Z">
+<meta property="og:updated_time" content="2019-01-18T04:34:30.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Kotlin 中调用 Java 代码">
 <meta name="twitter:description" content="Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。">
@@ -129,6 +129,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -665,7 +669,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -732,6 +736,129 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#Getter-和-Setter">
+        <span class="has-mr-6">1</span>
+        <span>Getter 和 Setter</span>
+        </a></li><li>
+        <a class="is-flex" href="#返回-void-的方法">
+        <span class="has-mr-6">2</span>
+        <span>返回 void 的方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#将-Kotlin-中是关键字的-Java-标识符进行转义">
+        <span class="has-mr-6">3</span>
+        <span>将 Kotlin 中是关键字的 Java 标识符进行转义</span>
+        </a></li><li>
+        <a class="is-flex" href="#空安全与平台类型">
+        <span class="has-mr-6">4</span>
+        <span>空安全与平台类型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#平台类型表示法">
+        <span class="has-mr-6">4.1</span>
+        <span>平台类型表示法</span>
+        </a></li><li>
+        <a class="is-flex" href="#可空性注解">
+        <span class="has-mr-6">4.2</span>
+        <span>可空性注解</span>
+        </a></li><li>
+        <a class="is-flex" href="#Annotating-type-parameters">
+        <span class="has-mr-6">4.3</span>
+        <span>Annotating type parameters</span>
+        </a></li><li>
+        <a class="is-flex" href="#JSR-305-支持">
+        <span class="has-mr-6">4.4</span>
+        <span>JSR-305 支持</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#类型限定符别称（自-1-1-50-起）">
+        <span class="has-mr-6">4.4.1</span>
+        <span>类型限定符别称（自 1.1.50 起）</span>
+        </a></li><li>
+        <a class="is-flex" href="#类型限定符默认值（自-1-1-50-起）">
+        <span class="has-mr-6">4.4.2</span>
+        <span>类型限定符默认值（自 1.1.50 起）</span>
+        </a></li><li>
+        <a class="is-flex" href="#UnderMigration-注解（自-1-1-60-起）">
+        <span class="has-mr-6">4.4.3</span>
+        <span>@UnderMigration 注解（自 1.1.60 起）</span>
+        </a></li><li>
+        <a class="is-flex" href="#编译器配置">
+        <span class="has-mr-6">4.4.4</span>
+        <span>编译器配置</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#已映射类型">
+        <span class="has-mr-6">5</span>
+        <span>已映射类型</span>
+        </a></li><li>
+        <a class="is-flex" href="#Kotlin-中的-Java-泛型">
+        <span class="has-mr-6">6</span>
+        <span>Kotlin 中的 Java 泛型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Java-数组">
+        <span class="has-mr-6">6.1</span>
+        <span>Java 数组</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Java-可变参数">
+        <span class="has-mr-6">7</span>
+        <span>Java 可变参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#操作符">
+        <span class="has-mr-6">8</span>
+        <span>操作符</span>
+        </a></li><li>
+        <a class="is-flex" href="#受检异常">
+        <span class="has-mr-6">9</span>
+        <span>受检异常</span>
+        </a></li><li>
+        <a class="is-flex" href="#对象方法">
+        <span class="has-mr-6">10</span>
+        <span>对象方法</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#wait-notify">
+        <span class="has-mr-6">10.1</span>
+        <span>wait()/notify()</span>
+        </a></li><li>
+        <a class="is-flex" href="#getClass">
+        <span class="has-mr-6">10.2</span>
+        <span>getClass()</span>
+        </a></li><li>
+        <a class="is-flex" href="#clone">
+        <span class="has-mr-6">10.3</span>
+        <span>clone()</span>
+        </a></li><li>
+        <a class="is-flex" href="#finalize">
+        <span class="has-mr-6">10.4</span>
+        <span>finalize()</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#从-Java-类继承">
+        <span class="has-mr-6">11</span>
+        <span>从 Java 类继承</span>
+        </a></li><li>
+        <a class="is-flex" href="#访问静态成员">
+        <span class="has-mr-6">12</span>
+        <span>访问静态成员</span>
+        </a></li><li>
+        <a class="is-flex" href="#Java-反射">
+        <span class="has-mr-6">13</span>
+        <span>Java 反射</span>
+        </a></li><li>
+        <a class="is-flex" href="#SAM-转换">
+        <span class="has-mr-6">14</span>
+        <span>SAM 转换</span>
+        </a></li><li>
+        <a class="is-flex" href="#在-Kotlin-中使用-JNI">
+        <span class="has-mr-6">15</span>
+        <span>在 Kotlin 中使用 JNI</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -755,7 +882,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -771,7 +898,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -821,6 +948,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -898,25 +1044,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -935,7 +1062,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>

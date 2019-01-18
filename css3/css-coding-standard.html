@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://static.oushiun.com/blog/img/underline.png">
 <meta property="og:image" content="https://static.oushiun.com/blog/img/css-id.png">
 <meta property="og:image" content="https://static.oushiun.com/blog/img/status-select.png">
-<meta property="og:updated_time" content="2018-12-18T10:21:44.081Z">
+<meta property="og:updated_time" content="2019-01-18T04:31:45.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 书写规范">
 <meta name="twitter:description" content="写了这么久的 CSS，但大部分前端 er 都没有按照良好的 CSS 书写规范来写 CSS 代码，这样会影响代码的阅读体验，这里设计达人网总结一个 CSS 书写规范、CSS 书写顺序供大家参考，这些是参考了国外一些文章以及我的个人经验总结出来，我想对写 CSS 的前端用户来说是值得学习的。">
@@ -138,6 +138,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
@@ -342,7 +346,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        75
+                        76
                     </p>
                 </div>
             </div>
@@ -409,6 +413,89 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#CSS-书写顺序">
+        <span class="has-mr-6">1</span>
+        <span>CSS 书写顺序</span>
+        </a></li><li>
+        <a class="is-flex" href="#CSS-书写规范">
+        <span class="has-mr-6">2</span>
+        <span>CSS 书写规范</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#使用-CSS-缩写属性">
+        <span class="has-mr-6">2.1</span>
+        <span>使用 CSS 缩写属性</span>
+        </a></li><li>
+        <a class="is-flex" href="#去掉小数点前的“0”">
+        <span class="has-mr-6">2.2</span>
+        <span>去掉小数点前的“0”</span>
+        </a></li><li>
+        <a class="is-flex" href="#简写命名">
+        <span class="has-mr-6">2.3</span>
+        <span>简写命名</span>
+        </a></li><li>
+        <a class="is-flex" href="#16-进制颜色代码缩写">
+        <span class="has-mr-6">2.4</span>
+        <span>16 进制颜色代码缩写</span>
+        </a></li><li>
+        <a class="is-flex" href="#连字符-CSS-选择器命名规范">
+        <span class="has-mr-6">2.5</span>
+        <span>连字符 CSS 选择器命名规范</span>
+        </a></li><li>
+        <a class="is-flex" href="#不要随意使用-Id">
+        <span class="has-mr-6">2.6</span>
+        <span>不要随意使用 Id</span>
+        </a></li><li>
+        <a class="is-flex" href="#为选择器添加状态前缀">
+        <span class="has-mr-6">2.7</span>
+        <span>为选择器添加状态前缀</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#CSS-命名规范（规则）">
+        <span class="has-mr-6">3</span>
+        <span>CSS 命名规范（规则）</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#常用的-CSS-命名规则">
+        <span class="has-mr-6">3.1</span>
+        <span>常用的 CSS 命名规则</span>
+        </a></li><li>
+        <a class="is-flex" href="#注释的写法">
+        <span class="has-mr-6">3.2</span>
+        <span>注释的写法</span>
+        </a></li><li>
+        <a class="is-flex" href="#Id-的命名">
+        <span class="has-mr-6">3.3</span>
+        <span>Id 的命名:</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#页面结构">
+        <span class="has-mr-6">3.3.1</span>
+        <span>页面结构</span>
+        </a></li><li>
+        <a class="is-flex" href="#导航">
+        <span class="has-mr-6">3.3.2</span>
+        <span>导航</span>
+        </a></li><li>
+        <a class="is-flex" href="#功能">
+        <span class="has-mr-6">3.3.3</span>
+        <span>功能</span>
+        </a></li><li>
+        <a class="is-flex" href="#注意事项">
+        <span class="has-mr-6">3.3.4</span>
+        <span>注意事项</span>
+        </a></li><li>
+        <a class="is-flex" href="#CSS-样式表文件命名">
+        <span class="has-mr-6">3.3.5</span>
+        <span>CSS 样式表文件命名</span>
+        </a></li></ul></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -432,7 +519,7 @@
                 <span class="level-item">前端</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/前端/Css3/">
@@ -448,7 +535,7 @@
                 <span class="level-item">JavaScript</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/后端/">
@@ -498,6 +585,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/es6/let-const.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/let-const.png" alt="let 和 const 命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-22T04:28:29.000Z">2018-06-22</time></div>
+                    <a href="/es6/let-const.html" class="has-link-black-ter is-size-6">let 和 const 命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -575,25 +681,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/es6/enhanced-object-literals.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://static.oushiun.com/blog/banner/enhanced-object-literals.jpg" alt="增强的对象文本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-12T02:28:54.000Z">2018-06-12</time></div>
-                    <a href="/es6/enhanced-object-literals.html" class="has-link-black-ter is-size-6">增强的对象文本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a> / <a class="has-link-grey -link" href="/categories/前端/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -612,7 +699,7 @@
                     <span class="level-item">June 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
