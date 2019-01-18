@@ -1,13 +1,14 @@
 ---
 title: Css 盒子模型
 
+toc: true
 tags:
  - Box Model
 categories:
  - 前端
  - Css3
 date: 2018-05-10 22:46:15
-thumbnail: https://static.oushiun.com/bloh/banner/box_model.gif
+thumbnail: https://static.oushiun.com/blog/banner/box_model.png
 ---
 
 盒模型(box model)是 CSS 中的一个重要概念，它是元素大小的呈现方式。需要记住的是："every element in web design is a rectangular box"。如图：

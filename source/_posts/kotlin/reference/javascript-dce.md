@@ -1,6 +1,7 @@
 ---
 title: JavaScript DCE
 
+toc: true
 tags:
  - Kotlin
 categories:

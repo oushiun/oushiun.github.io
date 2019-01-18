@@ -1,6 +1,7 @@
 ---
 title: 增强的对象文本
 
+toc: true
 tags:
  - ES6
 categories:

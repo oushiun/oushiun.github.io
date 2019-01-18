@@ -1,6 +1,7 @@
 ---
 title: Hello Hexo
 
+toc: true
 tags:
  - Hexo
 categories:

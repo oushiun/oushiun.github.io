@@ -1,6 +1,7 @@
 ---
 title: 使用 Maven
 
+toc: true
 tags:
  - Kotlin
 categories:

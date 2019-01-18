@@ -1,6 +1,7 @@
 ---
 title: 类型的检查与转换“is”与“as”
 
+toc: true
 tags:
  - Kotlin
 categories:

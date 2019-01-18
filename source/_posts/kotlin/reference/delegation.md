@@ -1,6 +1,7 @@
 ---
 title: 委托
 
+toc: true
 tags:
  - Kotlin
 categories:

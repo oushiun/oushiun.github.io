@@ -1,6 +1,7 @@
 ---
 title: 类和继承
 
+toc: true
 tags:
  - Kotlin
 categories:

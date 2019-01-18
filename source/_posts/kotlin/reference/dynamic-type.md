@@ -1,6 +1,7 @@
 ---
 title: 动态类型
 
+toc: true
 tags:
  - Kotlin
 categories:

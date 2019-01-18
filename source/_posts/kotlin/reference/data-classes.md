@@ -1,6 +1,7 @@
 ---
 title: 数据类
 
+toc: true
 tags:
  - Kotlin
 categories:

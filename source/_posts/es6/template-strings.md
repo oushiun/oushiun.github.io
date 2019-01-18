@@ -1,6 +1,7 @@
 ---
 title: 模板字符串
 
+toc: true
 tags:
  - ES6
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 解构声明
 
+toc: true
 tags:
  - Kotlin
 categories:

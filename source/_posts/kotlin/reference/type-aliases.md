@@ -1,6 +1,7 @@
 ---
 title: 类型别名
 
+toc: true
 tags:
  - Kotlin
 categories:

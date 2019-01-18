@@ -1,6 +1,7 @@
 ---
 title: 对象表达式与对象声明
 
+toc: true
 tags:
  - Kotlin
 categories:

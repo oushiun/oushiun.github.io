@@ -1,6 +1,7 @@
 ---
 title: Kotlin 注解处理
 
+toc: true
 tags:
  - Kotlin
 categories:

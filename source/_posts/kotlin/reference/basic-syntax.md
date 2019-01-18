@@ -1,6 +1,7 @@
 ---
 title: 基本语法
 
+toc: true
 tags:
  - Kotlin
 categories:

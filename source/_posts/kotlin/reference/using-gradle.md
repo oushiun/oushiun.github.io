@@ -1,6 +1,7 @@
 ---
 title: 使用 Gradle
 
+toc: true
 tags:
  - Kotlin
 categories:

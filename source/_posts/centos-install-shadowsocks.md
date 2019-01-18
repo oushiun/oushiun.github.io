@@ -15,9 +15,7 @@ Shadowsocks(ss) 是由 Clowwindy 开发的一款软件，其作用本来是加�
 
 <!-- more -->
 
-### 安装 shadowsocks
-
-#### 安装 pip
+### 安装 pip
 
 Pip 是 Python 的包管理工具，这里我们用 pip 安装 shadowsocks。
 
@@ -27,14 +25,14 @@ python get-pip.py
 pip -V #pip 10.0.1 from /usr/lib/python2.7/site-packages/pip (python 2.7)
 ```
 
-#### 通过 pip 安装 shadowsocks
+### 通过 pip 安装 shadowsocks
 
 ``` bash
 pip install --upgrade pip
 pip install shadowsocks
 ```
 
-#### 配置 shadowsocks
+### 配置 shadowsocks
 
 ``` bash
 # vi /etc/shadowsocks.json
@@ -50,7 +48,7 @@ pip install shadowsocks
 }
 ```
 
-#### systemctl 设置
+### systemctl 设置
 
 ``` bash
 # vi /etc/systemd/system/shadowsocks.service
@@ -69,7 +67,7 @@ Restart=on-abort
 WantedBy=multi-user.target
 ```
 
-#### 配置 firwall 规则
+### 配置 firwall 规则
 
 输入以下命令开启一个端口，如果不是 9002 端口，修改成自己需要添加的端口（–permanent 永久生效，没有此参数重启后失效）。
 
@@ -83,7 +81,7 @@ firewall-cmd --zone=public --add-port=9002/tcp --permanent
 firewall-cmd --reload
 ```
 
-#### shadowsocks 其他配置
+### shadowsocks 其他配置
 
 ``` bash
 ssserver -h

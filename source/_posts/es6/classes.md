@@ -1,6 +1,7 @@
 ---
 title: classes
 
+toc: true
 tags:
  - ES6
 categories:

@@ -1,6 +1,7 @@
 ---
 title: Kotlin 与 OSGi
 
+toc: true
 tags:
  - Kotlin
 categories:

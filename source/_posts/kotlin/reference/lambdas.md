@@ -1,6 +1,7 @@
 ---
 title: 高阶函数与 lambda 表达式
 
+toc: true
 tags:
  - Kotlin
 categories:

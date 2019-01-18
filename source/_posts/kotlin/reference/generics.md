@@ -1,6 +1,7 @@
 ---
 title: 泛型
 
+toc: true
 tags:
  - Kotlin
 categories:

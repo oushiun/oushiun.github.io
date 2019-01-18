@@ -1,6 +1,7 @@
 ---
 title: 编译器插件
 
+toc: true
 tags:
  - Kotlin
 categories:

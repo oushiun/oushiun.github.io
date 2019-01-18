@@ -1,6 +1,7 @@
 ---
 title: 习惯用法
 
+toc: true
 tags:
  - Kotlin
 categories:

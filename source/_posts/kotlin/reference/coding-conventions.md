@@ -2,6 +2,7 @@
 title: 编码规范
 
 toc: true
+toc: true
 tags:
  - Kotlin
 categories:

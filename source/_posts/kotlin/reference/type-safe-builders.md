@@ -1,6 +1,7 @@
 ---
 title: 类型安全的构建器
 
+toc: true
 tags:
  - Kotlin
 categories:

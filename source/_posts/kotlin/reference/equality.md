@@ -1,6 +1,7 @@
 ---
 title: 相等性
 
+toc: true
 tags:
  - Kotlin
 categories:

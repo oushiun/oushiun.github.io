@@ -1,6 +1,7 @@
 ---
 title: 密封类
 
+toc: true
 tags:
  - Kotlin
 categories:

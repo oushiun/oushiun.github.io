@@ -1,6 +1,7 @@
 ---
 title: 枚举类
 
+toc: true
 tags:
  - Kotlin
 categories:

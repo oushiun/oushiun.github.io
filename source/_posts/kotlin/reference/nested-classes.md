@@ -1,6 +1,7 @@
 ---
 title: 嵌套类与内部类
 
+toc: true
 tags:
  - Kotlin
 categories:

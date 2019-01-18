@@ -1,6 +1,7 @@
 ---
 title: 箭头函数
 
+toc: true
 tags:
  - ES6
 categories:

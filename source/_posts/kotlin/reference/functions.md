@@ -1,6 +1,7 @@
 ---
 title: 函数
 
+toc: true
 tags:
  - Kotlin
 categories:

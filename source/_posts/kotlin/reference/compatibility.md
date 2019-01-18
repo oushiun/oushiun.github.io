@@ -1,6 +1,7 @@
 ---
 title: 兼容性
 
+toc: true
 tags:
  - Kotlin
 categories:

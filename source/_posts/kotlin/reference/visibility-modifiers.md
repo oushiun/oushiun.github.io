@@ -1,6 +1,7 @@
 ---
 title: 可见性修饰符
 
+toc: true
 tags:
  - Kotlin
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 集合：List、Set、Map
 
+toc: true
 tags:
  - Kotlin
 categories:
