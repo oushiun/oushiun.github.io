@@ -2,7 +2,6 @@
 title: 基本类型
 
 toc: true
-toc: true
 tags:
  - Kotlin
 categories:
